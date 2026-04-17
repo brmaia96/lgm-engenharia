@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>LGM — Gestão de Obra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#060605;
+  --rust:#C8793E;
+  --rust2:#a85f2e;
+  --paper:#EAE6DE;
+  --line:rgba(234,230,222,.12);
+  --line2:rgba(234,230,222,.06);
+  --ghost:rgba(234,230,222,.48);
+  --ghost2:rgba(234,230,222,.24);
+  --B:'Bebas Neue',sans-serif;
+  --C:'Barlow Condensed',sans-serif;
+  --I:'Inter',sans-serif;
+}
+body{background:#111;display:flex;flex-direction:column;gap:0;align-items:center;}
+
+.slide{
+  width:1080px;height:1080px;
+  background:var(--bg);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+  flex-shrink:0;
+}
+.slide+.slide{margin-top:4px;}
+
+.grain{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:9999;opacity:.035;
+}
+
+.bar{
+  position:absolute;bottom:0;left:0;right:0;
+  height:76px;background:rgba(6,6,5,.9);
+  border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  font-family:var(--C);font-size:13px;font-weight:600;
+  letter-spacing:.08em;color:var(--ghost);
+  text-transform:uppercase;z-index:10;
+}
+.bar span:last-child{color:var(--rust);}
+
+.top-line{
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--rust) 0%,var(--rust2) 60%,transparent 100%);
+  z-index:10;
+}
+
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--rust);color:var(--bg);
+  font-family:var(--C);font-size:12px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 14px;border-radius:2px;
+}
+
+/* ══ S1 COVER ══ */
+#s1{
+  background:
+    radial-gradient(ellipse 120% 80% at 80% 20%,rgba(200,121,62,.12) 0%,transparent 60%),
+    linear-gradient(160deg,#0c0804 0%,#060605 45%,#060605 100%);
+}
+#s1 .grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--line2) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line2) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:linear-gradient(to bottom right,transparent 20%,rgba(0,0,0,.4) 60%,transparent 100%);
+}
+#s1 .accent-v{
+  position:absolute;left:56px;top:0;bottom:76px;width:2px;
+  background:linear-gradient(to bottom,transparent 0%,var(--rust) 20%,var(--rust) 80%,transparent 100%);
+  opacity:.4;
+}
+#s1 .shell{
+  position:absolute;inset:0;bottom:76px;z-index:5;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 80px 64px 80px;
+}
+#s1 .eyebrow{margin-bottom:20px;}
+#s1 .h1{
+  font-family:var(--B);font-size:82px;line-height:.95;
+  color:var(--paper);letter-spacing:.01em;
+  text-transform:uppercase;margin-bottom:24px;
+}
+#s1 .h1 em{color:var(--rust);font-style:normal;}
+#s1 .sub{
+  font-family:var(--C);font-size:22px;font-weight:400;
+  color:var(--ghost);letter-spacing:.04em;
+  max-width:560px;line-height:1.4;
+  border-left:2px solid var(--rust);padding-left:18px;
+}
+#s1 .kpi-row{
+  display:flex;gap:40px;margin-top:44px;padding-top:32px;
+  border-top:1px solid var(--line);
+}
+#s1 .kpi{display:flex;flex-direction:column;gap:4px;}
+#s1 .kpi-num{font-family:var(--B);font-size:40px;color:var(--rust);letter-spacing:.02em;}
+#s1 .kpi-label{font-family:var(--C);font-size:12px;color:var(--ghost);letter-spacing:.08em;text-transform:uppercase;}
+
+/* ══ S2 STATS ══ */
+#s2 .shell{
+  position:absolute;inset:0;bottom:76px;z-index:5;
+  display:flex;flex-direction:column;padding:56px 80px 48px;
+}
+#s2 .title{font-family:var(--B);font-size:48px;color:var(--paper);letter-spacing:.02em;margin-bottom:8px;}
+#s2 .intro{font-family:var(--C);font-size:16px;color:var(--ghost);letter-spacing:.04em;margin-bottom:40px;}
+#s2 .stats{flex:1;display:flex;flex-direction:column;gap:1px;background:var(--line);}
+#s2 .stat{
+  flex:1;background:var(--bg);
+  display:flex;align-items:center;gap:40px;
+  padding:0 44px;position:relative;overflow:hidden;
+}
+#s2 .stat::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--rust);opacity:.6;
+}
+#s2 .stat.hi::before{opacity:1;}
+#s2 .stat-num{
+  font-family:var(--B);font-size:88px;color:var(--rust);
+  letter-spacing:.01em;flex-shrink:0;line-height:1;min-width:220px;
+}
+#s2 .stat.muted .stat-num{color:var(--ghost2);}
+#s2 .stat-title{font-family:var(--C);font-size:22px;font-weight:700;color:var(--paper);letter-spacing:.02em;margin-bottom:4px;}
+#s2 .stat-desc{font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);line-height:1.5;}
+#s2 .source{margin-top:16px;font-family:var(--I);font-size:11px;color:var(--ghost2);letter-spacing:.04em;}
+
+/* ══ S3 CAUSAS ══ */
+#s3 .shell{
+  position:absolute;inset:0;bottom:76px;
+  display:flex;flex-direction:column;padding:56px 80px 48px;z-index:5;
+}
+#s3 .title{font-family:var(--B);font-size:48px;color:var(--paper);letter-spacing:.02em;margin-bottom:40px;}
+#s3 .causes{flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+#s3 .cause{display:flex;align-items:flex-start;gap:32px;padding:18px 0;border-bottom:1px solid var(--line);}
+#s3 .cause:last-child{border-bottom:none;}
+#s3 .cause-num{font-family:var(--B);font-size:52px;color:var(--rust);opacity:.3;letter-spacing:.02em;line-height:1;min-width:80px;}
+#s3 .cause-title{font-family:var(--C);font-size:22px;font-weight:700;color:var(--paper);letter-spacing:.02em;margin-bottom:6px;}
+#s3 .cause-desc{font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);line-height:1.5;max-width:700px;}
+#s3 .cause-tag{
+  display:inline-block;margin-top:8px;
+  background:rgba(200,121,62,.1);border:1px solid rgba(200,121,62,.25);
+  color:var(--rust);font-family:var(--C);font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:2px;
+}
+
+/* ══ S4 SOLUÇÃO ══ */
+#s4{background:radial-gradient(ellipse 100% 60% at 50% 100%,rgba(200,121,62,.06) 0%,transparent 70%),var(--bg);}
+#s4 .shell{
+  position:absolute;inset:0;bottom:76px;
+  display:flex;flex-direction:column;padding:56px 80px 48px;z-index:5;
+}
+#s4 .head{margin-bottom:36px;}
+#s4 .title{font-family:var(--B);font-size:48px;color:var(--paper);letter-spacing:.02em;}
+#s4 .subtitle{font-family:var(--C);font-size:16px;color:var(--rust);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:6px;}
+#s4 .timeline{flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line);}
+#s4 .t-col{background:var(--bg);display:flex;flex-direction:column;padding:28px 32px;}
+#s4 .t-num{font-family:var(--B);font-size:64px;color:var(--rust);opacity:.2;line-height:1;margin-bottom:auto;}
+#s4 .t-icon{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--rust);display:flex;align-items:center;justify-content:center;margin-bottom:16px;flex-shrink:0;}
+#s4 .t-icon svg{width:20px;height:20px;stroke:var(--rust);fill:none;stroke-width:1.5;}
+#s4 .t-title{font-family:var(--C);font-size:20px;font-weight:700;color:var(--paper);letter-spacing:.02em;margin-bottom:10px;text-transform:uppercase;}
+#s4 .t-list{flex:1;display:flex;flex-direction:column;gap:6px;}
+#s4 .t-item{font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.4;padding-left:12px;position:relative;}
+#s4 .t-item::before{content:'·';position:absolute;left:0;color:var(--rust);}
+#s4 .t-badge{margin-top:16px;font-family:var(--C);font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.08em;text-transform:uppercase;padding:4px 0;border-top:1px solid rgba(200,121,62,.3);}
+
+/* ══ S5 COMPARATIVO ══ */
+#s5 .shell{
+  position:absolute;inset:0;bottom:76px;
+  display:flex;flex-direction:column;padding:56px 80px 0;z-index:5;
+}
+#s5 .title{font-family:var(--B);font-size:44px;color:var(--paper);letter-spacing:.02em;margin-bottom:28px;}
+#s5 .cmp{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);}
+#s5 .col{background:var(--bg);display:flex;flex-direction:column;}
+#s5 .cp-head{flex-shrink:0;height:56px;display:flex;align-items:center;padding:0 32px;border-bottom:1px solid var(--line);}
+#s5 .cp-head-label{font-family:var(--C);font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+.col.bad .cp-head-label{color:var(--ghost2);}
+.col.good .cp-head-label{color:var(--rust);}
+.col.good{background:rgba(200,121,62,.025);}
+#s5 .cp-chart{flex:1;min-height:0;display:flex;align-items:flex-end;justify-content:center;gap:20px;padding:24px 32px 0;}
+#s5 .bar-grp{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;}
+#s5 .bar-wrap{width:100%;display:flex;align-items:flex-end;height:120px;}
+#s5 .bar-fill{width:100%;border-radius:3px 3px 0 0;}
+.col.bad .bar-fill{background:rgba(234,230,222,.12);}
+.col.good .bar-fill{background:var(--rust);}
+#s5 .bar-val{font-family:var(--B);font-size:20px;letter-spacing:.02em;}
+.col.bad .bar-val{color:var(--ghost2);}
+.col.good .bar-val{color:var(--rust);}
+#s5 .bar-label{font-family:var(--I);font-size:10px;font-weight:300;color:var(--ghost2);letter-spacing:.02em;text-align:center;}
+#s5 .cp-body{flex-shrink:0;height:184px;padding:20px 32px 24px;border-top:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-start;gap:8px;}
+#s5 .cp-point{display:flex;align-items:center;gap:10px;font-family:var(--I);font-size:12px;font-weight:300;line-height:1.4;}
+.col.bad .cp-point{color:var(--ghost2);}
+.col.good .cp-point{color:var(--paper);}
+#s5 .cp-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.col.bad .cp-dot{background:var(--ghost2);}
+.col.good .cp-dot{background:var(--rust);}
+
+/* ══ S6 CTA ══ */
+#s6{background:radial-gradient(ellipse 100% 80% at 50% 50%,rgba(200,121,62,.08) 0%,transparent 65%),var(--bg);}
+#s6 .grid-bg{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);
+  background-size:72px 72px;opacity:.6;
+}
+#s6 .shell{
+  position:absolute;inset:0;bottom:76px;z-index:5;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:0 80px;
+}
+#s6 .eyebrow{margin-bottom:20px;}
+#s6 .h1{font-family:var(--B);font-size:100px;color:var(--paper);letter-spacing:.02em;text-align:center;line-height:.95;margin-bottom:12px;}
+#s6 .h2{font-family:var(--B);font-size:56px;color:var(--rust);letter-spacing:.04em;text-align:center;margin-bottom:32px;}
+#s6 .divider{width:72px;height:2px;background:var(--rust);margin-bottom:32px;}
+#s6 .body{font-family:var(--C);font-size:18px;font-weight:400;color:var(--ghost);letter-spacing:.04em;text-align:center;max-width:560px;line-height:1.5;margin-bottom:44px;}
+#s6 .cta-block{display:flex;flex-direction:column;align-items:center;gap:16px;}
+#s6 .cta-btn{display:flex;align-items:center;gap:12px;background:var(--rust);color:var(--bg);font-family:var(--C);font-size:18px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:16px 40px;border-radius:2px;}
+#s6 .cta-btn svg{width:20px;height:20px;fill:var(--bg);}
+#s6 .cta-sub{font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost2);letter-spacing:.04em;}
+#s6 .tags{display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;justify-content:center;}
+#s6 .tag{font-family:var(--C);font-size:12px;font-weight:600;color:var(--ghost2);letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border:1px solid var(--line);border-radius:2px;}
+</style>
+</head>
+<body>
+
+<svg class="grain" xmlns="http://www.w3.org/2000/svg">
+  <filter id="gr" x="0%" y="0%" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#gr)"/>
+</svg>
+
+<!-- S1 COVER -->
+<div class="slide" id="s1">
+  <div class="top-line"></div>
+  <div class="grid-bg"></div>
+  <div class="accent-v"></div>
+  <div class="shell">
+    <div class="eyebrow"><span class="pill">GESTÃO DE OBRA</span></div>
+    <h1 class="h1">SUA OBRA VAI<br><em>ATRASAR.</em><br>A MENOS QUE…</h1>
+    <p class="sub">Gestão técnica profissional é o que separa uma obra controlada de um rombo financeiro</p>
+    <div class="kpi-row">
+      <div class="kpi">
+        <span class="kpi-num">89%</span>
+        <span class="kpi-label">das obras atrasam</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-num">63%</span>
+        <span class="kpi-label">estouram orçamento</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-num">47%</span>
+        <span class="kpi-label">com retrabalho evitável</span>
+      </div>
+    </div>
+  </div>
+  <div class="bar"><span>LGM ENGENHARIA</span><span>@eng.gustavomaia</span></div>
+</div>
+
+<!-- S2 ESTATÍSTICAS -->
+<div class="slide" id="s2">
+  <div class="top-line"></div>
+  <div class="shell">
+    <h2 class="title">A REALIDADE DAS OBRAS NO BRASIL</h2>
+    <p class="intro">Dados que você precisa conhecer antes de começar</p>
+    <div class="stats">
+      <div class="stat hi">
+        <span class="stat-num">89%</span>
+        <div class="stat-text">
+          <div class="stat-title">Das obras atrasam</div>
+          <div class="stat-desc">Falta de cronograma e gestão adequada é a principal causa de obras que nunca terminam no prazo combinado</div>
+        </div>
+      </div>
+      <div class="stat">
+        <span class="stat-num">63%</span>
+        <div class="stat-text">
+          <div class="stat-title">Estouram o orçamento previsto</div>
+          <div class="stat-desc">Sem controle de compras e medições, gastos imprevistos acumulam rapidamente e podem inviabilizar a obra</div>
+        </div>
+      </div>
+      <div class="stat muted">
+        <span class="stat-num">47%</span>
+        <div class="stat-text">
+          <div class="stat-title">Têm problemas técnicos evitáveis</div>
+          <div class="stat-desc">Infiltrações, trincas e vícios construtivos que custam caro — e poderiam ser prevenidos com fiscalização adequada</div>
+        </div>
+      </div>
+    </div>
+    <p class="source">Fonte: CBIC / FGV Construção 2024</p>
+  </div>
+  <div class="bar"><span>LGM ENGENHARIA</span><span>@eng.gustavomaia</span></div>
+</div>
+
+<!-- S3 POR QUE ACONTECE -->
+<div class="slide" id="s3">
+  <div class="top-line"></div>
+  <div class="shell">
+    <h2 class="title">POR QUE ISSO ACONTECE?</h2>
+    <div class="causes">
+      <div class="cause">
+        <span class="cause-num">01</span>
+        <div class="cause-content">
+          <div class="cause-title">Falta de cronograma físico-financeiro</div>
+          <div class="cause-desc">Sem planejamento detalhado de etapas e custos, a obra improvisa — e improvisos custam caro</div>
+          <span class="cause-tag">Planejamento</span>
+        </div>
+      </div>
+      <div class="cause">
+        <span class="cause-num">02</span>
+        <div class="cause-content">
+          <div class="cause-title">Ausência de responsável técnico (ART)</div>
+          <div class="cause-desc">Obra sem engenheiro responsável é obra sem segurança legal, sem garantias e sem habite-se no final</div>
+          <span class="cause-tag">Legal</span>
+        </div>
+      </div>
+      <div class="cause">
+        <span class="cause-num">03</span>
+        <div class="cause-content">
+          <div class="cause-title">Orçamento sem reserva técnica</div>
+          <div class="cause-desc">Todo projeto precisa de margem de contingência — sem ela, o primeiro imprevisto paralisa a obra</div>
+          <span class="cause-tag">Financeiro</span>
+        </div>
+      </div>
+      <div class="cause">
+        <span class="cause-num">04</span>
+        <div class="cause-content">
+          <div class="cause-title">Contratação sem critério técnico</div>
+          <div class="cause-desc">Mão de obra barata sem qualificação gera retrabalho — que sai muito mais caro do que contratar certo</div>
+          <span class="cause-tag">Execução</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bar"><span>LGM ENGENHARIA</span><span>@eng.gustavomaia</span></div>
+</div>
+
+<!-- S4 SOLUÇÃO LGM -->
+<div class="slide" id="s4">
+  <div class="top-line"></div>
+  <div class="shell">
+    <div class="head">
+      <h2 class="title">O QUE A LGM FAZ POR VOCÊ</h2>
+      <p class="subtitle">Do projeto à entrega — com controle total</p>
+    </div>
+    <div class="timeline">
+      <div class="t-col">
+        <div class="t-num">01</div>
+        <div class="t-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="t-title">Planejamento</div>
+        <div class="t-list">
+          <div class="t-item">Cronograma físico-financeiro</div>
+          <div class="t-item">Orçamento detalhado por etapa</div>
+          <div class="t-item">Projeto executivo completo</div>
+          <div class="t-item">Reserva técnica calculada</div>
+        </div>
+        <div class="t-badge">Antes de começar</div>
+      </div>
+      <div class="t-col">
+        <div class="t-num">02</div>
+        <div class="t-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 12l10-9 10 9"/><path d="M5 9v11h14V9"/></svg>
+        </div>
+        <div class="t-title">Execução</div>
+        <div class="t-list">
+          <div class="t-item">Fiscalização técnica semanal</div>
+          <div class="t-item">Diário de obra digitalizado</div>
+          <div class="t-item">Relatórios com fotos e medições</div>
+          <div class="t-item">Controle de qualidade de materiais</div>
+        </div>
+        <div class="t-badge">Durante a obra</div>
+      </div>
+      <div class="t-col">
+        <div class="t-num">03</div>
+        <div class="t-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="t-title">Entrega</div>
+        <div class="t-list">
+          <div class="t-item">Habite-se e documentação</div>
+          <div class="t-item">Laudo técnico de conformidade</div>
+          <div class="t-item">ART registrada no CREA</div>
+          <div class="t-item">Manual do proprietário</div>
+        </div>
+        <div class="t-badge">Ao finalizar</div>
+      </div>
+    </div>
+  </div>
+  <div class="bar"><span>LGM ENGENHARIA</span><span>@eng.gustavomaia</span></div>
+</div>
+
+<!-- S5 COMPARATIVO -->
+<div class="slide" id="s5">
+  <div class="top-line"></div>
+  <div class="shell">
+    <h2 class="title">COM OU SEM GESTÃO PROFISSIONAL?</h2>
+    <div class="cmp">
+      <div class="col bad">
+        <div class="cp-head"><span class="cp-head-label">Sem gestão</span></div>
+        <div class="cp-chart">
+          <div class="bar-grp">
+            <div class="bar-wrap"><div class="bar-fill" style="height:95%"></div></div>
+            <div class="bar-val">+40%</div>
+            <div class="bar-label">custo extra</div>
+          </div>
+          <div class="bar-grp">
+            <div class="bar-wrap"><div class="bar-fill" style="height:80%"></div></div>
+            <div class="bar-val">+8m</div>
+            <div class="bar-label">atraso médio</div>
+          </div>
+          <div class="bar-grp">
+            <div class="bar-wrap"><div class="bar-fill" style="height:60%"></div></div>
+            <div class="bar-val">3×</div>
+            <div class="bar-label">mais retrabalho</div>
+          </div>
+        </div>
+        <div class="cp-body">
+          <div class="cp-point"><span class="cp-dot"></span>Obra atrasada sem justificativa</div>
+          <div class="cp-point"><span class="cp-dot"></span>Custo 40% acima do previsto</div>
+          <div class="cp-point"><span class="cp-dot"></span>Sem documentação ou ART</div>
+          <div class="cp-point"><span class="cp-dot"></span>Problemas técnicos e vícios</div>
+        </div>
+      </div>
+      <div class="col good">
+        <div class="cp-head"><span class="cp-head-label">Com LGM</span></div>
+        <div class="cp-chart">
+          <div class="bar-grp">
+            <div class="bar-wrap"><div class="bar-fill" style="height:28%"></div></div>
+            <div class="bar-val">−25%</div>
+            <div class="bar-label">economia real</div>
+          </div>
+          <div class="bar-grp">
+            <div class="bar-wrap"><div class="bar-fill" style="height:14%"></div></div>
+            <div class="bar-val">100%</div>
+            <div class="bar-label">no prazo</div>
+          </div>
+          <div class="bar-grp">
+            <div class="bar-wrap"><div class="bar-fill" style="height:8%"></div></div>
+            <div class="bar-val">0</div>
+            <div class="bar-label">retrabalho</div>
+          </div>
+        </div>
+        <div class="cp-body">
+          <div class="cp-point"><span class="cp-dot"></span>Prazo cumprido com cronograma</div>
+          <div class="cp-point"><span class="cp-dot"></span>Custo controlado desde o início</div>
+          <div class="cp-point"><span class="cp-dot"></span>ART + habite-se + documentação</div>
+          <div class="cp-point"><span class="cp-dot"></span>Garantia técnica na entrega</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bar"><span>LGM ENGENHARIA</span><span>@eng.gustavomaia</span></div>
+</div>
+
+<!-- S6 CTA -->
+<div class="slide" id="s6">
+  <div class="top-line"></div>
+  <div class="grid-bg"></div>
+  <div class="shell">
+    <div class="eyebrow"><span class="pill">CONSULTORIA GRATUITA</span></div>
+    <h2 class="h1">COMECE</h2>
+    <h3 class="h2">DO JEITO CERTO</h3>
+    <div class="divider"></div>
+    <p class="body">Gestão técnica de obras residenciais e comerciais.<br>Planejamento, execução e entrega com responsabilidade.</p>
+    <div class="cta-block">
+      <div class="cta-btn">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.552 4.1 1.518 5.826L0 24l6.335-1.518A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.213-3.722.976.994-3.634-.234-.374A9.817 9.817 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Fale com um engenheiro
+      </div>
+      <p class="cta-sub">(14) 99185-0799 · lgm.eng.br</p>
+      <div class="tags">
+        <span class="tag">Residencial</span>
+        <span class="tag">Comercial</span>
+        <span class="tag">Reforma</span>
+        <span class="tag">Obra nova</span>
+      </div>
+    </div>
+  </div>
+  <div class="bar"><span>LGM ENGENHARIA</span><span>@eng.gustavomaia</span></div>
+</div>
+
+</body>
+</html>

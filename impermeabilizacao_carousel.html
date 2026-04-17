@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>LGM — Impermeabilização</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#060605;--rust:#C8793E;--rust2:#a85f2e;
+  --rust-bg:rgba(200,121,62,.08);--rust-bd:rgba(200,121,62,.25);
+  --paper:#EAE6DE;--line:rgba(234,230,222,.10);--line2:rgba(234,230,222,.05);
+  --ghost:rgba(234,230,222,.48);--ghost2:rgba(234,230,222,.22);
+  --red:#B03828;--red-bg:rgba(176,56,40,.1);--red-bd:rgba(176,56,40,.3);
+  --grn:#3D9E72;--grn-bg:rgba(61,158,114,.08);--grn-bd:rgba(61,158,114,.25);
+  --blue:rgba(60,100,160,.6);
+  --B:'Bebas Neue',sans-serif;--C:'Barlow Condensed',sans-serif;--I:'Inter',sans-serif;
+}
+html,body{background:#111;}
+body{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.slide{width:1080px;height:1080px;background:var(--bg);position:relative;overflow:hidden;display:flex;flex-direction:column;flex-shrink:0;}
+.slide::after{content:'';position:absolute;inset:0;z-index:100;pointer-events:none;opacity:.15;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:screen;}
+.acc{position:absolute;top:0;left:0;right:0;height:2px;z-index:50;background:linear-gradient(90deg,var(--rust) 0%,var(--rust) 220px,transparent 220px);}
+.bot{height:76px;flex-shrink:0;background:rgba(6,6,5,.92);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 56px;position:relative;z-index:10;}
+.b-nm{font-family:var(--B);font-size:24px;color:var(--paper);letter-spacing:.12em;}
+.b-hd{font-family:var(--C);font-size:13px;font-weight:600;color:var(--rust);letter-spacing:.12em;text-transform:uppercase;}
+.shell{flex:1;padding:52px 56px 28px;display:flex;flex-direction:column;position:relative;z-index:5;}
+.lbl{display:inline-flex;align-items:center;gap:10px;font-family:var(--I);font-size:10px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--rust);}
+.lbl::before{content:'';width:20px;height:1px;background:var(--rust);}
+.title{font-family:var(--B);font-size:64px;line-height:.88;color:var(--paper);letter-spacing:.01em;margin-top:10px;}
+.intro{font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);line-height:1.5;margin:14px 0 28px;padding-left:16px;border-left:1px solid var(--rust-bd);}
+</style>
+</head>
+<body>
+
+<!-- S1 COVER -->
+<div class="slide" id="s1" style="background:radial-gradient(ellipse 110% 60% at 20% 80%,rgba(40,70,120,.18) 0%,transparent 50%),radial-gradient(ellipse 80% 60% at 80% 20%,rgba(200,121,62,.10) 0%,transparent 50%),linear-gradient(180deg,#060605 0%,#060809 100%);">
+  <div class="acc"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(234,230,222,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(234,230,222,.03) 1px,transparent 1px);background-size:72px 72px;"></div>
+  <div style="position:absolute;inset:0;bottom:76px;z-index:5;display:flex;flex-direction:column;justify-content:flex-end;padding:0 56px 0;">
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:40px;">
+      <span class="lbl" style="margin-bottom:16px;">Patologia · Prevenção</span>
+      <h1 style="font-family:var(--B);font-size:88px;line-height:.9;color:var(--paper);letter-spacing:.01em;margin-bottom:22px;">INFILTRAÇÃO É SINAL<br><span style="color:var(--rust);">DE OBRA MAL FEITA</span></h1>
+      <p style="font-family:var(--C);font-size:20px;font-weight:400;color:var(--ghost);letter-spacing:.04em;line-height:1.4;padding-left:18px;border-left:2px solid var(--rust);max-width:660px;">A impermeabilização certa evita 90% dos problemas de umidade — e é muito mais barata do que corrigir depois</p>
+    </div>
+    <div style="display:flex;gap:1px;background:var(--line);flex-shrink:0;">
+      <div style="flex:1;background:var(--bg);padding:20px 28px;border-top:3px solid rgba(40,70,120,.5);display:flex;flex-direction:column;gap:6px;">
+        <span style="font-family:var(--B);font-size:40px;color:var(--rust);letter-spacing:.02em;">R$25 bi</span>
+        <span style="font-family:var(--C);font-size:12px;color:var(--ghost);letter-spacing:.06em;text-transform:uppercase;">em perdas anuais por infiltração no Brasil</span>
+      </div>
+      <div style="flex:1;background:var(--bg);padding:20px 28px;border-top:3px solid var(--rust);display:flex;flex-direction:column;gap:6px;">
+        <span style="font-family:var(--B);font-size:40px;color:var(--rust);letter-spacing:.02em;">1 em 3</span>
+        <span style="font-family:var(--C);font-size:12px;color:var(--ghost);letter-spacing:.06em;text-transform:uppercase;">obras tem problema sério de umidade</span>
+      </div>
+      <div style="flex:1;background:var(--bg);padding:20px 28px;border-top:3px solid var(--rust-bd);display:flex;flex-direction:column;gap:6px;">
+        <span style="font-family:var(--B);font-size:40px;color:var(--rust);letter-spacing:.02em;">8×</span>
+        <span style="font-family:var(--C);font-size:12px;color:var(--ghost);letter-spacing:.06em;text-transform:uppercase;">mais caro corrigir do que prevenir</span>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-hd">@eng.gustavomaia</span></div>
+</div>
+
+<!-- S2 ONDE A ÁGUA ENTRA -->
+<div class="slide" id="s2">
+  <div class="acc"></div>
+  <div class="shell">
+    <span class="lbl">Diagnóstico</span>
+    <h2 class="title" style="font-size:56px;">ONDE A ÁGUA <span style="color:var(--rust);">ENTRA NA SUA OBRA</span></h2>
+    <p class="intro">Esses são os 6 pontos críticos responsáveis por 95% dos problemas de infiltração em residências</p>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);">
+      <div style="background:var(--bg);padding:22px 28px;display:flex;align-items:flex-start;gap:16px;border-bottom:1px solid var(--line);">
+        <div style="width:36px;height:36px;background:var(--rust);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-family:var(--B);font-size:20px;color:var(--bg);">01</span></div>
+        <div><div style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--paper);letter-spacing:.04em;margin-bottom:5px;">Terraço e laje plana</div><div style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Laje sem caimento correto + impermeabilização ausente é a origem nº1 de infiltração em coberturas</div></div>
+      </div>
+      <div style="background:rgba(200,121,62,.025);padding:22px 28px;display:flex;align-items:flex-start;gap:16px;border-bottom:1px solid var(--line);">
+        <div style="width:36px;height:36px;background:var(--rust2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-family:var(--B);font-size:20px;color:var(--bg);">02</span></div>
+        <div><div style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--paper);letter-spacing:.04em;margin-bottom:5px;">Juntas de dilatação</div><div style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Juntas mal executadas ou sem selante flexível permitem entrada de água a cada ciclo de temperatura</div></div>
+      </div>
+      <div style="background:rgba(200,121,62,.025);padding:22px 28px;display:flex;align-items:flex-start;gap:16px;border-bottom:1px solid var(--line);">
+        <div style="width:36px;height:36px;background:rgba(200,121,62,.6);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-family:var(--B);font-size:20px;color:var(--bg);">03</span></div>
+        <div><div style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--paper);letter-spacing:.04em;margin-bottom:5px;">Rodapé laje-parede</div><div style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Encontro entre laje e parede é ponto de trinca por movimentação estrutural — precisa de véu de fibra</div></div>
+      </div>
+      <div style="background:var(--bg);padding:22px 28px;display:flex;align-items:flex-start;gap:16px;border-bottom:1px solid var(--line);">
+        <div style="width:36px;height:36px;background:rgba(200,121,62,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-family:var(--B);font-size:20px;color:var(--bg);">04</span></div>
+        <div><div style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--paper);letter-spacing:.04em;margin-bottom:5px;">Caixa d'água e reservatório</div><div style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Reservatório sem cristalizante perde água para a estrutura e gera mofo e contaminação da água</div></div>
+      </div>
+      <div style="background:var(--bg);padding:22px 28px;display:flex;align-items:flex-start;gap:16px;">
+        <div style="width:36px;height:36px;background:rgba(200,121,62,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-family:var(--B);font-size:20px;color:var(--ghost);">05</span></div>
+        <div><div style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--paper);letter-spacing:.04em;margin-bottom:5px;">Subsolo e fundação</div><div style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Lençol freático alto + ausência de drenagem e impermeabilização = parede úmida e eflorescência</div></div>
+      </div>
+      <div style="background:rgba(200,121,62,.025);padding:22px 28px;display:flex;align-items:flex-start;gap:16px;">
+        <div style="width:36px;height:36px;background:rgba(200,121,62,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-family:var(--B);font-size:20px;color:var(--ghost2);">06</span></div>
+        <div><div style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--paper);letter-spacing:.04em;margin-bottom:5px;">Esquadrias e janelas</div><div style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Vãos sem contraverga + caixilhos sem vedação com poliuretano permitem entrada de água na chuva</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-hd">@eng.gustavomaia</span></div>
+</div>
+
+<!-- S3 SISTEMAS DE IMPERMEABILIZAÇÃO -->
+<div class="slide" id="s3">
+  <div class="acc"></div>
+  <div class="shell">
+    <span class="lbl">Sistemas disponíveis</span>
+    <h2 class="title" style="font-size:52px;">QUAL SISTEMA <span style="color:var(--rust);">USAR ONDE?</span></h2>
+    <p class="intro">A escolha do sistema correto é tão importante quanto a aplicação. Produto errado no local errado não funciona</p>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:20px;padding:14px 0;border-bottom:1px solid var(--line);">
+        <div style="width:4px;align-self:stretch;background:var(--rust);border-radius:2px;flex-shrink:0;"></div>
+        <div style="min-width:220px;"><span style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--rust);letter-spacing:.04em;text-transform:uppercase;">Manta Asfáltica</span></div>
+        <div style="flex:1;font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Lajes, terraços, calhas e jardins. Excelente durabilidade e resistência a raízes de plantas. Requer soprador térmico</div>
+        <div style="flex-shrink:0;font-family:var(--C);font-size:11px;font-weight:700;color:var(--grn);letter-spacing:.06em;background:var(--grn-bg);border:1px solid var(--grn-bd);padding:4px 12px;border-radius:2px;">10–20 anos</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:20px;padding:14px 0;border-bottom:1px solid var(--line);">
+        <div style="width:4px;align-self:stretch;background:var(--rust2);border-radius:2px;flex-shrink:0;"></div>
+        <div style="min-width:220px;"><span style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--paper);letter-spacing:.04em;text-transform:uppercase;">Cristalizante</span></div>
+        <div style="flex:1;font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Reservatórios, piscinas e fundações. Penetra no concreto e cristaliza nos poros — impermeabiliza de dentro pra fora</div>
+        <div style="flex-shrink:0;font-family:var(--C);font-size:11px;font-weight:700;color:var(--grn);letter-spacing:.06em;background:var(--grn-bg);border:1px solid var(--grn-bd);padding:4px 12px;border-radius:2px;">Permanente</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:20px;padding:14px 0;border-bottom:1px solid var(--line);">
+        <div style="width:4px;align-self:stretch;background:rgba(200,121,62,.55);border-radius:2px;flex-shrink:0;"></div>
+        <div style="min-width:220px;"><span style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--paper);letter-spacing:.04em;text-transform:uppercase;">Argamassa Polimérica</span></div>
+        <div style="flex:1;font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Banheiros, áreas molhadas internas e box. Fácil aplicação com brocha ou rolo. Recebe cerâmica diretamente</div>
+        <div style="flex-shrink:0;font-family:var(--C);font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.06em;background:var(--rust-bg);border:1px solid var(--rust-bd);padding:4px 12px;border-radius:2px;">5–10 anos</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:20px;padding:14px 0;border-bottom:1px solid var(--line);">
+        <div style="width:4px;align-self:stretch;background:rgba(200,121,62,.35);border-radius:2px;flex-shrink:0;"></div>
+        <div style="min-width:220px;"><span style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--paper);letter-spacing:.04em;text-transform:uppercase;">Poliuretano</span></div>
+        <div style="flex:1;font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Juntas, rufos, ralos e pontos de movimentação. Elástico — acompanha dilatações e contrações sem romper</div>
+        <div style="flex-shrink:0;font-family:var(--C);font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.06em;background:var(--rust-bg);border:1px solid var(--rust-bd);padding:4px 12px;border-radius:2px;">8–12 anos</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:20px;padding:14px 0;">
+        <div style="width:4px;align-self:stretch;background:rgba(200,121,62,.2);border-radius:2px;flex-shrink:0;"></div>
+        <div style="min-width:220px;"><span style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--ghost);letter-spacing:.04em;text-transform:uppercase;">Membrana Líquida</span></div>
+        <div style="flex:1;font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Telhados, calhas complexas e superfícies irregulares. Aplicação a pincel, moldável a qualquer geometria</div>
+        <div style="flex-shrink:0;font-family:var(--C);font-size:11px;font-weight:700;color:var(--ghost2);letter-spacing:.06em;background:rgba(234,230,222,.04);border:1px solid var(--line);padding:4px 12px;border-radius:2px;">5–8 anos</div>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-hd">@eng.gustavomaia</span></div>
+</div>
+
+<!-- S4 CUSTO DE NÃO IMPERMEABILIZAR -->
+<div class="slide" id="s4">
+  <div class="acc"></div>
+  <div class="shell">
+    <span class="lbl">A conta que ninguém faz</span>
+    <h2 class="title" style="font-size:56px;">O PREÇO DE <span style="color:var(--rust);">ECONOMIZAR NA IMPERM.</span></h2>
+    <p class="intro">Compare os dois cenários antes de decidir "pular" a impermeabilização na sua obra</p>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);">
+      <!-- AGORA -->
+      <div style="background:var(--grn-bg);border-top:3px solid var(--grn);display:flex;flex-direction:column;padding:28px 32px;gap:14px;">
+        <div style="font-family:var(--C);font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grn);">Impermeabilizar na obra</div>
+        <div style="font-family:var(--B);font-size:72px;color:var(--grn);line-height:.9;letter-spacing:.01em;">R$5k–8k</div>
+        <div style="width:100%;height:1px;background:var(--grn-bd);"></div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;font-family:var(--I);font-size:13px;font-weight:300;color:var(--paper);"><span style="color:var(--grn);font-size:16px;">✓</span>Feito uma única vez</div>
+          <div style="display:flex;align-items:center;gap:10px;font-family:var(--I);font-size:13px;font-weight:300;color:var(--paper);"><span style="color:var(--grn);font-size:16px;">✓</span>10 a 20 anos de garantia</div>
+          <div style="display:flex;align-items:center;gap:10px;font-family:var(--I);font-size:13px;font-weight:300;color:var(--paper);"><span style="color:var(--grn);font-size:16px;">✓</span>Sem quebra-quebra posterior</div>
+          <div style="display:flex;align-items:center;gap:10px;font-family:var(--I);font-size:13px;font-weight:300;color:var(--paper);"><span style="color:var(--grn);font-size:16px;">✓</span>Sem mofo ou odor</div>
+          <div style="display:flex;align-items:center;gap:10px;font-family:var(--I);font-size:13px;font-weight:300;color:var(--paper);"><span style="color:var(--grn);font-size:16px;">✓</span>Valoriza o imóvel</div>
+        </div>
+        <div style="margin-top:auto;font-family:var(--C);font-size:13px;font-weight:700;color:var(--grn);letter-spacing:.04em;">ROI: proteção por décadas</div>
+      </div>
+      <!-- DEPOIS -->
+      <div style="background:var(--red-bg);border-top:3px solid var(--red);display:flex;flex-direction:column;padding:28px 32px;gap:14px;">
+        <div style="font-family:var(--C);font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);">Corrigir infiltração depois</div>
+        <div style="font-family:var(--B);font-size:72px;color:var(--red);line-height:.9;letter-spacing:.01em;">R$40k+</div>
+        <div style="width:100%;height:1px;background:var(--red-bd);"></div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);"><span style="color:var(--red);font-size:16px;">✗</span>Quebra toda cerâmica e argamassa</div>
+          <div style="display:flex;align-items:center;gap:10px;font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);"><span style="color:var(--red);font-size:16px;">✗</span>Obra suja por semanas</div>
+          <div style="display:flex;align-items:center;gap:10px;font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);"><span style="color:var(--red);font-size:16px;">✗</span>Risco de dano estrutural</div>
+          <div style="display:flex;align-items:center;gap:10px;font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);"><span style="color:var(--red);font-size:16px;">✗</span>Mofo prejudica a saúde</div>
+          <div style="display:flex;align-items:center;gap:10px;font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);"><span style="color:var(--red);font-size:16px;">✗</span>Desvaloriza o imóvel</div>
+        </div>
+        <div style="margin-top:auto;font-family:var(--C);font-size:13px;font-weight:700;color:var(--red);letter-spacing:.04em;">Custo: 8× maior que prevenir</div>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-hd">@eng.gustavomaia</span></div>
+</div>
+
+<!-- S5 CHECKLIST -->
+<div class="slide" id="s5">
+  <div class="acc"></div>
+  <div class="shell">
+    <span class="lbl">Autodiagnóstico</span>
+    <h2 class="title" style="font-size:54px;">SUA OBRA ESTÁ <span style="color:var(--rust);">PROTEGIDA?</span></h2>
+    <p class="intro">Marque cada item. Se algum estiver em aberto, sua obra está em risco de infiltração</p>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);">
+      <!-- checked items -->
+      <div style="background:var(--bg);display:flex;flex-direction:column;gap:1px;background:var(--line);">
+        <div style="background:var(--bg);padding:18px 24px;display:flex;align-items:center;gap:16px;">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--grn);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:var(--bg);font-size:14px;font-weight:700;">✓</span></div>
+          <span style="font-family:var(--I);font-size:13px;font-weight:300;color:var(--paper);line-height:1.4;">Laje impermeabilizada antes da cerâmica</span>
+        </div>
+        <div style="background:var(--bg);padding:18px 24px;display:flex;align-items:center;gap:16px;">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--grn);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:var(--bg);font-size:14px;font-weight:700;">✓</span></div>
+          <span style="font-family:var(--I);font-size:13px;font-weight:300;color:var(--paper);line-height:1.4;">Rodapés com véu de fibra</span>
+        </div>
+        <div style="background:var(--bg);padding:18px 24px;display:flex;align-items:center;gap:16px;">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--grn);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:var(--bg);font-size:14px;font-weight:700;">✓</span></div>
+          <span style="font-family:var(--I);font-size:13px;font-weight:300;color:var(--paper);line-height:1.4;">Reservatório com cristalizante</span>
+        </div>
+        <div style="background:rgba(234,230,222,.02);padding:18px 24px;display:flex;align-items:center;gap:16px;border-top:1px solid var(--line);">
+          <div style="width:24px;height:24px;border-radius:50%;border:1.5px solid var(--red-bd);background:var(--red-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:var(--red);font-size:12px;font-weight:700;">○</span></div>
+          <span style="font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost2);line-height:1.4;">Rufos e calhas vedados com poliuretano</span>
+        </div>
+      </div>
+      <div style="background:var(--bg);display:flex;flex-direction:column;gap:1px;background:var(--line);">
+        <div style="background:rgba(234,230,222,.02);padding:18px 24px;display:flex;align-items:center;gap:16px;">
+          <div style="width:24px;height:24px;border-radius:50%;border:1.5px solid var(--red-bd);background:var(--red-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:var(--red);font-size:12px;font-weight:700;">○</span></div>
+          <span style="font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost2);line-height:1.4;">Juntas de dilatação preenchidas</span>
+        </div>
+        <div style="background:rgba(234,230,222,.02);padding:18px 24px;display:flex;align-items:center;gap:16px;">
+          <div style="width:24px;height:24px;border-radius:50%;border:1.5px solid var(--red-bd);background:var(--red-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:var(--red);font-size:12px;font-weight:700;">○</span></div>
+          <span style="font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost2);line-height:1.4;">Ralo com gárgula impermeabilizado</span>
+        </div>
+        <div style="background:rgba(234,230,222,.02);padding:18px 24px;display:flex;align-items:center;gap:16px;">
+          <div style="width:24px;height:24px;border-radius:50%;border:1.5px solid var(--red-bd);background:var(--red-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:var(--red);font-size:12px;font-weight:700;">○</span></div>
+          <span style="font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost2);line-height:1.4;">Teste de estanqueidade realizado</span>
+        </div>
+        <div style="background:rgba(234,230,222,.02);padding:18px 24px;display:flex;align-items:center;gap:16px;border-top:1px solid var(--line);">
+          <div style="width:24px;height:24px;border-radius:50%;border:1.5px solid var(--red-bd);background:var(--red-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="color:var(--red);font-size:12px;font-weight:700;">○</span></div>
+          <span style="font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost2);line-height:1.4;">ART de impermeabilização emitida</span>
+        </div>
+      </div>
+    </div>
+    <div style="flex-shrink:0;margin-top:14px;background:var(--red-bg);border:1px solid var(--red-bd);padding:16px 24px;display:flex;align-items:center;gap:16px;">
+      <span style="font-family:var(--B);font-size:20px;color:var(--red);">⚠</span>
+      <span style="font-family:var(--C);font-size:15px;font-weight:700;color:var(--paper);letter-spacing:.02em;">Se algum item em vermelho estiver faltando, sua obra está em risco real de infiltração crônica.</span>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-hd">@eng.gustavomaia</span></div>
+</div>
+
+<!-- S6 CTA -->
+<div class="slide" id="s6" style="background:radial-gradient(ellipse 100% 80% at 50% 50%,rgba(200,121,62,.08) 0%,transparent 65%),var(--bg);">
+  <div class="acc"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(234,230,222,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(234,230,222,.04) 1px,transparent 1px);background-size:72px 72px;opacity:.7;"></div>
+  <div style="position:absolute;inset:0;bottom:76px;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 80px;">
+    <span class="lbl" style="margin-bottom:20px;">Laudo técnico</span>
+    <h2 style="font-family:var(--B);font-size:88px;color:var(--paper);letter-spacing:.01em;text-align:center;line-height:.9;margin-bottom:10px;">PROTEJA SUA OBRA</h2>
+    <h3 style="font-family:var(--B);font-size:60px;color:var(--rust);letter-spacing:.02em;text-align:center;line-height:.9;margin-bottom:28px;">COM QUEM SABE</h3>
+    <div style="width:64px;height:2px;background:var(--rust);margin-bottom:28px;"></div>
+    <p style="font-family:var(--C);font-size:18px;font-weight:400;color:var(--ghost);letter-spacing:.04em;text-align:center;max-width:600px;line-height:1.5;margin-bottom:36px;">Diagnóstico de infiltração · Projeto de impermeabilização · Execução técnica com garantia</p>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <span style="font-family:var(--B);font-size:44px;color:var(--rust);letter-spacing:.04em;">(14) 99185-0799</span>
+      <span style="font-family:var(--C);font-size:20px;font-weight:600;color:var(--ghost);letter-spacing:.08em;">@eng.gustavomaia</span>
+      <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;justify-content:center;">
+        <span style="font-family:var(--C);font-size:11px;font-weight:600;color:var(--ghost2);letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--line);border-radius:2px;">Laudo técnico</span>
+        <span style="font-family:var(--C);font-size:11px;font-weight:600;color:var(--ghost2);letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--line);border-radius:2px;">Projeto imperm.</span>
+        <span style="font-family:var(--C);font-size:11px;font-weight:600;color:var(--ghost2);letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--line);border-radius:2px;">Vistoria gratuita</span>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-hd">@eng.gustavomaia</span></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060605;
+  --paper:#EAE6DE;
+  --dim:rgba(234,230,222,.55);
+  --ghost:rgba(234,230,222,.18);
+  --faint:rgba(234,230,222,.055);
+  --line:rgba(234,230,222,.08);
+  --rust:#C8793E;
+  --rust-d:#9F5C28;
+  --rust-bg:rgba(200,121,62,.09);
+  --rust-bd:rgba(200,121,62,.28);
+  --red:#B03828;
+  --red-bg:rgba(176,56,40,.1);
+  --red-bd:rgba(176,56,40,.3);
+  --grn:#2E7D5E;
+  --grn-bg:rgba(46,125,94,.1);
+  --grn-bd:rgba(46,125,94,.3);
+  --F:'Bebas Neue',sans-serif;
+  --C:'Barlow Condensed',sans-serif;
+  --I:'Inter',sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#020201;font-family:var(--I);}
+
+/* ── BASE SLIDE ── */
+.slide{
+  width:1080px;height:1080px;
+  position:relative;overflow:hidden;
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  margin:0 0 3px;
+}
+.slide::after{
+  content:'';position:absolute;inset:0;z-index:100;pointer-events:none;
+  opacity:.18;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:screen;
+}
+.acc{position:absolute;top:0;left:0;right:0;height:2px;z-index:50;
+  background:linear-gradient(90deg,var(--rust) 0%,var(--rust) 220px,transparent 220px);}
+.bot{
+  height:76px;flex-shrink:0;border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 56px;position:relative;z-index:10;
+}
+.b-pg{font-family:var(--I);font-size:10px;font-weight:400;letter-spacing:.38em;color:var(--ghost);text-transform:uppercase;}
+.b-lg{display:flex;align-items:center;gap:10px;}
+.b-nm{font-family:var(--F);font-size:26px;color:var(--paper);letter-spacing:.12em;}
+.b-sp{width:1px;height:18px;background:var(--line);}
+.b-sb{font-family:var(--C);font-size:9px;color:var(--ghost);letter-spacing:.2em;text-transform:uppercase;line-height:1.7;}
+.lbl{
+  display:inline-flex;align-items:center;gap:10px;flex-shrink:0;
+  font-family:var(--I);font-size:10px;font-weight:600;
+  letter-spacing:.34em;text-transform:uppercase;color:var(--rust);
+}
+.lbl::before{content:'';width:20px;height:1px;background:var(--rust);}
+.shell{flex:1;padding:52px 56px 28px;display:flex;flex-direction:column;position:relative;z-index:5;}
+
+/* ══ S1 — CAPA ══ */
+#s1{display:block;}
+#s1 .photo-bg{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(to right, rgba(6,6,5,.05) 0%, rgba(6,6,5,.6) 100%),
+    linear-gradient(to top, rgba(6,6,5,1) 0%, rgba(6,6,5,.55) 28%, rgba(6,6,5,.04) 65%),
+    url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=90&auto=format&fit=crop') top center/cover no-repeat;
+}
+#s1 .shell{
+  position:absolute;inset:0;bottom:76px;z-index:5;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:48px 56px 44px;
+}
+#s1 .h1{
+  font-family:var(--F);font-size:128px;line-height:.84;
+  color:var(--paper);letter-spacing:.01em;
+  text-shadow:0 4px 60px rgba(0,0,0,.7);
+  margin-bottom:20px;
+}
+#s1 .h1 em{color:var(--rust);font-style:normal;text-shadow:0 0 120px rgba(200,121,62,.4);}
+#s1 .sub{
+  font-family:var(--C);font-size:20px;font-weight:300;font-style:italic;
+  color:var(--dim);letter-spacing:.04em;line-height:1.5;
+  padding-left:20px;border-left:2px solid var(--rust);max-width:680px;margin-bottom:28px;
+}
+#s1 .tags{display:flex;gap:8px;flex-wrap:wrap;}
+#s1 .tag{
+  font-family:var(--I);font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ghost);
+  border:1px solid rgba(234,230,222,.14);padding:7px 16px;
+}
+
+/* ══ S2 — O PROBLEMA ══ */
+#s2 .shell{gap:0;}
+#s2 .s-title{
+  font-family:var(--F);font-size:76px;line-height:.86;
+  color:var(--paper);letter-spacing:.01em;margin-top:10px;margin-bottom:36px;flex-shrink:0;
+}
+#s2 .s-title em{color:var(--rust);font-style:normal;}
+#s2 .problems{flex:1;display:flex;flex-direction:column;gap:2px;min-height:0;}
+#s2 .prob{
+  flex:1;display:flex;align-items:center;gap:28px;
+  background:var(--faint);border:1px solid var(--line);
+  padding:20px 28px;min-height:0;
+}
+#s2 .prob-num{
+  font-family:var(--F);font-size:72px;color:var(--red);line-height:1;
+  letter-spacing:.02em;flex-shrink:0;width:80px;text-align:center;
+}
+#s2 .prob-sep{width:1px;align-self:stretch;background:var(--line);flex-shrink:0;}
+#s2 .prob-text strong{
+  font-family:var(--C);font-size:22px;font-weight:700;
+  color:var(--paper);display:block;letter-spacing:.04em;margin-bottom:4px;
+}
+#s2 .prob-text span{
+  font-family:var(--I);font-size:13px;font-weight:300;
+  color:var(--ghost);line-height:1.55;
+}
+
+/* ══ S3 — COMO FUNCIONA ══ */
+#s3 .shell{gap:0;}
+#s3 .s-title{
+  font-family:var(--F);font-size:72px;line-height:.86;
+  color:var(--paper);letter-spacing:.01em;margin-top:10px;margin-bottom:32px;flex-shrink:0;
+}
+#s3 .s-title em{color:var(--rust);font-style:normal;}
+#s3 .steps{flex:1;display:flex;flex-direction:column;gap:2px;min-height:0;}
+#s3 .step{
+  flex:1;display:flex;align-items:stretch;
+  border:1px solid var(--line);min-height:0;
+}
+#s3 .step-num-col{
+  width:100px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  border-right:1px solid var(--line);
+  font-family:var(--F);font-size:64px;color:var(--rust);letter-spacing:.04em;
+}
+#s3 .step-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:16px 28px;gap:3px;}
+#s3 .step-title{
+  font-family:var(--C);font-size:24px;font-weight:700;
+  color:var(--paper);letter-spacing:.04em;line-height:1.1;
+}
+#s3 .step-desc{
+  font-family:var(--I);font-size:13px;font-weight:300;
+  color:var(--ghost);line-height:1.5;letter-spacing:.02em;
+}
+#s3 .step-badge{
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  padding:0 22px;border-left:1px solid var(--line);min-width:120px;
+}
+#s3 .step-val{
+  font-family:var(--C);font-size:12px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--rust);text-align:center;line-height:1.4;
+}
+
+/* ══ S4 — FGTS + SBPE ══ */
+#s4 .shell{gap:0;}
+#s4 .s-title{
+  font-family:var(--F);font-size:80px;line-height:.86;
+  color:var(--paper);letter-spacing:.01em;margin-top:10px;margin-bottom:32px;flex-shrink:0;
+}
+#s4 .s-title em{color:var(--rust);font-style:normal;}
+#s4 .two-col{
+  flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--line);min-height:0;margin-bottom:14px;
+}
+#s4 .fc{
+  background:var(--bg);display:flex;flex-direction:column;
+}
+#s4 .fc.hl{background:var(--rust-bg);}
+#s4 .fc-head{
+  height:52px;display:flex;align-items:center;
+  padding:0 28px;border-bottom:1px solid var(--line);flex-shrink:0;
+  font-family:var(--I);font-size:10px;font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--dim);
+}
+#s4 .fc.hl .fc-head{color:var(--rust);border-color:var(--rust-bd);}
+#s4 .fc-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px 28px;gap:10px;}
+#s4 .fc-num{
+  font-family:var(--F);font-size:100px;line-height:.9;letter-spacing:.01em;color:var(--dim);
+}
+#s4 .fc.hl .fc-num{color:var(--rust);}
+#s4 .fc-items{display:flex;flex-direction:column;gap:8px;}
+#s4 .fc-item{
+  display:flex;align-items:flex-start;gap:10px;
+  font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);line-height:1.45;
+}
+#s4 .fc-item::before{
+  content:'—';color:var(--rust);flex-shrink:0;font-size:11px;margin-top:2px;
+}
+#s4 .fc.hl .fc-item{color:var(--dim);}
+#s4 .banner{
+  flex-shrink:0;
+  background:var(--rust-bg);border:1px solid var(--rust-bd);
+  padding:16px 28px;
+  font-family:var(--C);font-size:15px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--rust);
+  text-align:center;
+}
+
+/* ══ S5 — PAPEL DO ENGENHEIRO ══ */
+#s5 .shell{gap:0;}
+#s5 .s-title{
+  font-family:var(--F);font-size:80px;line-height:.86;
+  color:var(--paper);letter-spacing:.01em;margin-top:10px;margin-bottom:32px;flex-shrink:0;
+}
+#s5 .s-title em{color:var(--rust);font-style:normal;}
+#s5 .roles{flex:1;display:flex;flex-direction:column;gap:2px;min-height:0;}
+#s5 .role{
+  flex:1;display:flex;align-items:stretch;
+  border:1px solid var(--line);min-height:0;
+}
+#s5 .role-num{
+  width:110px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  border-right:1px solid var(--line);
+  font-family:var(--F);font-size:72px;color:var(--rust);letter-spacing:.04em;
+}
+#s5 .role-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:16px 28px;gap:3px;}
+#s5 .role-title{
+  font-family:var(--C);font-size:26px;font-weight:700;
+  color:var(--paper);letter-spacing:.04em;line-height:1.1;
+}
+#s5 .role-desc{
+  font-family:var(--I);font-size:13px;font-weight:300;
+  color:var(--ghost);line-height:1.5;letter-spacing:.02em;
+}
+#s5 .result-badge{
+  flex-shrink:0;
+  margin-top:14px;
+  background:var(--rust-bg);border:1px solid var(--rust-bd);
+  padding:18px 28px;
+  font-family:var(--C);font-size:15px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--rust);
+  display:flex;align-items:center;gap:14px;
+}
+#s5 .result-badge::before{content:'';width:28px;height:1px;background:var(--rust);flex-shrink:0;}
+
+/* ══ S6 — CTA ══ */
+#s6{display:flex;}
+#s6 .glow{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:900px;height:900px;border-radius:50%;z-index:1;
+  background:radial-gradient(ellipse,rgba(200,121,62,.07) 0%,transparent 60%);
+}
+#s6 .shell{
+  flex:1;padding:52px 56px;position:relative;z-index:5;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+}
+#s6 .eyebrow{
+  display:flex;align-items:center;gap:16px;
+  font-family:var(--I);font-size:10px;font-weight:600;
+  letter-spacing:.38em;text-transform:uppercase;color:var(--rust);margin-bottom:24px;
+}
+#s6 .eyebrow::before,#s6 .eyebrow::after{content:'';width:44px;height:1px;background:var(--rust);}
+#s6 .lg-logo{font-family:var(--F);font-size:200px;line-height:1;color:var(--paper);letter-spacing:.1em;margin-bottom:2px;}
+#s6 .lg-tag{font-family:var(--I);font-size:11px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--ghost);margin-bottom:48px;}
+#s6 .divider{width:280px;height:1px;margin:0 auto 44px;background:linear-gradient(90deg,transparent,rgba(200,121,62,.6),transparent);}
+#s6 .cta-hl{font-family:var(--F);font-size:64px;color:var(--paper);letter-spacing:.04em;line-height:.92;margin-bottom:44px;}
+#s6 .cta-hl em{color:var(--rust);font-style:normal;}
+#s6 .btn{background:var(--rust);color:#fff;font-family:var(--I);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:20px 72px;display:inline-block;margin-bottom:20px;}
+#s6 .handle{font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);letter-spacing:.08em;}
+</style>
+</head>
+<body>
+
+<!-- ═══ S1 — CAPA ═══ -->
+<div class="slide" id="s1">
+  <div class="acc"></div>
+  <div class="photo-bg"></div>
+  <div class="shell">
+    <div><div class="lbl">Financiamento · LGM Engenharia</div></div>
+    <div>
+      <div class="h1">SUA OBRA<br>FINANCIADA:<br>O QUE O BANCO<br><em>NÃO TE CONTA</em></div>
+      <div class="sub">Legal · documentado · aprovado pela Caixa</div>
+      <div class="tags">
+        <div class="tag">SBPE</div>
+        <div class="tag">FGTS</div>
+        <div class="tag">SFH</div>
+        <div class="tag">ART</div>
+      </div>
+    </div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">01 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ═══ S2 — O PROBLEMA ═══ -->
+<div class="slide" id="s2">
+  <div class="acc"></div>
+  <div class="shell">
+    <div class="lbl" style="margin-bottom:10px;">O problema · Por que o banco recusa</div>
+    <div class="s-title">POR QUE O BANCO<br>NEGA SEU <em>FINANCIAMENTO</em></div>
+    <div class="problems">
+
+      <div class="prob">
+        <div class="prob-num">01</div>
+        <div class="prob-sep"></div>
+        <div class="prob-text">
+          <strong>Documentação incompleta</strong>
+          <span>Sem ART, sem planilha de custo aprovada — o banco bloqueia na hora. A análise de crédito exige toda a documentação técnica em ordem antes mesmo de abrir o processo.</span>
+        </div>
+      </div>
+
+      <div class="prob">
+        <div class="prob-num">02</div>
+        <div class="prob-sep"></div>
+        <div class="prob-text">
+          <strong>Sistema construtivo não aprovado</strong>
+          <span>Alvenaria informal ou irregular não é financiável. O banco precisa reconhecer o sistema construtivo — qualquer informalidade no projeto inviabiliza o crédito imediatamente.</span>
+        </div>
+      </div>
+
+      <div class="prob">
+        <div class="prob-num">03</div>
+        <div class="prob-sep"></div>
+        <div class="prob-text">
+          <strong>Engenheiro ausente</strong>
+          <span>Sem responsável técnico registrado, o crédito não sai. A Caixa e os principais bancos exigem ART assinada em todas as etapas — da aprovação do projeto às medições.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">02 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ═══ S3 — COMO FUNCIONA ═══ -->
+<div class="slide" id="s3">
+  <div class="acc"></div>
+  <div class="shell">
+    <div class="lbl" style="margin-bottom:10px;">Processo · Passo a passo do financiamento</div>
+    <div class="s-title">COMO O FINANCIAMENTO<br>DE <em>OBRA FUNCIONA</em></div>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num-col">01</div>
+        <div class="step-body">
+          <div class="step-title">Banco aprova com base no projeto + planilha</div>
+          <div class="step-desc">A análise de crédito usa o projeto arquitetônico aprovado e a planilha de custo detalhada pelo engenheiro. Sem isso, nenhum banco libera o processo.</div>
+        </div>
+        <div class="step-badge"><div class="step-val">Projeto<br>+ Planilha</div></div>
+      </div>
+
+      <div class="step" style="background:var(--faint);">
+        <div class="step-num-col" style="border-color:var(--line);">02</div>
+        <div class="step-body">
+          <div class="step-title">Liberação em parcelas conforme medições</div>
+          <div class="step-desc">O valor não é liberado todo de uma vez. A cada etapa concluída, o banco envia um engenheiro para medir o avanço — e aí libera a próxima parcela.</div>
+        </div>
+        <div class="step-badge" style="border-color:var(--line);"><div class="step-val">Parcelas<br>por etapa</div></div>
+      </div>
+
+      <div class="step">
+        <div class="step-num-col">03</div>
+        <div class="step-body">
+          <div class="step-title">Engenheiro visita, assina — parcela liberada</div>
+          <div class="step-desc">O engenheiro responsável acompanha cada medição, assina o laudo técnico e garante que a obra segue o cronograma. A obra não para por falta de verba.</div>
+        </div>
+        <div class="step-badge"><div class="step-val">ART em<br>cada etapa</div></div>
+      </div>
+
+      <div class="step" style="background:var(--rust-bg);border-color:var(--rust-bd);">
+        <div class="step-num-col" style="color:var(--rust);border-color:var(--rust-bd);">04</div>
+        <div class="step-body">
+          <div class="step-title" style="color:var(--rust);">Steel Frame e construção modular: já aceitos</div>
+          <div class="step-desc" style="color:var(--dim);">A Caixa Econômica e os principais bancos já reconhecem Steel Frame e construção modular como sistemas financiáveis — desde que documentados por engenheiro responsável.</div>
+        </div>
+        <div class="step-badge" style="border-color:var(--rust-bd);"><div class="step-val" style="color:var(--rust);">Caixa<br>aprova</div></div>
+      </div>
+
+    </div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">03 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ═══ S4 — FGTS + SBPE ═══ -->
+<div class="slide" id="s4">
+  <div class="acc"></div>
+  <div class="shell">
+    <div class="lbl" style="margin-bottom:10px;">Modalidades · SBPE e FGTS comparados</div>
+    <div class="s-title">DOIS CAMINHOS,<br><em>UM OBJETIVO</em></div>
+    <div class="two-col">
+
+      <div class="fc">
+        <div class="fc-head">SBPE — Sistema Financeiro Habitacional</div>
+        <div class="fc-body">
+          <div class="fc-num">90%</div>
+          <div class="fc-items">
+            <div class="fc-item">Até 90% do custo de construção financiado pela Caixa</div>
+            <div class="fc-item">Qualquer faixa de renda · sem teto de renda</div>
+            <div class="fc-item">Prazo de até 35 anos para pagar</div>
+            <div class="fc-item">Taxas competitivas com TR + juros fixos</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fc hl">
+        <div class="fc-head">FGTS — Fundo de Garantia</div>
+        <div class="fc-body">
+          <div class="fc-num">R$1,5M</div>
+          <div class="fc-items">
+            <div class="fc-item">Usar saldo do FGTS para amortizar ou entrada</div>
+            <div class="fc-item">Obras de até R$ 1,5M (limite atualizado 2026)</div>
+            <div class="fc-item">Renda familiar até R$ 8.000 para melhores condições</div>
+            <div class="fc-item">Juros reduzidos para quem se enquadra</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="banner">Engenheiro responsável é obrigatório em ambas as modalidades</div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">04 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ═══ S5 — O PAPEL DO ENGENHEIRO ═══ -->
+<div class="slide" id="s5">
+  <div class="acc"></div>
+  <div class="shell">
+    <div class="lbl" style="margin-bottom:10px;">Diferencial · Engenheiro como viabilizador</div>
+    <div class="s-title">O ENGENHEIRO<br>É A <em>CHAVE</em></div>
+    <div class="roles">
+
+      <div class="role">
+        <div class="role-num">01</div>
+        <div class="role-body">
+          <div class="role-title">Elabora planilha de custo aceita pelo banco</div>
+          <div class="role-desc">A planilha orçamentária precisa seguir padrões técnicos específicos. O engenheiro sabe o que o banco exige — e entrega na primeira tentativa, sem retrabalho.</div>
+        </div>
+      </div>
+
+      <div class="role" style="background:var(--rust-bg);border-color:var(--rust-bd);">
+        <div class="role-num" style="border-color:var(--rust-bd);">02</div>
+        <div class="role-body">
+          <div class="role-title" style="color:var(--rust);">Assina ART — segurança jurídica total</div>
+          <div class="role-desc" style="color:var(--dim);">A Anotação de Responsabilidade Técnica dá respaldo jurídico ao financiamento. Sem ART, o banco não tem como garantir a regularidade da obra — e bloqueia o crédito.</div>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="role-num">03</div>
+        <div class="role-body">
+          <div class="role-title">Aprova medições — obra não para</div>
+          <div class="role-desc">A cada etapa, o engenheiro assina o laudo de medição. Isso libera a próxima parcela e mantém o cronograma financeiro da obra em dia, sem travamentos.</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="result-badge">Com planejamento certo: obra financiada, prazo cumprido, sem surpresas</div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">05 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ═══ S6 — CTA ═══ -->
+<div class="slide" id="s6">
+  <div class="acc"></div>
+  <div class="glow"></div>
+  <div class="shell">
+    <div class="eyebrow">LGM Engenharia</div>
+    <div class="lg-logo">LGM</div>
+    <div class="lg-tag">Engenharia &amp; Construções</div>
+    <div class="divider"></div>
+    <div class="cta-hl">DEIXA A<br><em>BUROCRACIA</em><br>COM A GENTE</div>
+    <div class="btn">INICIAR MEU PROJETO</div>
+    <div class="handle">@eng.gustavomaia</div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">06 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+</body>
+</html>

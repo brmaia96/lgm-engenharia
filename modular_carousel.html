@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LGM Engenharia — Construção Modular</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060605;
+  --rust:#C8793E;
+  --paper:#EAE6DE;
+  --line:rgba(234,230,222,.12);
+  --ghost:rgba(234,230,222,.48);
+  --B:'Bebas Neue',sans-serif;
+  --C:'Barlow Condensed',sans-serif;
+  --I:'Inter',sans-serif;
+  --rust-dim:rgba(200,121,62,.15);
+  --rust-bd:rgba(200,121,62,.35);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#020201;font-family:var(--I);}
+
+/* ── GRAIN OVERLAY ── */
+.grain{
+  position:fixed;inset:0;z-index:999;pointer-events:none;
+  opacity:0.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* ── BASE SLIDE ── */
+.slide{
+  width:1080px;height:1080px;
+  position:relative;overflow:hidden;
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  margin:0 0 4px;
+}
+
+/* ── TOP ACCENT LINE ── */
+.slide::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg, var(--rust) 0%, var(--rust) 180px, transparent 180px);
+  z-index:50;
+}
+
+/* ── BOTTOM BAR ── */
+.bar{
+  height:76px;flex-shrink:0;
+  background:rgba(6,6,5,.9);
+  border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 56px;
+  position:relative;z-index:20;
+}
+.bar span:first-child{
+  font-family:var(--B);font-size:22px;
+  color:var(--paper);letter-spacing:.14em;
+}
+.bar span:last-child{
+  font-family:var(--I);font-size:12px;font-weight:400;
+  color:var(--ghost);letter-spacing:.18em;
+}
+
+/* ── SHARED CONTENT SHELL ── */
+.shell{
+  flex:1;
+  padding:52px 56px 32px;
+  display:flex;flex-direction:column;
+  position:relative;z-index:10;
+}
+
+/* ── BADGE / PILL ── */
+.badge{
+  display:inline-flex;align-items:center;
+  padding:6px 18px;border-radius:100px;
+  background:var(--rust-dim);
+  border:1px solid var(--rust-bd);
+  font-family:var(--C);font-size:13px;font-weight:700;
+  color:var(--rust);letter-spacing:.22em;text-transform:uppercase;
+  width:fit-content;
+}
+
+/* ── SECTION LABEL ── */
+.label{
+  font-family:var(--I);font-size:10px;font-weight:600;
+  color:var(--rust);letter-spacing:.32em;text-transform:uppercase;
+  display:flex;align-items:center;gap:12px;
+}
+.label::before{content:'';width:20px;height:1px;background:var(--rust);}
+
+/* ── SLIDE 1 — COVER ── */
+#s1{
+  background:linear-gradient(135deg, #060605 0%, #0a0d10 50%, #060605 100%);
+}
+
+#s1 .industrial-grid{
+  position:absolute;inset:0;z-index:1;
+  background-image:
+    linear-gradient(rgba(234,230,222,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(234,230,222,.025) 1px, transparent 1px);
+  background-size:90px 90px;
+}
+
+#s1 .diagonal-block{
+  position:absolute;
+  bottom:-60px;right:-60px;
+  width:560px;height:560px;
+  background:rgba(200,121,62,.04);
+  border:1px solid rgba(200,121,62,.08);
+  transform:rotate(18deg);
+  z-index:2;
+}
+
+#s1 .diagonal-block-2{
+  position:absolute;
+  bottom:40px;right:40px;
+  width:400px;height:400px;
+  background:rgba(200,121,62,.03);
+  border:1px solid rgba(200,121,62,.06);
+  transform:rotate(18deg);
+  z-index:2;
+}
+
+#s1 .shell{
+  justify-content:flex-end;
+  padding-bottom:48px;
+}
+
+#s1 .s1-top{
+  position:absolute;top:52px;left:56px;
+  z-index:10;
+}
+
+#s1 .headline{
+  font-family:var(--B);font-size:78px;
+  color:var(--paper);letter-spacing:.04em;
+  line-height:.92;
+  margin:24px 0 16px;
+}
+
+#s1 .subhead{
+  font-family:var(--B);font-size:40px;
+  color:var(--rust);letter-spacing:.06em;
+  line-height:1;
+  margin-bottom:24px;
+}
+
+#s1 .body-text{
+  font-family:var(--I);font-size:16px;font-weight:300;
+  color:var(--ghost);letter-spacing:.04em;
+  line-height:1.5;
+}
+
+#s1 .slide-num{
+  position:absolute;top:52px;right:56px;
+  font-family:var(--B);font-size:120px;
+  color:rgba(234,230,222,.04);letter-spacing:.02em;
+  line-height:1;z-index:3;
+}
+
+/* ── SLIDE 2 — O QUE É ── */
+#s2 .shell{
+  gap:0;
+}
+#s2 .s2-title{
+  font-family:var(--B);font-size:52px;
+  color:var(--paper);letter-spacing:.04em;
+  line-height:.95;
+  margin:20px 0 44px;
+  max-width:760px;
+}
+
+.feature-block{
+  display:flex;align-items:flex-start;gap:28px;
+  padding:28px 0;
+  border-top:1px solid var(--line);
+}
+.feature-block:last-child{
+  border-bottom:1px solid var(--line);
+}
+.feat-num{
+  font-family:var(--B);font-size:44px;
+  color:var(--rust);letter-spacing:.02em;
+  line-height:1;flex-shrink:0;
+  width:52px;
+}
+.feat-body{}
+.feat-title{
+  font-family:var(--C);font-size:22px;font-weight:700;
+  color:var(--paper);letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:6px;
+}
+.feat-desc{
+  font-family:var(--I);font-size:14px;font-weight:300;
+  color:var(--ghost);line-height:1.55;letter-spacing:.02em;
+}
+
+/* ── SLIDE 3 — COMPARATIVO ── */
+#s3 .s3-title{
+  font-family:var(--B);font-size:52px;
+  color:var(--paper);letter-spacing:.04em;
+  margin:18px 0 40px;
+}
+
+#s3 .compare-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:20px;flex:1;
+  margin-bottom:32px;
+}
+
+.compare-col{
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:36px 32px 32px;
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+}
+.compare-col.muted{
+  background:rgba(234,230,222,.02);
+}
+.compare-col.bright{
+  background:rgba(200,121,62,.07);
+  border-color:rgba(200,121,62,.3);
+}
+.compare-col.bright::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--rust);
+}
+
+.col-label{
+  font-family:var(--C);font-size:13px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;
+  margin-bottom:16px;
+}
+.compare-col.muted .col-label{color:rgba(234,230,222,.35);}
+.compare-col.bright .col-label{color:var(--rust);}
+
+.col-time{
+  font-family:var(--B);
+  line-height:.85;
+}
+.compare-col.muted .col-time{font-size:72px;color:rgba(234,230,222,.25);}
+.compare-col.bright .col-time{font-size:80px;color:var(--rust);}
+
+.col-unit{
+  font-family:var(--C);font-size:18px;font-weight:300;
+  margin-top:8px;
+}
+.compare-col.muted .col-unit{color:rgba(234,230,222,.3);}
+.compare-col.bright .col-unit{color:rgba(200,121,62,.75);}
+
+.col-tag{
+  margin-top:auto;padding-top:20px;
+  font-family:var(--I);font-size:12px;font-weight:300;
+  color:rgba(234,230,222,.3);
+}
+.compare-col.bright .col-tag{color:rgba(200,121,62,.7);}
+
+#s3 .compare-footer{
+  border-top:1px solid var(--line);
+  padding-top:20px;
+  display:flex;gap:0;
+}
+#s3 .cf-item{
+  flex:1;
+  display:flex;flex-direction:column;align-items:center;
+  gap:4px;
+  border-right:1px solid var(--line);
+  padding:0 16px;
+}
+#s3 .cf-item:last-child{border-right:none;}
+#s3 .cf-val{
+  font-family:var(--B);font-size:32px;
+  color:var(--rust);letter-spacing:.04em;
+}
+#s3 .cf-desc{
+  font-family:var(--I);font-size:11px;font-weight:300;
+  color:var(--ghost);letter-spacing:.06em;text-align:center;
+}
+
+/* ── SLIDE 4 — VANTAGENS ── */
+#s4 .s4-title{
+  font-family:var(--B);font-size:52px;
+  color:var(--paper);letter-spacing:.04em;
+  margin:18px 0 36px;
+}
+
+.advantage-item{
+  display:flex;align-items:baseline;gap:20px;
+  padding:18px 0;
+  border-bottom:1px solid var(--line);
+  position:relative;
+}
+.advantage-item:first-of-type{border-top:1px solid var(--line);}
+
+.adv-num{
+  font-family:var(--B);font-size:28px;
+  color:rgba(200,121,62,.4);
+  letter-spacing:.04em;flex-shrink:0;
+  width:36px;
+}
+.adv-line{
+  position:absolute;left:0;top:0;bottom:0;
+  width:2px;
+  background:var(--rust);
+  opacity:0;
+  transition:opacity .2s;
+}
+.advantage-item:hover .adv-line{opacity:1;}
+
+.adv-content{}
+.adv-title{
+  font-family:var(--C);font-size:20px;font-weight:700;
+  color:var(--paper);letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:3px;
+}
+.adv-desc{
+  font-family:var(--I);font-size:13px;font-weight:300;
+  color:var(--ghost);line-height:1.5;letter-spacing:.02em;
+}
+.adv-highlight{
+  font-family:var(--C);font-size:13px;font-weight:600;
+  color:var(--rust);letter-spacing:.1em;
+  margin-left:auto;flex-shrink:0;align-self:center;
+}
+
+/* ── SLIDE 5 — ONDE APLICAR ── */
+#s5 .s5-title{
+  font-family:var(--B);font-size:52px;
+  color:var(--paper);letter-spacing:.04em;
+  margin:18px 0 36px;
+}
+
+#s5 .app-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  gap:16px;flex:1;
+}
+
+.app-cell{
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:32px 28px;
+  display:flex;flex-direction:column;
+  background:rgba(234,230,222,.02);
+  position:relative;overflow:hidden;
+}
+.app-cell::before{
+  content:'';
+  position:absolute;left:0;top:0;bottom:0;
+  width:3px;
+  background:var(--rust);
+  opacity:.5;
+}
+
+.app-icon{
+  font-family:var(--B);font-size:38px;
+  color:rgba(200,121,62,.2);letter-spacing:.04em;
+  line-height:1;
+  margin-bottom:12px;
+}
+.app-title{
+  font-family:var(--C);font-size:21px;font-weight:700;
+  color:var(--paper);letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:6px;
+}
+.app-desc{
+  font-family:var(--I);font-size:13px;font-weight:300;
+  color:var(--ghost);line-height:1.55;
+}
+
+/* ── SLIDE 6 — CTA ── */
+#s6{
+  background:linear-gradient(155deg, #060605 0%, #0c0e09 60%, #060605 100%);
+}
+
+#s6 .bg-word{
+  position:absolute;
+  bottom:-20px;left:-10px;
+  font-family:var(--B);font-size:280px;
+  color:rgba(234,230,222,.025);
+  letter-spacing:-.02em;
+  line-height:1;z-index:1;
+  white-space:nowrap;
+}
+
+#s6 .shell{
+  justify-content:center;
+  align-items:flex-start;
+  gap:0;
+}
+
+#s6 .s6-label{margin-bottom:20px;}
+
+#s6 .s6-title{
+  font-family:var(--B);font-size:72px;
+  color:var(--paper);letter-spacing:.04em;
+  line-height:.9;
+  margin-bottom:20px;
+  max-width:820px;
+}
+
+#s6 .s6-sub{
+  font-family:var(--I);font-size:16px;font-weight:300;
+  color:var(--ghost);letter-spacing:.06em;
+  margin-bottom:48px;
+}
+
+#s6 .cta-row{
+  display:flex;align-items:center;gap:24px;
+  flex-wrap:wrap;
+}
+
+#s6 .cta-btn{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:18px 36px;
+  background:var(--rust);
+  border-radius:3px;
+  font-family:var(--C);font-size:18px;font-weight:700;
+  color:#060605;letter-spacing:.18em;text-transform:uppercase;
+  cursor:pointer;
+}
+
+#s6 .cta-phone{
+  font-family:var(--I);font-size:15px;font-weight:300;
+  color:var(--ghost);letter-spacing:.08em;
+}
+
+#s6 .orcamento{
+  display:inline-flex;align-items:center;
+  padding:8px 20px;border-radius:100px;
+  background:rgba(200,121,62,.12);
+  border:1px solid rgba(200,121,62,.3);
+  font-family:var(--C);font-size:13px;font-weight:700;
+  color:var(--rust);letter-spacing:.18em;text-transform:uppercase;
+}
+
+#s6 .divider{
+  width:100%;height:1px;
+  background:var(--line);
+  margin:36px 0;
+}
+
+#s6 .s6-tagline{
+  font-family:var(--C);font-size:14px;font-weight:300;
+  color:rgba(234,230,222,.28);letter-spacing:.22em;text-transform:uppercase;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Film grain fixed overlay -->
+<div class="grain"></div>
+
+<!-- ══════════════════════════════════════════════
+     S1 — COVER
+══════════════════════════════════════════════ -->
+<div class="slide" id="s1">
+  <div class="industrial-grid"></div>
+  <div class="diagonal-block"></div>
+  <div class="diagonal-block-2"></div>
+
+  <div class="s1-top" style="z-index:10;">
+    <div class="badge">TENDÊNCIA 2026</div>
+  </div>
+
+  <div class="slide-num">01</div>
+
+  <div class="shell">
+    <div class="label" style="margin-bottom:0;">CONSTRUÇÃO CIVIL</div>
+    <div class="headline">CONSTRUÇÃO<br>MODULAR</div>
+    <div class="subhead">O FUTURO JÁ<br>CHEGOU</div>
+    <div class="body-text">Mais rápido. Mais limpo. Mais inteligente.</div>
+  </div>
+
+  <div class="bar">
+    <span>LGM ENGENHARIA</span>
+    <span>@eng.gustavomaia</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     S2 — O QUE É
+══════════════════════════════════════════════ -->
+<div class="slide" id="s2">
+  <div class="shell">
+    <div class="label">CONCEITO</div>
+    <div class="s2-title">O QUE É CONSTRUÇÃO<br>MODULAR?</div>
+
+    <div class="feature-block">
+      <div class="feat-num">01</div>
+      <div class="feat-body">
+        <div class="feat-title">FABRICAÇÃO FORA DO CANTEIRO</div>
+        <div class="feat-desc">Módulos produzidos em fábrica com controle rigoroso de qualidade — ambiente controlado, sem interferência climática ou improvisação.</div>
+      </div>
+    </div>
+
+    <div class="feature-block">
+      <div class="feat-num">02</div>
+      <div class="feat-body">
+        <div class="feat-title">MONTAGEM ACELERADA</div>
+        <div class="feat-desc">Estrutura erguida em dias, não meses. Os módulos chegam prontos e são integrados diretamente no terreno.</div>
+      </div>
+    </div>
+
+    <div class="feature-block">
+      <div class="feat-num">03</div>
+      <div class="feat-body">
+        <div class="feat-title">PERSONALIZAÇÃO TOTAL</div>
+        <div class="feat-desc">Projetos sob medida para cada necessidade — residencial, comercial ou industrial. Flexibilidade sem abrir mão da precisão.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bar">
+    <span>LGM ENGENHARIA</span>
+    <span>@eng.gustavomaia</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     S3 — COMPARATIVO TEMPO
+══════════════════════════════════════════════ -->
+<div class="slide" id="s3">
+  <div class="shell">
+    <div class="label">COMPARATIVO</div>
+    <div class="s3-title">QUANTO TEMPO LEVA?</div>
+
+    <div class="compare-grid">
+      <div class="compare-col muted">
+        <div class="col-label">ALVENARIA CONVENCIONAL</div>
+        <div class="col-time">12–18</div>
+        <div class="col-unit">MESES</div>
+        <div class="col-tag">Prazo variável · Imprevistos frequentes<br>Obra exposta às intempéries</div>
+      </div>
+      <div class="compare-col bright">
+        <div class="col-label">MODULAR — LGM</div>
+        <div class="col-time">3–6</div>
+        <div class="col-unit">MESES</div>
+        <div class="col-tag">Prazo garantido · Controle total<br>Fabricação em ambiente controlado</div>
+      </div>
+    </div>
+
+    <div class="compare-footer">
+      <div class="cf-item">
+        <div class="cf-val">70%</div>
+        <div class="cf-desc">Mais rápido</div>
+      </div>
+      <div class="cf-item">
+        <div class="cf-val">100%</div>
+        <div class="cf-desc">Cronograma previsível</div>
+      </div>
+      <div class="cf-item">
+        <div class="cf-val">Zero</div>
+        <div class="cf-desc">Surpresas no prazo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bar">
+    <span>LGM ENGENHARIA</span>
+    <span>@eng.gustavomaia</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     S4 — VANTAGENS
+══════════════════════════════════════════════ -->
+<div class="slide" id="s4">
+  <div class="shell">
+    <div class="label">BENEFÍCIOS</div>
+    <div class="s4-title">5 VANTAGENS DO MODULAR</div>
+
+    <div class="advantage-item">
+      <div class="adv-line"></div>
+      <div class="adv-num">01</div>
+      <div class="adv-content">
+        <div class="adv-title">OBRA MAIS LIMPA</div>
+        <div class="adv-desc">Menos entulho no canteiro — a produção acontece na fábrica, não na rua.</div>
+      </div>
+    </div>
+
+    <div class="advantage-item">
+      <div class="adv-line"></div>
+      <div class="adv-num">02</div>
+      <div class="adv-content">
+        <div class="adv-title">QUALIDADE SUPERIOR</div>
+        <div class="adv-desc">Produção controlada em fábrica com padrões industriais de precisão.</div>
+      </div>
+      <div class="adv-highlight">ISO CONTROLLED</div>
+    </div>
+
+    <div class="advantage-item">
+      <div class="adv-line"></div>
+      <div class="adv-num">03</div>
+      <div class="adv-content">
+        <div class="adv-title">REDUÇÃO DE CUSTO</div>
+        <div class="adv-desc">Economia de até 30% no custo total frente à construção convencional.</div>
+      </div>
+      <div class="adv-highlight">ATÉ 30%</div>
+    </div>
+
+    <div class="advantage-item">
+      <div class="adv-line"></div>
+      <div class="adv-num">04</div>
+      <div class="adv-content">
+        <div class="adv-title">FLEXIBILIDADE</div>
+        <div class="adv-desc">Módulos podem ser realocados, ampliados ou recombinados conforme a necessidade evolui.</div>
+      </div>
+    </div>
+
+    <div class="advantage-item">
+      <div class="adv-line"></div>
+      <div class="adv-num">05</div>
+      <div class="adv-content">
+        <div class="adv-title">SUSTENTABILIDADE</div>
+        <div class="adv-desc">90% menos desperdício de materiais comparado à construção tradicional.</div>
+      </div>
+      <div class="adv-highlight">−90% RESÍDUO</div>
+    </div>
+  </div>
+
+  <div class="bar">
+    <span>LGM ENGENHARIA</span>
+    <span>@eng.gustavomaia</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     S5 — ONDE APLICAR
+══════════════════════════════════════════════ -->
+<div class="slide" id="s5">
+  <div class="shell">
+    <div class="label">APLICAÇÕES</div>
+    <div class="s5-title">ONDE APLICAR?</div>
+
+    <div class="app-grid">
+      <div class="app-cell">
+        <div class="app-icon">RES</div>
+        <div class="app-title">RESIDÊNCIAS</div>
+        <div class="app-desc">Casas unifamiliares e condomínios — do projeto ao acabamento, com velocidade e precisão.</div>
+      </div>
+
+      <div class="app-cell">
+        <div class="app-icon">COM</div>
+        <div class="app-title">COMERCIAL</div>
+        <div class="app-desc">Lojas, escritórios e clínicas prontos em semanas, com layout totalmente adaptado ao negócio.</div>
+      </div>
+
+      <div class="app-cell">
+        <div class="app-icon">IND</div>
+        <div class="app-title">INDUSTRIAL</div>
+        <div class="app-desc">Galpões, depósitos e fábricas com estrutura robusta, escalonável e de rápida implantação.</div>
+      </div>
+
+      <div class="app-cell">
+        <div class="app-icon">TMP</div>
+        <div class="app-title">TEMPORÁRIO</div>
+        <div class="app-desc">Canteiros de obras, unidades de eventos e instalações sazonais — mobilidade total.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bar">
+    <span>LGM ENGENHARIA</span>
+    <span>@eng.gustavomaia</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     S6 — CTA
+══════════════════════════════════════════════ -->
+<div class="slide" id="s6">
+  <div class="bg-word">MODULAR</div>
+
+  <div class="shell">
+    <div class="label s6-label">PRÓXIMO PASSO</div>
+
+    <div class="s6-title">CONSTRUA COM<br>INTELIGÊNCIA</div>
+
+    <div class="s6-sub">LGM Engenharia · Projetos modulares em todo o Brasil</div>
+
+    <div class="cta-row">
+      <div class="cta-btn">
+        FALE CONOSCO
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#060605" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="cta-phone">(14) 99185-0799</div>
+      <div class="orcamento">ORÇAMENTO GRATUITO</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="s6-tagline">Containers · Light Steel Frame · CLT Wood · Sistemas Híbridos</div>
+  </div>
+
+  <div class="bar">
+    <span>LGM ENGENHARIA</span>
+    <span>@eng.gustavomaia</span>
+  </div>
+</div>
+
+</body>
+</html>

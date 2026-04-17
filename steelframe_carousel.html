@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060605;
+  --paper:#EAE6DE;
+  --dim:rgba(234,230,222,.55);
+  --ghost:rgba(234,230,222,.18);
+  --faint:rgba(234,230,222,.055);
+  --line:rgba(234,230,222,.08);
+  --rust:#C8793E;
+  --rust-d:#9F5C28;
+  --rust-bg:rgba(200,121,62,.09);
+  --rust-bd:rgba(200,121,62,.28);
+  --red:#B03828;
+  --red-bg:rgba(176,56,40,.1);
+  --red-bd:rgba(176,56,40,.3);
+  --grn:#2E7D5E;
+  --grn-bg:rgba(46,125,94,.1);
+  --grn-bd:rgba(46,125,94,.3);
+  --F:'Bebas Neue',sans-serif;
+  --C:'Barlow Condensed',sans-serif;
+  --I:'Inter',sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#020201;font-family:var(--I);}
+
+/* ── BASE SLIDE ── */
+.slide{
+  width:1080px;height:1080px;
+  position:relative;overflow:hidden;
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  margin:0 0 3px;
+}
+.slide::after{
+  content:'';position:absolute;inset:0;z-index:100;pointer-events:none;
+  opacity:.18;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:screen;
+}
+.acc{position:absolute;top:0;left:0;right:0;height:2px;z-index:50;
+  background:linear-gradient(90deg,var(--rust) 0%,var(--rust) 220px,transparent 220px);}
+.bot{
+  height:76px;flex-shrink:0;border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 56px;position:relative;z-index:10;
+}
+.b-pg{font-family:var(--I);font-size:10px;font-weight:400;letter-spacing:.38em;color:var(--ghost);text-transform:uppercase;}
+.b-lg{display:flex;align-items:center;gap:10px;}
+.b-nm{font-family:var(--F);font-size:26px;color:var(--paper);letter-spacing:.12em;}
+.b-sp{width:1px;height:18px;background:var(--line);}
+.b-sb{font-family:var(--C);font-size:9px;color:var(--ghost);letter-spacing:.2em;text-transform:uppercase;line-height:1.7;}
+.lbl{
+  display:inline-flex;align-items:center;gap:10px;flex-shrink:0;
+  font-family:var(--I);font-size:10px;font-weight:600;
+  letter-spacing:.34em;text-transform:uppercase;color:var(--rust);
+}
+.lbl::before{content:'';width:20px;height:1px;background:var(--rust);}
+.shell{flex:1;padding:52px 56px 28px;display:flex;flex-direction:column;position:relative;z-index:5;}
+
+/* ══ S1 — CAPA ══ */
+#s1{display:block;}
+#s1 .photo-bg{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(to right, rgba(6,6,5,.0) 0%, rgba(6,6,5,.45) 100%),
+    linear-gradient(to top,
+      rgba(6,6,5,1)   0%,
+      rgba(6,6,5,1)   18%,
+      rgba(6,6,5,.82) 36%,
+      rgba(6,6,5,.2)  58%,
+      rgba(6,6,5,.0)  100%),
+    url('./steel_frame_lgm.jpg.jpeg') top center/cover no-repeat;
+}
+#s1 .shell{
+  position:absolute;inset:0;bottom:76px;z-index:5;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:48px 56px 44px;
+}
+#s1 .h1{
+  font-family:var(--F);font-size:168px;line-height:.82;
+  color:var(--paper);letter-spacing:.01em;
+  text-shadow:0 4px 60px rgba(0,0,0,.7);
+  margin-bottom:20px;
+}
+#s1 .h1 em{color:var(--rust);font-style:normal;text-shadow:0 0 120px rgba(200,121,62,.4);}
+#s1 .sub{
+  font-family:var(--C);font-size:20px;font-weight:300;font-style:italic;
+  color:var(--dim);letter-spacing:.04em;line-height:1.5;
+  padding-left:20px;border-left:2px solid var(--rust);max-width:680px;margin-bottom:28px;
+}
+#s1 .tags{display:flex;gap:8px;flex-wrap:wrap;}
+#s1 .tag{
+  font-family:var(--I);font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ghost);
+  border:1px solid rgba(234,230,222,.14);padding:7px 16px;
+}
+
+/* ══ S2 — O PROBLEMA ══ */
+#s2 .shell{gap:0;}
+#s2 .s-title{
+  font-family:var(--F);font-size:80px;line-height:.86;
+  color:var(--paper);letter-spacing:.01em;margin-top:10px;margin-bottom:40px;flex-shrink:0;
+}
+#s2 .s-title em{color:var(--rust);font-style:normal;}
+#s2 .problems{flex:1;display:flex;flex-direction:column;gap:2px;min-height:0;}
+#s2 .prob{
+  flex:1;display:flex;align-items:center;gap:28px;
+  background:var(--faint);border:1px solid var(--line);
+  padding:20px 28px;min-height:0;
+}
+#s2 .prob-num{
+  font-family:var(--F);font-size:72px;color:var(--red);line-height:1;
+  letter-spacing:.02em;flex-shrink:0;width:80px;text-align:center;
+}
+#s2 .prob-sep{width:1px;align-self:stretch;background:var(--line);flex-shrink:0;}
+#s2 .prob-text strong{
+  font-family:var(--C);font-size:22px;font-weight:700;
+  color:var(--paper);display:block;letter-spacing:.04em;margin-bottom:4px;
+}
+#s2 .prob-text span{
+  font-family:var(--I);font-size:13px;font-weight:300;
+  color:var(--ghost);line-height:1.55;
+}
+
+/* ══ S3 — PRAZO ══ */
+#s3 .shell{gap:0;}
+#s3 .s-title{
+  font-family:var(--F);font-size:80px;line-height:.86;
+  color:var(--paper);letter-spacing:.01em;margin-top:10px;margin-bottom:36px;flex-shrink:0;
+}
+#s3 .s-title em{color:var(--rust);font-style:normal;}
+#s3 .compare{
+  flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--line);min-height:0;
+}
+#s3 .col{
+  background:var(--bg);display:flex;flex-direction:column;
+}
+#s3 .col.hl{background:rgba(200,121,62,.03);}
+#s3 .col-head{
+  height:52px;display:flex;align-items:center;
+  padding:0 28px;border-bottom:1px solid var(--line);flex-shrink:0;
+  font-family:var(--I);font-size:10px;font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--dim);
+}
+#s3 .col.hl .col-head{color:var(--rust);border-color:var(--rust-bd);}
+#s3 .col-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:28px;}
+#s3 .col-num{
+  font-family:var(--F);font-size:144px;line-height:.88;letter-spacing:.01em;
+  color:var(--red);margin-bottom:8px;
+}
+#s3 .col.hl .col-num{color:var(--rust);}
+#s3 .col-unit{
+  font-family:var(--C);font-size:28px;font-weight:700;
+  color:var(--dim);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px;
+}
+#s3 .col.hl .col-unit{color:var(--rust-d);}
+#s3 .col-desc{
+  font-family:var(--I);font-size:13px;font-weight:300;
+  color:var(--ghost);line-height:1.6;letter-spacing:.02em;
+}
+#s3 .col-foot{
+  flex-shrink:0;padding:14px 28px;border-top:1px solid var(--line);
+  font-family:var(--C);font-size:13px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--dim);
+}
+#s3 .col.hl .col-foot{color:var(--rust);border-color:var(--rust-bd);}
+
+/* ══ S4 — DESPERDÍCIO ══ */
+#s4 .shell{gap:0;}
+#s4 .s-title{
+  font-family:var(--F);font-size:80px;line-height:.86;
+  color:var(--paper);letter-spacing:.01em;margin-top:10px;margin-bottom:36px;flex-shrink:0;
+}
+#s4 .s-title em{color:var(--rust);font-style:normal;}
+#s4 .waste{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:14px;min-height:0;}
+#s4 .w-col{
+  border:1px solid var(--line);display:flex;flex-direction:column;
+  padding:24px 24px 20px;gap:0;
+}
+#s4 .w-col.hl{border-color:var(--rust-bd);background:var(--rust-bg);}
+#s4 .w-title{
+  font-family:var(--C);font-size:13px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding-bottom:16px;border-bottom:1px solid var(--line);
+  margin-bottom:20px;flex-shrink:0;
+}
+#s4 .w-col.hl .w-title{color:var(--rust);border-color:var(--rust-bd);}
+/* Visual waste block */
+#s4 .w-visual{
+  flex:1;display:flex;align-items:flex-end;gap:10px;
+  min-height:0;margin-bottom:16px;
+}
+#s4 .w-bar-wrap{flex:1;display:flex;align-items:flex-end;}
+#s4 .w-bar{width:100%;border-radius:3px 3px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:10px;}
+#s4 .w-bar-pct{font-family:var(--F);font-size:64px;color:rgba(234,230,222,.25);line-height:1;}
+#s4 .w-stat{
+  font-family:var(--F);font-size:96px;line-height:.9;letter-spacing:.01em;margin-bottom:8px;
+}
+#s4 .w-label{
+  font-family:var(--I);font-size:12px;font-weight:300;
+  color:var(--ghost);line-height:1.55;letter-spacing:.02em;
+}
+#s4 .w-note{
+  font-family:var(--C);font-size:13px;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;
+  border-top:1px solid var(--line);padding-top:14px;
+  margin-top:auto;flex-shrink:0;
+}
+#s4 .w-col.hl .w-note{color:var(--rust);border-color:var(--rust-bd);}
+
+/* ══ S5 — TRIPLO BENEFÍCIO ══ */
+#s5 .shell{gap:0;}
+#s5 .s-title{
+  font-family:var(--F);font-size:80px;line-height:.86;
+  color:var(--paper);letter-spacing:.01em;margin-top:10px;margin-bottom:32px;flex-shrink:0;
+}
+#s5 .s-title em{color:var(--rust);font-style:normal;}
+#s5 .benefits{flex:1;display:flex;flex-direction:column;gap:2px;min-height:0;}
+#s5 .ben{
+  flex:1;display:flex;align-items:stretch;
+  border:1px solid var(--line);min-height:0;
+}
+#s5 .ben-num-col{
+  width:120px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  border-right:1px solid var(--line);
+  font-family:var(--F);font-size:80px;color:var(--rust);letter-spacing:.04em;
+}
+#s5 .ben-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:18px 28px;gap:4px;}
+#s5 .ben-tag{
+  font-family:var(--I);font-size:10px;font-weight:700;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--rust);
+}
+#s5 .ben-title{
+  font-family:var(--C);font-size:30px;font-weight:700;
+  color:var(--paper);letter-spacing:.02em;line-height:1.1;
+}
+#s5 .ben-desc{
+  font-family:var(--I);font-size:13px;font-weight:300;
+  color:var(--ghost);line-height:1.5;letter-spacing:.02em;
+  margin-top:4px;
+}
+#s5 .ben-badge{
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  padding:0 24px;border-left:1px solid var(--line);min-width:130px;
+}
+#s5 .ben-val{
+  font-family:var(--F);font-size:52px;letter-spacing:.02em;line-height:1;text-align:center;
+}
+#s5 .ben-val small{font-size:20px;display:block;font-family:var(--C);font-weight:300;letter-spacing:.1em;text-transform:uppercase;color:var(--ghost);}
+
+/* ══ S6 — CTA ══ */
+#s6{display:flex;}
+#s6 .glow{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:900px;height:900px;border-radius:50%;z-index:1;
+  background:radial-gradient(ellipse,rgba(200,121,62,.07) 0%,transparent 60%);
+}
+#s6 .shell{
+  flex:1;padding:52px 56px;position:relative;z-index:5;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+}
+#s6 .eyebrow{
+  display:flex;align-items:center;gap:16px;
+  font-family:var(--I);font-size:10px;font-weight:600;
+  letter-spacing:.38em;text-transform:uppercase;color:var(--rust);margin-bottom:24px;
+}
+#s6 .eyebrow::before,#s6 .eyebrow::after{content:'';width:44px;height:1px;background:var(--rust);}
+#s6 .lg-logo{font-family:var(--F);font-size:200px;line-height:1;color:var(--paper);letter-spacing:.1em;margin-bottom:2px;}
+#s6 .lg-tag{font-family:var(--I);font-size:11px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--ghost);margin-bottom:52px;}
+#s6 .divider{width:280px;height:1px;margin:0 auto 48px;background:linear-gradient(90deg,transparent,rgba(200,121,62,.6),transparent);}
+#s6 .q{font-family:var(--C);font-size:32px;font-weight:300;font-style:italic;color:var(--dim);line-height:1.35;margin-bottom:8px;max-width:680px;}
+#s6 .a{font-family:var(--F);font-size:60px;color:var(--paper);letter-spacing:.04em;margin-bottom:48px;}
+#s6 .btn{background:var(--rust);color:#fff;font-family:var(--I);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:20px 80px;display:inline-block;margin-bottom:20px;}
+#s6 .handle{font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);letter-spacing:.08em;}
+</style>
+</head>
+<body>
+
+<!-- ═══ S1 — CAPA ═══ -->
+<div class="slide" id="s1">
+  <div class="acc"></div>
+  <div class="photo-bg"></div>
+  <div class="shell">
+    <div><div class="lbl">Steel Frame · LGM Engenharia</div></div>
+    <div>
+      <div class="h1">SUA OBRA<br>PRONTA<br><em>2X MAIS</em><br>RÁPIDO</div>
+      <div class="sub">O sistema construtivo que está mudando a construção civil no Brasil em 2026</div>
+      <div class="tags">
+        <div class="tag">Prazo reduzido</div>
+        <div class="tag">Menos desperdício</div>
+        <div class="tag">Menor INSS</div>
+        <div class="tag">Financiável</div>
+      </div>
+    </div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">01 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ═══ S2 — O PROBLEMA COM ALVENARIA ═══ -->
+<div class="slide" id="s2">
+  <div class="acc"></div>
+  <div class="shell">
+    <div class="lbl" style="margin-bottom:10px;">O problema · Alvenaria Convencional</div>
+    <div class="s-title">POR QUE A OBRA<br>NUNCA <em>TERMINA</em></div>
+    <div class="problems">
+
+      <div class="prob">
+        <div class="prob-num">01</div>
+        <div class="prob-sep"></div>
+        <div class="prob-text">
+          <strong>Prazo imprevisível — até 14 meses</strong>
+          <span>Cada etapa depende de mão de obra especializada no canteiro. Chuva, falta de peão, atraso de material — o prazo escapa. Uma casa de 150m² leva em média 12 a 14 meses na alvenaria convencional.</span>
+        </div>
+      </div>
+
+      <div class="prob">
+        <div class="prob-num">02</div>
+        <div class="prob-sep"></div>
+        <div class="prob-text">
+          <strong>Até 30% do material vai para o lixo</strong>
+          <span>Argamassa, tijolos quebrados, recortes de cerâmica, entulho. O desperdício médio da alvenaria convencional chega a 25–30% do material comprado — dinheiro literalmente jogado fora.</span>
+        </div>
+      </div>
+
+      <div class="prob">
+        <div class="prob-num">03</div>
+        <div class="prob-sep"></div>
+        <div class="prob-text">
+          <strong>INSS alto sobre toda mão de obra</strong>
+          <span>Com mais trabalhadores em campo por mais tempo, a folha de pagamento — e o INSS patronal — cresce junto com o prazo. Sem planejamento, o construtor paga a alíquota cheia.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">02 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ═══ S3 — PRAZO: 14 MESES VS 5 MESES ═══ -->
+<div class="slide" id="s3">
+  <div class="acc"></div>
+  <div class="shell">
+    <div class="lbl" style="margin-bottom:10px;">Comparativo · Tempo de obra · Casa 150m²</div>
+    <div class="s-title">MESMA CASA.<br><em>METADE DO TEMPO.</em></div>
+    <div class="compare">
+
+      <div class="col">
+        <div class="col-head">Alvenaria Convencional</div>
+        <div class="col-body">
+          <div class="col-num" style="color:var(--red);">12</div>
+          <div class="col-unit" style="color:var(--dim);">a 14 meses</div>
+          <div class="col-desc">Cada etapa exige mão de obra no canteiro. Fundação, levantamento de paredes, revestimento, instalações — tudo sequencial, tudo sujeito a atrasos. O prazo escapa e o custo aumenta.</div>
+        </div>
+        <div class="col-foot" style="color:var(--red);">Alto risco de atraso e estouro de orçamento</div>
+      </div>
+
+      <div class="col hl">
+        <div class="col-head">Steel Frame · LGM</div>
+        <div class="col-body">
+          <div class="col-num" style="color:var(--rust);">4</div>
+          <div class="col-unit" style="color:var(--rust-d);">a 5 meses</div>
+          <div class="col-desc" style="color:var(--dim);">Os componentes chegam prontos de fábrica e a montagem é industrializada. As etapas acontecem em paralelo — estrutura, elétrica e hidráulica ao mesmo tempo. Prazo previsível desde o primeiro dia.</div>
+        </div>
+        <div class="col-foot">Entrega no prazo · cronograma fixo</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">03 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ═══ S4 — DESPERDÍCIO ═══ -->
+<div class="slide" id="s4">
+  <div class="acc"></div>
+  <div class="shell">
+    <div class="lbl" style="margin-bottom:10px;">Material · Desperdício comparado</div>
+    <div class="s-title">O QUE VOCÊ PAGA<br>SEM <em>USAR</em></div>
+    <div class="waste">
+
+      <div class="w-col">
+        <div class="w-title" style="color:var(--dim);">Alvenaria Convencional</div>
+        <div style="flex:1;display:flex;flex-direction:column;min-height:0;">
+          <div class="w-stat" style="color:var(--red);">30%</div>
+          <div class="w-label">do material comprado vai para o entulho — argamassa, tijolos quebrados, recortes. Em uma obra de R$ 300k, são R$ 90.000 descartados.</div>
+          <div class="w-note" style="color:var(--red);border-color:var(--red-bd);margin-top:auto;">R$ 90k descartados em obra de R$ 300k</div>
+        </div>
+      </div>
+
+      <div class="w-col hl">
+        <div class="w-title">Steel Frame · Pré-fabricado</div>
+        <div style="flex:1;display:flex;flex-direction:column;min-height:0;">
+          <div class="w-stat" style="color:var(--rust);">~1%</div>
+          <div class="w-label" style="color:var(--dim);">de desperdício. Os perfis de aço são cortados em fábrica com precisão milimétrica por software. O que chega na obra é exatamente o que vai ser usado. Quase zero entulho.</div>
+          <div class="w-note" style="margin-top:auto;">Controle total de material · zero surpresa</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">04 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ═══ S5 — TRIPLO BENEFÍCIO ═══ -->
+<div class="slide" id="s5">
+  <div class="acc"></div>
+  <div class="shell">
+    <div class="lbl" style="margin-bottom:10px;">Resultado · Por que o Steel Frame está crescendo</div>
+    <div class="s-title">3 MOTIVOS QUE<br><em>MUDAM O JOGO</em></div>
+    <div class="benefits">
+
+      <div class="ben">
+        <div class="ben-num-col">01</div>
+        <div class="ben-body">
+          <div class="ben-tag">Prazo</div>
+          <div class="ben-title">Obra pronta em metade do tempo</div>
+          <div class="ben-desc">Montagem industrializada com cronograma fixo. Menos tempo de obra = menos custo financeiro, menos imprevistos.</div>
+        </div>
+        <div class="ben-badge">
+          <div class="ben-val" style="color:var(--rust);">2×<small>mais rápido</small></div>
+        </div>
+      </div>
+
+      <div class="ben" style="background:var(--rust-bg);border-color:var(--rust-bd);">
+        <div class="ben-num-col" style="border-color:var(--rust-bd);">02</div>
+        <div class="ben-body">
+          <div class="ben-tag">Material</div>
+          <div class="ben-title">Desperdício próximo de zero</div>
+          <div class="ben-desc">Componentes cortados em fábrica com precisão. Na alvenaria, até 30% do material vai para o entulho.</div>
+        </div>
+        <div class="ben-badge" style="border-color:var(--rust-bd);">
+          <div class="ben-val" style="color:var(--rust);">−29%<small>desperdício</small></div>
+        </div>
+      </div>
+
+      <div class="ben">
+        <div class="ben-num-col">03</div>
+        <div class="ben-body">
+          <div class="ben-tag">Fiscal</div>
+          <div class="ben-title">Base de INSS até 3× menor</div>
+          <div class="ben-desc">Menos mão de obra no canteiro = menor folha de pagamento = menor INSS. Combinado com Fator de Ajuste: economia de até 70%.</div>
+        </div>
+        <div class="ben-badge">
+          <div class="ben-val" style="color:var(--rust);">−70%<small>no INSS</small></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">05 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ═══ S6 — CTA ═══ -->
+<div class="slide" id="s6">
+  <div class="acc"></div>
+  <div class="glow"></div>
+  <div class="shell">
+    <div class="eyebrow">LGM Engenharia</div>
+    <div class="lg-logo">LGM</div>
+    <div class="lg-tag">Engenharia &amp; Construções</div>
+    <div class="divider"></div>
+    <div class="q">Quer construir mais rápido,<br>gastar menos e pagar menos INSS?</div>
+    <div class="a">FALE COM A LGM</div>
+    <div class="btn">SOLICITAR ORÇAMENTO</div>
+    <div class="handle">@eng.gustavomaia</div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">06 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>LGM — Fundações</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#060605;--rust:#C8793E;--rust2:#a85f2e;
+  --rust-bg:rgba(200,121,62,.08);--rust-bd:rgba(200,121,62,.25);
+  --paper:#EAE6DE;--line:rgba(234,230,222,.10);--line2:rgba(234,230,222,.05);
+  --ghost:rgba(234,230,222,.48);--ghost2:rgba(234,230,222,.22);
+  --red:#B03828;--grn:#3D9E72;--grn-bg:rgba(61,158,114,.08);--grn-bd:rgba(61,158,114,.25);
+  --B:'Bebas Neue',sans-serif;--C:'Barlow Condensed',sans-serif;--I:'Inter',sans-serif;
+}
+html,body{background:#111;}
+body{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.slide{width:1080px;height:1080px;background:var(--bg);position:relative;overflow:hidden;display:flex;flex-direction:column;flex-shrink:0;}
+.slide::after{content:'';position:absolute;inset:0;z-index:100;pointer-events:none;opacity:.15;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:screen;}
+.acc{position:absolute;top:0;left:0;right:0;height:2px;z-index:50;background:linear-gradient(90deg,var(--rust) 0%,var(--rust) 220px,transparent 220px);}
+.bot{height:76px;flex-shrink:0;background:rgba(6,6,5,.92);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 56px;position:relative;z-index:10;}
+.b-nm{font-family:var(--B);font-size:24px;color:var(--paper);letter-spacing:.12em;}
+.b-hd{font-family:var(--C);font-size:13px;font-weight:600;color:var(--rust);letter-spacing:.12em;text-transform:uppercase;}
+.shell{flex:1;padding:52px 56px 28px;display:flex;flex-direction:column;position:relative;z-index:5;}
+.lbl{display:inline-flex;align-items:center;gap:10px;font-family:var(--I);font-size:10px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--rust);}
+.lbl::before{content:'';width:20px;height:1px;background:var(--rust);}
+.title{font-family:var(--B);font-size:64px;line-height:.88;color:var(--paper);letter-spacing:.01em;margin-top:10px;}
+.title em{color:var(--rust);font-style:normal;}
+.intro{font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);line-height:1.5;margin:14px 0 28px;padding-left:16px;border-left:1px solid var(--rust-bd);}
+</style>
+</head>
+<body>
+
+<!-- S1 COVER -->
+<div class="slide" id="s1" style="background:radial-gradient(ellipse 130% 80% at 70% 10%,rgba(200,121,62,.14) 0%,transparent 55%),linear-gradient(180deg,#090806 0%,#060605 100%);">
+  <div class="acc"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(234,230,222,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(234,230,222,.03) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 70% 70% at 70% 20%,rgba(0,0,0,.5) 0%,transparent 70%);"></div>
+  <div style="position:absolute;inset:0;bottom:76px;z-index:5;display:flex;flex-direction:column;justify-content:flex-end;padding:0 56px 0;">
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:40px;">
+      <span class="lbl" style="margin-bottom:16px;">Estrutural · Essencial</span>
+      <h1 style="font-family:var(--B);font-size:90px;line-height:.9;color:var(--paper);letter-spacing:.01em;margin-bottom:22px;">A FUNDAÇÃO ERRADA<br><span style="color:var(--rust);">DESTRÓI SUA OBRA</span></h1>
+      <p style="font-family:var(--C);font-size:20px;font-weight:400;color:var(--ghost);letter-spacing:.04em;line-height:1.4;padding-left:18px;border-left:2px solid var(--rust);max-width:640px;">O tipo certo de fundação pode salvar — ou afundar — seu investimento. Entenda antes de construir</p>
+    </div>
+    <div style="display:flex;gap:1px;background:var(--line);flex-shrink:0;">
+      <div style="flex:1;background:var(--bg);padding:20px 28px;display:flex;flex-direction:column;gap:6px;">
+        <span style="font-family:var(--B);font-size:40px;color:var(--rust);letter-spacing:.02em;">70%</span>
+        <span style="font-family:var(--C);font-size:12px;color:var(--ghost);letter-spacing:.06em;text-transform:uppercase;">das trincas têm origem na fundação</span>
+      </div>
+      <div style="flex:1;background:var(--bg);padding:20px 28px;display:flex;flex-direction:column;gap:6px;">
+        <span style="font-family:var(--B);font-size:40px;color:var(--rust);letter-spacing:.02em;">R$80k+</span>
+        <span style="font-family:var(--C);font-size:12px;color:var(--ghost);letter-spacing:.06em;text-transform:uppercase;">custo médio de correção estrutural</span>
+      </div>
+      <div style="flex:1;background:var(--bg);padding:20px 28px;display:flex;flex-direction:column;gap:6px;">
+        <span style="font-family:var(--B);font-size:40px;color:var(--rust);letter-spacing:.02em;">100%</span>
+        <span style="font-family:var(--C);font-size:12px;color:var(--ghost);letter-spacing:.06em;text-transform:uppercase;">evitável com projeto técnico correto</span>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-hd">@eng.gustavomaia</span></div>
+</div>
+
+<!-- S2 TIPOS RASAS vs PROFUNDAS -->
+<div class="slide" id="s2">
+  <div class="acc"></div>
+  <div style="padding:44px 56px 16px;position:relative;z-index:5;flex-shrink:0;">
+    <span class="lbl">Infográfico técnico</span>
+    <h2 class="title" style="font-size:56px;margin-top:8px;">FUNDAÇÕES RASAS <span style="color:var(--rust);">VS</span> PROFUNDAS</h2>
+  </div>
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin:0 0 0;">
+    <div style="background:var(--bg);display:flex;flex-direction:column;">
+      <div style="height:48px;display:flex;align-items:center;padding:0 28px;border-bottom:1px solid var(--line);border-top:1px solid var(--line);"><span style="font-family:var(--C);font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ghost2);">RASAS · até 3m</span></div>
+      <div style="flex:0 0 33.3%;display:flex;align-items:stretch;border-bottom:1px solid var(--line2);">
+        <div style="width:6px;background:rgba(200,121,62,.35);flex-shrink:0;"></div>
+        <div style="padding:18px 24px;display:flex;flex-direction:column;gap:5px;">
+          <span style="font-family:var(--B);font-size:28px;color:var(--rust);letter-spacing:.02em;">SAPATA ISOLADA</span>
+          <span style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.4;">Concentra carga de um único pilar. Econômica em solos firmes e rasos. Mais comum em residências simples</span>
+          <span style="font-family:var(--C);font-size:11px;font-weight:700;color:var(--grn);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;">✓ Solo firme · SPT &gt;15</span>
+        </div>
+      </div>
+      <div style="flex:0 0 33.3%;display:flex;align-items:stretch;border-bottom:1px solid var(--line2);">
+        <div style="width:6px;background:rgba(200,121,62,.25);flex-shrink:0;"></div>
+        <div style="padding:18px 24px;display:flex;flex-direction:column;gap:5px;">
+          <span style="font-family:var(--B);font-size:28px;color:var(--rust);letter-spacing:.02em;">SAPATA CORRIDA</span>
+          <span style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.4;">Distribui carga ao longo de uma parede. Usada em alvenaria estrutural e fundações de muros de arrimo</span>
+          <span style="font-family:var(--C);font-size:11px;font-weight:700;color:var(--grn);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;">✓ Alvenaria estrutural</span>
+        </div>
+      </div>
+      <div style="flex:1;display:flex;align-items:stretch;">
+        <div style="width:6px;background:rgba(200,121,62,.15);flex-shrink:0;"></div>
+        <div style="padding:18px 24px;display:flex;flex-direction:column;gap:5px;">
+          <span style="font-family:var(--B);font-size:28px;color:var(--rust);letter-spacing:.02em;">RADIER</span>
+          <span style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.4;">Laje que cobre toda a área — distribui carga uniformemente. Ideal para solo mole ou expansivo</span>
+          <span style="font-family:var(--C);font-size:11px;font-weight:700;color:var(--grn);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;">✓ Solo mole / expansivo</span>
+        </div>
+      </div>
+    </div>
+    <div style="background:rgba(200,121,62,.025);display:flex;flex-direction:column;">
+      <div style="height:48px;display:flex;align-items:center;padding:0 28px;border-bottom:1px solid var(--line);border-top:1px solid var(--line);"><span style="font-family:var(--C);font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--rust);">PROFUNDAS · +3m</span></div>
+      <div style="flex:0 0 33.3%;display:flex;align-items:stretch;border-bottom:1px solid var(--line2);">
+        <div style="width:6px;background:var(--rust);flex-shrink:0;"></div>
+        <div style="padding:18px 24px;display:flex;flex-direction:column;gap:5px;">
+          <span style="font-family:var(--B);font-size:28px;color:var(--rust);letter-spacing:.02em;">ESTACA HÉLICE</span>
+          <span style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.4;">Perfuração com trado contínuo e preenchimento com concreto. Rápida, sem vibração excessiva no canteiro</span>
+          <span style="font-family:var(--C);font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;">→ Aterro / solo instável</span>
+        </div>
+      </div>
+      <div style="flex:0 0 33.3%;display:flex;align-items:stretch;border-bottom:1px solid var(--line2);">
+        <div style="width:6px;background:var(--rust2);flex-shrink:0;"></div>
+        <div style="padding:18px 24px;display:flex;flex-direction:column;gap:5px;">
+          <span style="font-family:var(--B);font-size:28px;color:var(--rust);letter-spacing:.02em;">TUBULÃO</span>
+          <span style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.4;">Grande diâmetro com base alargada. Para cargas muito elevadas em edifícios e estruturas pesadas</span>
+          <span style="font-family:var(--C);font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;">→ Edifícios / grandes cargas</span>
+        </div>
+      </div>
+      <div style="flex:1;display:flex;align-items:stretch;">
+        <div style="width:6px;background:rgba(200,121,62,.5);flex-shrink:0;"></div>
+        <div style="padding:18px 24px;display:flex;flex-direction:column;gap:5px;">
+          <span style="font-family:var(--B);font-size:28px;color:var(--rust);letter-spacing:.02em;">ESTACA RAIZ</span>
+          <span style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.4;">Pequeno diâmetro e alta inclinação. Ideal para reforço de fundações existentes e locais com acesso restrito</span>
+          <span style="font-family:var(--C);font-size:11px;font-weight:700;color:var(--rust);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;">→ Reforço / retrofit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-hd">@eng.gustavomaia</span></div>
+</div>
+
+<!-- S3 QUAL USAR -->
+<div class="slide" id="s3">
+  <div class="acc"></div>
+  <div class="shell" style="padding-bottom:16px;">
+    <span class="lbl">Decisão técnica</span>
+    <h2 class="title" style="font-size:52px;">QUAL FUNDAÇÃO PARA <span style="color:var(--rust);">O SEU TERRENO?</span></h2>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px;background:var(--line);margin-top:20px;">
+      <div style="background:var(--bg);padding:24px 28px;display:flex;flex-direction:column;gap:8px;">
+        <div style="width:36px;height:36px;border:1.5px solid var(--grn-bd);border-radius:50%;display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3D9E72" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span style="font-family:var(--B);font-size:30px;color:var(--rust);">SAPATA</span>
+        <span style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--paper);">Solo firme e raso</span>
+        <span style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Argila rija ou areia compacta nos primeiros 3m · SPT &gt;15 · Residências até 2 pavimentos · Sem nível d'água alto</span>
+        <span style="margin-top:auto;display:inline-block;font-family:var(--C);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--grn-bd);background:var(--grn-bg);color:var(--grn);border-radius:2px;align-self:flex-start;">Mais econômica</span>
+      </div>
+      <div style="background:rgba(200,121,62,.025);padding:24px 28px;display:flex;flex-direction:column;gap:8px;">
+        <div style="width:36px;height:36px;border:1.5px solid var(--rust-bd);border-radius:50%;display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8793E" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div>
+        <span style="font-family:var(--B);font-size:30px;color:var(--rust);">RADIER</span>
+        <span style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--paper);">Solo mole ou expansivo</span>
+        <span style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Argila mole ou areia fofa · Aterros recentes · Solos com variação de umidade · Regiões alagáveis</span>
+        <span style="margin-top:auto;display:inline-block;font-family:var(--C);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--rust-bd);background:var(--rust-bg);color:var(--rust);border-radius:2px;align-self:flex-start;">Estabiliza recalque</span>
+      </div>
+      <div style="background:rgba(200,121,62,.025);padding:24px 28px;display:flex;flex-direction:column;gap:8px;">
+        <div style="width:36px;height:36px;border:1.5px solid var(--rust-bd);border-radius:50%;display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8793E" stroke-width="2"><line x1="12" y1="2" x2="12" y2="22"/><polyline points="6 8 12 2 18 8"/></svg></div>
+        <span style="font-family:var(--B);font-size:30px;color:var(--rust);">ESTACA</span>
+        <span style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--paper);">Terreno com aterro</span>
+        <span style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Camadas instáveis nos primeiros metros · Histórico de obra anterior · Solo com recalque diferencial</span>
+        <span style="margin-top:auto;display:inline-block;font-family:var(--C);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--grn-bd);background:var(--grn-bg);color:var(--grn);border-radius:2px;align-self:flex-start;">Mais segura</span>
+      </div>
+      <div style="background:var(--bg);padding:24px 28px;display:flex;flex-direction:column;gap:8px;">
+        <div style="width:36px;height:36px;border:1.5px solid var(--rust-bd);border-radius:50%;display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8793E" stroke-width="2"><polygon points="12 2 22 20 2 20"/></svg></div>
+        <span style="font-family:var(--B);font-size:30px;color:var(--rust);">TUBULÃO</span>
+        <span style="font-family:var(--C);font-size:18px;font-weight:700;color:var(--paper);">Grandes cargas</span>
+        <span style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Edifícios de múltiplos andares · Galpões industriais · Cargas de pilar acima de 200t · Solo bom apenas &gt;8m</span>
+        <span style="margin-top:auto;display:inline-block;font-family:var(--C);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--rust-bd);background:var(--rust-bg);color:var(--rust);border-radius:2px;align-self:flex-start;">Alta capacidade</span>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-hd">@eng.gustavomaia</span></div>
+</div>
+
+<!-- S4 ERROS COMUNS -->
+<div class="slide" id="s4">
+  <div class="acc"></div>
+  <div class="shell">
+    <span class="lbl">Atenção redobrada</span>
+    <h2 class="title">ERROS QUE <span style="color:var(--rust);">DESTROEM</span> FUNDAÇÕES</h2>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;margin-top:24px;">
+      <div style="display:flex;align-items:flex-start;gap:28px;padding:18px 0;border-bottom:1px solid var(--line);">
+        <span style="font-family:var(--B);font-size:56px;color:var(--rust);opacity:.25;line-height:.9;min-width:72px;">01</span>
+        <div>
+          <div style="font-family:var(--C);font-size:21px;font-weight:700;color:var(--paper);letter-spacing:.02em;margin-bottom:5px;">Cortar no dimensionamento</div>
+          <div style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Reduzir seção de sapata ou comprimento de estaca "porque parece suficiente" sem cálculo estrutural assinado por engenheiro</div>
+          <div style="margin-top:8px;font-family:var(--C);font-size:12px;font-weight:700;color:#B03828;letter-spacing:.04em;text-transform:uppercase;">→ Economia de R$2k vira reforma de R$80k</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:28px;padding:18px 0;border-bottom:1px solid var(--line);">
+        <span style="font-family:var(--B);font-size:56px;color:var(--rust);opacity:.25;line-height:.9;min-width:72px;">02</span>
+        <div>
+          <div style="font-family:var(--C);font-size:21px;font-weight:700;color:var(--paper);letter-spacing:.02em;margin-bottom:5px;">Construir sem sondagem SPT</div>
+          <div style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Não investigar o solo antes de definir o tipo de fundação é o principal erro de toda a obra — sem exceção</div>
+          <div style="margin-top:8px;font-family:var(--C);font-size:12px;font-weight:700;color:#B03828;letter-spacing:.04em;text-transform:uppercase;">→ Recalque diferencial e trincas em toda a estrutura</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:28px;padding:18px 0;border-bottom:1px solid var(--line);">
+        <span style="font-family:var(--B);font-size:56px;color:var(--rust);opacity:.25;line-height:.9;min-width:72px;">03</span>
+        <div>
+          <div style="font-family:var(--C);font-size:21px;font-weight:700;color:var(--paper);letter-spacing:.02em;margin-bottom:5px;">Ignorar o nível d'água</div>
+          <div style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Fundar abaixo do nível freático sem os devidos cuidados causa infiltração crônica e perda de capacidade de carga do solo</div>
+          <div style="margin-top:8px;font-family:var(--C);font-size:12px;font-weight:700;color:#B03828;letter-spacing:.04em;text-transform:uppercase;">→ Fundação submersa perde até 40% da capacidade</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:28px;padding:18px 0;">
+        <span style="font-family:var(--B);font-size:56px;color:var(--rust);opacity:.25;line-height:.9;min-width:72px;">04</span>
+        <div>
+          <div style="font-family:var(--C);font-size:21px;font-weight:700;color:var(--paper);letter-spacing:.02em;margin-bottom:5px;">Copiar o projeto do vizinho</div>
+          <div style="font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;">Cada terreno tem solo diferente, cada projeto tem cargas diferentes. Não existe "fundação padrão de bairro" ou "do mesmo tipo"</div>
+          <div style="margin-top:8px;font-family:var(--C);font-size:12px;font-weight:700;color:#B03828;letter-spacing:.04em;text-transform:uppercase;">→ Projeto inadequado = risco de colapso parcial</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-hd">@eng.gustavomaia</span></div>
+</div>
+
+<!-- S5 SONDAGEM SPT -->
+<div class="slide" id="s5">
+  <div class="acc"></div>
+  <div class="shell">
+    <span class="lbl">Antes de construir</span>
+    <h2 class="title" style="font-size:52px;">POR QUE A SONDAGEM <span style="color:var(--rust);">É OBRIGATÓRIA</span></h2>
+    <p class="intro">O laudo SPT revela o que tem no solo camada por camada — e define qual fundação é necessária</p>
+    <div style="flex:1;display:grid;grid-template-columns:150px 1fr;gap:24px;min-height:0;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <span style="font-family:var(--C);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);text-align:center;">Perfil SPT</span>
+        <div style="flex:1;border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;">
+          <div style="flex:0 0 10%;background:rgba(100,90,70,.5);display:flex;align-items:center;justify-content:flex-end;padding:0 8px;border-bottom:1px solid rgba(0,0,0,.2);"><span style="font-family:var(--I);font-size:8px;color:rgba(200,180,140,.7);">0–1m</span></div>
+          <div style="flex:0 0 20%;background:rgba(80,65,50,.6);display:flex;align-items:center;justify-content:flex-end;padding:0 8px;border-bottom:1px solid rgba(0,0,0,.2);"><span style="font-family:var(--I);font-size:8px;color:rgba(180,150,110,.7);">1–4m</span></div>
+          <div style="flex:0 0 20%;background:rgba(160,130,80,.4);display:flex;align-items:center;justify-content:flex-end;padding:0 8px;border-bottom:1px solid rgba(0,0,0,.2);"><span style="font-family:var(--I);font-size:8px;color:rgba(200,170,100,.7);">4–8m</span></div>
+          <div style="flex:0 0 22%;background:rgba(180,100,50,.35);display:flex;align-items:center;justify-content:flex-end;padding:0 8px;border-bottom:1px solid rgba(0,0,0,.2);"><span style="font-family:var(--I);font-size:8px;color:rgba(200,121,62,.8);">8–12m</span></div>
+          <div style="flex:1;background:rgba(234,230,222,.12);display:flex;align-items:center;justify-content:flex-end;padding:0 8px;"><span style="font-family:var(--I);font-size:8px;color:var(--ghost);">12–15m</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:space-between;">
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--line2);">
+          <div style="width:12px;height:12px;background:rgba(100,90,70,.8);border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+          <div><div style="font-family:var(--C);font-size:15px;font-weight:700;color:var(--ghost2);letter-spacing:.04em;">Aterro / Húmus · 0–1m</div><div style="font-family:var(--I);font-size:11px;font-weight:300;color:var(--ghost2);margin-top:2px;">Camada instável. Nunca apoiar fundação aqui</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--line2);">
+          <div style="width:12px;height:12px;background:rgba(80,65,50,.9);border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+          <div><div style="font-family:var(--C);font-size:15px;font-weight:700;color:var(--ghost2);letter-spacing:.04em;">Argila Mole · 1–4m</div><div style="font-family:var(--I);font-size:11px;font-weight:300;color:var(--ghost2);margin-top:2px;">Compressível. Exige radier ou estacas profundas</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--line2);">
+          <div style="width:12px;height:12px;background:rgba(160,130,80,.7);border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+          <div><div style="font-family:var(--C);font-size:15px;font-weight:700;color:var(--ghost);letter-spacing:.04em;">Areia Média · 4–8m</div><div style="font-family:var(--I);font-size:11px;font-weight:300;color:var(--ghost2);margin-top:2px;">SPT 10–20. Pode apoiar sapata se bem compacta</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--line2);">
+          <div style="width:12px;height:12px;background:rgba(200,121,62,.6);border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+          <div><div style="font-family:var(--C);font-size:15px;font-weight:700;color:var(--paper);letter-spacing:.04em;">Argila Rija · 8–12m</div><div style="font-family:var(--I);font-size:11px;font-weight:300;color:var(--ghost);margin-top:2px;">SPT 20–30. Boa capacidade para estacas hélice</div><div style="font-family:var(--C);font-size:10px;font-weight:700;color:var(--rust);letter-spacing:.04em;margin-top:4px;">✓ Nível de apoio usual</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;">
+          <div style="width:12px;height:12px;background:rgba(234,230,222,.35);border-radius:2px;flex-shrink:0;margin-top:2px;"></div>
+          <div><div style="font-family:var(--C);font-size:15px;font-weight:700;color:var(--paper);letter-spacing:.04em;">Rocha / SPT &gt;30 · 12–15m</div><div style="font-family:var(--I);font-size:11px;font-weight:300;color:var(--ghost);margin-top:2px;">Resistência máxima. Nível de apoio ideal garantido</div><div style="font-family:var(--C);font-size:10px;font-weight:700;color:var(--rust);letter-spacing:.04em;margin-top:4px;">✓ Apoio mais seguro</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="flex-shrink:0;margin-top:14px;background:var(--rust-bg);border:1px solid var(--rust-bd);padding:14px 20px;display:flex;align-items:center;gap:20px;">
+      <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-family:var(--B);font-size:28px;color:var(--grn);">R$800–2.000</span><span style="font-family:var(--I);font-size:10px;font-weight:300;color:var(--ghost);">custo da sondagem SPT</span></div>
+      <div style="width:1px;height:36px;background:var(--rust-bd);"></div>
+      <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-family:var(--B);font-size:28px;color:#B03828;">R$50.000+</span><span style="font-family:var(--I);font-size:10px;font-weight:300;color:var(--ghost);">custo de corrigir fundação errada</span></div>
+      <div style="width:1px;height:36px;background:var(--rust-bd);"></div>
+      <div style="flex:1;font-family:var(--C);font-size:14px;font-weight:700;color:var(--rust);letter-spacing:.04em;text-align:right;line-height:1.4;">Sondagem não é gasto.<br>É o menor seguro da sua obra.</div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-hd">@eng.gustavomaia</span></div>
+</div>
+
+<!-- S6 CTA -->
+<div class="slide" id="s6" style="background:radial-gradient(ellipse 100% 80% at 50% 50%,rgba(200,121,62,.08) 0%,transparent 65%),var(--bg);">
+  <div class="acc"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(234,230,222,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(234,230,222,.04) 1px,transparent 1px);background-size:72px 72px;opacity:.7;"></div>
+  <div style="position:absolute;inset:0;bottom:76px;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 80px;">
+    <span class="lbl" style="margin-bottom:20px;">Projeto estrutural</span>
+    <h2 style="font-family:var(--B);font-size:76px;color:var(--paper);letter-spacing:.01em;text-align:center;line-height:.9;margin-bottom:10px;">NÃO CONSTRUA SEM</h2>
+    <h3 style="font-family:var(--B);font-size:76px;color:var(--rust);letter-spacing:.01em;text-align:center;line-height:.9;margin-bottom:28px;">PROJETO DE FUNDAÇÃO</h3>
+    <div style="width:64px;height:2px;background:var(--rust);margin-bottom:28px;"></div>
+    <p style="font-family:var(--C);font-size:18px;font-weight:400;color:var(--ghost);letter-spacing:.04em;text-align:center;max-width:580px;line-height:1.5;margin-bottom:36px;">LGM Engenharia projeta fundações seguras para qualquer tipo de solo.<br>Sondagem · Cálculo estrutural · ART registrada</p>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <span style="font-family:var(--B);font-size:44px;color:var(--rust);letter-spacing:.04em;">(14) 99185-0799</span>
+      <span style="font-family:var(--C);font-size:20px;font-weight:600;color:var(--ghost);letter-spacing:.08em;">@eng.gustavomaia</span>
+      <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;justify-content:center;">
+        <span style="font-family:var(--C);font-size:11px;font-weight:600;color:var(--ghost2);letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--line);border-radius:2px;">Projeto estrutural</span>
+        <span style="font-family:var(--C);font-size:11px;font-weight:600;color:var(--ghost2);letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--line);border-radius:2px;">Sondagem SPT</span>
+        <span style="font-family:var(--C);font-size:11px;font-weight:600;color:var(--ghost2);letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--line);border-radius:2px;">Laudo técnico</span>
+        <span style="font-family:var(--C);font-size:11px;font-weight:600;color:var(--ghost2);letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--line);border-radius:2px;">ART inclusa</span>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-hd">@eng.gustavomaia</span></div>
+</div>
+
+</body>
+</html>

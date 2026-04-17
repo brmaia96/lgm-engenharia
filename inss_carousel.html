@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060605;
+  --paper:#EAE6DE;
+  --dim:rgba(234,230,222,.55);
+  --ghost:rgba(234,230,222,.18);
+  --faint:rgba(234,230,222,.055);
+  --line:rgba(234,230,222,.08);
+  --rust:#C8793E;
+  --rust-d:#9F5C28;
+  --rust-bg:rgba(200,121,62,.09);
+  --rust-bd:rgba(200,121,62,.28);
+  --red:#B03828;
+  --red-bg:rgba(176,56,40,.1);
+  --red-bd:rgba(176,56,40,.3);
+  --grn:#2E7D5E;
+  --grn-bg:rgba(46,125,94,.1);
+  --grn-bd:rgba(46,125,94,.3);
+  --F:'Bebas Neue',sans-serif;
+  --C:'Barlow Condensed',sans-serif;
+  --I:'Inter',sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#020201;font-family:var(--I);}
+
+/* ────────────────────────────────
+   BASE SLIDE
+──────────────────────────────── */
+.slide{
+  width:1080px;height:1080px;
+  position:relative;overflow:hidden;
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  margin:0 0 3px;
+}
+
+/* Film grain */
+.slide::after{
+  content:'';position:absolute;inset:0;z-index:100;
+  pointer-events:none;
+  opacity:.18;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  mix-blend-mode:screen;
+}
+
+/* Top accent line */
+.acc{position:absolute;top:0;left:0;right:0;height:2px;z-index:50;
+  background:linear-gradient(90deg,var(--rust) 0%,var(--rust) 220px,transparent 220px);}
+
+/* Bottom bar */
+.bot{
+  height:76px;flex-shrink:0;
+  border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 56px;position:relative;z-index:10;
+}
+.b-pg{font-family:var(--I);font-size:10px;font-weight:400;letter-spacing:.38em;color:var(--ghost);text-transform:uppercase;}
+.b-lg{display:flex;align-items:center;gap:10px;}
+.b-nm{font-family:var(--F);font-size:26px;color:var(--paper);letter-spacing:.12em;}
+.b-sp{width:1px;height:18px;background:var(--line);}
+.b-sb{font-family:var(--C);font-size:9px;color:var(--ghost);letter-spacing:.2em;text-transform:uppercase;line-height:1.7;}
+
+/* Label pill */
+.lbl{
+  display:inline-flex;align-items:center;gap:10px;flex-shrink:0;
+  font-family:var(--I);font-size:10px;font-weight:600;
+  letter-spacing:.34em;text-transform:uppercase;color:var(--rust);
+}
+.lbl::before{content:'';width:20px;height:1px;background:var(--rust);}
+
+/* Divider line */
+.dv{width:100%;height:1px;background:var(--line);flex-shrink:0;}
+
+
+/* ════════════════════════════════
+   S1 — CAPA
+════════════════════════════════ */
+#s1{display:block;}
+
+#s1 .photo-bg{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(to right, rgba(6,6,5,.08) 0%, rgba(6,6,5,.55) 100%),
+    linear-gradient(to top, rgba(6,6,5,1) 0%, rgba(6,6,5,.6) 30%, rgba(6,6,5,.05) 65%),
+    url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=90&auto=format&fit=crop') center/cover no-repeat;
+}
+
+#s1 .shell{
+  position:absolute;inset:0;bottom:76px;z-index:5;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:48px 56px 44px;
+}
+
+#s1 .s1-top{}
+#s1 .s1-bot{}
+
+#s1 .h1{
+  font-family:var(--F);
+  font-size:192px;line-height:.82;
+  color:var(--paper);letter-spacing:.01em;
+  text-shadow:0 4px 60px rgba(0,0,0,.7);
+  margin-bottom:20px;
+}
+#s1 .h1 em{
+  color:var(--rust);font-style:normal;
+  text-shadow:0 0 120px rgba(200,121,62,.4);
+}
+#s1 .sub{
+  font-family:var(--C);font-size:20px;font-weight:300;font-style:italic;
+  color:var(--dim);letter-spacing:.04em;line-height:1.5;
+  padding-left:20px;border-left:2px solid var(--rust);
+  max-width:660px;margin-bottom:28px;
+}
+#s1 .tags{display:flex;gap:8px;flex-wrap:wrap;}
+#s1 .tag{
+  font-family:var(--I);font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ghost);
+  border:1px solid rgba(234,230,222,.14);
+  padding:7px 16px;
+}
+
+
+/* ════════════════════════════════
+   S2 — O PROBLEMA
+════════════════════════════════ */
+#s2{display:flex;}
+#s2 .shell{flex:1;padding:52px 56px 28px;display:flex;flex-direction:column;gap:0;}
+
+#s2 .s2-top{flex-shrink:0;margin-bottom:40px;}
+
+#s2 .s2-center{
+  flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--line);
+  min-height:0;
+}
+#s2 .s2-panel{
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  padding:32px 36px;
+}
+#s2 .s2-panel.left{border-right:none;}
+
+#s2 .panel-label{
+  font-family:var(--I);font-size:10px;font-weight:500;
+  letter-spacing:.28em;text-transform:uppercase;margin-bottom:12px;
+}
+#s2 .panel-amt{
+  font-family:var(--F);font-size:124px;line-height:.88;letter-spacing:.01em;
+  margin-bottom:10px;
+}
+#s2 .panel-desc{
+  font-family:var(--I);font-size:12px;font-weight:300;
+  color:var(--ghost);letter-spacing:.05em;line-height:1.6;
+}
+
+/* horizontal savings bar */
+#s2 .s2-bar{
+  flex-shrink:0;margin-top:28px;
+  background:var(--rust-bg);border:1px solid var(--rust-bd);
+  padding:22px 36px;
+  display:flex;align-items:center;gap:28px;
+}
+#s2 .bar-arrow{font-family:var(--F);font-size:88px;color:var(--rust);line-height:1;letter-spacing:.04em;}
+#s2 .bar-sep{width:1px;height:52px;background:var(--rust-bd);}
+#s2 .bar-text strong{
+  font-family:var(--C);font-size:24px;font-weight:700;
+  color:var(--paper);display:block;letter-spacing:.05em;margin-bottom:4px;
+}
+#s2 .bar-text span{
+  font-family:var(--I);font-size:12px;font-weight:300;color:var(--dim);
+}
+
+/* S2 header label */
+#s2 .s2-title{
+  font-family:var(--F);font-size:72px;line-height:.9;
+  color:var(--paper);letter-spacing:.01em;margin-top:10px;
+}
+#s2 .s2-title em{color:var(--rust);font-style:normal;}
+
+
+/* ════════════════════════════════
+   S3 — STEEL FRAME
+════════════════════════════════ */
+#s3{display:flex;}
+#s3 .shell{flex:1;padding:52px 56px 28px;display:flex;flex-direction:column;gap:0;}
+
+#s3 .s-head{flex-shrink:0;margin-bottom:32px;}
+#s3 .s-title{
+  font-family:var(--F);font-size:84px;line-height:.86;
+  color:var(--paper);letter-spacing:.01em;margin-top:10px;
+}
+#s3 .s-title em{color:var(--rust);font-style:normal;}
+
+#s3 .infog{
+  flex:1;display:grid;grid-template-columns:1fr 1fr;gap:14px;min-height:0;
+}
+
+#s3 .i-col{
+  display:flex;flex-direction:column;
+  background:var(--faint);border:1px solid var(--line);
+  padding:24px 22px 20px;
+  gap:0;
+}
+#s3 .i-col.hl{border-color:var(--rust-bd);background:var(--rust-bg);}
+
+#s3 .i-title{
+  font-family:var(--C);font-size:13px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;
+  padding-bottom:16px;border-bottom:1px solid var(--line);
+  margin-bottom:16px;flex-shrink:0;
+}
+#s3 .i-col.hl .i-title{color:var(--rust);border-color:var(--rust-bd);}
+
+/* Big stat at top of column */
+#s3 .i-stat{
+  display:flex;align-items:baseline;gap:6px;
+  margin-bottom:16px;flex-shrink:0;
+}
+#s3 .i-num{
+  font-family:var(--F);font-size:110px;line-height:.9;letter-spacing:.01em;
+}
+#s3 .i-unit{
+  font-family:var(--C);font-size:18px;font-weight:300;
+  color:var(--ghost);letter-spacing:.1em;text-transform:uppercase;
+  align-self:flex-start;padding-top:14px;
+}
+#s3 .i-desc{
+  font-family:var(--I);font-size:12px;font-weight:300;
+  color:var(--ghost);line-height:1.55;letter-spacing:.02em;
+  margin-bottom:16px;
+}
+
+/* Horizontal bars */
+#s3 .i-bars{flex:1;display:flex;flex-direction:column;gap:10px;justify-content:flex-end;}
+#s3 .b-row{display:flex;flex-direction:column;gap:5px;}
+#s3 .b-header{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--I);font-size:11px;
+}
+#s3 .b-name{color:var(--ghost);font-weight:400;letter-spacing:.04em;}
+#s3 .b-val{font-weight:700;font-size:13px;}
+#s3 .b-track{height:10px;background:rgba(234,230,222,.05);border-radius:1px;overflow:hidden;}
+#s3 .b-fill{height:100%;border-radius:1px;transition:width .3s;}
+
+#s3 .i-icon{flex-shrink:0;}
+
+#s3 .i-points{
+  display:flex;flex-direction:column;gap:8px;
+  border:1px solid var(--line);padding:14px 16px;
+  margin-bottom:14px;flex-shrink:0;
+}
+#s3 .i-pt{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--I);font-size:12px;font-weight:300;
+  color:var(--ghost);letter-spacing:.02em;line-height:1.4;
+}
+#s3 .i-dot{
+  width:5px;height:5px;border-radius:50%;flex-shrink:0;
+}
+
+#s3 .i-note{
+  font-family:var(--C);font-size:14px;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;
+  border-top:1px solid var(--line);padding-top:14px;
+  margin-top:auto;flex-shrink:0;line-height:1.4;
+}
+#s3 .i-col.hl .i-note{color:var(--rust);border-color:var(--rust-bd);}
+
+
+/* ════════════════════════════════
+   S4 — FATOR DE AJUSTE
+════════════════════════════════ */
+#s4{display:flex;}
+#s4 .shell{flex:1;padding:52px 56px 28px;display:flex;flex-direction:column;gap:0;}
+#s4 .s-head{flex-shrink:0;margin-bottom:28px;}
+#s4 .s-title{
+  font-family:var(--F);font-size:84px;line-height:.86;
+  color:var(--paper);letter-spacing:.01em;margin-top:10px;
+}
+#s4 .s-title em{color:var(--rust);font-style:normal;}
+#s4 .cards{flex:1;display:flex;flex-direction:column;gap:12px;min-height:0;}
+
+#s4 .card{
+  flex:1;border:1px solid var(--line);
+  padding:22px 28px;
+  display:flex;align-items:stretch;gap:24px;
+  background:var(--faint);
+  min-height:0;
+}
+#s4 .card.hl{border-color:var(--rust-bd);background:var(--rust-bg);}
+
+#s4 .c-left{flex:1;display:flex;flex-direction:column;gap:8px;}
+#s4 .c-tag{
+  font-family:var(--I);font-size:10px;font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;
+}
+#s4 .c-title{
+  font-family:var(--C);font-size:30px;font-weight:700;
+  color:var(--paper);letter-spacing:.02em;line-height:1.1;
+}
+#s4 .c-desc{
+  font-family:var(--I);font-size:13px;font-weight:300;
+  color:var(--ghost);line-height:1.55;
+}
+#s4 .c-badge{
+  margin-top:auto;
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--I);font-size:11px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--grn);
+  background:var(--grn-bg);border:1px solid var(--grn-bd);
+  padding:8px 16px;align-self:flex-start;
+}
+
+#s4 .c-right{
+  width:140px;flex-shrink:0;
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:8px;
+}
+#s4 .c-amt{
+  font-family:var(--F);font-size:64px;line-height:1;letter-spacing:.02em;text-align:center;
+}
+#s4 .c-sub{
+  font-family:var(--I);font-size:10px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ghost);text-align:center;
+}
+#s4 .s4-intro{
+  font-family:var(--I);font-size:13px;font-weight:300;
+  color:var(--ghost);line-height:1.6;letter-spacing:.02em;
+  margin-top:10px;padding-left:18px;border-left:1px solid var(--rust-bd);
+  max-width:800px;
+}
+#s4 .s4-intro strong{color:var(--rust);font-weight:500;}
+
+#s4 .c-bar-v{
+  width:36px;height:120px;
+  background:rgba(234,230,222,.05);border-radius:2px;
+  position:relative;overflow:hidden;
+}
+#s4 .c-fill-v{
+  position:absolute;bottom:0;left:0;right:0;border-radius:2px;
+}
+
+
+/* ════════════════════════════════
+   S5 — RESULTADO
+════════════════════════════════ */
+#s5{display:flex;}
+#s5 .shell{flex:1;padding:52px 56px 28px;display:flex;flex-direction:column;gap:0;}
+#s5 .s-head{flex-shrink:0;margin-bottom:28px;}
+#s5 .s-title{
+  font-family:var(--F);font-size:84px;line-height:.86;
+  color:var(--paper);letter-spacing:.01em;margin-top:10px;
+}
+#s5 .s-title em{color:var(--rust);font-style:normal;}
+
+/* S5 — grid alinhado: header fixo + área de barra + rodapé fixo */
+#s5 .cmp{
+  flex:1;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--line);
+  min-height:0;
+}
+#s5 .cp{
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  /* sem align-items: stretch = tudo à largura total */
+}
+#s5 .cp.hl{background:rgba(200,121,62,.03);}
+
+/* cabeçalho fixo — altura idêntica em ambas colunas */
+#s5 .cp-head{
+  flex-shrink:0;height:52px;
+  display:flex;align-items:center;
+  padding:0 28px;
+  border-bottom:1px solid var(--line);
+  font-family:var(--I);font-size:10px;font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:var(--red);
+}
+#s5 .cp.hl .cp-head{color:var(--rust);border-color:var(--rust-bd);}
+
+/* área da barra — flex:1, barras crescem do fundo */
+#s5 .cp-chart{
+  flex:1;min-height:0;
+  display:flex;align-items:flex-end;
+  justify-content:center;
+  padding:20px 28px;
+}
+#s5 .cp-bar-col{
+  width:72px;height:100%;
+  display:flex;align-items:flex-end;
+}
+#s5 .cp-bar-fill{
+  width:100%;border-radius:3px 3px 0 0;
+}
+
+/* rodapé fixo — MESMA altura nas duas colunas → alinhamento perfeito */
+#s5 .cp-body{
+  flex-shrink:0;height:150px;
+  padding:16px 28px 20px;
+  border-top:1px solid var(--line);
+  display:flex;flex-direction:column;
+  justify-content:center;gap:6px;
+}
+#s5 .cp.hl .cp-body{border-color:var(--rust-bd);}
+
+#s5 .cp-amt{
+  font-family:var(--F);font-size:80px;line-height:.9;letter-spacing:.02em;
+}
+#s5 .cp-label{
+  font-family:var(--I);font-size:11px;font-weight:300;
+  color:var(--ghost);letter-spacing:.03em;line-height:1.55;
+}
+
+#s5 .save{
+  flex-shrink:0;margin-top:16px;
+  background:var(--rust-bg);border:1px solid var(--rust-bd);
+  padding:18px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;
+}
+#s5 .save-num{font-family:var(--F);font-size:80px;color:var(--rust);line-height:1;letter-spacing:.04em;flex-shrink:0;}
+#s5 .save-sep{width:1px;height:48px;background:var(--rust-bd);flex-shrink:0;}
+#s5 .save-right{flex:1;}
+#s5 .save-right strong{
+  font-family:var(--C);font-size:20px;font-weight:800;
+  color:var(--paper);display:block;letter-spacing:.06em;margin-bottom:4px;
+}
+#s5 .save-right span{
+  font-family:var(--I);font-size:11px;font-weight:300;color:var(--dim);letter-spacing:.03em;line-height:1.5;display:block;
+}
+
+
+/* ════════════════════════════════
+   S6 — CTA
+════════════════════════════════ */
+#s6{display:flex;}
+#s6 .glow{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:900px;height:900px;border-radius:50%;z-index:1;
+  background:radial-gradient(ellipse,rgba(200,121,62,.07) 0%,transparent 60%);
+}
+#s6 .shell{
+  flex:1;padding:52px 56px;position:relative;z-index:5;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:0;
+}
+
+#s6 .eyebrow{
+  display:flex;align-items:center;gap:16px;
+  font-family:var(--I);font-size:10px;font-weight:600;
+  letter-spacing:.38em;text-transform:uppercase;color:var(--rust);
+  margin-bottom:24px;
+}
+#s6 .eyebrow::before,
+#s6 .eyebrow::after{content:'';width:44px;height:1px;background:var(--rust);}
+
+#s6 .lg-logo{
+  font-family:var(--F);font-size:200px;line-height:1;
+  color:var(--paper);letter-spacing:.1em;margin-bottom:2px;
+}
+#s6 .lg-tag{
+  font-family:var(--I);font-size:11px;font-weight:300;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--ghost);
+  margin-bottom:52px;
+}
+
+#s6 .divider{
+  width:280px;height:1px;margin:0 auto 48px;
+  background:linear-gradient(90deg,transparent,rgba(200,121,62,.6),transparent);
+}
+
+#s6 .q{
+  font-family:var(--C);font-size:32px;font-weight:300;font-style:italic;
+  color:var(--dim);line-height:1.35;margin-bottom:8px;max-width:680px;
+}
+#s6 .a{
+  font-family:var(--F);font-size:60px;color:var(--paper);letter-spacing:.04em;margin-bottom:48px;
+}
+#s6 .btn{
+  background:var(--rust);color:#fff;
+  font-family:var(--I);font-size:11px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:20px 80px;display:inline-block;
+  margin-bottom:20px;
+}
+#s6 .handle{
+  font-family:var(--I);font-size:12px;font-weight:300;
+  color:var(--ghost);letter-spacing:.08em;
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════
+     S1 — CAPA
+════════════════════════════════ -->
+<div class="slide" id="s1">
+  <div class="acc"></div>
+  <div class="photo-bg"></div>
+  <div class="shell">
+    <div class="s1-top">
+      <div class="lbl">INSS · Obra Civil · LGM Engenharia</div>
+    </div>
+    <div class="s1-bot">
+      <div class="h1"><em>70%</em><br>DE DESCONTO<br>NO INSS<br>DA SUA OBRA</div>
+      <div class="sub">Legal · documentado · planejado antes da obra começar</div>
+      <div class="tags">
+        <div class="tag">Steel Frame</div>
+        <div class="tag">Pré-fabricados</div>
+        <div class="tag">Fator de Ajuste</div>
+        <div class="tag">CNO + Deduções</div>
+      </div>
+    </div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">01 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     S2 — O PROBLEMA
+════════════════════════════════ -->
+<div class="slide" id="s2">
+  <div class="acc"></div>
+  <div class="shell">
+    <div class="s2-top">
+      <div class="lbl">O Problema · Obra de R$ 200k em Mão de Obra</div>
+      <div class="s2-title">QUANTO VOCÊ<br>ESTÁ <em>DESPERDIÇANDO</em></div>
+    </div>
+
+    <div class="s2-center">
+      <!-- SEM PLANEJAMENTO -->
+      <div class="s2-panel left">
+        <div class="panel-label" style="color:var(--red);">Sem planejamento</div>
+        <div class="panel-amt" style="color:var(--red);">R$<br>40k</div>
+        <div class="panel-desc">INSS cheio · 20% sobre toda mão de obra · padrão nacional</div>
+      </div>
+
+      <!-- COM LGM -->
+      <div class="s2-panel right" style="background:var(--rust-bg);border-left:1px solid var(--rust-bd);">
+        <div class="panel-label" style="color:var(--rust);">Com LGM Engenharia</div>
+        <div class="panel-amt" style="color:var(--rust);">R$<br>12k</div>
+        <div class="panel-desc">Steel Frame + Fator de Ajuste + Deduções legais aplicadas</div>
+      </div>
+    </div>
+
+    <div class="s2-bar">
+      <div class="bar-arrow">↓70%</div>
+      <div class="bar-sep"></div>
+      <div class="bar-text">
+        <strong>R$ 28.000 ECONOMIZADOS</strong>
+        <span>Por obra · 100% legal · sem risco para o construtor</span>
+      </div>
+    </div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">02 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     S3 — STEEL FRAME
+════════════════════════════════ -->
+<div class="slide" id="s3">
+  <div class="acc"></div>
+  <div class="shell">
+    <div class="s-head">
+      <div class="lbl">Estratégia 1 · Steel Frame &amp; Pré-fabricados</div>
+      <div class="s-title">MENOS MÃO DE OBRA<br>= <em>MENOS INSS</em></div>
+    </div>
+
+    <div class="infog">
+
+      <!-- ALVENARIA -->
+      <div class="i-col">
+        <div class="i-title" style="color:var(--dim);">Alvenaria Convencional</div>
+        <div class="i-icon" style="font-size:42px;margin:8px 0 16px;opacity:.5;">🧱</div>
+        <div class="i-desc">Na construção convencional, cada etapa da obra — fundação, levantamento de paredes, revestimento, acabamento — exige uma grande quantidade de mão de obra especializada. Isso eleva significativamente a folha de pagamento e, consequentemente, <strong style="color:var(--paper);">a base de cálculo do INSS patronal.</strong></div>
+        <div class="i-points">
+          <div class="i-pt"><span class="i-dot" style="background:var(--red);"></span>Alta dependência de operários em campo</div>
+          <div class="i-pt"><span class="i-dot" style="background:var(--red);"></span>Todas as etapas realizadas no canteiro</div>
+          <div class="i-pt"><span class="i-dot" style="background:var(--red);"></span>Maior folha = maior base de INSS</div>
+        </div>
+        <div class="i-note" style="color:var(--red);">Mão de obra é o maior custo — e o INSS incide sobre ela inteira</div>
+      </div>
+
+      <!-- STEEL FRAME -->
+      <div class="i-col hl">
+        <div class="i-title">Steel Frame · Pré-fabricado</div>
+        <div class="i-icon" style="font-size:42px;margin:8px 0 16px;opacity:.7;">⚙️</div>
+        <div class="i-desc" style="color:var(--dim);">No sistema industrializado, a matéria-prima chega à obra já processada e com alto grau de desenvolvimento. Os componentes são produzidos em fábrica e montados no canteiro com equipe reduzida. <strong style="color:var(--paper);">A mão de obra cai drasticamente — e com ela, a base do INSS.</strong></div>
+        <div class="i-points" style="border-color:var(--rust-bd);">
+          <div class="i-pt" style="color:var(--dim);"><span class="i-dot" style="background:var(--rust);"></span>Componentes chegam prontos de fábrica</div>
+          <div class="i-pt" style="color:var(--dim);"><span class="i-dot" style="background:var(--rust);"></span>Montagem rápida com equipe enxuta</div>
+          <div class="i-pt" style="color:var(--dim);"><span class="i-dot" style="background:var(--rust);"></span>Base de INSS até 3× menor</div>
+        </div>
+        <div class="i-note">Menos operários = menor folha = INSS muito menor</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">03 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     S4 — FATOR DE AJUSTE
+════════════════════════════════ -->
+<div class="slide" id="s4">
+  <div class="acc"></div>
+  <div class="shell">
+    <div class="s-head">
+      <div class="lbl">Estratégia 2 · Mão de Obra Autônoma</div>
+      <div class="s-title">FATOR DE<br><em>AJUSTE</em></div>
+      <div class="s4-intro">Benefício fiscal em vigor desde 2021 · aplicável a todas as obras · reduz legalmente a incidência de INSS — <strong>mas exige planejamento antes do início da obra.</strong></div>
+    </div>
+
+    <div class="cards">
+
+      <!-- CLT -->
+      <div class="card">
+        <div class="c-left">
+          <div class="c-tag" style="color:var(--red);">Empregado CLT</div>
+          <div class="c-title">Salário R$ 5.000</div>
+          <div class="c-desc">INSS patronal calculado sobre 100% da remuneração.<br>
+            Base: R$ 5.000 × 20% = <strong style="color:var(--red);">R$ 1.000 / mês por trabalhador</strong></div>
+        </div>
+        <div class="c-right">
+          <div class="c-amt" style="color:var(--red);">R$<br>1.000</div>
+          <div class="c-bar-v">
+            <div class="c-fill-v" style="height:100%;background:rgba(176,56,40,.4);border-top:2px solid var(--red);"></div>
+          </div>
+          <div class="c-sub" style="color:var(--red);">100%</div>
+        </div>
+      </div>
+
+      <!-- AUTÔNOMO + FATOR -->
+      <div class="card hl">
+        <div class="c-left">
+          <div class="c-tag" style="color:var(--rust);">Autônomo + Fator de Ajuste</div>
+          <div class="c-title" style="color:var(--paper);">Honorário R$ 5.000</div>
+          <div class="c-desc" style="color:var(--dim);">Fator reduz a base de cálculo legalmente.<br>
+            Base ajustada: R$ 1.400 × 20% = <strong style="color:var(--rust);">R$ 280 / mês por trabalhador</strong></div>
+          <div class="c-badge">✓ Economia de R$ 720 por trabalhador / mês</div>
+        </div>
+        <div class="c-right">
+          <div class="c-amt" style="color:var(--rust);">R$<br>280</div>
+          <div class="c-bar-v">
+            <div class="c-fill-v" style="height:28%;background:rgba(200,121,62,.45);border-top:2px solid var(--rust);"></div>
+          </div>
+          <div class="c-sub" style="color:var(--rust);">28%</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">04 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     S5 — RESULTADO
+════════════════════════════════ -->
+<div class="slide" id="s5">
+  <div class="acc"></div>
+  <div class="shell">
+    <div class="s-head">
+      <div class="lbl">Resultado · Comparativo de INSS na obra</div>
+      <div class="s-title">O NÚMERO<br>QUE <em>IMPORTA</em></div>
+    </div>
+
+    <div class="cmp">
+
+      <!-- SEM PLANEJAMENTO -->
+      <div class="cp">
+        <div class="cp-head">Sem planejamento</div>
+        <div class="cp-chart">
+          <div class="cp-bar-col">
+            <div class="cp-bar-fill" style="height:100%;background:rgba(176,56,40,.28);border:1px solid rgba(176,56,40,.45);border-bottom:none;"></div>
+          </div>
+        </div>
+        <div class="cp-body">
+          <div class="cp-amt" style="color:var(--red);">R$ 40k</div>
+          <div class="cp-label">Alíquota cheia · 20% sobre toda a mão de obra</div>
+        </div>
+      </div>
+
+      <!-- COM LGM -->
+      <div class="cp hl">
+        <div class="cp-head">Com LGM Engenharia</div>
+        <div class="cp-chart">
+          <div class="cp-bar-col">
+            <div class="cp-bar-fill" style="height:30%;background:rgba(200,121,62,.32);border:1px solid var(--rust-bd);border-bottom:none;"></div>
+          </div>
+        </div>
+        <div class="cp-body">
+          <div class="cp-amt" style="color:var(--rust);">R$ 12k</div>
+          <div class="cp-label">Planejamento tributário completo · Steel Frame + Fator de Ajuste + Deduções CNO</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="save">
+      <div class="save-num">↓ 70%</div>
+      <div class="save-sep"></div>
+      <div class="save-right">
+        <strong>R$ 28.000 ECONOMIZADOS POR OBRA</strong>
+        <span>Inclui planejamento tributário completo · garantindo o máximo de benefício legal</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="bot">
+    <div class="b-pg">05 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     S6 — CTA
+════════════════════════════════ -->
+<div class="slide" id="s6">
+  <div class="acc"></div>
+  <div class="glow"></div>
+  <div class="shell">
+    <div class="eyebrow">LGM Engenharia</div>
+    <div class="lg-logo">LGM</div>
+    <div class="lg-tag">Engenharia &amp; Construções</div>
+    <div class="divider"></div>
+    <div class="q">Quanto de INSS sua próxima obra<br>pode economizar?</div>
+    <div class="a">A CONTA É NOSSA</div>
+    <div class="btn">FALE COM A LGM</div>
+    <div class="handle">@eng.gustavomaia</div>
+  </div>
+  <div class="bot">
+    <div class="b-pg">06 · 06</div>
+    <div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>LGM — Custo de Construção 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#060605;
+  --rust:#C8793E;
+  --rust2:#a85f2e;
+  --rust-bg:rgba(200,121,62,.08);
+  --rust-bd:rgba(200,121,62,.25);
+  --paper:#EAE6DE;
+  --line:rgba(234,230,222,.10);
+  --line2:rgba(234,230,222,.05);
+  --ghost:rgba(234,230,222,.48);
+  --ghost2:rgba(234,230,222,.22);
+  --amber:#D4A844;
+  --amber-bg:rgba(212,168,68,.08);
+  --grn:#3D9E72;
+  --grn-bg:rgba(61,158,114,.08);
+  --grn-bd:rgba(61,158,114,.25);
+  --B:'Bebas Neue',sans-serif;
+  --C:'Barlow Condensed',sans-serif;
+  --I:'Inter',sans-serif;
+}
+html,body{background:#111;}
+body{display:flex;flex-direction:column;align-items:center;gap:4px;}
+
+.slide{
+  width:1080px;height:1080px;
+  background:var(--bg);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;flex-shrink:0;
+}
+
+/* grain */
+.slide::after{
+  content:'';position:absolute;inset:0;z-index:100;pointer-events:none;opacity:.15;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:screen;
+}
+
+/* top accent */
+.acc{position:absolute;top:0;left:0;right:0;height:2px;z-index:50;
+  background:linear-gradient(90deg,var(--rust) 0%,var(--rust) 220px,transparent 220px);}
+
+/* bottom bar */
+.bot{
+  height:76px;flex-shrink:0;background:rgba(6,6,5,.92);
+  border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 56px;position:relative;z-index:10;
+}
+.b-nm{font-family:var(--B);font-size:24px;color:var(--paper);letter-spacing:.12em;}
+.b-handle{font-family:var(--C);font-size:13px;font-weight:600;color:var(--rust);letter-spacing:.12em;text-transform:uppercase;}
+
+/* shell */
+.shell{flex:1;padding:52px 56px 28px;display:flex;flex-direction:column;position:relative;z-index:5;}
+
+/* lbl */
+.lbl{display:inline-flex;align-items:center;gap:10px;font-family:var(--I);font-size:10px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--rust);}
+.lbl::before{content:'';width:20px;height:1px;background:var(--rust);}
+
+/* pill */
+.pill{display:inline-block;font-family:var(--C);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--bg);background:var(--rust);padding:6px 18px;border-radius:2px;}
+
+/* ══════════════════════════════════════════════
+   S1 — COVER
+══════════════════════════════════════════════ */
+#s1{
+  background:
+    radial-gradient(ellipse 140% 80% at 80% 0%,rgba(200,121,62,.15) 0%,transparent 55%),
+    linear-gradient(180deg,#080705 0%,#060605 50%,#030302 100%);
+}
+#s1 .grid{
+  position:absolute;inset:0;z-index:1;
+  background-image:
+    linear-gradient(var(--line2) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line2) 1px,transparent 1px);
+  background-size:90px 90px;
+  mask-image:radial-gradient(ellipse 80% 80% at 70% 30%,rgba(0,0,0,.6) 0%,transparent 70%);
+}
+#s1 .shell{
+  position:absolute;inset:0;bottom:76px;z-index:5;padding:0;
+  display:flex;flex-direction:column;
+}
+#s1 .top-band{
+  flex:1;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 56px 44px;
+}
+#s1 .badge-row{display:flex;gap:8px;margin-bottom:24px;}
+#s1 .h1{
+  font-family:var(--B);
+  line-height:.88;letter-spacing:.01em;color:var(--paper);
+}
+#s1 .h1-line1{font-size:72px;color:var(--ghost);}
+#s1 .h1-line2{font-size:168px;color:var(--rust);letter-spacing:-.01em;}
+#s1 .h1-line3{font-size:72px;color:var(--paper);}
+#s1 .sub{
+  font-family:var(--C);font-size:20px;font-weight:400;color:var(--ghost);
+  letter-spacing:.04em;line-height:1.4;
+  margin-top:20px;padding-left:20px;border-left:2px solid var(--rust);
+  max-width:640px;
+}
+#s1 .stat-strip{
+  flex-shrink:0;
+  background:rgba(200,121,62,.06);border-top:1px solid var(--rust-bd);
+  display:flex;align-items:center;
+  height:120px;padding:0 56px;gap:0;
+}
+#s1 .s-item{
+  flex:1;display:flex;flex-direction:column;gap:6px;
+  padding:0 32px;border-right:1px solid var(--line);
+}
+#s1 .s-item:first-child{padding-left:0;}
+#s1 .s-item:last-child{border-right:none;}
+#s1 .s-num{font-family:var(--B);font-size:44px;color:var(--rust);letter-spacing:.02em;line-height:1;}
+#s1 .s-label{font-family:var(--C);font-size:12px;color:var(--ghost);letter-spacing:.08em;text-transform:uppercase;}
+
+
+/* ══════════════════════════════════════════════
+   S2 — CUB POR PADRÃO (infográfico barras horizontais)
+══════════════════════════════════════════════ */
+#s2 .s-title{font-family:var(--B);font-size:64px;line-height:.88;color:var(--paper);letter-spacing:.01em;margin-top:10px;}
+#s2 .s-title em{color:var(--rust);font-style:normal;}
+#s2 .intro{font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);line-height:1.5;margin:16px 0 36px;padding-left:16px;border-left:1px solid var(--rust-bd);}
+
+#s2 .bars{flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+#s2 .bar-row{display:flex;flex-direction:column;gap:8px;}
+#s2 .br-label{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--C);
+}
+#s2 .br-name{font-size:16px;font-weight:700;color:var(--paper);letter-spacing:.04em;}
+#s2 .br-val{font-family:var(--B);font-size:28px;color:var(--rust);letter-spacing:.02em;}
+#s2 .br-track{
+  height:14px;background:rgba(234,230,222,.05);border-radius:2px;
+  position:relative;overflow:hidden;
+}
+#s2 .br-fill{
+  height:100%;border-radius:2px;
+  background:linear-gradient(90deg,var(--rust2),var(--rust));
+  position:relative;
+}
+#s2 .br-fill.muted{background:rgba(234,230,222,.15);}
+#s2 .br-sub{font-family:var(--I);font-size:11px;font-weight:300;color:var(--ghost2);letter-spacing:.02em;}
+#s2 .cub-note{
+  margin-top:20px;padding:14px 20px;
+  background:var(--rust-bg);border:1px solid var(--rust-bd);
+  font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;
+}
+#s2 .cub-note strong{color:var(--rust);font-weight:600;}
+
+
+/* ══════════════════════════════════════════════
+   S3 — DISTRIBUIÇÃO DO CUSTO (CSS stacked/segments)
+══════════════════════════════════════════════ */
+#s3 .s-title{font-family:var(--B);font-size:64px;line-height:.88;color:var(--paper);letter-spacing:.01em;margin-top:10px;}
+#s3 .s-title em{color:var(--rust);font-style:normal;}
+#s3 .intro{font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);line-height:1.5;margin:16px 0 32px;padding-left:16px;border-left:1px solid var(--rust-bd);}
+
+/* Stacked horizontal bar — 100% width broken into segments */
+#s3 .seg-bar{
+  height:64px;display:flex;border-radius:3px;overflow:hidden;margin-bottom:24px;flex-shrink:0;
+}
+#s3 .seg{
+  height:100%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--B);font-size:22px;letter-spacing:.04em;color:var(--bg);
+  transition:flex .3s;position:relative;
+}
+
+/* Legend grid */
+#s3 .legend{
+  flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
+}
+#s3 .l-item{
+  background:var(--bg);padding:20px 24px;
+  display:flex;flex-direction:column;gap:8px;
+}
+#s3 .l-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+#s3 .l-head{display:flex;align-items:center;gap:10px;}
+#s3 .l-pct{font-family:var(--B);font-size:52px;color:var(--paper);letter-spacing:.01em;line-height:1;}
+#s3 .l-name{font-family:var(--C);font-size:16px;font-weight:700;color:var(--paper);letter-spacing:.04em;text-transform:uppercase;}
+#s3 .l-desc{font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;}
+#s3 .l-items-list{display:flex;flex-direction:column;gap:4px;}
+#s3 .l-sub{font-family:var(--I);font-size:11px;font-weight:300;color:var(--ghost2);letter-spacing:.02em;padding-left:20px;position:relative;}
+#s3 .l-sub::before{content:'·';position:absolute;left:8px;color:var(--rust);}
+
+
+/* ══════════════════════════════════════════════
+   S4 — FATORES QUE ENCARECEM A OBRA
+══════════════════════════════════════════════ */
+#s4 .s-title{font-family:var(--B);font-size:64px;line-height:.88;color:var(--paper);letter-spacing:.01em;margin-top:10px;}
+#s4 .s-title em{color:var(--rust);font-style:normal;}
+#s4 .intro{font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);margin:16px 0 28px;padding-left:16px;border-left:1px solid var(--rust-bd);}
+
+#s4 .grid{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px;background:var(--line);}
+#s4 .cell{
+  background:var(--bg);padding:28px 32px;
+  display:flex;flex-direction:column;gap:10px;
+}
+#s4 .cell-num{font-family:var(--B);font-size:88px;color:var(--rust);opacity:.2;line-height:.9;}
+#s4 .cell-icon{
+  width:40px;height:40px;border:1.5px solid var(--rust-bd);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;margin-bottom:4px;
+}
+#s4 .cell-icon svg{width:18px;height:18px;stroke:var(--rust);fill:none;stroke-width:1.5;}
+#s4 .cell-title{font-family:var(--C);font-size:22px;font-weight:700;color:var(--paper);letter-spacing:.02em;}
+#s4 .cell-pct{
+  font-family:var(--B);font-size:36px;color:var(--rust);letter-spacing:.02em;margin-top:auto;
+}
+#s4 .cell-pct span{font-family:var(--C);font-size:14px;color:var(--ghost2);font-weight:400;letter-spacing:.06em;text-transform:uppercase;margin-left:6px;}
+#s4 .cell-desc{font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;}
+
+
+/* ══════════════════════════════════════════════
+   S5 — COMO ECONOMIZAR (comparativo com barra radial CSS)
+══════════════════════════════════════════════ */
+#s5 .s-title{font-family:var(--B);font-size:60px;line-height:.88;color:var(--paper);letter-spacing:.01em;margin-top:10px;}
+#s5 .s-title em{color:var(--rust);font-style:normal;}
+#s5 .intro{font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);margin:14px 0 28px;padding-left:16px;border-left:1px solid var(--rust-bd);}
+
+#s5 .tips{flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+#s5 .tip{
+  display:flex;align-items:flex-start;gap:28px;
+  padding:20px 0;border-bottom:1px solid var(--line);
+}
+#s5 .tip:last-child{border-bottom:none;}
+#s5 .tip-num{
+  font-family:var(--B);font-size:72px;color:var(--rust);
+  opacity:.2;line-height:.9;min-width:76px;flex-shrink:0;
+}
+#s5 .tip-body{}
+#s5 .tip-title{font-family:var(--C);font-size:22px;font-weight:700;color:var(--paper);letter-spacing:.02em;margin-bottom:6px;}
+#s5 .tip-desc{font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost);line-height:1.5;}
+#s5 .tip-save{
+  margin-top:8px;display:inline-flex;align-items:center;gap:6px;
+  background:var(--grn-bg);border:1px solid var(--grn-bd);
+  font-family:var(--C);font-size:13px;font-weight:700;color:var(--grn);
+  letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:2px;
+}
+
+
+/* ══════════════════════════════════════════════
+   S6 — CTA
+══════════════════════════════════════════════ */
+#s6{
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 50%,rgba(200,121,62,.08) 0%,transparent 65%),
+    var(--bg);
+}
+#s6 .grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--line2) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line2) 1px,transparent 1px);
+  background-size:72px 72px;opacity:.7;
+}
+#s6 .shell{
+  position:absolute;inset:0;bottom:76px;z-index:5;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:0 80px;
+}
+#s6 .h1{font-family:var(--B);font-size:88px;color:var(--paper);letter-spacing:.01em;text-align:center;line-height:.9;margin-bottom:10px;}
+#s6 .h2{font-family:var(--B);font-size:44px;color:var(--rust);letter-spacing:.04em;text-align:center;margin-bottom:28px;}
+#s6 .divider{width:64px;height:2px;background:var(--rust);margin-bottom:28px;}
+#s6 .body{font-family:var(--C);font-size:18px;font-weight:400;color:var(--ghost);letter-spacing:.04em;text-align:center;max-width:600px;line-height:1.5;margin-bottom:40px;}
+#s6 .cta-row{display:flex;flex-direction:column;align-items:center;gap:14px;}
+#s6 .cta-btn{display:flex;align-items:center;gap:12px;background:var(--rust);color:var(--bg);font-family:var(--C);font-size:18px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:16px 44px;border-radius:2px;}
+#s6 .cta-sub{font-family:var(--I);font-size:13px;font-weight:300;color:var(--ghost2);letter-spacing:.04em;}
+#s6 .tags{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;justify-content:center;}
+#s6 .tag{font-family:var(--C);font-size:12px;font-weight:600;color:var(--ghost2);letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border:1px solid var(--line);border-radius:2px;}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ S1 COVER ══════════════ -->
+<div class="slide" id="s1">
+  <div class="acc"></div>
+  <div class="grid"></div>
+  <div class="shell">
+    <div class="top-band">
+      <div class="badge-row">
+        <span class="pill">GUIA 2026</span>
+      </div>
+      <div class="h1">
+        <div class="h1-line1">QUANTO CUSTA</div>
+        <div class="h1-line2">CONSTRUIR</div>
+        <div class="h1-line3">EM 2026?</div>
+      </div>
+      <p class="sub">CUB, padrões construtivos e o que realmente define o preço da sua obra — sem enganação</p>
+    </div>
+    <div class="stat-strip">
+      <div class="s-item">
+        <span class="s-num">R$2.800</span>
+        <span class="s-label">padrão simples /m²</span>
+      </div>
+      <div class="s-item">
+        <span class="s-num">R$4.200</span>
+        <span class="s-label">padrão médio /m²</span>
+      </div>
+      <div class="s-item">
+        <span class="s-num">R$7.500+</span>
+        <span class="s-label">padrão alto /m²</span>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-handle">@eng.gustavomaia</span></div>
+</div>
+
+<!-- ══════════════ S2 CUB POR PADRÃO ══════════════ -->
+<div class="slide" id="s2">
+  <div class="acc"></div>
+  <div class="shell">
+    <span class="lbl">Índice de referência</span>
+    <h2 class="s-title">CUB 2026:<br><em>ENTENDA OS PADRÕES</em></h2>
+    <p class="intro">O CUB (Custo Unitário Básico) é o indicador oficial do SINDUSCON. Veja como cada padrão se compara no Brasil</p>
+    <div class="bars">
+      <div class="bar-row">
+        <div class="br-label">
+          <span class="br-name">Residencial Baixo Padrão (R1-B)</span>
+          <span class="br-val">R$ 2.810/m²</span>
+        </div>
+        <div class="br-track"><div class="br-fill muted" style="width:37%"></div></div>
+        <span class="br-sub">Alvenaria simples · acabamento básico · sem diferencial técnico</span>
+      </div>
+      <div class="bar-row">
+        <div class="br-label">
+          <span class="br-name">Residencial Médio Padrão (R1-N)</span>
+          <span class="br-val">R$ 4.180/m²</span>
+        </div>
+        <div class="br-track"><div class="br-fill" style="width:55%"></div></div>
+        <span class="br-sub">Mais comum no Brasil · inclui piso, revestimento e instalações padrão</span>
+      </div>
+      <div class="bar-row">
+        <div class="br-label">
+          <span class="br-name">Residencial Alto Padrão (R1-A)</span>
+          <span class="br-val">R$ 6.240/m²</span>
+        </div>
+        <div class="br-track"><div class="br-fill" style="width:82%"></div></div>
+        <span class="br-sub">Acabamento premium · automação · materiais importados</span>
+      </div>
+      <div class="bar-row">
+        <div class="br-label">
+          <span class="br-name">Comercial Salas e Lojas (CSL-8)</span>
+          <span class="br-val">R$ 5.390/m²</span>
+        </div>
+        <div class="br-track"><div class="br-fill" style="width:71%"></div></div>
+        <span class="br-sub">Escritórios e galpões comerciais · estrutura mais robusta</span>
+      </div>
+      <div class="bar-row">
+        <div class="br-label">
+          <span class="br-name">Steel Frame / Modular</span>
+          <span class="br-val">R$ 3.200/m²</span>
+        </div>
+        <div class="br-track">
+          <div class="br-fill" style="width:42%;background:linear-gradient(90deg,#2E7D5E,#3D9E72);"></div>
+        </div>
+        <span class="br-sub" style="color:#3D9E72;">Até 30% mais barato · prazo 60% menor · referência LGM Engenharia</span>
+      </div>
+    </div>
+    <div class="cub-note">
+      <strong>Atenção:</strong> O CUB é a base de cálculo, mas o custo real depende de projeto, padrão de acabamento, localização e fornecedores. Uma assessoria técnica evita surpresas de 30–40% no orçamento.
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-handle">@eng.gustavomaia</span></div>
+</div>
+
+<!-- ══════════════ S3 DISTRIBUIÇÃO DO CUSTO ══════════════ -->
+<div class="slide" id="s3">
+  <div class="acc"></div>
+  <div class="shell">
+    <span class="lbl">Composição do orçamento</span>
+    <h2 class="s-title">ONDE VAI<br><em>O SEU DINHEIRO?</em></h2>
+    <p class="intro">Em uma residência de padrão médio, veja como o custo total é distribuído entre as grandes etapas</p>
+
+    <!-- Stacked horizontal bar -->
+    <div class="seg-bar">
+      <div class="seg" style="flex:0 0 40%;background:var(--rust);">40%</div>
+      <div class="seg" style="flex:0 0 25%;background:#9F5C28;">25%</div>
+      <div class="seg" style="flex:0 0 18%;background:rgba(200,121,62,.55);">18%</div>
+      <div class="seg" style="flex:0 0 10%;background:rgba(234,230,222,.18);color:var(--paper);">10%</div>
+      <div class="seg" style="flex:0 0 7%;background:rgba(234,230,222,.08);color:var(--ghost);">7%</div>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <div class="l-item">
+        <div class="l-head">
+          <div class="l-dot" style="background:var(--rust)"></div>
+          <span class="l-pct" style="color:var(--rust)">40%</span>
+        </div>
+        <div class="l-name">Estrutura e Alvenaria</div>
+        <div class="l-items-list">
+          <span class="l-sub">Fundação e laje</span>
+          <span class="l-sub">Paredes e pilares</span>
+          <span class="l-sub">Cobertura/telhado</span>
+        </div>
+      </div>
+      <div class="l-item">
+        <div class="l-head">
+          <div class="l-dot" style="background:#9F5C28"></div>
+          <span class="l-pct" style="color:#9F5C28">25%</span>
+        </div>
+        <div class="l-name">Mão de Obra</div>
+        <div class="l-items-list">
+          <span class="l-sub">Pedreiros e serventes</span>
+          <span class="l-sub">Eletricistas e hidráulicos</span>
+          <span class="l-sub">Acabadores</span>
+        </div>
+      </div>
+      <div class="l-item">
+        <div class="l-head">
+          <div class="l-dot" style="background:rgba(200,121,62,.55)"></div>
+          <span class="l-pct" style="color:rgba(200,121,62,.8)">18%</span>
+        </div>
+        <div class="l-name">Inst. Elét. e Hidr.</div>
+        <div class="l-items-list">
+          <span class="l-sub">Tubulações e fiação</span>
+          <span class="l-sub">Louças e metais</span>
+          <span class="l-sub">Quadro elétrico</span>
+        </div>
+      </div>
+      <div class="l-item">
+        <div class="l-head">
+          <div class="l-dot" style="background:rgba(234,230,222,.4)"></div>
+          <span class="l-pct" style="color:var(--ghost)">17%</span>
+        </div>
+        <div class="l-name">Acabamentos</div>
+        <div class="l-items-list">
+          <span class="l-sub">Piso e revestimentos</span>
+          <span class="l-sub">Esquadrias e vidros</span>
+          <span class="l-sub">Pintura</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-handle">@eng.gustavomaia</span></div>
+</div>
+
+<!-- ══════════════ S4 O QUE ENCARECE ══════════════ -->
+<div class="slide" id="s4">
+  <div class="acc"></div>
+  <div class="shell">
+    <span class="lbl">Atenção redobrada</span>
+    <h2 class="s-title">O QUE ENCARECE<br><em>A SUA OBRA?</em></h2>
+    <p class="intro">Esses 4 fatores são responsáveis pela maioria dos estouros de orçamento</p>
+    <div class="grid">
+      <div class="cell">
+        <div class="cell-num">01</div>
+        <div class="cell-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="cell-title">Retrabalho e erros de projeto</div>
+        <div class="cell-desc">Alterações durante a execução custam até 10× mais do que no projeto</div>
+        <div class="cell-pct">+25%<span>no custo final</span></div>
+      </div>
+      <div class="cell">
+        <div class="cell-num">02</div>
+        <div class="cell-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="cell-title">Compra sem planejamento</div>
+        <div class="cell-desc">Material comprado na urgência custa até 30% mais caro que no orçamento preventivo</div>
+        <div class="cell-pct">+18%<span>no custo final</span></div>
+      </div>
+      <div class="cell">
+        <div class="cell-num">03</div>
+        <div class="cell-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="cell-title">Atraso e obra parada</div>
+        <div class="cell-desc">Cada mês de atraso gera custos de manutenção, financiamento e inflação de materiais</div>
+        <div class="cell-pct">+12%<span>por mês de atraso</span></div>
+      </div>
+      <div class="cell">
+        <div class="cell-num">04</div>
+        <div class="cell-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="cell-title">Falta de concorrência</div>
+        <div class="cell-desc">Contratar sem pesquisa de mercado ou concorrência de empreiteiros gera sobre-preço</div>
+        <div class="cell-pct">+15%<span>em média</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-handle">@eng.gustavomaia</span></div>
+</div>
+
+<!-- ══════════════ S5 COMO ECONOMIZAR ══════════════ -->
+<div class="slide" id="s5">
+  <div class="acc"></div>
+  <div class="shell">
+    <span class="lbl">Boas práticas</span>
+    <h2 class="s-title">5 FORMAS DE<br><em>ECONOMIZAR DE VERDADE</em></h2>
+    <p class="intro">Com engenharia profissional, é possível reduzir custos sem abrir mão de qualidade</p>
+    <div class="tips">
+      <div class="tip">
+        <span class="tip-num">01</span>
+        <div class="tip-body">
+          <div class="tip-title">Projeto executivo completo antes de comprar</div>
+          <div class="tip-desc">Projeto detalhado evita compras erradas, retrabalhos e alterações no meio da obra</div>
+          <span class="tip-save">Economia: até 20%</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-num">02</span>
+        <div class="tip-body">
+          <div class="tip-title">Planejamento de compras com antecedência</div>
+          <div class="tip-desc">Comprar com 60–90 dias de antecipação permite negociar preços melhores e evitar desabastecimento</div>
+          <span class="tip-save">Economia: 10–15%</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-num">03</span>
+        <div class="tip-body">
+          <div class="tip-title">Considerar Steel Frame ou construção modular</div>
+          <div class="tip-desc">Sistemas industrializados têm custo até 30% menor que alvenaria convencional no prazo reduzido</div>
+          <span class="tip-save">Economia: 20–30%</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-num">04</span>
+        <div class="tip-body">
+          <div class="tip-title">Fazer concorrência de fornecedores</div>
+          <div class="tip-desc">3 cotações por serviço ou material é o mínimo — engenheiro ajuda a avaliar custo-benefício real</div>
+          <span class="tip-save">Economia: 8–12%</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-num">05</span>
+        <div class="tip-body">
+          <div class="tip-title">Contratar gestão técnica profissional</div>
+          <div class="tip-desc">O gasto com engenheiro se paga com a primeira compra errada evitada — e garante habite-se no final</div>
+          <span class="tip-save">ROI: 5×</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-handle">@eng.gustavomaia</span></div>
+</div>
+
+<!-- ══════════════ S6 CTA ══════════════ -->
+<div class="slide" id="s6">
+  <div class="acc"></div>
+  <div class="grid-bg"></div>
+  <div class="shell">
+    <div class="h1">FAÇA SUA OBRA</div>
+    <div class="h2">SEM SURPRESAS</div>
+    <div class="divider"></div>
+    <p class="body">Orçamento técnico, gestão de custos e assessoria de engenharia.<br>Residencial · Comercial · Steel Frame · Modular</p>
+    <div class="cta-row">
+      <div class="cta-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#060605"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.552 4.1 1.518 5.826L0 24l6.335-1.518A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.213-3.722.976.994-3.634-.234-.374A9.817 9.817 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Solicitar orçamento
+      </div>
+      <p class="cta-sub">(14) 99185-0799 · lgm.eng.br</p>
+      <div class="tags">
+        <span class="tag">Orçamento gratuito</span>
+        <span class="tag">ART inclusa</span>
+        <span class="tag">Todo o Brasil</span>
+      </div>
+    </div>
+  </div>
+  <div class="bot"><span class="b-nm">LGM ENGENHARIA</span><span class="b-handle">@eng.gustavomaia</span></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LGM Engenharia — Conteúdo Instagram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#060605;--rust:#C8793E;--paper:#EAE6DE;
+  --line:rgba(234,230,222,.10);--ghost:rgba(234,230,222,.45);
+  --B:'Bebas Neue',sans-serif;--C:'Barlow Condensed',sans-serif;--I:'Inter',sans-serif;
+}
+html{background:var(--bg);color:var(--paper);}
+body{font-family:var(--I);min-height:100vh;}
+
+/* HEADER */
+header{
+  border-bottom:1px solid var(--line);
+  padding:36px 64px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;background:rgba(6,6,5,.96);backdrop-filter:blur(12px);z-index:100;
+}
+.logo{font-family:var(--B);font-size:32px;letter-spacing:.14em;color:var(--paper);}
+.logo span{color:var(--rust);}
+.header-right{display:flex;align-items:center;gap:24px;}
+.handle{font-family:var(--C);font-size:15px;font-weight:600;color:var(--rust);letter-spacing:.08em;}
+.phone{font-family:var(--C);font-size:15px;color:var(--ghost);letter-spacing:.04em;}
+
+/* HERO */
+.hero{
+  padding:80px 64px 60px;
+  background:
+    radial-gradient(ellipse 60% 80% at 90% 0%,rgba(200,121,62,.10) 0%,transparent 55%),
+    var(--bg);
+  border-bottom:1px solid var(--line);
+}
+.hero-label{display:inline-flex;align-items:center;gap:10px;font-family:var(--I);font-size:10px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--rust);margin-bottom:20px;}
+.hero-label::before{content:'';width:20px;height:1px;background:var(--rust);}
+.hero h1{font-family:var(--B);font-size:80px;line-height:.9;letter-spacing:.01em;margin-bottom:20px;}
+.hero h1 em{color:var(--rust);font-style:normal;}
+.hero p{font-family:var(--C);font-size:20px;font-weight:300;color:var(--ghost);letter-spacing:.04em;max-width:600px;line-height:1.5;}
+.hero-stats{display:flex;gap:48px;margin-top:48px;padding-top:40px;border-top:1px solid var(--line);}
+.stat{display:flex;flex-direction:column;gap:4px;}
+.stat-num{font-family:var(--B);font-size:44px;color:var(--rust);letter-spacing:.02em;}
+.stat-label{font-family:var(--C);font-size:13px;color:var(--ghost);letter-spacing:.06em;text-transform:uppercase;}
+
+/* GRID */
+.section{padding:64px 64px;}
+.section-title{font-family:var(--B);font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--rust);margin-bottom:32px;display:flex;align-items:center;gap:12px;}
+.section-title::after{content:'';flex:1;height:1px;background:var(--line);}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--line);}
+.card{
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  transition:background .15s;
+  cursor:pointer;
+  text-decoration:none;
+  color:inherit;
+}
+.card:hover{background:rgba(200,121,62,.05);}
+.card-thumb{
+  aspect-ratio:1;
+  background:rgba(234,230,222,.04);
+  overflow:hidden;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.card-thumb iframe{
+  width:1080px;height:1080px;
+  transform:scale(0.278);transform-origin:top left;
+  border:none;pointer-events:none;
+  position:absolute;top:0;left:0;
+}
+.card-body{padding:20px 24px 24px;border-top:1px solid var(--line);}
+.card-tag{font-family:var(--I);font-size:10px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--rust);margin-bottom:8px;}
+.card-title{font-family:var(--C);font-size:20px;font-weight:700;color:var(--paper);letter-spacing:.02em;margin-bottom:6px;}
+.card-desc{font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);line-height:1.5;}
+.card-link{
+  display:inline-flex;align-items:center;gap:6px;margin-top:12px;
+  font-family:var(--C);font-size:13px;font-weight:700;color:var(--rust);
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.card-link::after{content:'→';}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--line);
+  padding:40px 64px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.footer-logo{font-family:var(--B);font-size:24px;color:var(--paper);letter-spacing:.12em;}
+.footer-right{font-family:var(--C);font-size:13px;color:var(--ghost);letter-spacing:.06em;}
+
+@media(max-width:768px){
+  header,footer{padding:24px 28px;}
+  .hero{padding:48px 28px 40px;}
+  .hero h1{font-size:52px;}
+  .section{padding:40px 28px;}
+  .grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">LGM <span>ENGENHARIA</span></div>
+  <div class="header-right">
+    <span class="handle">@eng.gustavomaia</span>
+    <span class="phone">(14) 99185-0799</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-label">Conteúdo para Instagram</div>
+  <h1>CARROSSÉIS DE<br><em>AUTORIDADE</em></h1>
+  <p>Material técnico de engenharia para o Instagram @eng.gustavomaia. Cada carrossel cobre um tema relevante para quem está construindo, reformando ou investindo em imóveis.</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">10</span><span class="stat-label">carrosséis</span></div>
+    <div class="stat"><span class="stat-num">60</span><span class="stat-label">slides 1080×1080</span></div>
+    <div class="stat"><span class="stat-num">8</span><span class="stat-label">roteiros de reels</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">Carrosséis Prontos</div>
+  <div class="grid">
+
+    <a class="card" href="inss_carousel.html" target="_blank">
+      <div class="card-thumb"><iframe src="inss_carousel.html" loading="lazy"></iframe></div>
+      <div class="card-body">
+        <div class="card-tag">INSS · Tributário</div>
+        <div class="card-title">70% de Desconto no INSS da Obra</div>
+        <div class="card-desc">Como o Steel Frame reduz drasticamente o INSS da construção através do Fator de Ajuste</div>
+        <div class="card-link">Ver carrossel</div>
+      </div>
+    </a>
+
+    <a class="card" href="steelframe_carousel.html" target="_blank">
+      <div class="card-thumb"><iframe src="steelframe_carousel.html" loading="lazy"></iframe></div>
+      <div class="card-body">
+        <div class="card-tag">Steel Frame · Tendência 2026</div>
+        <div class="card-title">Steel Frame: O Futuro da Construção</div>
+        <div class="card-desc">Prazo 60% menor, menos desperdício e triplo benefício em relação à alvenaria convencional</div>
+        <div class="card-link">Ver carrossel</div>
+      </div>
+    </a>
+
+    <a class="card" href="modular_carousel.html" target="_blank">
+      <div class="card-thumb"><iframe src="modular_carousel.html" loading="lazy"></iframe></div>
+      <div class="card-body">
+        <div class="card-tag">Construção Modular · Inovação</div>
+        <div class="card-title">Construção Modular em 2026</div>
+        <div class="card-desc">Off-site, mais rápido e até 30% mais barato — o sistema que está revolucionando a construção</div>
+        <div class="card-link">Ver carrossel</div>
+      </div>
+    </a>
+
+    <a class="card" href="custo_carousel.html" target="_blank">
+      <div class="card-thumb"><iframe src="custo_carousel.html" loading="lazy"></iframe></div>
+      <div class="card-body">
+        <div class="card-tag">Custo · CUB 2026</div>
+        <div class="card-title">Quanto Custa Construir em 2026?</div>
+        <div class="card-desc">CUB por padrão, distribuição de custos, o que encarece a obra e como economizar de verdade</div>
+        <div class="card-link">Ver carrossel</div>
+      </div>
+    </a>
+
+    <a class="card" href="gestao_carousel.html" target="_blank">
+      <div class="card-thumb"><iframe src="gestao_carousel.html" loading="lazy"></iframe></div>
+      <div class="card-body">
+        <div class="card-tag">Gestão de Obra</div>
+        <div class="card-title">Sua Obra Vai Atrasar. A Menos Que…</div>
+        <div class="card-desc">Por que 89% das obras atrasam e como gestão técnica profissional muda esse resultado</div>
+        <div class="card-link">Ver carrossel</div>
+      </div>
+    </a>
+
+    <a class="card" href="fundacoes_carousel.html" target="_blank">
+      <div class="card-thumb"><iframe src="fundacoes_carousel.html" loading="lazy"></iframe></div>
+      <div class="card-body">
+        <div class="card-tag">Estrutural · Fundações</div>
+        <div class="card-title">A Fundação Errada Destrói Sua Obra</div>
+        <div class="card-desc">Tipos de fundação, infográfico SPT, quando usar cada sistema e os erros que custam R$80k</div>
+        <div class="card-link">Ver carrossel</div>
+      </div>
+    </a>
+
+    <a class="card" href="impermeabilizacao_carousel.html" target="_blank">
+      <div class="card-thumb"><iframe src="impermeabilizacao_carousel.html" loading="lazy"></iframe></div>
+      <div class="card-body">
+        <div class="card-tag">Patologia · Impermeabilização</div>
+        <div class="card-title">Infiltração É Sinal de Obra Mal Feita</div>
+        <div class="card-desc">Onde a água entra, sistemas corretos, checklist e por que economizar aqui custa 8× mais depois</div>
+        <div class="card-link">Ver carrossel</div>
+      </div>
+    </a>
+
+    <a class="card" href="reforma_carousel.html" target="_blank">
+      <div class="card-thumb"><iframe src="reforma_carousel.html" loading="lazy"></iframe></div>
+      <div class="card-body">
+        <div class="card-tag">Reforma · Planejamento</div>
+        <div class="card-title">Reforma Que Vira Pesadelo</div>
+        <div class="card-desc">Os 5 erros fatais, como identificar parede portante e quanto custa cada tipo de reforma</div>
+        <div class="card-link">Ver carrossel</div>
+      </div>
+    </a>
+
+    <a class="card" href="regularizacao_carousel.html" target="_blank">
+      <div class="card-thumb"><iframe src="regularizacao_carousel.html" loading="lazy"></iframe></div>
+      <div class="card-body">
+        <div class="card-tag">Regularização · Legal</div>
+        <div class="card-title">Sua Obra Está Irregular?</div>
+        <div class="card-desc">Habite-se, ART, alvará e como regularizar — imóvel regularizado vale até 30% mais</div>
+        <div class="card-link">Ver carrossel</div>
+      </div>
+    </a>
+
+    <a class="card" href="financiamento_carousel.html" target="_blank">
+      <div class="card-thumb"><iframe src="financiamento_carousel.html" loading="lazy"></iframe></div>
+      <div class="card-body">
+        <div class="card-tag">Financiamento · Caixa · FGTS</div>
+        <div class="card-title">Financiamento de Obra</div>
+        <div class="card-desc">Caixa Econômica, FGTS, SBPE e o papel do engenheiro no processo de aprovação</div>
+        <div class="card-link">Ver carrossel</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">LGM ENGENHARIA</div>
+  <div class="footer-right">@eng.gustavomaia · (14) 99185-0799</div>
+</footer>
+
+</body>
+</html>

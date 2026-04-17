@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LGM Engenharia · Portfolio</title>
+<style>
+
+:root {
+  --ink:   #0D0D0D;
+  --ink2:  #3A3A3A;
+  --ink3:  #888880;
+  --paper: #F6F4F0;
+  --p2:    #ECEAE5;
+  --terra: #7A6B5A;
+  --rust:  #C9703A;
+  --line:  rgba(13,13,13,.10);
+  --D: 'Gill Sans MT','Gill Sans','Century Gothic',Calibri,sans-serif;
+  --B: 'Segoe UI',system-ui,-apple-system,Arial,sans-serif;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+body { background:#E8E6E2; font-family:var(--B); }
+
+.page {
+  width: 390px;
+  min-height: 693px;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto 4px;
+  page-break-after: always;
+  break-after: page;
+}
+
+@media print {
+  body { background: none; }
+
+  @page { size: A4 portrait; margin: 0; }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    margin: 0;
+    page-break-after: always;
+    break-after: page;
+    overflow: hidden;
+  }
+
+  /* ── Capa ── */
+  .pg-cover { height: 297mm; }
+  .cover-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 210mm;
+    height: 297mm;
+    z-index: 0;
+  }
+  .cover-bg img {
+    width: 210mm;
+    height: 297mm;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  /* ── Foto containers — alturas fixas em mm ── */
+  .projeto-photo        { height: 145mm; }
+  .projeto-photo .photo { height: 145mm; }
+  .projeto-photo .photo img { width:100%; height: 145mm; object-fit:cover; display:block; }
+
+  .projeto-photos-grid        { padding: 3mm 8mm 0; gap: 2mm; }
+  .projeto-photos-grid .photo { height: 72mm; }
+  .projeto-photos-grid .photo img { width:100%; height: 72mm; object-fit:cover; display:block; }
+
+  .sobre-photo        { height: 50mm; margin: 4mm -8mm; }
+  .sobre-photo .photo { height: 50mm; }
+  .sobre-photo .photo img { height: 50mm; }
+
+  /* ── Texto e espaçamentos em print ── */
+  .projeto-body        { padding: 5mm 8mm 0; }
+  .projeto-footer      { padding: 3mm 8mm 4mm; margin-top: 4mm; }
+  .sf-top              { padding: 8mm 8mm 4mm; }
+  .sf-pillars          { margin: 0 8mm 5mm; }
+  .sf-scorecard        { margin: 0 8mm 5mm; }
+  .sf-process          { margin: 0 8mm 5mm; }
+  .sf-tags             { padding: 0 8mm 4mm; }
+  .pg-sobre            { padding: 8mm 8mm 6mm; }
+  .sobre-stats         { gap: 3mm; }
+  .svc-grid            { }
+  .svc-item            { padding: 3mm 4mm; }
+
+  /* Garante que fundos coloridos imprimam */
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+
+/* SHARED */
+.eyebrow { font-family:var(--D); font-size:7px; letter-spacing:.32em; text-transform:uppercase; color:var(--terra); margin-bottom:10px; }
+.rule { width:32px; height:1px; background:var(--line); margin:14px 0; }
+.rule-terra { background:var(--terra); }
+
+/* PHOTO PLACEHOLDER */
+.photo {
+  width: 100%;
+  background: #D8D4CE;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+/* Img: preenche o container sem position:absolute (melhor compatibilidade para impressão) */
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  pointer-events: none;
+}
+.photo-placeholder svg { opacity:.35; }
+.photo-placeholder span { font-family:var(--D); font-size:8px; letter-spacing:.22em; text-transform:uppercase; color:rgba(13,13,13,.4); }
+.photo:has(img) .photo-placeholder { display:none; }
+
+/* ══ PAGE 01 — CAPA ══ */
+.pg-cover {
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  position: relative;
+  min-height: 693px;
+}
+
+/* Foto de fundo full-bleed */
+.cover-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.cover-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+/* Overlay escuro sobre a foto */
+.cover-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.62) 0%,
+    rgba(0,0,0,.45) 40%,
+    rgba(0,0,0,.68) 75%,
+    rgba(0,0,0,.88) 100%
+  );
+}
+
+/* Marca d'água LGM grande ao centro */
+.cover-wm {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.cover-wm-text {
+  font-family: var(--D);
+  font-size: 180px;
+  font-weight: 200;
+  letter-spacing: .18em;
+  color: rgba(246,244,240,.04);
+  line-height: 1;
+  user-select: none;
+}
+
+/* Conteúdo sobre tudo */
+.cover-top {
+  padding: 28px 28px 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  position: relative;
+}
+.cover-top .eyebrow { color: var(--terra); margin-bottom: 6px; }
+.cover-logo {
+  font-family:var(--D); font-size:72px; font-weight:200;
+  letter-spacing:.14em; color:var(--paper); line-height:1;
+}
+.cover-name-line {
+  font-family:var(--D); font-size:10px; letter-spacing:.3em;
+  text-transform:uppercase; color:rgba(246,244,240,.32); margin-top:4px;
+}
+.cover-tagline {
+  font-family:var(--D); font-size:13px; font-weight:300; font-style:italic;
+  color:rgba(246,244,240,.5); letter-spacing:.02em; margin-top:12px; line-height:1.55;
+}
+.cover-tagline em { color:var(--paper); font-style:normal; }
+
+/* Footer */
+.cover-footer {
+  display:flex; justify-content:space-between; align-items:flex-end;
+  padding: 20px 28px 24px;
+  border-top:1px solid rgba(246,244,240,.10);
+  position: relative; z-index: 2;
+}
+.cover-footer-left { font-family:var(--D); font-size:7px; letter-spacing:.22em; text-transform:uppercase; color:rgba(246,244,240,.30); line-height:2; }
+.cover-footer-right { font-family:var(--D); font-size:7px; letter-spacing:.18em; text-transform:uppercase; color:rgba(246,244,240,.20); text-align:right; }
+
+/* ══ PAGE 02 — SOBRE ══ */
+.pg-sobre { padding:30px 28px 24px; display:flex; flex-direction:column; gap:0; }
+.sobre-title { font-family:var(--D); font-size:22px; font-weight:300; color:var(--ink); line-height:1.2; letter-spacing:-.01em; }
+.sobre-body { font-size:11px; color:var(--ink2); line-height:1.7; margin-top:10px; }
+.sobre-body em { color:var(--rust); font-style:normal; }
+
+/* Stats */
+.sobre-stats { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:16px; }
+.stat-card { background:var(--p2); padding:14px 12px; border-top:2px solid var(--terra); }
+.stat-val { font-family:var(--D); font-size:26px; font-weight:200; color:var(--ink); line-height:1; }
+.stat-label { font-size:8px; color:var(--ink3); letter-spacing:.06em; margin-top:4px; line-height:1.4; }
+
+/* Serviços grid */
+.svc-section { margin-top:16px; }
+.svc-section-label { font-size:7px; letter-spacing:.28em; text-transform:uppercase; color:var(--ink3); margin-bottom:10px; }
+.svc-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+.svc-item {
+  background:var(--paper); padding:10px 12px;
+  display:flex; align-items:flex-start; gap:8px;
+}
+.svc-dot { width:4px; height:4px; border-radius:50%; background:var(--terra); flex-shrink:0; margin-top:4px; }
+.svc-text { font-size:10px; color:var(--ink2); line-height:1.4; }
+.svc-text strong { display:block; font-size:9px; font-family:var(--D); letter-spacing:.04em; color:var(--ink); font-weight:400; margin-bottom:1px; }
+
+.sobre-crea {
+  margin-top:14px; padding-top:12px; border-top:1px solid var(--line);
+  font-size:8px; color:var(--ink3); letter-spacing:.10em; text-transform:uppercase;
+  display:flex; justify-content:space-between;
+}
+
+/* ══ PAGE 03 — STEEL FRAME ══ */
+.pg-sf { background:var(--ink); display:flex; flex-direction:column; }
+.sf-top { padding:28px 28px 16px; }
+.sf-page-title { font-family:var(--D); font-size:22px; font-weight:300; color:var(--paper); line-height:1.2; margin-bottom:8px; }
+.sf-page-sub { font-size:10px; color:rgba(246,244,240,.4); line-height:1.6; }
+
+/* Pilares — 4 ícone-cards em grade 2×2 */
+.sf-pillars { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(246,244,240,.05); margin:0 28px 16px; }
+.sf-pillar {
+  background:rgba(255,255,255,.03); padding:14px 14px 12px;
+  display:flex; flex-direction:column; gap:6px;
+  border-top:1px solid rgba(246,244,240,.07);
+}
+.sf-pillar-icon { font-size:18px; line-height:1; }
+.sf-pillar-val { font-family:var(--D); font-size:28px; font-weight:200; color:var(--rust); line-height:1; }
+.sf-pillar-title { font-family:var(--D); font-size:11px; color:var(--paper); letter-spacing:.04em; }
+.sf-pillar-desc { font-size:9px; color:rgba(246,244,240,.35); line-height:1.55; }
+
+/* Diferenciais inline — 4 tags */
+.sf-tags { display:flex; flex-wrap:wrap; gap:6px; padding:0 28px 14px; }
+.sf-tag {
+  font-family:var(--D); font-size:7px; letter-spacing:.18em; text-transform:uppercase;
+  padding:5px 10px; border:1px solid rgba(246,244,240,.15);
+  color:rgba(246,244,240,.5);
+}
+
+/* Comparativo moderno — radar / scorecard */
+.sf-scorecard { margin:0 28px 16px; }
+.sf-scorecard-title { font-size:7px; letter-spacing:.22em; text-transform:uppercase; color:rgba(246,244,240,.28); margin-bottom:10px; }
+.sf-score-row {
+  display:grid; grid-template-columns:90px 1fr 1fr;
+  align-items:center; gap:8px;
+  padding:7px 0;
+  border-bottom:1px solid rgba(246,244,240,.05);
+}
+.sf-score-row:last-child { border-bottom:none; }
+.sf-score-metric { font-size:8px; color:rgba(246,244,240,.38); letter-spacing:.04em; }
+.sf-score-col { display:flex; flex-direction:column; gap:3px; }
+.sf-score-bar-wrap { display:flex; align-items:center; gap:5px; }
+.sf-score-label-sm { font-size:7px; color:rgba(246,244,240,.22); width:20px; flex-shrink:0; }
+.sf-score-track { flex:1; height:5px; background:rgba(246,244,240,.06); border-radius:2px; overflow:hidden; }
+.sf-score-fill { height:100%; border-radius:2px; }
+.sf-score-fill.sf  { background:var(--rust); }
+.sf-score-fill.alv { background:rgba(246,244,240,.18); }
+.sf-score-val { font-size:8px; color:rgba(246,244,240,.35); margin-top:1px; }
+
+/* Sistema industrializado — barra de processo */
+.sf-process { margin:0 28px 16px; }
+.sf-process-title { font-size:7px; letter-spacing:.22em; text-transform:uppercase; color:rgba(246,244,240,.28); margin-bottom:10px; }
+.sf-process-steps { display:flex; gap:0; }
+.sf-process-step { flex:1; text-align:center; position:relative; }
+.sf-process-step::after {
+  content:''; position:absolute; top:12px; right:0; width:1px; height:8px;
+  background:rgba(246,244,240,.10);
+}
+.sf-process-step:last-child::after { display:none; }
+.sf-process-num { font-family:var(--D); font-size:16px; font-weight:200; color:var(--rust); line-height:1; }
+.sf-process-name { font-size:7px; color:rgba(246,244,240,.35); letter-spacing:.04em; margin-top:3px; line-height:1.3; }
+
+/* ══ PROJETO ══ */
+.pg-projeto { display:block; min-height:0; } /* sem min-height — sem espaço em branco */
+.projeto-photo { height:300px; }
+.projeto-photo .photo { height:300px; }
+.projeto-photo .photo img { width:100%; height:300px; object-fit:cover; display:block; }
+.projeto-body { padding:18px 28px 0; }
+.projeto-num { font-family:var(--D); font-size:8px; letter-spacing:.28em; color:var(--terra); text-transform:uppercase; margin-bottom:5px; }
+.projeto-title { font-family:var(--D); font-size:19px; font-weight:300; color:var(--ink); line-height:1.2; }
+.projeto-desc { font-size:10px; color:var(--ink2); line-height:1.65; margin-top:6px; }
+.projeto-specs { display:grid; grid-template-columns:1fr 1fr; gap:6px 16px; margin-top:12px; }
+.spec-key { font-size:7px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink3); margin-bottom:1px; }
+.spec-val { font-family:var(--D); font-size:13px; color:var(--ink); }
+.projeto-photos-grid { padding:12px 28px 0; display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.projeto-photos-grid .photo { height:130px; }
+.projeto-photos-grid .photo img { width:100%; height:130px; object-fit:cover; display:block; }
+.projeto-footer { padding:10px 28px 14px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; margin-top:12px; }
+.projeto-footer-brand { font-family:var(--D); font-size:7px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink3); }
+.projeto-footer-pg { font-family:var(--D); font-size:8px; color:var(--terra); }
+
+/* ══ CONTATO ══ */
+.pg-contato { background:var(--ink); display:flex; flex-direction:column; justify-content:space-between; padding:48px 28px 36px; }
+.contato-logo { font-family:var(--D); font-size:72px; font-weight:200; letter-spacing:.14em; color:var(--paper); line-height:1; margin-bottom:8px; }
+.contato-name { font-family:var(--D); font-size:8px; letter-spacing:.28em; text-transform:uppercase; color:rgba(246,244,240,.28); line-height:2.2; }
+.contato-cta { margin-top:32px; font-family:var(--D); font-size:18px; font-weight:300; color:rgba(246,244,240,.65); line-height:1.4; }
+.contato-cta em { color:var(--paper); font-style:normal; }
+.contato-info { margin-top:40px; display:flex; flex-direction:column; gap:14px; }
+.contato-row { display:flex; gap:16px; align-items:baseline; }
+.contato-row-key { font-size:7px; letter-spacing:.2em; text-transform:uppercase; color:rgba(246,244,240,.22); width:64px; flex-shrink:0; }
+.contato-row-val { font-size:13px; color:rgba(246,244,240,.6); font-family:var(--D); letter-spacing:.02em; }
+.contato-footer { padding-top:28px; border-top:1px solid rgba(246,244,240,.07); font-size:8px; letter-spacing:.14em; text-transform:uppercase; color:rgba(246,244,240,.18); display:flex; justify-content:space-between; }
+
+/* Badge */
+.pg-badge { position:absolute; top:16px; right:20px; font-family:var(--D); font-size:8px; letter-spacing:.18em; color:rgba(13,13,13,.18); text-transform:uppercase; z-index:5; }
+.pg-cover .pg-badge, .pg-sf .pg-badge, .pg-contato .pg-badge { color:rgba(246,244,240,.15); }
+
+</style>
+</head>
+<body>
+
+<!-- ══ PAGE 01 — CAPA ══ -->
+<div class="page pg-cover">
+  <span class="pg-badge">LGM · 2025</span>
+
+  <!-- Foto de fundo — salve a imagem como capa.jpg na mesma pasta -->
+  <div class="cover-bg">
+    <img src="capa.jpg" alt="Estrutura steel frame">
+  </div>
+
+  <!-- Marca d'água LGM grande centralizada -->
+  <div class="cover-wm">
+    <div class="cover-wm-text">LGM</div>
+  </div>
+
+  <!-- Conteúdo — logo no topo -->
+  <div class="cover-top">
+    <div class="eyebrow">Engenharia &amp; Construções · Marília – SP</div>
+    <div class="cover-logo">LGM</div>
+    <div class="cover-name-line">Luis Gustavo Maia · Engenheiro Civil</div>
+    <div class="cover-tagline">Projetos que <em>funcionam</em><br>antes de serem construídos.</div>
+  </div>
+
+  <!-- Espaçador -->
+  <div style="flex:1;position:relative;z-index:2;"></div>
+
+  <!-- Footer -->
+  <div class="cover-footer">
+    <div class="cover-footer-left">
+      CREA–SP 5071068977<br>
+      ART · CNO · Gestão de Obra
+    </div>
+    <div class="cover-footer-right">
+      Portfolio<br>
+      Seleção de Projetos
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ PAGE 02 — SOBRE ══ -->
+<div class="page pg-sobre">
+  <span class="pg-badge">Sobre</span>
+
+  <div>
+    <div class="eyebrow">LGM Engenharia</div>
+    <div class="sobre-title">Responsabilidade<br>técnica do início ao fim.</div>
+    <div class="rule rule-terra"></div>
+    <div class="sobre-body">
+      Engenheiro civil especializado em <em>steel frame</em> e construção industrializada.
+      Atuo em todo o ciclo da obra — do projeto à regularização — com ART registrada
+      em cada disciplina e acompanhamento técnico presencial.
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="sobre-stats" style="margin-top:16px;">
+    <div class="stat-card">
+      <div class="stat-val">7+</div>
+      <div class="stat-label">Anos de experiência com o sistema</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val">85+</div>
+      <div class="stat-label">Unidades em steel frame orientadas e supervisionadas</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val">100%</div>
+      <div class="stat-label">ART registrada em cada etapa</div>
+    </div>
+  </div>
+
+  <!-- Serviços -->
+  <div class="svc-section" style="margin-top:16px;">
+    <div class="svc-section-label">O que entregamos</div>
+    <div class="svc-grid">
+      <div class="svc-item">
+        <div class="svc-dot"></div>
+        <div class="svc-text">
+          <strong>Projeto Arquitetônico</strong>
+          Planta, cortes, fachadas e aprovação
+        </div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-dot"></div>
+        <div class="svc-text">
+          <strong>Projeto Estrutural</strong>
+          Steel frame com ART CREA–SP
+        </div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-dot"></div>
+        <div class="svc-text">
+          <strong>Projetos Complementares</strong>
+          Elétrico, hidráulico e sanitário
+        </div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-dot"></div>
+        <div class="svc-text">
+          <strong>CNO e INSS de Obra</strong>
+          Redução legal da base de cálculo
+        </div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-dot"></div>
+        <div class="svc-text">
+          <strong>Documentação</strong>
+          Para financiamento bancário
+        </div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-dot"></div>
+        <div class="svc-text">
+          <strong>Gestão de Obra</strong>
+          Acompanhamento e relatórios
+        </div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-dot"></div>
+        <div class="svc-text">
+          <strong>Execução de Obra</strong>
+          Montagem e acabamentos
+        </div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-dot"></div>
+        <div class="svc-text">
+          <strong>Regularização</strong>
+          Habite-se, averbação e CND
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sobre-crea">
+    <span>CREA–SP 5071068977</span>
+    <span>Marília – SP · Brasil</span>
+  </div>
+</div>
+
+
+<!-- ══ PAGE 03 — STEEL FRAME ══ -->
+<div class="page pg-sf">
+  <span class="pg-badge">Tecnologia</span>
+
+  <div class="sf-top">
+    <div class="eyebrow" style="color:var(--terra);">Por que Steel Frame</div>
+    <div class="sf-page-title">Industrializado.<br>Preciso. Sustentável.</div>
+    <div class="sf-page-sub">Perfis de aço galvanizado ASTM A653, usinados com tolerância de ±1 mm. Sistema a seco, modular e rastreável do projeto à entrega.</div>
+  </div>
+
+  <!-- Tags de atributo -->
+  <div class="sf-tags">
+    <div class="sf-tag">Qualidade Certificada</div>
+    <div class="sf-tag">ABNT NBR 15253</div>
+    <div class="sf-tag">Sistema Industrializado</div>
+    <div class="sf-tag">Obra a Seco</div>
+    <div class="sf-tag">Rastreabilidade Total</div>
+    <div class="sf-tag">Vão Livre até 10 m</div>
+  </div>
+
+  <!-- 4 pilares em grade 2×2 -->
+  <div class="sf-pillars">
+    <div class="sf-pillar">
+      <div class="sf-pillar-val">3×</div>
+      <div class="sf-pillar-title">Mais rápido</div>
+      <div class="sf-pillar-desc">90 dias para 100 m² do zero ao acabado. Alvenaria: 270+ dias.</div>
+    </div>
+    <div class="sf-pillar">
+      <div class="sf-pillar-val">80%</div>
+      <div class="sf-pillar-title">Menos resíduo</div>
+      <div class="sf-pillar-desc">Obra a seco, sem entulho. Canteiro limpo e organizado.</div>
+    </div>
+    <div class="sf-pillar">
+      <div class="sf-pillar-val">±1mm</div>
+      <div class="sf-pillar-title">Tolerância</div>
+      <div class="sf-pillar-desc">Precisão industrial. Alvenaria convencional: ±10 mm.</div>
+    </div>
+    <div class="sf-pillar">
+      <div class="sf-pillar-val">50+</div>
+      <div class="sf-pillar-title">Anos de vida útil</div>
+      <div class="sf-pillar-desc">Garantia mínima por norma ABNT NBR 15253.</div>
+    </div>
+  </div>
+
+  <!-- Comparativo scorecard moderno -->
+  <div class="sf-scorecard">
+    <div class="sf-scorecard-title">Comparativo · Steel Frame vs Alvenaria Convencional</div>
+
+    <div class="sf-score-row">
+      <div class="sf-score-metric">Prazo de obra</div>
+      <div class="sf-score-col">
+        <div class="sf-score-bar-wrap">
+          <div class="sf-score-label-sm" style="color:var(--rust);font-size:7px;">SF</div>
+          <div class="sf-score-track"><div class="sf-score-fill sf" style="width:33%"></div></div>
+        </div>
+        <div class="sf-score-val" style="color:var(--rust);">90 dias</div>
+      </div>
+      <div class="sf-score-col">
+        <div class="sf-score-bar-wrap">
+          <div class="sf-score-label-sm">ALV</div>
+          <div class="sf-score-track"><div class="sf-score-fill alv" style="width:100%"></div></div>
+        </div>
+        <div class="sf-score-val">270+ dias</div>
+      </div>
+    </div>
+
+    <div class="sf-score-row">
+      <div class="sf-score-metric">Peso estrutural</div>
+      <div class="sf-score-col">
+        <div class="sf-score-bar-wrap">
+          <div class="sf-score-label-sm" style="color:var(--rust);font-size:7px;">SF</div>
+          <div class="sf-score-track"><div class="sf-score-fill sf" style="width:17%"></div></div>
+        </div>
+        <div class="sf-score-val" style="color:var(--rust);">~50 kg/m²</div>
+      </div>
+      <div class="sf-score-col">
+        <div class="sf-score-bar-wrap">
+          <div class="sf-score-label-sm">ALV</div>
+          <div class="sf-score-track"><div class="sf-score-fill alv" style="width:100%"></div></div>
+        </div>
+        <div class="sf-score-val">~300 kg/m²</div>
+      </div>
+    </div>
+
+    <div class="sf-score-row">
+      <div class="sf-score-metric">Resíduo gerado</div>
+      <div class="sf-score-col">
+        <div class="sf-score-bar-wrap">
+          <div class="sf-score-label-sm" style="color:var(--rust);font-size:7px;">SF</div>
+          <div class="sf-score-track"><div class="sf-score-fill sf" style="width:8%"></div></div>
+        </div>
+        <div class="sf-score-val" style="color:var(--rust);">~5%</div>
+      </div>
+      <div class="sf-score-col">
+        <div class="sf-score-bar-wrap">
+          <div class="sf-score-label-sm">ALV</div>
+          <div class="sf-score-track"><div class="sf-score-fill alv" style="width:48%"></div></div>
+        </div>
+        <div class="sf-score-val">~30%</div>
+      </div>
+    </div>
+
+    <div class="sf-score-row">
+      <div class="sf-score-metric">Vão livre máximo</div>
+      <div class="sf-score-col">
+        <div class="sf-score-bar-wrap">
+          <div class="sf-score-label-sm" style="color:var(--rust);font-size:7px;">SF</div>
+          <div class="sf-score-track"><div class="sf-score-fill sf" style="width:100%"></div></div>
+        </div>
+        <div class="sf-score-val" style="color:var(--rust);">10 m</div>
+      </div>
+      <div class="sf-score-col">
+        <div class="sf-score-bar-wrap">
+          <div class="sf-score-label-sm">ALV</div>
+          <div class="sf-score-track"><div class="sf-score-fill alv" style="width:40%"></div></div>
+        </div>
+        <div class="sf-score-val">4 m</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Processo industrializado -->
+  <div class="sf-process">
+    <div class="sf-process-title">Processo industrializado · do projeto à entrega</div>
+    <div class="sf-process-steps">
+      <div class="sf-process-step">
+        <div class="sf-process-num">01</div>
+        <div class="sf-process-name">Projeto<br>detalhado</div>
+      </div>
+      <div class="sf-process-step">
+        <div class="sf-process-num">02</div>
+        <div class="sf-process-name">Fabricação<br>industrial</div>
+      </div>
+      <div class="sf-process-step">
+        <div class="sf-process-num">03</div>
+        <div class="sf-process-name">Montagem<br>em obra</div>
+      </div>
+      <div class="sf-process-step">
+        <div class="sf-process-num">04</div>
+        <div class="sf-process-name">Fechamento<br>e instalações</div>
+      </div>
+      <div class="sf-process-step">
+        <div class="sf-process-num">05</div>
+        <div class="sf-process-name">Entrega<br>e ART</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ PAGE 04 — PROJETO 01 ══ -->
+<div class="page pg-projeto">
+  <span class="pg-badge">Projeto 01</span>
+  <div class="projeto-photo">
+    <div class="photo"><img src="p1_01.png" alt="Clínica Grizzo – fachada"></div>
+  </div>
+  <div class="projeto-body">
+    <div class="projeto-num">Projeto 01 · Comercial · Jaú – SP</div>
+    <div class="projeto-title">Clínica Grizzo<br><span style="font-size:14px;color:var(--ink3);">Sistema Misto</span></div>
+    <div class="projeto-desc">Empreendimento comercial para locação de salas de saúde — consultórios e clínicas. Subsolo em alvenaria estrutural e concreto armado; pavimentos superiores em Light Steel Frame. Projeto conduzido do início à regularização completa.</div>
+    <div class="projeto-specs">
+      <div><div class="spec-key">Área construída</div><div class="spec-val">380 m²</div></div>
+      <div><div class="spec-key">Prazo de execução</div><div class="spec-val">7 meses</div></div>
+      <div><div class="spec-key">Local</div><div class="spec-val">Jaú – SP</div></div>
+      <div><div class="spec-key">Tipologia</div><div class="spec-val">Comercial · Misto</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:9px;color:var(--ink3);letter-spacing:.04em;line-height:1.6;">
+      Projeto estrutural · Execução · Gerenciamento · Planejamento financeiro · Regularização (Prefeitura, Cartório e Receita Federal)
+    </div>
+  </div>
+  <div class="projeto-photos-grid" style="grid-template-columns:1fr;">
+    <div class="photo"><img src="p1_03.png" alt="Clínica Grizzo – detalhe"></div>
+  </div>
+  <div class="projeto-footer">
+    <div class="projeto-footer-brand">LGM Engenharia · CREA–SP 5071068977</div>
+    <div class="projeto-footer-pg">01 / 06</div>
+  </div>
+</div>
+
+
+<!-- ══ PAGE 05 — PROJETO 02 ══ -->
+<div class="page pg-projeto">
+  <span class="pg-badge">Projeto 02</span>
+  <div class="projeto-photo">
+    <div class="photo"><img src="p2_01.png" alt="Residência A.J. – fachada"></div>
+  </div>
+  <div class="projeto-body">
+    <div class="projeto-num">Projeto 02 · Residencial · Marília – SP</div>
+    <div class="projeto-title">Residência A.J.</div>
+    <div class="projeto-desc">Projeto conduzido com foco em execução eficiente, regularização completa e planejamento estratégico da obra — garantindo segurança jurídica e otimização de custos em todas as etapas.</div>
+    <div class="projeto-specs">
+      <div><div class="spec-key">Área construída</div><div class="spec-val">750 m²</div></div>
+      <div><div class="spec-key">Prazo de execução</div><div class="spec-val">10 meses</div></div>
+      <div><div class="spec-key">Local</div><div class="spec-val">Marília – SP</div></div>
+      <div><div class="spec-key">Tipologia</div><div class="spec-val">Residencial</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:9px;color:var(--ink3);letter-spacing:.04em;line-height:1.6;">
+      Projeto estrutural · Gerenciamento · Planejamento financeiro · Regularização · INSS de obra (CNO e estratégia) · Certidões e averbação
+    </div>
+  </div>
+  <div class="projeto-photos-grid">
+    <div class="photo"><img src="p2_02.png" alt="Residência A.J. – interior"></div>
+    <div class="photo"><img src="p2_03.png" alt="Residência A.J. – detalhe"></div>
+  </div>
+  <div class="projeto-footer">
+    <div class="projeto-footer-brand">LGM Engenharia · CREA–SP 5071068977</div>
+    <div class="projeto-footer-pg">02 / 06</div>
+  </div>
+</div>
+
+
+<!-- ══ PAGE 06 — PROJETO 03 ══ -->
+<div class="page pg-projeto">
+  <span class="pg-badge">Projeto 03</span>
+  <div class="projeto-photo">
+    <div class="photo"><img src="p3_01.png" alt="Casa Cubo – fachada"></div>
+  </div>
+  <div class="projeto-body">
+    <div class="projeto-num">Projeto 03 · Residencial · Marília – SP</div>
+    <div class="projeto-title">Casa Cubo</div>
+    <div class="projeto-desc">Residência com arquitetura moderna e minimalista, marcada por volumetria pura e linhas retas. Forte identidade estética aliada a solução construtiva eficiente e racionalizada.</div>
+    <div class="projeto-specs">
+      <div><div class="spec-key">Área construída</div><div class="spec-val">180 m²</div></div>
+      <div><div class="spec-key">Prazo de execução</div><div class="spec-val">6 meses</div></div>
+      <div><div class="spec-key">Local</div><div class="spec-val">Marília – SP</div></div>
+      <div><div class="spec-key">Tipologia</div><div class="spec-val">Residencial</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:9px;color:var(--ink3);letter-spacing:.04em;line-height:1.6;">
+      Execução da obra · Gerenciamento · Planejamento técnico
+    </div>
+  </div>
+  <div class="projeto-photos-grid">
+    <div class="photo"><img src="p3_02.png" alt="Casa Cubo – interior"></div>
+    <div class="photo"><img src="p3_03.png" alt="Casa Cubo – detalhe"></div>
+  </div>
+  <div class="projeto-footer">
+    <div class="projeto-footer-brand">LGM Engenharia · CREA–SP 5071068977</div>
+    <div class="projeto-footer-pg">03 / 06</div>
+  </div>
+</div>
+
+
+<!-- ══ PAGE 07 — PROJETO 04 ══ -->
+<div class="page pg-projeto">
+  <span class="pg-badge">Projeto 04</span>
+  <div class="projeto-photo">
+    <div class="photo"><img src="p4_01.png" alt="Residência Steeltec – fachada"></div>
+  </div>
+  <div class="projeto-body">
+    <div class="projeto-num">Projeto 04 · Residencial · Marília – SP</div>
+    <div class="projeto-title">Residência Steeltec<br><span style="font-size:14px;color:var(--ink3);">Light Steel Frame</span></div>
+    <div class="projeto-desc">Projeto que integra tecnologia e inovação construtiva em Light Steel Frame, desenvolvido em condomínio privado, com foco em desempenho, precisão e eficiência de execução.</div>
+    <div class="projeto-specs">
+      <div><div class="spec-key">Área construída</div><div class="spec-val">200 m²</div></div>
+      <div><div class="spec-key">Prazo de execução</div><div class="spec-val">6 meses</div></div>
+      <div><div class="spec-key">Local</div><div class="spec-val">Marília – SP</div></div>
+      <div><div class="spec-key">Tipologia</div><div class="spec-val">Residencial · LSF</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:9px;color:var(--ink3);letter-spacing:.04em;line-height:1.6;">
+      Projeto estrutural · Execução · Gerenciamento · Planejamento
+    </div>
+  </div>
+  <div class="projeto-photos-grid">
+    <div class="photo"><img src="p4_02.png" alt="Residência Steeltec – interior"></div>
+    <div class="photo"><img src="p4_03.png" alt="Residência Steeltec – estrutura"></div>
+  </div>
+  <div class="projeto-footer">
+    <div class="projeto-footer-brand">LGM Engenharia · CREA–SP 5071068977</div>
+    <div class="projeto-footer-pg">04 / 06</div>
+  </div>
+</div>
+
+
+<!-- ══ PAGE 08 — PROJETO 05 ══ -->
+<div class="page pg-projeto">
+  <span class="pg-badge">Projeto 05</span>
+  <div class="projeto-photo">
+    <div class="photo"><img src="p5_02.png" alt="Estande de Vendas – vista"></div>
+  </div>
+  <div class="projeto-body">
+    <div class="projeto-num">Projeto 05 · Comercial · Marília – SP</div>
+    <div class="projeto-title">Estande de Vendas</div>
+    <div class="projeto-desc">Desenvolvimento de estande comercial para construtora, incluindo unidade modelo para apresentação de apartamentos e apoio à estratégia de vendas — entregue em 40 dias.</div>
+    <div class="projeto-specs">
+      <div><div class="spec-key">Área construída</div><div class="spec-val">55 m²</div></div>
+      <div><div class="spec-key">Prazo de execução</div><div class="spec-val">40 dias</div></div>
+      <div><div class="spec-key">Local</div><div class="spec-val">Marília – SP</div></div>
+      <div><div class="spec-key">Tipologia</div><div class="spec-val">Comercial</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:9px;color:var(--ink3);letter-spacing:.04em;line-height:1.6;">
+      Projeto · Execução
+    </div>
+  </div>
+  <div class="projeto-photos-grid" style="grid-template-columns:1fr;">
+    <div class="photo"><img src="p5_03.png" alt="Estande de Vendas – detalhe"></div>
+  </div>
+  <div class="projeto-footer">
+    <div class="projeto-footer-brand">LGM Engenharia · CREA–SP 5071068977</div>
+    <div class="projeto-footer-pg">05 / 06</div>
+  </div>
+</div>
+
+
+<!-- ══ PAGE 09 — PROJETO 06 ══ -->
+<div class="page pg-projeto">
+  <span class="pg-badge">Projeto 06</span>
+  <div class="projeto-photo">
+    <div class="photo"><img src="p6_02.png" alt="Barracão + Loft – estrutura"></div>
+  </div>
+  <div class="projeto-body">
+    <div class="projeto-num">Projeto 06 · Misto · Steel Frame</div>
+    <div class="projeto-title">Barracão + Loft<br><span style="font-size:14px;color:var(--ink3);">Vão livre 10 m+</span></div>
+    <div class="projeto-desc">Garagem para veículos antigos integrada a apartamento no mezanino. Estrutura 100% em Light Steel Frame com solução técnica para vão livre superior a 10 metros — um dos maiores desafios do sistema.</div>
+    <div class="projeto-specs">
+      <div><div class="spec-key">Área construída</div><div class="spec-val">450 m²</div></div>
+      <div><div class="spec-key">Prazo de execução</div><div class="spec-val">9 meses</div></div>
+      <div><div class="spec-key">Sistema</div><div class="spec-val">100% LSF</div></div>
+      <div><div class="spec-key">Tipologia</div><div class="spec-val">Misto · Barracão</div></div>
+    </div>
+    <div style="margin-top:10px;font-size:9px;color:var(--ink3);letter-spacing:.04em;line-height:1.6;">
+      Projeto estrutural · Execução · Gerenciamento
+    </div>
+  </div>
+  <div class="projeto-photos-grid">
+    <div class="photo"><img src="p6_03.png" alt="Barracão + Loft – interior"></div>
+    <div class="photo"><img src="p6_04.png" alt="Barracão + Loft – detalhe"></div>
+  </div>
+  <div class="projeto-footer">
+    <div class="projeto-footer-brand">LGM Engenharia · CREA–SP 5071068977</div>
+    <div class="projeto-footer-pg">06 / 06</div>
+  </div>
+</div>
+
+
+<!-- ══ PAGE 09 — CONTATO ══ -->
+<div class="page pg-contato">
+  <span class="pg-badge">Contato</span>
+  <div>
+    <div class="contato-logo">LGM</div>
+    <div class="contato-name">Luis Gustavo Maia<br>Engenheiro Civil</div>
+    <div class="contato-cta">Pronto para começar<br><em>o seu projeto?</em></div>
+  </div>
+  <div class="contato-info">
+    <div class="contato-row">
+      <div class="contato-row-key">WhatsApp</div>
+      <div class="contato-row-val">(14) 99185–0799</div>
+    </div>
+    <div class="contato-row">
+      <div class="contato-row-key">E-mail</div>
+      <div class="contato-row-val">engmaia1996@gmail.com</div>
+    </div>
+    <div class="contato-row">
+      <div class="contato-row-key">Instagram</div>
+      <div class="contato-row-val">@eng.gustavomaia</div>
+    </div>
+    <div class="contato-row">
+      <div class="contato-row-key">Local</div>
+      <div class="contato-row-val">Marília – SP · Brasil</div>
+    </div>
+    <div class="contato-row">
+      <div class="contato-row-key">CREA</div>
+      <div class="contato-row-val">CREA–SP 5071068977</div>
+    </div>
+  </div>
+  <div class="contato-footer">
+    <span>LGM Engenharia &amp; Construções</span>
+    <span>2025</span>
+  </div>
+</div>
+
+</body>
+</html>

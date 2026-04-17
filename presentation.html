@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>LGM · Luis Gustavo Maia — Engenharia & Construções</title>
+<style>
+
+:root {
+  --ink:    #0D0D0D;
+  --ink2:   #3A3A3A;
+  --ink3:   #888880;
+  --paper:  #F6F4F0;
+  --paper2: #ECEAE5;
+  --white:  #FFFFFF;
+  --terra:  #7A6B5A;
+  --line:   rgba(13,13,13,0.10);
+  --D: 'Gill Sans MT','Gill Sans','Century Gothic',Calibri,sans-serif;
+  --B: 'Segoe UI',system-ui,-apple-system,Arial,sans-serif;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--B);
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+
+/* ── SIDENAV ── */
+.sidenav {
+  position: fixed; right: 28px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 10px;
+  z-index: 100;
+}
+.sidenav-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(13,13,13,.18); display: block;
+  transition: background .2s, transform .2s;
+}
+.sidenav-dot:hover { background: var(--terra); transform: scale(1.5); }
+
+/* ── 01 CAPA ── */
+.cover {
+  width: 100%; min-height: 100vh;
+  background: var(--ink);
+  display: grid; grid-template-rows: 1fr auto; padding: 80px;
+}
+.cover-center { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+.cover-eyebrow { font-size: clamp(9px,0.7vw,11px); letter-spacing:.35em; text-transform:uppercase; color:var(--terra); margin-bottom:60px; }
+.cover-logo { font-family:var(--D); font-size:clamp(80px,10vw,140px); font-weight:300; letter-spacing:.10em; color:var(--paper); line-height:1; margin-bottom:24px; }
+.cover-rule { width:80px; height:1px; background:rgba(246,244,240,.15); margin-bottom:24px; }
+.cover-name { font-family:var(--D); font-size:clamp(11px,0.9vw,14px); letter-spacing:.35em; text-transform:uppercase; color:rgba(246,244,240,.4); line-height:2.2; }
+.cover-tagline { margin-top:80px; font-family:var(--D); font-size:clamp(22px,2.2vw,32px); font-weight:300; font-style:italic; color:rgba(246,244,240,.55); }
+.cover-tagline em { color:var(--paper); font-style:normal; }
+.cover-footer { display:flex; justify-content:space-between; align-items:flex-end; }
+.cover-footer-label { font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:rgba(246,244,240,.18); }
+.cover-nav { display:flex; gap:40px; }
+.cover-nav a { font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:rgba(246,244,240,.45); text-decoration:none; transition:color .2s, border-bottom-color .2s; border-bottom:1px solid transparent; padding-bottom:2px; }
+.cover-nav a:hover { color:var(--terra); border-bottom-color:var(--terra); }
+
+/* ── 02 SOBRE ── */
+.sobre-section { display:grid; grid-template-columns:340px 1fr; background:var(--white); border-bottom:1px solid var(--line); min-height:520px; }
+.sobre-media { position:relative; overflow:visible; background:var(--ink); }
+.portrait-box { width:100%; height:100%; min-height:520px; position:relative; overflow:hidden; display:flex; align-items:flex-end; }
+.portrait-box img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+.sobre-content { padding:56px 72px 56px 52px; display:flex; flex-direction:column; justify-content:center; gap:24px; }
+.sobre-eyebrow { font-size:clamp(9px,0.7vw,11px); letter-spacing:.35em; text-transform:uppercase; color:var(--terra); }
+.sobre-name { font-family:var(--D); font-size:clamp(30px,3vw,42px); font-weight:300; color:var(--ink); line-height:1.1; letter-spacing:.02em; }
+.sobre-title-eng { font-family:var(--D); font-size:clamp(11px,0.9vw,14px); font-weight:300; letter-spacing:.18em; text-transform:uppercase; color:var(--terra); margin-top:-12px; }
+.sobre-bio { font-size:clamp(13px,1vw,14px); color:var(--ink2); line-height:1.85; max-width:520px; text-align:justify; padding-bottom:24px; border-bottom:1px solid var(--line); }
+.sobre-creds { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4px; }
+.cred-card {
+  padding:20px 18px; border:1px solid var(--line);
+  cursor:pointer; transition:background .2s, transform .15s;
+  background:var(--paper);
+}
+.cred-card:hover { background:var(--paper2); transform:translateY(-2px); }
+.cred-card.active { background:var(--ink); }
+.cred-num { font-family:var(--D); font-size:clamp(26px,2.5vw,34px); font-weight:300; color:var(--ink); line-height:1; margin-bottom:6px; transition:color .2s; }
+.cred-card.active .cred-num { color:var(--paper); }
+.cred-num span { font-size:clamp(13px,1.2vw,16px); color:var(--terra); }
+.cred-label { font-size:clamp(9px,0.75vw,11px); color:var(--ink3); line-height:1.5; transition:color .2s; }
+.cred-card.active .cred-label { color:rgba(246,244,240,.4); }
+.cred-expand { font-size:clamp(10px,0.8vw,12px); color:var(--ink3); line-height:1.6; margin-top:10px; max-height:0; overflow:hidden; transition:max-height .35s ease, opacity .3s; opacity:0; text-align:justify; }
+.cred-card.active .cred-expand { max-height:80px; opacity:1; color:rgba(246,244,240,.4); }
+.sobre-tags { display:flex; flex-wrap:wrap; gap:6px; }
+.svc-tag { font-size:9px; letter-spacing:.2em; text-transform:uppercase; padding:7px 14px; border:1px solid var(--line); color:var(--ink3); transition: border-color .2s, color .2s; cursor:default; }
+.svc-tag:hover { border-color:var(--terra); color:var(--terra); }
+
+/* ── 03 SERVIÇOS ── */
+.servicos-section { padding:clamp(60px,8vw,120px) 80px; background:var(--paper); border-bottom:1px solid var(--line); }
+.sec-header { display:grid; grid-template-columns:200px 1fr; gap:40px; align-items:start; margin-bottom:80px; }
+.sec-label { font-size:clamp(9px,0.7vw,11px); letter-spacing:.3em; text-transform:uppercase; color:var(--ink3); padding-top:8px; }
+.sec-title { font-family:var(--D); font-size:clamp(32px,3.5vw,52px); font-weight:300; color:var(--ink); line-height:1.15; letter-spacing:-.01em; }
+.servicos-grid { display:grid; grid-template-columns:1fr 1fr; gap:3px; }
+.svc-card {
+  background:var(--white); padding:52px 48px;
+  border:1px solid var(--line);
+  display:flex; flex-direction:column; gap:20px;
+  cursor:default;
+  transition: box-shadow .25s, transform .25s;
+  position: relative; overflow: hidden;
+}
+.svc-card::after {
+  content:''; position:absolute; bottom:0; left:0;
+  width:0; height:2px; background:var(--terra);
+  transition: width .35s ease;
+}
+.svc-card:hover { box-shadow:0 8px 40px rgba(0,0,0,.07); transform:translateY(-2px); }
+.svc-card:hover::after { width:100%; }
+.svc-num { font-size:clamp(9px,0.7vw,11px); letter-spacing:.22em; color:var(--terra); }
+.svc-title { font-family:var(--D); font-size:clamp(20px,1.8vw,26px); font-weight:300; color:var(--ink); letter-spacing:.02em; line-height:1.2; }
+.svc-desc { font-size:clamp(13px,1vw,15px); color:var(--ink2); line-height:1.85; text-align:justify; }
+.svc-detail { margin-top:4px; padding-top:20px; border-top:1px solid var(--line); font-size:clamp(10px,0.8vw,12px); color:var(--ink3); letter-spacing:.04em; line-height:1.6; }
+
+/* ── 04 STEEL FRAME ── */
+.sf-section { background:var(--ink); padding:clamp(60px,8vw,120px) 80px; border-bottom:1px solid rgba(246,244,240,.06); }
+.sf-intro { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:end; margin-bottom:80px; }
+.sf-title { font-family:var(--D); font-size:clamp(32px,3.5vw,52px); font-weight:300; color:var(--paper); line-height:1.15; }
+.sf-subtitle { font-size:clamp(13px,1vw,15px); color:rgba(246,244,240,.38); line-height:1.9; text-align:justify; }
+
+/* Animated counters */
+.sf-counters { display:grid; grid-template-columns:repeat(4,1fr); gap:3px; margin-bottom:3px; }
+.sf-counter-card { background:#111; padding:40px 36px; position:relative; overflow:hidden; cursor:default; transition:background .25s; }
+.sf-counter-card:hover { background:#161616; }
+.sf-counter-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--terra); transform:scaleX(0); transform-origin:left; transition:transform .4s ease; }
+.sf-counter-card:hover::before { transform:scaleX(1); }
+.sf-counter-val { font-family:var(--D); font-size:clamp(52px,5vw,80px); font-weight:200; color:var(--paper); line-height:.85; letter-spacing:-.02em; margin-bottom:16px; }
+.sf-counter-val span { font-size:clamp(24px,2.5vw,36px); color:var(--terra); }
+.sf-counter-label { font-size:clamp(9px,0.7vw,11px); color:rgba(246,244,240,.35); letter-spacing:.1em; text-transform:uppercase; margin-bottom:12px; }
+.sf-counter-desc { font-size:clamp(12px,0.9vw,13px); color:rgba(246,244,240,.38); line-height:1.75; padding-top:16px; border-top:1px solid rgba(246,244,240,.06); text-align:justify; }
+
+/* Comparison infographic */
+.sf-comparison { background:#0A0A0A; padding:60px; margin-bottom:3px; }
+.sf-comp-title { font-family:var(--D); font-size:clamp(13px,1vw,16px); font-weight:300; color:rgba(246,244,240,.4); letter-spacing:.08em; text-transform:uppercase; margin-bottom:48px; text-align:center; }
+.sf-comp-grid { display:grid; grid-template-columns:180px 1fr; gap:0; }
+.sf-comp-labels { display:flex; flex-direction:column; justify-content:space-around; padding-right:32px; border-right:1px solid rgba(246,244,240,.06); }
+.sf-comp-label { font-size:clamp(9px,0.75vw,11px); letter-spacing:.12em; text-transform:uppercase; color:rgba(246,244,240,.3); padding:16px 0; border-bottom:1px solid rgba(246,244,240,.04); }
+.sf-comp-label:last-child { border-bottom:none; }
+.sf-comp-bars { padding-left:32px; }
+.sf-comp-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; align-items:center; padding:16px 0; border-bottom:1px solid rgba(246,244,240,.04); }
+.sf-comp-row:last-child { border-bottom:none; }
+.sf-comp-bar-wrap { display:flex; flex-direction:column; gap:6px; }
+.sf-comp-bar-header { display:flex; justify-content:space-between; align-items:center; }
+.sf-comp-bar-name { font-size:9px; letter-spacing:.1em; text-transform:uppercase; }
+.sf-comp-bar-val { font-family:var(--D); font-size:clamp(13px,1vw,15px); font-weight:300; }
+.sf-comp-bar-track { height:4px; background:rgba(246,244,240,.06); border-radius:2px; overflow:hidden; }
+.sf-comp-bar-fill { height:100%; border-radius:2px; width:0; transition:width 1.2s cubic-bezier(.4,0,.2,1); }
+.bar-sf .sf-comp-bar-name { color:var(--terra); }
+.bar-sf .sf-comp-bar-val { color:var(--paper); }
+.bar-sf .sf-comp-bar-fill { background:var(--terra); }
+.bar-alv .sf-comp-bar-name { color:rgba(246,244,240,.3); }
+.bar-alv .sf-comp-bar-val { color:rgba(246,244,240,.35); }
+.bar-alv .sf-comp-bar-fill { background:rgba(246,244,240,.15); }
+
+/* Quote */
+.sf-quote { padding:48px; border:1px solid rgba(246,244,240,.06); }
+.sf-quote-text { font-family:var(--D); font-size:clamp(20px,2vw,30px); font-weight:300; color:rgba(246,244,240,.7); line-height:1.45; letter-spacing:.01em; max-width:700px; text-align:justify; }
+.sf-quote-text em { color:var(--paper); font-style:normal; }
+
+/* ── TIMELINE ── */
+.timeline-section { background:var(--white); padding:clamp(60px,8vw,120px) 80px; border-bottom:1px solid var(--line); }
+.tl-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:3px; margin-top:80px; position:relative; }
+.tl-step {
+  background:var(--paper); padding:40px 32px;
+  border:1px solid var(--line);
+  cursor:pointer; transition:background .25s, transform .2s;
+  position:relative; overflow:hidden;
+}
+.tl-step.active { background:var(--ink); }
+.tl-step:hover:not(.active) { background:var(--paper2); transform:translateY(-3px); }
+.tl-step-num { font-family:var(--D); font-size:clamp(28px,3vw,44px); font-weight:200; color:rgba(13,13,13,.08); line-height:1; margin-bottom:16px; transition:color .25s; }
+.tl-step.active .tl-step-num { color:rgba(246,244,240,.08); }
+.tl-step-title { font-family:var(--D); font-size:clamp(14px,1.2vw,17px); font-weight:300; color:var(--ink); line-height:1.2; margin-bottom:12px; transition:color .25s; }
+.tl-step.active .tl-step-title { color:var(--paper); }
+.tl-step-weeks { font-size:clamp(8px,0.65vw,10px); letter-spacing:.2em; text-transform:uppercase; color:var(--terra); margin-bottom:16px; }
+.tl-step-desc { font-size:clamp(11px,0.85vw,13px); color:var(--ink3); line-height:1.7; max-height:0; overflow:hidden; transition:max-height .4s ease, opacity .3s; opacity:0; text-align:justify; }
+.tl-step.active .tl-step-desc { max-height:160px; opacity:1; color:rgba(246,244,240,.45); }
+.tl-step-bar { position:absolute; bottom:0; left:0; height:2px; width:0; background:var(--terra); transition:width .4s; }
+.tl-step.active .tl-step-bar { width:100%; }
+.tl-hint { text-align:center; margin-top:24px; font-size:clamp(9px,0.7vw,11px); letter-spacing:.2em; text-transform:uppercase; color:var(--ink3); }
+
+/* ── 05 PROJETO ── */
+.projeto-section { background:var(--paper); border-bottom:1px solid var(--line); }
+.projeto-header { padding:40px 80px 32px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:baseline; }
+.projeto-eyebrow { font-size:clamp(9px,0.7vw,11px); letter-spacing:.35em; text-transform:uppercase; color:var(--ink3); }
+.projeto-label { font-size:clamp(9px,0.7vw,11px); letter-spacing:.2em; color:var(--terra); }
+.projeto-inner { display:grid; grid-template-columns:1fr 340px; min-height:540px; }
+.projeto-drawing { background:var(--white); border-right:1px solid var(--line); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:60px; position:relative; }
+.pj-caption { font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink3); margin-top:20px; align-self:flex-start; }
+.projeto-info { padding:52px 48px; display:flex; flex-direction:column; justify-content:space-between; }
+.pj-num { font-size:clamp(9px,0.7vw,11px); letter-spacing:.22em; color:var(--terra); margin-bottom:20px; display:block; }
+.pj-title { font-family:var(--D); font-size:clamp(22px,2vw,28px); font-weight:300; color:var(--ink); line-height:1.2; margin-bottom:20px; }
+.pj-desc { font-size:clamp(12px,0.95vw,14px); color:var(--ink2); line-height:1.85; margin-bottom:32px; text-align:justify; }
+.pj-specs { list-style:none; }
+.pj-specs li { display:flex; justify-content:space-between; align-items:center; padding:13px 0; border-bottom:1px solid var(--line); font-size:clamp(11px,0.9vw,13px); }
+.pj-specs li:last-child { border-bottom:none; }
+.pj-spec-key { color:var(--ink3); }
+.pj-spec-val { color:var(--ink); font-weight:600; }
+
+/* ── 06 REEL ── */
+.reel-section { background:var(--ink); padding:80px; border-bottom:1px solid rgba(246,244,240,.06); }
+.reel-inner { display:grid; grid-template-columns:240px 1fr; gap:80px; align-items:center; }
+.reel-box { aspect-ratio:9/16; background:#0A0A0A; border:1px solid rgba(246,244,240,.08); position:relative; display:flex; flex-direction:column; justify-content:space-between; padding:20px; overflow:hidden; }
+.reel-top { display:flex; justify-content:space-between; align-items:flex-start; }
+.reel-logo { font-family:var(--D); font-size:13px; font-weight:300; letter-spacing:.14em; color:rgba(246,244,240,.6); }
+.reel-type { font-size:7px; letter-spacing:.18em; text-transform:uppercase; color:rgba(246,244,240,.25); }
+.reel-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; gap:14px; }
+.reel-play { width:52px; height:52px; border:1px solid rgba(246,244,240,.2); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:border-color .2s, transform .2s; cursor:pointer; }
+.reel-play:hover { border-color:var(--terra); transform:scale(1.1); }
+.reel-play::after { content:''; width:0; height:0; border-top:9px solid transparent; border-bottom:9px solid transparent; border-left:16px solid rgba(246,244,240,.45); margin-left:3px; }
+.reel-play-label { font-size:8px; letter-spacing:.2em; text-transform:uppercase; color:rgba(246,244,240,.2); }
+.reel-bottom {}
+.reel-title { font-family:var(--D); font-size:13px; font-weight:300; color:rgba(246,244,240,.65); line-height:1.3; margin-bottom:8px; }
+.reel-sub { font-size:8px; letter-spacing:.16em; text-transform:uppercase; color:var(--terra); }
+.reel-bar { position:absolute; bottom:0; left:0; width:45%; height:2px; background:var(--terra); }
+.reel-info { display:flex; flex-direction:column; justify-content:center; }
+.reel-info-tag { font-size:clamp(9px,0.7vw,11px); letter-spacing:.35em; text-transform:uppercase; color:rgba(246,244,240,.22); margin-bottom:32px; }
+.reel-info-headline { font-family:var(--D); font-size:clamp(28px,3vw,44px); font-weight:300; color:var(--paper); line-height:1.15; margin-bottom:32px; }
+.reel-info-text { font-size:clamp(13px,1vw,15px); color:rgba(246,244,240,.38); line-height:1.85; max-width:440px; padding-top:32px; border-top:1px solid rgba(246,244,240,.07); text-align:justify; }
+.reel-formats { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-top:40px; }
+.rfi { background:#111; padding:20px 24px; }
+.rfi-label { font-size:8px; letter-spacing:.2em; text-transform:uppercase; color:rgba(246,244,240,.22); margin-bottom:8px; }
+.rfi-val { font-family:var(--D); font-size:clamp(14px,1.3vw,18px); font-weight:300; color:rgba(246,244,240,.55); }
+
+/* ── FORMULÁRIO ── */
+.form-section { background:var(--paper); padding:clamp(60px,8vw,120px) 80px; border-bottom:1px solid var(--line); }
+.form-inner { display:grid; grid-template-columns:1fr 560px; gap:100px; align-items:start; }
+.form-left-label { font-size:clamp(9px,0.7vw,11px); letter-spacing:.35em; text-transform:uppercase; color:var(--terra); margin-bottom:24px; display:block; }
+.form-left-title { font-family:var(--D); font-size:clamp(32px,3.5vw,48px); font-weight:300; color:var(--ink); line-height:1.15; margin-bottom:32px; }
+.form-left-desc { font-size:clamp(13px,1vw,15px); color:var(--ink2); line-height:1.9; max-width:380px; border-top:1px solid var(--line); padding-top:32px; text-align:justify; }
+.form-left-promise { margin-top:32px; display:flex; flex-direction:column; gap:16px; }
+.form-promise-item { display:flex; align-items:flex-start; gap:16px; font-size:clamp(12px,0.95vw,14px); color:var(--ink2); }
+.form-promise-dot { width:6px; height:6px; border-radius:50%; background:var(--terra); flex-shrink:0; margin-top:6px; }
+.orcamento-form { background:var(--white); border:1px solid var(--line); padding:52px 48px; }
+.form-group { margin-bottom:24px; }
+.form-label { display:block; font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink3); margin-bottom:8px; }
+.form-input, .form-select, .form-textarea {
+  width:100%; background:var(--paper); border:1px solid var(--line);
+  padding:14px 16px; font-family:var(--B); font-size:clamp(13px,1vw,15px);
+  color:var(--ink); outline:none; transition:border-color .2s, box-shadow .2s;
+  appearance:none; -webkit-appearance:none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color:var(--terra);
+  box-shadow: 0 0 0 3px rgba(122,107,90,.08);
+}
+.form-input::placeholder, .form-textarea::placeholder { color:var(--ink3); opacity:.7; }
+.form-textarea { resize:vertical; min-height:100px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.form-submit {
+  width:100%; background:var(--terra); color:#FFFFFF; border:none;
+  padding:20px 32px; font-family:var(--D); font-size:clamp(11px,0.85vw,13px);
+  letter-spacing:.22em; text-transform:uppercase; cursor:pointer;
+  transition:background .25s, transform .15s;
+  margin-top:8px; box-shadow:0 4px 20px rgba(122,107,90,.35);
+}
+.form-submit:hover { background:#5A4D3F; transform:translateY(-1px); box-shadow:0 6px 28px rgba(122,107,90,.45); }
+.form-note { font-size:10px; color:var(--ink3); text-align:center; margin-top:16px; letter-spacing:.04em; }
+.form-success { display:none; text-align:center; padding:40px 0; }
+.form-success-icon { width:40px; height:40px; border:1px solid var(--terra); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-size:18px; color:var(--terra); }
+.form-success-title { font-family:var(--D); font-size:clamp(18px,1.6vw,24px); font-weight:300; color:var(--ink); margin-bottom:12px; }
+.form-success-text { font-size:clamp(12px,0.95vw,14px); color:var(--ink2); line-height:1.8; text-align:justify; }
+
+/* ── CONTATO ── */
+.contact-section {
+  background:var(--ink); padding:140px 80px;
+  display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+}
+.contact-logo { font-family:var(--D); font-size:clamp(56px,7vw,88px); font-weight:200; letter-spacing:.14em; color:var(--paper); line-height:1; display:block; margin-bottom:24px; }
+.contact-hr { width:60px; height:1px; background:rgba(246,244,240,.12); margin-bottom:24px; }
+.contact-name { font-size:clamp(9px,0.75vw,11px); letter-spacing:.32em; text-transform:uppercase; color:rgba(246,244,240,.3); line-height:2.4; display:block; }
+.contact-right { padding-left:80px; border-left:1px solid rgba(246,244,240,.07); }
+.contact-tagline { font-family:var(--D); font-size:clamp(34px,4vw,54px); font-weight:300; color:var(--paper); line-height:1.15; letter-spacing:-.01em; margin-bottom:48px; }
+.contact-tagline-accent { color:var(--terra); }
+.contact-info { display:flex; flex-direction:column; gap:16px; padding-top:40px; border-top:1px solid rgba(246,244,240,.07); }
+.contact-row { display:flex; align-items:center; gap:20px; }
+.contact-row-label { font-size:clamp(8px,0.65vw,10px); letter-spacing:.22em; text-transform:uppercase; color:rgba(246,244,240,.25); width:80px; flex-shrink:0; }
+.contact-row-val { font-size:clamp(13px,1.1vw,15px); color:rgba(246,244,240,.55); }
+
+/* ── SAVINGS CALCULATOR ── */
+.calc-section {
+  background:var(--paper2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  padding:64px 80px;
+}
+.calc-header { margin-bottom:40px; }
+.calc-label { font-size:9px; letter-spacing:.32em; text-transform:uppercase; color:var(--terra); margin-bottom:10px; }
+.calc-title { font-family:var(--D); font-size:clamp(22px,2vw,30px); font-weight:300; color:var(--ink); }
+.calc-body { display:grid; grid-template-columns:1fr 2fr; gap:60px; align-items:center; }
+.calc-slider-wrap { }
+.calc-slider-label { font-size:clamp(11px,0.9vw,13px); color:var(--ink2); margin-bottom:8px; }
+.calc-area-display { font-family:var(--D); font-size:clamp(48px,5vw,72px); font-weight:200; color:var(--ink); line-height:1; margin-bottom:4px; }
+.calc-area-unit { font-size:clamp(11px,0.9vw,13px); color:var(--ink3); letter-spacing:.12em; margin-bottom:24px; }
+.calc-range {
+  -webkit-appearance:none; appearance:none; width:100%; height:2px;
+  background:linear-gradient(to right, var(--terra) var(--pct,35%), rgba(13,13,13,.12) var(--pct,35%));
+  outline:none; cursor:pointer; border-radius:1px;
+}
+.calc-range::-webkit-slider-thumb {
+  -webkit-appearance:none; width:18px; height:18px; border-radius:50%;
+  background:var(--terra); border:2px solid var(--paper); box-shadow:0 1px 6px rgba(0,0,0,.18); cursor:pointer;
+}
+.calc-range::-moz-range-thumb {
+  width:18px; height:18px; border-radius:50%;
+  background:var(--terra); border:2px solid var(--paper); cursor:pointer;
+}
+.calc-range-limits { display:flex; justify-content:space-between; font-size:10px; color:var(--ink3); margin-top:8px; }
+.calc-results { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; }
+.calc-result-card {
+  background:var(--white); border:1px solid var(--line); padding:24px 20px;
+  position:relative; overflow:hidden; transition:transform .2s, box-shadow .2s;
+}
+.calc-result-card:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.08); }
+.calc-result-bar-bg {
+  position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--line);
+}
+.calc-result-bar-fill {
+  height:100%; background:var(--terra); transition:width .45s cubic-bezier(.4,0,.2,1);
+}
+.calc-result-icon { font-size:18px; margin-bottom:12px; color:var(--terra); font-family:var(--D); font-weight:300; }
+.calc-result-val { font-family:var(--D); font-size:clamp(28px,2.8vw,40px); font-weight:200; color:var(--ink); line-height:1; margin-bottom:4px; transition:opacity .2s; }
+.calc-result-unit { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink3); margin-bottom:10px; }
+.calc-result-label { font-size:clamp(11px,0.9vw,13px); color:var(--ink2); line-height:1.5; }
+.calc-note { margin-top:28px; font-size:10px; color:var(--ink3); letter-spacing:.04em; }
+.calc-vs { margin-top:8px; font-size:11px; color:var(--ink2); }
+.calc-vs strong { color:var(--terra); }
+
+/* ── GANTT CHART ── */
+.gantt-wrap {
+  margin-top:52px; padding:0 80px 80px;
+}
+.gantt-header { margin-bottom:20px; }
+.gantt-label-small { font-size:9px; letter-spacing:.28em; text-transform:uppercase; color:var(--ink3); margin-bottom:6px; }
+.gantt-title { font-family:var(--D); font-size:clamp(13px,1.1vw,16px); font-weight:300; color:var(--ink2); }
+.gantt-chart { }
+.gantt-axis { display:flex; margin-left:160px; margin-bottom:6px; gap:0; }
+.gantt-week-label { flex:1; font-size:9px; color:var(--ink3); letter-spacing:.06em; text-align:center; border-left:1px solid var(--line); padding-top:2px; }
+.gantt-rows { display:flex; flex-direction:column; gap:8px; }
+.gantt-row { display:flex; align-items:center; gap:0; }
+.gantt-row-label {
+  width:160px; flex-shrink:0; font-size:clamp(10px,0.85vw,12px);
+  color:var(--ink3); padding-right:16px; text-align:right; line-height:1.3;
+  transition:color .25s;
+}
+.gantt-row.active .gantt-row-label { color:var(--ink); font-weight:600; }
+.gantt-track { flex:1; height:22px; position:relative; background:rgba(13,13,13,.04); border-left:1px solid var(--line); }
+.gantt-bar {
+  position:absolute; top:4px; height:14px; border-radius:2px;
+  background:rgba(13,13,13,.10);
+  transition:background .3s, left .3s, width .3s;
+}
+.gantt-row.active .gantt-bar { background:var(--terra); }
+.gantt-bar-label {
+  position:absolute; right:6px; top:0; height:100%; display:flex; align-items:center;
+  font-size:9px; color:rgba(13,13,13,.35); letter-spacing:.06em; white-space:nowrap;
+  transition:color .3s;
+}
+.gantt-row.active .gantt-bar-label { color:var(--paper); }
+.gantt-dividers { margin-left:160px; display:flex; position:relative; height:0; }
+.gantt-divider { flex:1; border-left:1px solid var(--line); position:relative; }
+
+/* ── BAR TOOLTIPS ── */
+.sf-comp-row { position:relative; }
+.sf-comp-bar-wrap { position:relative; }
+.sf-comp-tooltip {
+  display:none; position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%);
+  background:var(--ink); color:var(--paper); font-size:10px; line-height:1.5;
+  padding:8px 12px; white-space:nowrap; pointer-events:none; z-index:20;
+  letter-spacing:.02em; max-width:200px; white-space:normal; width:180px;
+}
+.sf-comp-tooltip::after {
+  content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%);
+  border:5px solid transparent; border-top-color:var(--ink);
+}
+.sf-comp-bar-wrap:hover .sf-comp-tooltip { display:block; }
+.sf-comp-bar-wrap.bar-sf .sf-comp-bar-fill { transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+.sf-comp-bar-wrap.bar-alv .sf-comp-bar-fill { transition: width 1.2s cubic-bezier(.4,0,.2,1) .15s; }
+
+/* ── counter card hover ── */
+.sf-counter-card { cursor:default; transition:transform .22s, box-shadow .22s; }
+.sf-counter-card:hover { transform:translateY(-4px); }
+</style>
+</head>
+<body>
+
+<nav class="sidenav">
+  <a href="#capa"      class="sidenav-dot"></a>
+  <a href="#sobre"     class="sidenav-dot"></a>
+  <a href="#servicos"  class="sidenav-dot"></a>
+  <a href="#sf"        class="sidenav-dot"></a>
+  <a href="#timeline"  class="sidenav-dot"></a>
+  <a href="#projeto"   class="sidenav-dot"></a>
+  <a href="#reel"      class="sidenav-dot"></a>
+  <a href="#orcamento" class="sidenav-dot"></a>
+  <a href="#contato"   class="sidenav-dot"></a>
+</nav>
+
+
+<!-- ══ 01 CAPA ════════════════════════════ -->
+<section class="cover" id="capa">
+  <div class="cover-center">
+    <div class="cover-eyebrow">🇧🇷 &nbsp;Engenheiro Civil · Steel Frame · Marília–SP · Atendimento Nacional</div>
+    <div class="cover-logo">LGM</div>
+    <div class="cover-rule"></div>
+    <div class="cover-name">Luis Gustavo Maia<br>Engenharia &amp; Construções</div>
+    <div class="cover-tagline">Do terreno. <em>À chave.</em></div>
+  </div>
+  <div class="cover-footer">
+    <div class="cover-footer-label">CREA–SP 5071068977 · engmaia1996@gmail.com</div>
+    <nav class="cover-nav">
+      <a href="#servicos">Serviços</a>
+      <a href="#sf">Steel Frame</a>
+      <a href="#orcamento">Orçamento</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</section>
+
+
+<!-- ══ 02 SOBRE ═══════════════════════════ -->
+<section class="sobre-section" id="sobre">
+  <div class="sobre-media">
+    <div class="portrait-box">
+      <svg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg"
+           preserveAspectRatio="xMidYMax meet" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;">
+        <rect width="400" height="600" fill="#0D0D0D"/>
+        <defs>
+          <pattern id="pgrid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#191919" stroke-width="0.6"/>
+          </pattern>
+        </defs>
+        <rect width="400" height="600" fill="url(#pgrid)"/>
+        <ellipse cx="200" cy="195" rx="68" ry="76" fill="#F6F4F0" opacity="0.055"/>
+        <rect x="184" y="266" width="32" height="34" fill="#F6F4F0" opacity="0.055"/>
+        <path d="M 40 600 L 85 370 Q 130 305 200 296 Q 270 305 315 370 L 360 600 Z" fill="#F6F4F0" opacity="0.055"/>
+        <g transform="translate(170, 168)">
+          <line x1="0" y1="0" x2="0" y2="70" stroke="#F6F4F0" stroke-width="1.5" stroke-linecap="square" opacity="0.32"/>
+          <line x1="0" y1="70" x2="54" y2="70" stroke="#F6F4F0" stroke-width="1.5" stroke-linecap="square" opacity="0.32"/>
+          <rect x="0" y="58" width="12" height="12" fill="#7A6B5A" opacity="0.9"/>
+        </g>
+        <rect x="0" y="528" width="400" height="72" fill="#111111"/>
+        <line x1="0" y1="528" x2="400" y2="528" stroke="#7A6B5A" stroke-width="1" opacity="0.35"/>
+        <text x="32" y="553" font-family="'Gill Sans MT','Century Gothic',sans-serif" font-size="8" letter-spacing="3" fill="#7A6B5A" opacity="0.75">FOTO · PLACEHOLDER</text>
+        <text x="32" y="573" font-family="'Gill Sans MT','Century Gothic',sans-serif" font-size="13" letter-spacing="2" fill="#F6F4F0" opacity="0.5">Luis Gustavo Maia</text>
+        <text x="32" y="590" font-family="'Gill Sans MT','Century Gothic',sans-serif" font-size="9" letter-spacing="3" fill="#F6F4F0" opacity="0.18">Engenheiro Civil · CREA–SP</text>
+        <rect x="24" y="24" width="4" height="4" fill="#7A6B5A" opacity="0.45"/>
+        <rect x="372" y="24" width="4" height="4" fill="#7A6B5A" opacity="0.45"/>
+      </svg>
+    </div>
+  </div>
+  <div class="sobre-content">
+    <div class="sobre-eyebrow reveal">🇧🇷 &nbsp;Engenheiro Civil · CREA–SP 5071068977</div>
+    <div class="sobre-name reveal reveal-delay-1">Luis Gustavo<br>Maia</div>
+    <div style="font-family:var(--D);font-size:clamp(13px,1vw,16px);font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin-bottom:28px;margin-top:-16px;" class="reveal reveal-delay-1">Engenheiro Civil</div>
+    <div class="sobre-bio reveal reveal-delay-2">
+      Mais de 120 projetos entregues — residências, galpões e comerciais — em todo o território brasileiro, levando qualidade e eficiência a cada cliente. Todos com ART registrada e documentação legal completa. Responsabilidade técnica integral do projeto ao CNO: sem terceirizar, sem delegar o que importa.
+    </div>
+    <div class="sobre-creds reveal reveal-delay-3">
+      <div class="cred-card active" onclick="selectCred(this)">
+        <div class="cred-num"><span class="counter" data-target="8">0</span><span>+</span></div>
+        <div class="cred-label">anos de<br>experiência</div>
+        <div class="cred-expand">Engenharia Civil com especialização em estruturas metálicas e steel frame. Atuando desde 2016 em projetos residenciais e comerciais em todo o Brasil.</div>
+      </div>
+      <div class="cred-card" onclick="selectCred(this)">
+        <div class="cred-num"><span class="counter" data-target="120">0</span><span>+</span></div>
+        <div class="cred-label">projetos<br>entregues</div>
+        <div class="cred-expand">Residências, galpões e comerciais em todo o território brasileiro. Qualidade e eficiência garantidos com ART e documentação integral em cada entrega.</div>
+      </div>
+      <div class="cred-card" onclick="selectCred(this)">
+        <div class="cred-num"><span class="counter" data-target="100">0</span><span>%</span></div>
+        <div class="cred-label">INSS de obra<br>regularizado</div>
+        <div class="cred-expand">CNO quitado, planejamento tributário aplicado e certidão negativa entregue em todos os projetos. Zero passivo fiscal para o cliente.</div>
+      </div>
+    </div>
+    <div class="sobre-tags reveal reveal-delay-4">
+      <span class="svc-tag">Projeto Arquitetônico</span>
+      <span class="svc-tag">Projeto Estrutural</span>
+      <span class="svc-tag">Projetos Complementares</span>
+      <span class="svc-tag">ART · CREA–SP</span>
+      <span class="svc-tag">CNO · Receita Federal</span>
+      <span class="svc-tag">INSS de Obra</span>
+      <span class="svc-tag">Steel Frame</span>
+      <span class="svc-tag">Gestão de Obra</span>
+      <span class="svc-tag">Doc. Financiamento</span>
+      <span class="svc-tag">Execução de Obra</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ 03 SERVIÇOS ════════════════════════ -->
+<section class="servicos-section" id="servicos">
+  <div class="sec-header reveal">
+    <div class="sec-label">O que entrego</div>
+    <div class="sec-title">Responsabilidade técnica<br>do início ao fim.</div>
+  </div>
+  <div class="servicos-grid">
+    <div class="svc-card reveal reveal-delay-1">
+      <div class="svc-num">01</div>
+      <div class="svc-title">Projeto Arquitetônico</div>
+      <div class="svc-desc">Desenvolvimento do projeto arquitetônico completo — planta baixa, cortes, fachadas e detalhamentos — integrado ao sistema construtivo em steel frame desde a concepção.</div>
+      <div class="svc-detail">Planta baixa · Cortes · Fachadas · Aprovação na prefeitura</div>
+    </div>
+    <div class="svc-card reveal reveal-delay-2">
+      <div class="svc-num">02</div>
+      <div class="svc-title">Projeto Estrutural</div>
+      <div class="svc-desc">Dimensionamento completo da estrutura em steel frame com pranchas técnicas, memorial de cálculo e ART registrada no CREA–SP 5071068977. Precisão de ±1mm no canteiro.</div>
+      <div class="svc-detail">Pranchas técnicas · Memorial de cálculo · ART CREA–SP</div>
+    </div>
+    <div class="svc-card reveal reveal-delay-1">
+      <div class="svc-num">03</div>
+      <div class="svc-title">Projetos Complementares</div>
+      <div class="svc-desc">Projetos elétrico e hidrossanitário compatibilizados com a estrutura steel frame, com todas as ARTs necessárias para aprovação e execução da obra.</div>
+      <div class="svc-detail">Elétrico · Hidrossanitário · Compatibilização · ARTs</div>
+    </div>
+    <div class="svc-card reveal reveal-delay-2">
+      <div class="svc-num">04</div>
+      <div class="svc-title">CNO e INSS de Obra</div>
+      <div class="svc-desc">Abertura do CNO (Cadastro Nacional de Obras) na Receita Federal e regularização completa do INSS — com planejamento tributário para redução legal da base de cálculo e aproveitamento máximo de benefícios fiscais.</div>
+      <div class="svc-detail">CNO · Planejamento tributário · Redução legal da alíquota · CND</div>
+    </div>
+    <div class="svc-card reveal reveal-delay-1">
+      <div class="svc-num">05</div>
+      <div class="svc-title">Documentação para Financiamento</div>
+      <div class="svc-desc">Elaboração de toda a documentação técnica exigida por bancos e financeiras para aprovação de crédito imobiliário — Caixa Econômica, FGTS e demais linhas.</div>
+      <div class="svc-detail">Laudo técnico · Orçamento · Memorial descritivo · Cronograma físico-financeiro</div>
+    </div>
+    <div class="svc-card reveal reveal-delay-2">
+      <div class="svc-num">06</div>
+      <div class="svc-title">Gestão e Acompanhamento de Obra</div>
+      <div class="svc-desc">Gerenciamento do canteiro, controle rigoroso de prazo e orçamento, relatórios periódicos e presença técnica nas etapas críticas. Obra dentro do planejado.</div>
+      <div class="svc-detail">Controle de prazo · Relatórios · Medições · Acompanhamento em campo</div>
+    </div>
+    <div class="svc-card reveal reveal-delay-1">
+      <div class="svc-num">07</div>
+      <div class="svc-title">Execução de Obra</div>
+      <div class="svc-desc">Execução direta da obra em steel frame com equipe especializada, montagem dos perfis estruturais, instalações e acabamentos — tudo sob minha responsabilidade técnica e supervisão do início ao fim.</div>
+      <div class="svc-detail">Montagem estrutural · Instalações · Acabamentos · ART de execução</div>
+    </div>
+    <div class="svc-card reveal reveal-delay-2">
+      <div class="svc-num">08</div>
+      <div class="svc-title">Regularização Imobiliária</div>
+      <div class="svc-desc">Valorização do seu patrimônio junto aos órgãos competentes — prefeitura, cartório e Receita Federal. Regularização de construções existentes, averbação de obras e emissão de certidões para venda, inventário ou financiamento.</div>
+      <div class="svc-detail">Averbação de obra · Prefeitura · Cartório · CND · Habite-se · Inventário</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ 04 STEEL FRAME ═════════════════════ -->
+<section class="sf-section" id="sf">
+
+  <div class="sf-intro reveal">
+    <div class="sf-title">Steel frame<br>não é moda.<br>É engenharia.</div>
+    <div class="sf-subtitle">
+      O sistema construtivo em steel frame combina velocidade, precisão e eficiência que a alvenaria convencional não consegue alcançar. Para quem pesquisa antes de decidir, os números falam mais alto que qualquer argumento de venda.
+    </div>
+  </div>
+
+  <!-- Animated counters -->
+  <div class="sf-counters">
+    <div class="sf-counter-card reveal reveal-delay-1">
+      <div class="sf-counter-val"><span class="counter" data-target="3">0</span><span>×</span></div>
+      <div class="sf-counter-label">Mais rápido</div>
+      <div class="sf-counter-desc">Uma residência de 100m² em steel frame sai do zero ao acabado em 90 dias. Alvenaria convencional leva 270 dias ou mais.</div>
+    </div>
+    <div class="sf-counter-card reveal reveal-delay-2">
+      <div class="sf-counter-val"><span class="counter" data-target="80">0</span><span>%</span></div>
+      <div class="sf-counter-label">Menos resíduo</div>
+      <div class="sf-counter-desc">Obra a seco, sem entulho, sem quebra de bloco. O canteiro termina limpo e praticamente todo o material é aproveitado.</div>
+    </div>
+    <div class="sf-counter-card reveal reveal-delay-3">
+      <div class="sf-counter-val"><span>±1</span><span>mm</span></div>
+      <div class="sf-counter-label">Tolerância estrutural</div>
+      <div class="sf-counter-desc">Perfis de aço galvanizado usinado com tolerância de ±1mm. Precisão que a alvenaria convencional não consegue fisicamente.</div>
+    </div>
+    <div class="sf-counter-card reveal reveal-delay-4">
+      <div class="sf-counter-val"><span class="counter" data-target="50">0</span><span>+</span></div>
+      <div class="sf-counter-label">Anos de vida útil</div>
+      <div class="sf-counter-desc">Norma ABNT NBR 15253 garante vida útil estrutural mínima de 50 anos. Com manutenção adequada, muito mais.</div>
+    </div>
+  </div>
+
+  <!-- Interactive comparison -->
+  <div class="sf-comparison reveal">
+    <div class="sf-comp-title">Steel Frame × Alvenaria Convencional</div>
+    <div class="sf-comp-grid">
+      <div class="sf-comp-labels">
+        <div class="sf-comp-label">Prazo de obra</div>
+        <div class="sf-comp-label">Resíduo gerado</div>
+        <div class="sf-comp-label">Precisão estrutural</div>
+        <div class="sf-comp-label">Vão livre máximo</div>
+        <div class="sf-comp-label">Peso da estrutura</div>
+      </div>
+      <div class="sf-comp-bars" id="compBars">
+        <!-- Prazo -->
+        <div class="sf-comp-row">
+          <div class="sf-comp-bar-wrap bar-sf">
+            <div class="sf-comp-bar-header">
+              <span class="sf-comp-bar-name">Steel Frame</span>
+              <span class="sf-comp-bar-val">90 dias</span>
+            </div>
+            <div class="sf-comp-bar-track"><div class="sf-comp-bar-fill" data-width="33"></div></div>
+          </div>
+          <div class="sf-comp-bar-wrap bar-alv">
+            <div class="sf-comp-bar-header">
+              <span class="sf-comp-bar-name">Alvenaria</span>
+              <span class="sf-comp-bar-val">270+ dias</span>
+            </div>
+            <div class="sf-comp-bar-track"><div class="sf-comp-bar-fill" data-width="100"></div></div>
+          </div>
+        </div>
+        <!-- Resíduo -->
+        <div class="sf-comp-row">
+          <div class="sf-comp-bar-wrap bar-sf">
+            <div class="sf-comp-bar-header">
+              <span class="sf-comp-bar-name">Steel Frame</span>
+              <span class="sf-comp-bar-val">~5%</span>
+            </div>
+            <div class="sf-comp-bar-track"><div class="sf-comp-bar-fill" data-width="8"></div></div>
+          </div>
+          <div class="sf-comp-bar-wrap bar-alv">
+            <div class="sf-comp-bar-header">
+              <span class="sf-comp-bar-name">Alvenaria</span>
+              <span class="sf-comp-bar-val">~30%</span>
+            </div>
+            <div class="sf-comp-bar-track"><div class="sf-comp-bar-fill" data-width="48"></div></div>
+          </div>
+        </div>
+        <!-- Precisão -->
+        <div class="sf-comp-row">
+          <div class="sf-comp-bar-wrap bar-sf">
+            <div class="sf-comp-bar-header">
+              <span class="sf-comp-bar-name">Steel Frame</span>
+              <span class="sf-comp-bar-val">±1 mm</span>
+            </div>
+            <div class="sf-comp-bar-track"><div class="sf-comp-bar-fill" data-width="98"></div></div>
+          </div>
+          <div class="sf-comp-bar-wrap bar-alv">
+            <div class="sf-comp-bar-header">
+              <span class="sf-comp-bar-name">Alvenaria</span>
+              <span class="sf-comp-bar-val">±10 mm</span>
+            </div>
+            <div class="sf-comp-bar-track"><div class="sf-comp-bar-fill" data-width="40"></div></div>
+          </div>
+        </div>
+        <!-- Vão -->
+        <div class="sf-comp-row">
+          <div class="sf-comp-bar-wrap bar-sf">
+            <div class="sf-comp-bar-header">
+              <span class="sf-comp-bar-name">Steel Frame</span>
+              <span class="sf-comp-bar-val">10 m</span>
+            </div>
+            <div class="sf-comp-bar-track"><div class="sf-comp-bar-fill" data-width="100"></div></div>
+          </div>
+          <div class="sf-comp-bar-wrap bar-alv">
+            <div class="sf-comp-bar-header">
+              <span class="sf-comp-bar-name">Alvenaria</span>
+              <span class="sf-comp-bar-val">4 m</span>
+            </div>
+            <div class="sf-comp-bar-track"><div class="sf-comp-bar-fill" data-width="40"></div></div>
+          </div>
+        </div>
+        <!-- Peso -->
+        <div class="sf-comp-row">
+          <div class="sf-comp-bar-wrap bar-sf">
+            <div class="sf-comp-bar-header">
+              <span class="sf-comp-bar-name">Steel Frame</span>
+              <span class="sf-comp-bar-val">~50 kg/m²</span>
+            </div>
+            <div class="sf-comp-bar-track"><div class="sf-comp-bar-fill" data-width="20"></div></div>
+          </div>
+          <div class="sf-comp-bar-wrap bar-alv">
+            <div class="sf-comp-bar-header">
+              <span class="sf-comp-bar-name">Alvenaria</span>
+              <span class="sf-comp-bar-val">~300 kg/m²</span>
+            </div>
+            <div class="sf-comp-bar-track"><div class="sf-comp-bar-fill" data-width="100"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sf-quote reveal">
+    <div class="sf-quote-text">
+      Steel frame libera vão de até <em>10 metros sem pilar</em> — algo fisicamente impossível em alvenaria convencional com a mesma espessura de parede. Isso transforma completamente o que é possível fazer na planta do seu projeto.
+    </div>
+    <div class="sf-quote-text" style="font-size:clamp(14px,1.2vw,17px);margin-top:28px;padding-top:28px;border-top:1px solid rgba(246,244,240,.06);">
+      O sistema construtivo em steel frame traz <em>inovação e qualidade</em> para a obra, garantindo que grandes vãos sejam vencidos com uma estrutura leve. Os maiores desafios da arquitetura moderna podem ser superados com steel frame — estruturas que a alvenaria convencional simplesmente não consegue executar.
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ══ TIMELINE ═══════════════════════════ -->
+<section class="timeline-section" id="timeline">
+  <div class="sec-header reveal">
+    <div class="sec-label">Do projeto à entrega</div>
+    <div class="sec-title">Como funciona<br>na prática.</div>
+  </div>
+  <div class="tl-steps reveal">
+    <div class="tl-step active" onclick="selectStep(this)">
+      <div class="tl-step-bar"></div>
+      <div class="tl-step-num">01</div>
+      <div class="tl-step-title">Projeto Arquitetônico</div>
+      <div class="tl-step-weeks">Semanas 1–3</div>
+      <div class="tl-step-desc">Levantamento do terreno, definição do programa de necessidades e desenvolvimento completo do projeto arquitetônico. Planta, cortes, fachadas e aprovação na prefeitura.</div>
+    </div>
+    <div class="tl-step" onclick="selectStep(this)">
+      <div class="tl-step-bar"></div>
+      <div class="tl-step-num">02</div>
+      <div class="tl-step-title">Projetos Técnicos</div>
+      <div class="tl-step-weeks">Semanas 3–6</div>
+      <div class="tl-step-desc">Projeto estrutural em steel frame, elétrico e hidrossanitário. Todos compatibilizados entre si e com ART registrada no CREA–SP para cada disciplina.</div>
+    </div>
+    <div class="tl-step" onclick="selectStep(this)">
+      <div class="tl-step-bar"></div>
+      <div class="tl-step-num">03</div>
+      <div class="tl-step-title">CNO e Licenças</div>
+      <div class="tl-step-weeks">Semanas 4–6</div>
+      <div class="tl-step-desc">Abertura do CNO na Receita Federal, planejamento tributário do INSS de obra com redução legal da base de cálculo. Documentação de financiamento se necessário.</div>
+    </div>
+    <div class="tl-step" onclick="selectStep(this)">
+      <div class="tl-step-bar"></div>
+      <div class="tl-step-num">04</div>
+      <div class="tl-step-title">Execução da Obra</div>
+      <div class="tl-step-weeks">Semanas 6–18</div>
+      <div class="tl-step-desc">Montagem da estrutura steel frame, fechamentos, instalações e acabamentos. Acompanhamento técnico periódico com relatórios e controle rigoroso de prazo e orçamento.</div>
+    </div>
+    <div class="tl-step" onclick="selectStep(this)">
+      <div class="tl-step-bar"></div>
+      <div class="tl-step-num">05</div>
+      <div class="tl-step-title">Entrega e Regularização</div>
+      <div class="tl-step-weeks">Semanas 18–24</div>
+      <div class="tl-step-desc">Vistoria final, habite-se, quitação do INSS de obra com certidão negativa de débitos. Entrega das chaves com toda a documentação em ordem.</div>
+    </div>
+  </div>
+  <div class="tl-hint reveal">Clique em cada etapa para ver os detalhes</div>
+</section>
+
+
+<!-- ══ 05 PROJETO ═════════════════════════ -->
+<section class="projeto-section" id="projeto">
+  <div class="projeto-header">
+    <span class="projeto-eyebrow">Projeto em destaque · Steel Frame</span>
+    <span class="projeto-label">Residência Unifamiliar</span>
+  </div>
+  <div class="projeto-inner">
+    <div class="projeto-drawing reveal">
+
+      <!-- View buttons -->
+      <div style="position:absolute;top:24px;right:24px;z-index:10;display:flex;flex-direction:column;gap:5px;align-items:flex-end;">
+        <button id="btnTecnologia" onclick="setProjectView('tecnologia')" style="
+          background:var(--ink); color:rgba(246,244,240,.55); border:1px solid rgba(246,244,240,.12);
+          padding:9px 16px; font-family:var(--D); font-size:9px;
+          letter-spacing:.22em; text-transform:uppercase; cursor:pointer;
+          transition:background .2s,color .2s,border-color .2s; white-space:nowrap;
+        ">Tecnologia Construtiva</button>
+        <button id="btnEficiente" onclick="setProjectView('eficiente')" style="
+          background:var(--ink); color:rgba(246,244,240,.55); border:1px solid rgba(246,244,240,.12);
+          padding:9px 16px; font-family:var(--D); font-size:9px;
+          letter-spacing:.22em; text-transform:uppercase; cursor:pointer;
+          transition:background .2s,color .2s,border-color .2s; white-space:nowrap;
+        ">Projeto Eficiente</button>
+      </div>
+
+      <!-- View A: Elevação arquitectónica (default) -->
+      <div id="viewElevation" style="width:100%; transition:opacity .45s ease;">
+      <svg viewBox="0 0 720 440" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="385" x2="660" y2="385" stroke="#ECEAE5" stroke-width="8"/>
+        <line x1="60" y1="385" x2="660" y2="385" stroke="#0D0D0D" stroke-width="1.5"/>
+        <rect x="108" y="375" width="504" height="10" fill="#ECEAE5" stroke="#0D0D0D" stroke-width="1"/>
+        <rect x="120" y="155" width="480" height="220" fill="#FAFAFA" stroke="#0D0D0D" stroke-width="1.5"/>
+        <polyline points="108,155 360,48 612,155" fill="none" stroke="#0D0D0D" stroke-width="1.5"/>
+        <polyline points="108,155 360,48 612,155 600,155 360,62 120,155 Z" fill="#F6F4F0" stroke="none"/>
+        <line x1="360" y1="48" x2="360" y2="155" stroke="#0D0D0D" stroke-width="0.7" stroke-dasharray="4,4" opacity="0.35"/>
+        <line x1="200" y1="155" x2="200" y2="375" stroke="#0D0D0D" stroke-width="0.8" opacity="0.28"/>
+        <line x1="280" y1="155" x2="280" y2="375" stroke="#0D0D0D" stroke-width="0.8" opacity="0.28"/>
+        <line x1="360" y1="155" x2="360" y2="375" stroke="#0D0D0D" stroke-width="0.8" opacity="0.28"/>
+        <line x1="440" y1="155" x2="440" y2="375" stroke="#0D0D0D" stroke-width="0.8" opacity="0.28"/>
+        <line x1="520" y1="155" x2="520" y2="375" stroke="#0D0D0D" stroke-width="0.8" opacity="0.28"/>
+        <line x1="120" y1="210" x2="600" y2="210" stroke="#0D0D0D" stroke-width="0.8" opacity="0.28"/>
+        <line x1="120" y1="270" x2="600" y2="270" stroke="#0D0D0D" stroke-width="0.8" opacity="0.28"/>
+        <line x1="120" y1="330" x2="600" y2="330" stroke="#0D0D0D" stroke-width="0.8" opacity="0.28"/>
+        <line x1="440" y1="210" x2="520" y2="270" stroke="#0D0D0D" stroke-width="0.6" opacity="0.18"/>
+        <line x1="520" y1="210" x2="440" y2="270" stroke="#0D0D0D" stroke-width="0.6" opacity="0.18"/>
+        <line x1="440" y1="270" x2="520" y2="330" stroke="#0D0D0D" stroke-width="0.6" opacity="0.18"/>
+        <line x1="520" y1="270" x2="440" y2="330" stroke="#0D0D0D" stroke-width="0.6" opacity="0.18"/>
+        <rect x="140" y="190" width="100" height="72" fill="none" stroke="#0D0D0D" stroke-width="1"/>
+        <line x1="190" y1="190" x2="190" y2="262" stroke="#0D0D0D" stroke-width="0.7" opacity="0.45"/>
+        <line x1="140" y1="226" x2="240" y2="226" stroke="#0D0D0D" stroke-width="0.7" opacity="0.45"/>
+        <line x1="135" y1="262" x2="245" y2="262" stroke="#0D0D0D" stroke-width="1.2"/>
+        <rect x="295" y="190" width="130" height="72" fill="none" stroke="#0D0D0D" stroke-width="1"/>
+        <line x1="360" y1="190" x2="360" y2="262" stroke="#0D0D0D" stroke-width="0.7" opacity="0.45"/>
+        <line x1="295" y1="226" x2="425" y2="226" stroke="#0D0D0D" stroke-width="0.7" opacity="0.45"/>
+        <line x1="290" y1="262" x2="430" y2="262" stroke="#0D0D0D" stroke-width="1.2"/>
+        <rect x="450" y="285" width="80" height="90" fill="#ECEAE5" opacity="0.5" stroke="#0D0D0D" stroke-width="1"/>
+        <circle cx="524" cy="332" r="3" fill="#0D0D0D" opacity="0.35"/>
+        <line x1="200" y1="155" x2="280" y2="95" stroke="#0D0D0D" stroke-width="0.7" opacity="0.2"/>
+        <line x1="280" y1="155" x2="320" y2="72" stroke="#0D0D0D" stroke-width="0.7" opacity="0.2"/>
+        <line x1="440" y1="155" x2="400" y2="72" stroke="#0D0D0D" stroke-width="0.7" opacity="0.2"/>
+        <line x1="520" y1="155" x2="440" y2="95" stroke="#0D0D0D" stroke-width="0.7" opacity="0.2"/>
+        <rect x="120" y="365" width="10" height="10" fill="#7A6B5A" opacity="0.8"/>
+        <rect x="590" y="365" width="10" height="10" fill="#7A6B5A" opacity="0.8"/>
+        <line x1="120" y1="410" x2="600" y2="410" stroke="#0D0D0D" stroke-width="0.7" opacity="0.35"/>
+        <line x1="120" y1="405" x2="120" y2="415" stroke="#0D0D0D" stroke-width="0.7" opacity="0.35"/>
+        <line x1="600" y1="405" x2="600" y2="415" stroke="#0D0D0D" stroke-width="0.7" opacity="0.35"/>
+        <text x="360" y="428" text-anchor="middle" font-family="'Gill Sans MT','Century Gothic',sans-serif" font-size="9" fill="#0D0D0D" opacity="0.3" letter-spacing="2">12,00 m</text>
+        <line x1="80" y1="155" x2="80" y2="375" stroke="#0D0D0D" stroke-width="0.7" opacity="0.35"/>
+        <line x1="75" y1="155" x2="85" y2="155" stroke="#0D0D0D" stroke-width="0.7" opacity="0.35"/>
+        <line x1="75" y1="375" x2="85" y2="375" stroke="#0D0D0D" stroke-width="0.7" opacity="0.35"/>
+        <text x="68" y="270" text-anchor="middle" font-family="'Gill Sans MT','Century Gothic',sans-serif" font-size="9" fill="#0D0D0D" opacity="0.3" letter-spacing="1" transform="rotate(-90, 68, 270)">3,20 m</text>
+        <text x="640" y="428" text-anchor="end" font-family="'Gill Sans MT','Century Gothic',sans-serif" font-size="8" fill="#0D0D0D" opacity="0.25" letter-spacing="1">ESC 1:75</text>
+      </svg>
+      <div class="pj-caption" id="captionElevation">Elevação frontal · Residência 120m² · Steel Frame</div>
+      </div><!-- /viewElevation -->
+
+      <!-- View B: Tecnologia Construtiva — foto real LSF em montagem -->
+      <div id="viewSteelFrame" style="width:100%; display:none; opacity:0; transition:opacity .45s ease; position:relative; overflow:hidden;">
+        <img src="obra.svg" alt="Estrutura LSF em montagem" style="width:100%; aspect-ratio:720/440; object-fit:cover; object-position:center top; display:block;"/>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:20px 28px 18px;background:linear-gradient(to top,rgba(13,13,13,.85) 0%,rgba(13,13,13,.2) 65%,transparent 100%);display:flex;justify-content:space-between;align-items:flex-end;">
+          <div>
+            <div style="font-family:var(--D);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#C9703A;margin-bottom:5px;">ESTRUTURA LSF EM MONTAGEM</div>
+            <div style="font-family:var(--B);font-size:11px;color:rgba(246,244,240,.7);letter-spacing:.04em;">Montantes Cw 90mm · Contraventamento X · Aço galvanizado ASTM A653</div>
+          </div>
+          <div style="font-family:var(--D);font-size:8px;letter-spacing:2px;color:rgba(246,244,240,.35);text-transform:uppercase;white-space:nowrap;">LGM Engenharia</div>
+        </div>
+      </div><!-- /viewSteelFrame -->
+
+      <!-- View C: Projeto Eficiente — foto real da residencia concluida -->
+      <div id="viewEficiente" style="width:100%; display:none; opacity:0; transition:opacity .45s ease; position:relative; overflow:hidden;">
+        <img src="casa.svg" alt="Residencia concluida em steel frame" style="width:100%; aspect-ratio:720/440; object-fit:cover; object-position:center; display:block;"/>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:20px 28px 18px;background:linear-gradient(to top,rgba(13,13,13,.85) 0%,rgba(13,13,13,.2) 65%,transparent 100%);display:flex;justify-content:space-between;align-items:flex-end;">
+          <div>
+            <div style="font-family:var(--D);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#C9703A;margin-bottom:5px;">RESIDÊNCIA CONCLUÍDA · STEEL FRAME</div>
+            <div style="font-family:var(--B);font-size:11px;color:rgba(246,244,240,.7);letter-spacing:.04em;">Cobertura plana · Fachada em concreto · 120m² · ART CREA–SP 5071068977</div>
+          </div>
+          <div style="font-family:var(--D);font-size:8px;letter-spacing:2px;color:rgba(246,244,240,.35);text-transform:uppercase;white-space:nowrap;">LGM Engenharia</div>
+        </div>
+      </div><!-- /viewEficiente -->
+
+    </div>
+    <div class="projeto-info reveal reveal-delay-2">
+      <div>
+        <span class="pj-num">Projeto 01</span>
+        <div class="pj-title">Residência<br>Unifamiliar<br>em Steel Frame</div>
+        <div class="pj-desc">Projeto estrutural completo com ART, abertura de CNO e regularização do INSS de obra com planejamento tributário. Prazo de execução: 90 dias.</div>
+      </div>
+      <ul class="pj-specs">
+        <li><span class="pj-spec-key">Área</span><span class="pj-spec-val">120 m²</span></li>
+        <li><span class="pj-spec-key">Sistema</span><span class="pj-spec-val">Steel Frame</span></li>
+        <li><span class="pj-spec-key">Prazo</span><span class="pj-spec-val">90 dias</span></li>
+        <li><span class="pj-spec-key">ART</span><span class="pj-spec-val">CREA–SP 5071068977</span></li>
+        <li><span class="pj-spec-key">INSS obra</span><span class="pj-spec-val">Regularizado</span></li>
+        <li><span class="pj-spec-key">Desvio de prazo</span><span class="pj-spec-val">Zero</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ 06 REEL ════════════════════════════ -->
+<section class="reel-section" id="reel">
+  <div class="reel-inner">
+    <div class="reel-box reveal">
+      <div class="reel-top">
+        <span class="reel-logo">LGM</span>
+        <span class="reel-type">Reel</span>
+      </div>
+      <div class="reel-center">
+        <div class="reel-play"></div>
+        <span class="reel-play-label">Vídeo aqui</span>
+      </div>
+      <div class="reel-bottom">
+        <div class="reel-title">Como funciona o steel frame na prática</div>
+        <div class="reel-sub">LGM · Engenharia</div>
+      </div>
+      <div class="reel-bar"></div>
+    </div>
+    <div class="reel-info reveal reveal-delay-2">
+      <div class="reel-info-tag">Conteúdo em vídeo · Instagram Reels</div>
+      <div class="reel-info-headline">Ver o processo<br>é o que<br>converte.</div>
+      <div class="reel-info-text">Reels curtos mostrando a estrutura sendo montada, o canteiro limpo, o projeto saindo do papel. Para quem pesquisa steel frame, a prova visual vale mais que qualquer argumento.</div>
+      <div class="reel-formats">
+        <div class="rfi"><div class="rfi-label">Formato</div><div class="rfi-val">9:16 · Reel</div></div>
+        <div class="rfi"><div class="rfi-label">Duração</div><div class="rfi-val">30–60s</div></div>
+        <div class="rfi"><div class="rfi-label">Frequência</div><div class="rfi-val">2× / mês</div></div>
+        <div class="rfi"><div class="rfi-label">Tema</div><div class="rfi-val">Processo</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ ORÇAMENTO ══════════════════════════ -->
+<section class="form-section" id="orcamento">
+  <div class="form-inner">
+    <div class="form-left reveal">
+      <span class="form-left-label">Solicite seu orçamento</span>
+      <div class="form-left-title">Conte sobre<br>seu projeto.<br>Respondo em 24h.</div>
+      <div class="form-left-desc">Preencha o formulário com as informações básicas do projeto. Sem compromisso — análise inicial gratuita.</div>
+      <div class="form-left-promise">
+        <div class="form-promise-item"><div class="form-promise-dot"></div>Análise gratuita do terreno e viabilidade</div>
+        <div class="form-promise-item"><div class="form-promise-dot"></div>Orçamento detalhado por etapa de projeto</div>
+        <div class="form-promise-item"><div class="form-promise-dot"></div>Atendimento em todo o Brasil</div>
+        <div class="form-promise-item"><div class="form-promise-dot"></div>Resposta em até 24 horas úteis</div>
+      </div>
+    </div>
+    <div class="orcamento-form reveal reveal-delay-2">
+      <form id="leadForm" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nome completo</label>
+            <input type="text" class="form-input" placeholder="Seu nome" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">WhatsApp</label>
+            <input type="tel" class="form-input" placeholder="(00) 00000-0000" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">E-mail</label>
+          <input type="email" class="form-input" placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Cidade / Estado</label>
+          <input type="text" class="form-input" placeholder="Ex: Marília – SP">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Serviço de interesse</label>
+          <select class="form-select" required>
+            <option value="" disabled selected>Selecione</option>
+            <option>Projeto Arquitetônico + Estrutural</option>
+            <option>Projeto Estrutural (Steel Frame)</option>
+            <option>Projetos Complementares</option>
+            <option>CNO + INSS de Obra</option>
+            <option>Documentação para Financiamento</option>
+            <option>Gestão de Obra</option>
+            <option>Pacote Completo (do projeto à chave)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Área aproximada (m²)</label>
+          <select class="form-select">
+            <option value="" disabled selected>Selecione</option>
+            <option>Até 80 m²</option>
+            <option>80 – 120 m²</option>
+            <option>120 – 200 m²</option>
+            <option>200 – 350 m²</option>
+            <option>Acima de 350 m²</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mensagem (opcional)</label>
+          <textarea class="form-textarea" placeholder="Conte mais — terreno, prazo, dúvidas..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Solicitar Orçamento</button>
+        <div class="form-note">Seus dados não serão compartilhados com terceiros.</div>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon">✓</div>
+        <div class="form-success-title">Mensagem recebida.</div>
+        <div class="form-success-text">Entro em contato em até 24 horas úteis.<br>Obrigado pelo interesse — <strong>é para isso que estou aqui.</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CONTATO ════════════════════════════ -->
+<section class="contact-section" id="contato">
+  <div class="contact-left reveal">
+    <span class="contact-logo">LGM</span>
+    <div class="contact-hr"></div>
+    <span class="contact-name">
+      Luis Gustavo Maia<br>
+      Engenharia &amp; Construções<br>
+      CREA–SP 5071068977<br>
+      Marília–SP · Atendimento nacional
+    </span>
+  </div>
+  <div class="contact-right reveal reveal-delay-2">
+    <div class="contact-tagline">Do terreno.<br><span class="contact-tagline-accent">À chave.</span></div>
+    <div class="contact-info">
+      <div class="contact-row">
+        <span class="contact-row-label">WhatsApp</span>
+        <span class="contact-row-val">(14) 99185–0799</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-row-label">E-mail</span>
+        <span class="contact-row-val">engmaia1996@gmail.com</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-row-label">Instagram</span>
+        <span class="contact-row-val">@eng.gustavomaia</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-row-label">CREA</span>
+        <span class="contact-row-val">CREA–SP 5071068977</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-row-label">Localização</span>
+        <span class="contact-row-val">Marília–SP · Brasil</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+// ── Scroll reveal ──
+var revealObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+// ── Counter animation ──
+function animateCounter(el) {
+  var target = parseInt(el.dataset.target);
+  var duration = 1200;
+  var start = performance.now();
+  function step(now) {
+    var progress = Math.min((now - start) / duration, 1);
+    var ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target);
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(step);
+}
+var counterObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.counter').forEach(animateCounter);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.sobre-creds, .sf-counters').forEach(function(el) {
+  counterObserver.observe(el);
+});
+
+// ── Comparison bars animation ──
+var barsObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.sf-comp-bar-fill').forEach(function(bar) {
+        setTimeout(function() { bar.style.width = bar.dataset.width + '%'; }, 200);
+      });
+      barsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+var compBars = document.getElementById('compBars');
+if (compBars) barsObserver.observe(compBars);
+
+// ── Timeline ──
+function selectStep(el) {
+  document.querySelectorAll('.tl-step').forEach(function(s) { s.classList.remove('active'); });
+  el.classList.add('active');
+}
+
+function selectCred(el) {
+  document.querySelectorAll('.cred-card').forEach(function(c) { c.classList.remove('active'); });
+  el.classList.add('active');
+}
+
+// ── Project view (3 states) ──
+var currentView = 'elevacao';
+function setProjectView(view) {
+  if (view === currentView) {
+    // clicking active view goes back to elevação
+    view = 'elevacao';
+  }
+  var views = {
+    elevacao:   document.getElementById('viewElevation'),
+    tecnologia: document.getElementById('viewSteelFrame'),
+    eficiente:  document.getElementById('viewEficiente')
+  };
+  var btnTec = document.getElementById('btnTecnologia');
+  var btnEfi = document.getElementById('btnEficiente');
+  var activeStyle = 'background:var(--terra);color:var(--paper);border-color:var(--terra);';
+  var inactiveStyle = 'background:var(--ink);color:rgba(246,244,240,.55);border:1px solid rgba(246,244,240,.12);';
+
+  // fade out current
+  var current = views[currentView];
+  current.style.opacity = '0';
+  setTimeout(function() {
+    current.style.display = 'none';
+    var next = views[view];
+    next.style.display = 'block';
+    requestAnimationFrame(function() { next.style.opacity = '1'; });
+  }, 380);
+  currentView = view;
+
+  // update button states
+  btnTec.style.cssText = 'padding:9px 16px;font-family:var(--D);font-size:9px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s,border-color .2s;white-space:nowrap;' + (view === 'tecnologia' ? activeStyle : inactiveStyle);
+  btnEfi.style.cssText = 'padding:9px 16px;font-family:var(--D);font-size:9px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s,border-color .2s;white-space:nowrap;' + (view === 'eficiente' ? activeStyle : inactiveStyle);
+}
+
+// ── Form submit → WhatsApp ──
+function submitForm(e) {
+  e.preventDefault();
+  var form = document.getElementById('leadForm');
+  var success = document.getElementById('formSuccess');
+  var inputs = form.querySelectorAll('input, select, textarea');
+  var labels = form.querySelectorAll('.form-label');
+  var msg = 'Olá! Vim pelo link de apresentação e gostaria de um orçamento.%0A%0A';
+  inputs.forEach(function(inp, i) {
+    if (inp.value && labels[i]) {
+      msg += labels[i].textContent.trim() + ': ' + inp.value + '%0A';
+    }
+  });
+  form.style.display = 'none';
+  success.style.display = 'block';
+  setTimeout(function() {
+    window.open('https://wa.me/5514991850799?text=' + msg, '_blank');
+  }, 800);
+}
+</script>
+
+</body>
+</html>

@@ -43,6 +43,8 @@ html,body{background:#0d0c0a;}
 .dk .p,.ov .p{color:rgba(244,241,234,.82);}
 .bar{width:96px;height:2px;background:var(--terra);margin:34px 0;}
 .dk .bar,.ov .bar{background:var(--terra-c);}
+.cap{font-family:var(--M);font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);}
+.dk .cap,.ov .cap{color:rgba(244,241,234,.55);}
 .tags{display:flex;flex-wrap:wrap;gap:12px;}
 .tag{font-family:var(--M);font-weight:500;font-size:14px;letter-spacing:.2em;text-transform:uppercase;
   border:1px solid currentColor;padding:9px 14px 8px;opacity:.85;}
@@ -50,25 +52,27 @@ html,body{background:#0d0c0a;}
 /* ficha técnica */
 .spec{display:grid;border-top:1px solid rgba(26,24,20,.16);}
 .dk .spec,.ov .spec{border-color:rgba(244,241,234,.18);}
-.spec>div{padding:22px 24px 0 0;}
-.spec>div+div{padding-left:24px;border-left:1px solid rgba(26,24,20,.16);}
+.spec>div{padding:22px 20px 0 0;}
+.spec>div+div{padding-left:22px;border-left:1px solid rgba(26,24,20,.16);}
 .dk .spec>div+div,.ov .spec>div+div{border-color:rgba(244,241,234,.18);}
-.spec .k{font-family:var(--M);font-weight:500;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);}
+.spec .k{font-family:var(--M);font-weight:500;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
 .dk .spec .k,.ov .spec .k{color:rgba(244,241,234,.55);}
-.spec .v{font-family:var(--D);font-weight:300;font-size:46px;letter-spacing:-.02em;margin-top:8px;line-height:1.05;}
+.spec .v{font-family:var(--D);font-weight:300;font-size:46px;letter-spacing:-.02em;margin-top:8px;line-height:1.05;white-space:nowrap;}
 .spec .v small{font-size:.55em;}
 .spec .v em{font-style:italic;color:var(--terra);}
 .dk .spec .v em,.ov .spec .v em{color:var(--terra-c);}
+.spec.four .v{font-size:40px;}
 
-/* foto em sangria com tratamento */
+/* imagens */
 .bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;}
 .shade{position:absolute;inset:0;z-index:1;}
 .ov{color:var(--papel);}
 .box{position:absolute;left:72px;right:72px;z-index:10;}
+.draw{background-size:contain;background-position:center;background-repeat:no-repeat;mix-blend-mode:multiply;}
 
 /* ═════ 01 · CAPA ═════ */
 #s1 .draw{position:absolute;left:60px;right:60px;top:150px;height:330px;z-index:1;
-  background:url('../assets/projetos/bcb-perspectiva.png') center/contain no-repeat;
+  background-image:url('../assets/projetos/bcb-perspectiva.png');
   filter:invert(1) sepia(.35);mix-blend-mode:screen;opacity:.30;}
 #s1 .box{bottom:150px;}
 #s1 .h{font-size:176px;margin-top:26px;}
@@ -80,58 +84,54 @@ html,body{background:#0d0c0a;}
 /* ═════ 02 · BCB ═════ */
 #s2 .top{position:absolute;top:186px;left:72px;right:72px;}
 #s2 .h{font-size:104px;margin-top:22px;}
-#s2 .p{margin-top:0;font-size:26px;max-width:860px;}
-#s2 .draw{position:absolute;left:20px;right:20px;top:690px;height:400px;
-  background:url('../assets/projetos/bcb-perspectiva.png') center/contain no-repeat;mix-blend-mode:multiply;}
-#s2 .spec{position:absolute;left:72px;right:72px;bottom:110px;grid-template-columns:1.1fr 1.3fr 1fr;padding-bottom:26px;}
-#s2 .cap{position:absolute;right:72px;top:668px;color:var(--muted);font-size:12px;}
+#s2 .p{font-size:26px;max-width:880px;}
+#s2 .draw{position:absolute;left:20px;right:20px;top:700px;height:380px;
+  background-image:url('../assets/projetos/bcb-perspectiva.png');}
+#s2 .cap{position:absolute;right:72px;top:676px;}
+#s2 .spec{position:absolute;left:72px;right:72px;bottom:110px;grid-template-columns:1fr 1.25fr 1.2fr 1.05fr;padding-bottom:26px;}
 
 /* ═════ 03 · DOM SILVÉRIO ═════ */
-#s3 .bg{top:129px;bottom:auto;height:600px;background-image:url('../assets/projetos/dom-silverio-fachada-frontal.jpg');background-position:50% 60%;}
-#s3 .shade{top:129px;bottom:auto;height:600px;background:linear-gradient(to bottom,rgba(26,24,20,0) 70%,var(--tinta) 100%);}
-#s3 .box{bottom:140px;}
-#s3 .h{font-size:100px;margin-top:22px;}
-#s3 .p{font-size:26px;max-width:840px;}
-#s3 .spec{grid-template-columns:repeat(3,1fr);margin-top:40px;}
-#s3 .credit{position:absolute;right:72px;top:690px;z-index:10;font-size:12px;color:rgba(244,241,234,.7);}
+#s3 .bg{top:129px;bottom:auto;height:420px;background-image:url('../assets/projetos/dom-silverio-fachada.jpg');background-position:50% 55%;}
+#s3 .top{position:absolute;top:596px;left:72px;right:72px;display:grid;grid-template-columns:1fr 360px;column-gap:44px;}
+#s3 .h{font-size:84px;margin-top:20px;}
+#s3 .p{font-size:24px;margin-top:26px;max-width:600px;}
+#s3 .fig{width:360px;height:218px;margin-top:6px;background:url('../assets/projetos/dom-silverio-planta.png') center/cover;
+  border:1px solid rgba(244,241,234,.18);}
+#s3 .fig-cap{margin-top:12px;}
+#s3 .spec{position:absolute;left:72px;right:72px;bottom:110px;grid-template-columns:1fr 1fr 1.25fr 1fr;padding-bottom:26px;}
 
 /* ═════ 04 · MARINHA ═════ */
 #s4{background:var(--papel2);}
-#s4 .top{position:absolute;top:186px;left:72px;right:72px;display:grid;grid-template-columns:1fr 400px;gap:56px;}
-#s4 .h{font-size:92px;margin-top:22px;}
-#s4 .p{font-size:26px;}
-#s4 .doc{width:400px;height:566px;background:url('../assets/projetos/marinha-memorial-capa.png') center/cover;
-  box-shadow:0 1px 0 rgba(26,24,20,.08),0 30px 60px rgba(26,24,20,.22);margin-top:8px;}
-#s4 .doc-cap{margin-top:18px;color:var(--muted);font-size:12px;}
-#s4 .spec{position:absolute;left:72px;right:72px;bottom:110px;grid-template-columns:repeat(3,1fr);padding-bottom:26px;}
+#s4 .cap{position:absolute;left:72px;top:160px;}
+#s4 .draw{position:absolute;left:30px;right:30px;top:196px;height:390px;
+  background-image:url('../assets/projetos/marinha-planta.png');}
+#s4 .top{position:absolute;top:600px;left:72px;right:72px;}
+#s4 .h{font-size:92px;margin-top:20px;}
+#s4 .p{font-size:25px;margin-top:26px;max-width:900px;}
+#s4 .spec{position:absolute;left:72px;right:72px;bottom:110px;grid-template-columns:1fr 1.15fr 1.25fr 1fr;padding-bottom:26px;}
 
 /* ═════ 05 · DÉBORA LSF ═════ */
-#s5 .bg{top:300px;background-image:url('../assets/projetos/debora-estrutura-lsf.jpg');background-position:center 40%;}
-#s5 .shade{background:linear-gradient(to bottom,var(--tinta) 0%,var(--tinta) 22%,rgba(26,24,20,.2) 40%,rgba(26,24,20,0) 52%,rgba(26,24,20,.55) 70%,rgba(26,24,20,.96) 86%);}
-#s5 .top{position:absolute;top:186px;left:72px;right:72px;z-index:10;}
-#s5 .h{font-size:100px;margin-top:22px;}
-#s5 .box{bottom:140px;}
-#s5 .spec{grid-template-columns:repeat(3,1fr);}
-#s5 .cap{position:absolute;right:72px;bottom:430px;z-index:10;font-size:12px;color:rgba(244,241,234,.6);}
+#s5 .bg{top:129px;bottom:auto;height:760px;background-image:url('../assets/projetos/debora-casa.jpg');background-position:center 62%;}
+#s5 .shade{top:129px;bottom:auto;height:760px;background:linear-gradient(to bottom,rgba(26,24,20,0) 55%,rgba(26,24,20,.9) 88%,var(--tinta) 100%);}
+#s5 .box{top:700px;}
+#s5 .h{font-size:92px;margin-top:20px;}
+#s5 .tags{margin-top:34px;}
+#s5 .spec{position:absolute;left:72px;right:72px;bottom:110px;grid-template-columns:1.1fr 1fr 1.05fr;padding-bottom:26px;}
 
-/* ═════ 06 · NA PRANCHETA ═════ */
-#s6 .split{position:absolute;top:128px;left:0;right:0;height:440px;padding:56px 72px 0;}
+/* ═════ 06 · CHALÉ ═════ */
+#s6 .top{position:absolute;top:184px;left:72px;right:72px;}
 #s6 .h{font-size:92px;margin-top:22px;}
 #s6 .p{font-size:25px;max-width:860px;margin-top:22px;}
-#s6 .img{position:absolute;left:0;right:0;top:600px;bottom:110px;background:url('../assets/projetos/md-residencia-aerea.jpg') center 55%/cover;}
+#s6 .img{position:absolute;left:0;right:0;top:600px;bottom:110px;background:url('../assets/projetos/chale-md.jpg') center 48%/cover;}
 #s6 .ft{background:var(--papel);}
 #s6 .stamp{position:absolute;left:72px;bottom:140px;z-index:5;background:var(--papel);padding:14px 20px 12px;color:var(--terra);}
 
-/* ═════ 07 · CTA ═════ */
-#s7 .box{top:250px;}
-#s7 .h{font-size:150px;margin-top:30px;}
-#s7 .p{font-size:30px;max-width:800px;font-family:var(--D);font-style:italic;font-weight:300;color:rgba(244,241,234,.78);}
-#s7 .contact{position:absolute;left:72px;right:72px;bottom:150px;z-index:10;border-top:1px solid rgba(244,241,234,.18);}
-#s7 .row{display:grid;grid-template-columns:200px 1fr;align-items:baseline;padding:24px 0;border-bottom:1px solid rgba(244,241,234,.18);}
-#s7 .row .mono{color:var(--terra-c);font-size:14px;}
-#s7 .row .v{font-family:var(--D);font-weight:300;font-size:44px;letter-spacing:-.01em;}
-#s7 .L{position:absolute;right:40px;top:150px;font-family:var(--D);font-weight:300;font-size:520px;line-height:.8;color:rgba(244,241,234,.04);z-index:1;}
-#s7 .L em{color:rgba(201,122,78,.12);font-style:italic;}
+/* ═════ 07 · FECHO ═════ */
+#s7 .mark{position:absolute;left:50%;top:356px;transform:translateX(-50%);width:400px;height:447px;
+  background:url('../assets/logo-L.png') center/contain no-repeat;}
+#s7 .line{position:absolute;left:72px;right:72px;top:870px;text-align:center;
+  font-family:var(--D);font-weight:300;font-size:78px;letter-spacing:-.02em;color:var(--tinta);}
+#s7 .line em{font-style:italic;color:var(--terra);}
 
 /* apoio (fora das imagens) */
 .kit{width:1080px;margin:40px 0 80px;padding:56px 72px;background:var(--papel);color:var(--tinta);font-family:var(--B);}
@@ -170,33 +170,39 @@ html,body{background:#0d0c0a;}
     <div class="kick">01 — Projeto executivo</div>
     <div class="h">Nove coberturas<br><em>em aço.</em></div>
     <div class="bar"></div>
-    <p class="p">Estrutura das coberturas do estacionamento em perfis formados a frio galvanizados, com drenagem, especificações, orçamento e cronograma.</p>
+    <p class="p">Vistoria, projeto das coberturas em perfis galvanizados formados a frio, drenagem pluvial, especificações técnicas, orçamento em base SINAPI e cronograma — em volume único.</p>
   </div>
-  <div class="cap mono">Fig. — Perspectivas, coberturas 1-2-3 · R01</div>
+  <div class="cap">Fig. — Perspectivas, coberturas 1-2-3 · R01</div>
   <div class="draw"></div>
-  <div class="spec">
+  <div class="spec four">
     <div><div class="k">Coberturas</div><div class="v">9</div></div>
     <div><div class="k">Aço galvanizado</div><div class="v">18,07 <small>t</small></div></div>
-    <div><div class="k">Normas</div><div class="v"><em>NBR</em> 14762</div></div>
+    <div><div class="k">Orçamento</div><div class="v"><em>SINAPI</em></div></div>
+    <div><div class="k">Normas</div><div class="v">NBR <small>14762</small></div></div>
   </div>
-  <div class="ft"><span class="mono">Vistoria · Estrutura · Drenagem · Orçamento</span><span class="mono">02 / 07</span></div>
+  <div class="ft"><span class="mono">Estrutura · Drenagem · Orçamento · Cronograma</span><span class="mono">02 / 07</span></div>
 </section>
 
 <!-- 03 · DOM SILVÉRIO -->
-<section class="slide ov dk" id="s3">
-  <div class="bg"></div><div class="shade"></div>
+<section class="slide dk" id="s3">
+  <div class="bg"></div>
   <div class="hd"><div class="wm">LGM <em>Engenharia</em></div><div class="mono">Câmara Municipal<br>Dom Silvério — MG</div></div>
-  <div class="credit mono">Render · arq. Mirian Silva</div>
-  <div class="box">
-    <div class="kick">02 — Orçamento de obra</div>
-    <div class="h">Reforma pública,<br><em>conta fechada.</em></div>
-    <div class="bar"></div>
-    <p class="p">Orçamento, especificações, curva ABC e cronograma físico-financeiro para a reforma da Câmara Municipal.</p>
-    <div class="spec">
-      <div><div class="k">Intervenção</div><div class="v">210 <small>m²</small></div></div>
-      <div><div class="k">Prazo de obra</div><div class="v">2 <small>meses</small></div></div>
-      <div><div class="k">Entrega</div><div class="v"><em>set</em> 2026</div></div>
+  <div class="top">
+    <div>
+      <div class="kick">02 — Orçamento de obra pública</div>
+      <div class="h">Reforma pública,<br><em>conta fechada.</em></div>
+      <p class="p">Orçamento analítico em base SINAPI-MG, curva ABC, memoriais descritivos e cronograma físico-financeiro — cobertura nova, plenário e salas.</p>
     </div>
+    <div>
+      <div class="fig"></div>
+      <div class="cap fig-cap">Fig. — Planta baixa · 1/75</div>
+    </div>
+  </div>
+  <div class="spec four">
+    <div><div class="k">Intervenção</div><div class="v">210 <small>m²</small></div></div>
+    <div><div class="k">Serviços</div><div class="v">119</div></div>
+    <div><div class="k">Base</div><div class="v"><em>SINAPI</em>-MG</div></div>
+    <div><div class="k">Prazo</div><div class="v">2 <small>meses</small></div></div>
   </div>
   <div class="ft"><span class="mono">Orçamento · Curva ABC · Cronograma</span><span class="mono">03 / 07</span></div>
 </section>
@@ -204,99 +210,83 @@ html,body{background:#0d0c0a;}
 <!-- 04 · MARINHA -->
 <section class="slide" id="s4">
   <div class="hd"><div class="wm">LGM <em>Engenharia</em></div><div class="mono">Marinha do Brasil · CFMT<br>Cuiabá — MT</div></div>
+  <div class="cap">Fig. — Planta baixa · anexo administrativo</div>
+  <div class="draw"></div>
   <div class="top">
-    <div>
-      <div class="kick">03 — Orçamento e memorial</div>
-      <div class="h">Anexo<br>administrativo<br><em>da Capitania.</em></div>
-      <div class="bar"></div>
-      <p class="p">Orçamento analítico, memorial de quantitativos e especificações para o anexo em alvenaria estrutural da Capitania Fluvial de Mato Grosso.</p>
-    </div>
-    <div><div class="doc"></div><div class="doc-cap mono">Fig. — Memorial · capa</div></div>
+    <div class="kick">03 — Projeto básico e orçamento</div>
+    <div class="h">Anexo administrativo<br><em>da Capitania.</em></div>
+    <p class="p">Projeto básico, orçamento analítico em base SINAPI-MT, memorial de quantitativos e especificações para o anexo em alvenaria estrutural sobre radier, com cobertura metálica.</p>
   </div>
-  <div class="spec">
+  <div class="spec four">
     <div><div class="k">Área construída</div><div class="v">177 <small>m²</small></div></div>
-    <div><div class="k">Composição</div><div class="v">73 <small>itens</small></div></div>
-    <div><div class="k">Base</div><div class="v"><em>SINAPI</em> MT</div></div>
+    <div><div class="k">Serviços</div><div class="v">81 <small>· 10 etapas</small></div></div>
+    <div><div class="k">Base</div><div class="v"><em>SINAPI</em>-MT</div></div>
+    <div><div class="k">Prazo de obra</div><div class="v">4 <small>meses</small></div></div>
   </div>
-  <div class="ft"><span class="mono">Orçamento · Memorial · ART</span><span class="mono">04 / 07</span></div>
+  <div class="ft"><span class="mono">Projeto básico · Orçamento · Memorial</span><span class="mono">04 / 07</span></div>
 </section>
 
 <!-- 05 · DÉBORA LSF -->
 <section class="slide ov dk" id="s5">
   <div class="bg"></div><div class="shade"></div>
   <div class="hd"><div class="wm">LGM <em>Engenharia</em></div><div class="mono">Residência Débora<br>Taquaraçu de Minas — MG</div></div>
-  <div class="top">
+  <div class="box">
     <div class="kick">04 — Projeto estrutural</div>
     <div class="h">A casa inteira,<br><em>perfil a perfil.</em></div>
+    <div class="tags"><span class="tag">Montantes</span><span class="tag">Guias</span><span class="tag">Ligações</span><span class="tag">Contraventamento</span></div>
   </div>
-  <div class="cap mono">Imagem conceitual a partir do projeto</div>
-  <div class="box">
-    <div class="tags" style="margin-bottom:34px"><span class="tag">Montantes</span><span class="tag">Guias</span><span class="tag">Ligações</span><span class="tag">Contraventamento</span></div>
-    <div class="spec">
-      <div><div class="k">Sistema</div><div class="v"><em>Light</em> Steel</div></div>
-      <div><div class="k">Escopo</div><div class="v">Executivo</div></div>
-      <div><div class="k">Programa</div><div class="v">Casa <small>+ anexo</small></div></div>
-    </div>
+  <div class="spec">
+    <div><div class="k">Sistema</div><div class="v"><em>Light</em> Steel Frame</div></div>
+    <div><div class="k">Escopo</div><div class="v">Executivo</div></div>
+    <div><div class="k">Programa</div><div class="v">Casa <small>+ anexo</small></div></div>
   </div>
   <div class="ft"><span class="mono">Precisão desde o primeiro perfil</span><span class="mono">05 / 07</span></div>
 </section>
 
-<!-- 06 · NA PRANCHETA -->
+<!-- 06 · CHALÉ -->
 <section class="slide" id="s6">
-  <div class="hd"><div class="wm">LGM <em>Engenharia</em></div><div class="mono">Residência M.D.<br>Marília — SP</div></div>
-  <div class="split">
+  <div class="hd"><div class="wm">LGM <em>Engenharia</em></div><div class="mono">Chalé M.D.<br>Marília — SP</div></div>
+  <div class="top">
     <div class="kick">Em desenvolvimento</div>
     <div class="h">E o próximo<br><em>já tem forma.</em></div>
-    <p class="p">Projeto arquitetônico em revisão: dois pavimentos, varanda em vidro e pergolado na garagem.</p>
+    <p class="p">Projeto arquitetônico em revisão: chalé em dois pavimentos, varanda em madeira e piscina.</p>
   </div>
   <div class="img"></div>
   <div class="stamp mono">Rev. 01 · em curso</div>
   <div class="ft"><span class="mono">Arquitetura · Render</span><span class="mono">06 / 07</span></div>
 </section>
 
-<!-- 07 · CTA -->
-<section class="slide dk" id="s7">
-  <div class="L">L<em>.</em></div>
-  <div class="hd"><div class="wm">LGM <em>Engenharia</em></div><div class="mono">Próximo capítulo<br>Marília — SP</div></div>
-  <div class="box">
-    <div class="kick">05 — Seu projeto</div>
-    <div class="h">Do risco<br><em>à chave.</em></div>
-    <div class="bar"></div>
-    <p class="p">— Projeto, orçamento, gestão e regularização com um único responsável técnico. Começa com uma conversa.</p>
-  </div>
-  <div class="contact">
-    <div class="row"><span class="mono">Direct</span><span class="v">@eng.gustavomaia</span></div>
-    <div class="row"><span class="mono">WhatsApp</span><span class="v">(14) 99185-0799</span></div>
-    <div class="row"><span class="mono">Registro</span><span class="v">CREA-SP 5071068977</span></div>
-  </div>
-  <div class="ft"><span class="mono">Salve · Compartilhe</span><span class="mono">07 / 07</span></div>
+<!-- 07 · FECHO -->
+<section class="slide" id="s7">
+  <div class="mark"></div>
+  <div class="line">Do risco <em>à chave.</em></div>
 </section>
 
 <section class="kit">
   <h3>Legenda <em>do post.</em></h3>
-  <p>Publique os 7 slides na ordem. Créditos: render da Câmara de Dom Silvério por arq. Mirian Silva (marque o perfil dela). Slide 5 usa imagem conceitual do carrossel da Débora.</p>
+  <p>Publique os 7 slides na ordem. Sem telefone, CREA ou créditos de terceiros nos slides e na legenda.</p>
   <pre id="caption">Saiu da prancheta.
 
 Quatro projetos entregues pela LGM em 2026 — de Recife a Cuiabá:
 
 01 · Banco Central, Edifício-Sede (Recife – PE)
-Projeto executivo de 9 coberturas em aço galvanizado: estrutura, drenagem, especificações, orçamento e cronograma.
+Projeto executivo de 9 coberturas em aço galvanizado: estrutura, drenagem, especificações, orçamento em base SINAPI e cronograma.
 
 02 · Câmara Municipal de Dom Silvério (MG)
-Orçamento de obra, especificações, curva ABC e cronograma físico-financeiro da reforma. Render: arq. Mirian Silva.
+Orçamento analítico em base SINAPI-MG, curva ABC, memoriais e cronograma físico-financeiro da reforma.
 
 03 · Marinha do Brasil, Capitania Fluvial de MT (Cuiabá)
-Orçamento analítico e memorial do anexo administrativo em alvenaria estrutural.
+Projeto básico, orçamento em base SINAPI-MT e memorial do anexo administrativo em alvenaria estrutural.
 
 04 · Residência Débora (Taquaraçu de Minas – MG)
 Projeto estrutural executivo em Light Steel Frame.
 
-E na prancheta agora: uma residência em Marília.
+E na prancheta agora: um chalé em Marília.
 
-Do risco à chave — com ART em cada etapa.
-Seu projeto é o próximo? Direct ou WhatsApp (14) 99185-0799.
+Do risco à chave.
+Seu projeto é o próximo? Chama no direct.
 
-#engenhariacivil #projetoestrutural #steelframe #lightsteelframe #orcamentodeobra #estruturametalica #engenheirocivil #mariliasp #lgmengenharia</pre>
+#engenhariacivil #projetoestrutural #steelframe #lightsteelframe #orcamentodeobra #sinapi #estruturametalica #engenheirocivil #mariliasp #lgmengenharia</pre>
   <button onclick="navigator.clipboard.writeText(document.getElementById('caption').innerText);this.textContent='Legenda copiada'">Copiar legenda</button>
 </section>
 

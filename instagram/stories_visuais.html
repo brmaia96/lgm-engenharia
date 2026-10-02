@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>LGM Engenharia · Stories visuais</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* LGM Brand Book — Stories 1080×1920 · imagem primeiro, uma frase, figurinha */
+:root{
+  --tinta:#1A1814; --papel:#F4F1EA; --papel2:#EAE4D7;
+  --terra:#A0522D; --terra-c:#C97A4E; --muted:#6B635A;
+  --D:'Fraunces',Georgia,serif;
+  --B:'Inter',system-ui,sans-serif;
+  --M:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#0d0c0a;}
+.slide{width:1080px;height:1920px;position:relative;overflow:hidden;margin:0 0 3px;
+  background:var(--papel);color:var(--tinta);font-family:var(--B);
+  --fg:var(--tinta);--acc:var(--terra);--dim:rgba(26,24,20,.7);--ln:rgba(26,24,20,.18);--mark:url('../assets/logo-L.png');}
+.slide.dk{background:var(--tinta);color:var(--papel);--fg:var(--papel);--acc:var(--terra-c);--dim:rgba(244,241,234,.78);--ln:rgba(244,241,234,.2);--mark:url('../assets/logo-L-papel.png');}
+.slide.p2{background:var(--papel2);}
+
+.mark{position:absolute;left:84px;top:300px;width:52px;height:58px;background:var(--mark) center/contain no-repeat;z-index:20;}
+.tag{position:absolute;right:84px;top:312px;font-family:var(--M);font-weight:500;font-size:16px;letter-spacing:.26em;text-transform:uppercase;color:var(--acc);z-index:20;}
+.foot{position:absolute;left:84px;right:84px;bottom:372px;display:flex;justify-content:space-between;z-index:20;
+  font-family:var(--M);font-weight:500;font-size:14px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);opacity:.75;}
+.bg{position:absolute;background-size:cover;background-position:center;z-index:0;}
+.shade{position:absolute;z-index:1;}
+.box{position:absolute;left:84px;right:84px;z-index:10;}
+.kick{font-family:var(--M);font-weight:500;font-size:17px;letter-spacing:.26em;text-transform:uppercase;color:var(--acc);}
+.h{font-family:var(--D);font-weight:300;letter-spacing:-.03em;line-height:.98;font-variation-settings:'opsz' 144;color:var(--fg);margin-top:18px;}
+.h em{font-style:italic;color:var(--acc);}
+.p{font-family:var(--B);font-weight:400;font-size:26px;line-height:1.5;color:var(--dim);margin-top:18px;}
+.cap{font-family:var(--M);font-weight:500;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);opacity:.8;}
+.sticker{position:absolute;left:84px;right:84px;z-index:30;border:2px dashed var(--acc);opacity:.75;
+  padding:28px;font-family:var(--M);font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);text-align:center;}
+body.export .sticker{display:none;}
+.draw{position:absolute;background-size:contain;background-position:center;background-repeat:no-repeat;mix-blend-mode:multiply;}
+
+/* 01 ZOOM — detalhe LSF em tela cheia */
+#s1 .bg{inset:0;background-image:url('../assets/stories/lsf-detalhe.jpg');background-position:center 40%;}
+#s1 .shade{inset:0;background:linear-gradient(to bottom,rgba(26,24,20,.7) 0%,rgba(26,24,20,0) 25%,rgba(26,24,20,0) 60%,rgba(26,24,20,.92) 80%,var(--tinta) 100%);}
+#s1 .box{bottom:470px;}
+#s1 .h{font-size:92px;}
+
+/* 02 ISSO OU AQUILO — duas casas */
+#s2 .a{position:absolute;left:0;right:0;top:0;height:960px;background:url('../assets/stories/debora-casa.jpg') center 58%/cover;}
+#s2 .b{position:absolute;left:0;right:0;top:960px;bottom:0;background:url('../assets/stories/chale-fachada.jpg') center 40%/cover;}
+#s2 .sa{position:absolute;left:0;right:0;top:0;height:960px;background:linear-gradient(to bottom,rgba(26,24,20,.75) 0%,rgba(26,24,20,.0) 32%,rgba(26,24,20,0) 70%,rgba(26,24,20,.55) 100%);}
+#s2 .sb{position:absolute;left:0;right:0;top:960px;bottom:0;background:linear-gradient(to bottom,rgba(26,24,20,.55) 0%,rgba(26,24,20,0) 30%,rgba(26,24,20,0) 60%,rgba(26,24,20,.85) 100%);}
+#s2 .lab{position:absolute;left:84px;z-index:10;font-family:var(--D);font-weight:300;font-size:64px;letter-spacing:-.02em;color:var(--papel);text-shadow:0 2px 24px rgba(0,0,0,.5);}
+#s2 .lab small{display:block;font-family:var(--M);font-size:15px;letter-spacing:.26em;text-transform:uppercase;color:var(--terra-c);margin-bottom:10px;text-shadow:none;}
+#s2 .ou{position:absolute;left:50%;top:960px;transform:translate(-50%,-50%);z-index:12;width:120px;height:120px;border-radius:50%;background:var(--terra);color:var(--papel);
+  display:flex;align-items:center;justify-content:center;font-family:var(--D);font-style:italic;font-weight:300;font-size:52px;}
+#s2 .sticker{top:1180px;left:200px;right:200px;}
+
+/* 03 RAIO-X — casa pronta × estrutura */
+#s3 .a{position:absolute;left:0;right:0;top:0;height:900px;background:url('../assets/stories/debora-casa.jpg') center 62%/cover;}
+#s3 .b{position:absolute;left:0;right:0;top:900px;bottom:0;background:url('../assets/stories/debora-explodido.jpg') center 18%/cover;}
+#s3 .sa{position:absolute;left:0;right:0;top:0;height:900px;background:linear-gradient(to bottom,rgba(26,24,20,.75) 0%,rgba(26,24,20,0) 35%);}
+#s3 .sb{position:absolute;left:0;right:0;top:900px;bottom:0;background:linear-gradient(to bottom,rgba(26,24,20,0) 42%,rgba(26,24,20,.9) 66%,var(--tinta) 85%);}
+#s3 .line{position:absolute;left:0;right:0;top:898px;height:3px;background:var(--terra-c);z-index:5;}
+#s3 .box{bottom:450px;}
+#s3 .h{font-size:84px;}
+
+/* 04 QUIZ VISUAL — prancha hidráulica */
+#s4 .draw{left:40px;right:40px;top:420px;height:760px;background-image:url('../assets/stories/marinha-hidro.png');}
+#s4 .box{top:1210px;}
+#s4 .h{font-size:76px;}
+#s4 .opts{display:flex;gap:14px;margin-top:28px;}
+#s4 .opt{flex:1;border:1.5px solid var(--ln);padding:20px 18px;font-family:var(--D);font-weight:300;font-size:30px;color:var(--fg);}
+#s4 .opt b{display:block;font-family:var(--M);font-weight:500;font-size:14px;letter-spacing:.2em;color:var(--acc);margin-bottom:6px;}
+#s4 .sticker{bottom:300px;display:none;}
+
+/* 05 PRANCHA — corte como folha inclinada sobre tinta */
+#s5 .sheet{position:absolute;left:30px;top:520px;width:1020px;height:700px;background:var(--papel) url('../assets/stories/debora-corte-bb.png') center/contain no-repeat;
+  transform:rotate(-3deg);box-shadow:0 40px 90px rgba(0,0,0,.6);z-index:5;}
+#s5 .sheet::after{content:'CORTE BB · 1:50 · PRANCHA 03/03';position:absolute;left:36px;bottom:24px;font-family:var(--M);font-size:14px;letter-spacing:.24em;color:var(--muted);}
+#s5 .box{top:1290px;}
+#s5 .h{font-size:92px;}
+
+/* 06 FUNDAÇÃO — radier */
+#s6 .draw{left:120px;right:120px;top:430px;height:760px;background-image:url('../assets/stories/debora-radier.png');}
+#s6 .cap{position:absolute;left:84px;top:400px;}
+#s6 .box{top:1230px;}
+#s6 .h{font-size:92px;}
+
+/* 07 INTERIOR — render em tela cheia */
+#s7 .bg{inset:0;background-image:url('../assets/stories/chale-interior.jpg');background-position:62% center;}
+#s7 .shade{inset:0;background:linear-gradient(to bottom,rgba(26,24,20,.7) 0%,rgba(26,24,20,0) 25%,rgba(26,24,20,0) 55%,rgba(26,24,20,.9) 78%,var(--tinta) 100%);}
+#s7 .box{bottom:470px;}
+#s7 .h{font-size:92px;}
+#s7 .sticker{bottom:1120px;}
+
+/* 08 FACHADA — da prancha pra prefeitura + perguntas */
+#s8{background:var(--papel2);}
+#s8 .draw{left:40px;right:40px;top:400px;height:640px;background-image:url('../assets/stories/debora-fachada-frontal.png');}
+#s8 .cap{position:absolute;right:84px;top:1050px;}
+#s8 .box{top:1100px;}
+#s8 .h{font-size:84px;}
+#s8 .sticker{bottom:430px;}
+
+/* 09 FECHO */
+#s9 .L{position:absolute;left:50%;top:830px;transform:translateX(-50%);width:120px;height:134px;background:var(--mark) center/contain no-repeat;}
+#s9 .line{position:absolute;left:84px;right:84px;top:1010px;text-align:center;font-family:var(--D);font-weight:300;font-size:44px;letter-spacing:-.02em;color:var(--fg);}
+#s9 .line em{font-style:italic;color:var(--acc);}
+
+.kit{width:1080px;margin:40px 0 80px;padding:56px 72px;background:var(--papel);color:var(--tinta);font-family:var(--B);}
+.kit h3{font-family:var(--D);font-weight:300;font-size:46px;letter-spacing:-.02em;margin-bottom:10px;}
+.kit h3 em{font-style:italic;color:var(--terra);}
+.kit li,.kit p{font-size:16px;color:var(--muted);line-height:1.7;}
+.kit ol{padding-left:22px;}
+@media print{.kit{display:none;}}
+</style>
+</head>
+<body>
+
+<!-- 01 · ZOOM -->
+<section class="slide dk" id="s1">
+  <div class="bg"></div><div class="shade"></div>
+  <div class="mark"></div><div class="tag">Zoom</div>
+  <div class="box">
+    <div class="kick">Segura o story</div>
+    <div class="h">Onde a casa<br><em>se encontra.</em></div>
+    <p class="p">Montante, guia e contraventamento — cada parafuso tem posição no projeto.</p>
+  </div>
+  <div class="foot"><span>Light Steel Frame</span><span>01 / 09</span></div>
+</section>
+
+<!-- 02 · ISSO OU AQUILO -->
+<section class="slide dk" id="s2">
+  <div class="a"></div><div class="sa"></div>
+  <div class="b"></div><div class="sb"></div>
+  <div class="mark"></div><div class="tag">Isso ou aquilo</div>
+  <div class="lab" style="top:400px"><small>A</small>Telhado embutido.</div>
+  <div class="ou">ou</div>
+  <div class="lab" style="bottom:470px"><small>B</small>Duas águas.</div>
+  <div class="sticker">Enquete aqui — A / B</div>
+  <div class="foot"><span>Qual você moraria?</span><span>02 / 09</span></div>
+</section>
+
+<!-- 03 · RAIO-X -->
+<section class="slide dk" id="s3">
+  <div class="a"></div><div class="sa"></div>
+  <div class="b"></div><div class="sb"></div>
+  <div class="line"></div>
+  <div class="mark"></div><div class="tag">Raio-X</div>
+  <div class="box">
+    <div class="kick">A mesma casa</div>
+    <div class="h">Por baixo<br><em>do reboco.</em></div>
+    <p class="p">Cobertura, painéis e base — tudo desenhado antes de existir.</p>
+  </div>
+  <div class="foot"><span>Projeto estrutural · LSF</span><span>03 / 09</span></div>
+</section>
+
+<!-- 04 · QUIZ VISUAL -->
+<section class="slide" id="s4">
+  <div class="mark"></div><div class="tag">Quiz</div>
+  <div class="draw"></div>
+  <div class="box">
+    <div class="kick">Olha o desenho</div>
+    <div class="h">Que projeto <em>é esse?</em></div>
+    <div class="opts">
+      <div class="opt"><b>A</b>Elétrico</div>
+      <div class="opt"><b>B</b>Hidrossanitário</div>
+      <div class="opt"><b>C</b>Estrutural</div>
+    </div>
+  </div>
+  <div class="foot"><span>Responde na figurinha · resposta: B</span><span>04 / 09</span></div>
+</section>
+
+<!-- 05 · PRANCHA -->
+<section class="slide dk" id="s5">
+  <div class="mark"></div><div class="tag">Prancha</div>
+  <div class="sheet"></div>
+  <div class="box">
+    <div class="kick">Corte BB</div>
+    <div class="h">O desenho que<br><em>a obra lê.</em></div>
+  </div>
+  <div class="foot"><span>Projeto executivo</span><span>05 / 09</span></div>
+</section>
+
+<!-- 06 · FUNDAÇÃO -->
+<section class="slide" id="s6">
+  <div class="mark"></div><div class="tag">Fundação</div>
+  <div class="cap">Fig. — Forma de radier · vigas 19/30</div>
+  <div class="draw"></div>
+  <div class="box">
+    <div class="kick">O que ninguém vê</div>
+    <div class="h">Começa <em>por baixo.</em></div>
+    <p class="p">Radier sobre estacas, malha dupla soldada, concreto de 25 MPa. Antes do primeiro perfil, a base.</p>
+  </div>
+  <div class="foot"><span>Projeto de fundação</span><span>06 / 09</span></div>
+</section>
+
+<!-- 07 · INTERIOR -->
+<section class="slide dk" id="s7">
+  <div class="bg"></div><div class="shade"></div>
+  <div class="mark"></div><div class="tag">Em projeto</div>
+  <div class="sticker">Enquete aqui — “Quer ver a planta?” · Sim / Quero!</div>
+  <div class="box">
+    <div class="kick">Marília — SP</div>
+    <div class="h">Mezanino,<br><em>em revisão.</em></div>
+  </div>
+  <div class="foot"><span>Arquitetura · Render</span><span>07 / 09</span></div>
+</section>
+
+<!-- 08 · FACHADA + PERGUNTAS -->
+<section class="slide" id="s8">
+  <div class="mark"></div><div class="tag">Prefeitura</div>
+  <div class="draw"></div>
+  <div class="cap">Fachada frontal · 1:100</div>
+  <div class="box">
+    <div class="kick">Vai construir?</div>
+    <div class="h">Da prancha<br><em>pra prefeitura.</em></div>
+    <p class="p">Dúvida de projeto, aprovação, orçamento ou INSS de obra? Pergunta aqui.</p>
+  </div>
+  <div class="sticker">Figurinha de perguntas aqui</div>
+  <div class="foot"><span>Respondo nos stories</span><span>08 / 09</span></div>
+</section>
+
+<!-- 09 · FECHO -->
+<section class="slide" id="s9">
+  <div class="L"></div>
+  <div class="line">Do risco <em>à chave.</em></div>
+</section>
+
+<section class="kit">
+  <h3>Como <em>publicar.</em></h3>
+  <ol>
+    <li>Sequência: zoom → isso ou aquilo → raio-X → quiz → prancha → fundação → interior → perguntas → fecho.</li>
+    <li>Figurinhas: enquete A/B no 02; quiz no 04 (resposta B — hidrossanitário); enquete "Quer ver a planta?" no 07; caixa de perguntas no 08. As áreas tracejadas só aparecem na prévia.</li>
+    <li>Os 250 px de cima e os 320 px de baixo ficam livres para a interface do Instagram.</li>
+  </ol>
+</section>
+
+</body>
+</html>

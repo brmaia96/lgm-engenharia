@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>LGM Engenharia · Últimos Projetos</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060605;
+  --paper:#EAE6DE;
+  --ink:#0D0C0A;
+  --rust:#C8793E;
+  --rust-d:#9F5C28;
+  --rust-l:#E0A274;
+  --F:'Bebas Neue',sans-serif;
+  --C:'Barlow Condensed',sans-serif;
+  --I:'Inter',sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#020201;font-family:var(--I);}
+
+/* ── BASE SLIDE · 1080×1350 (4:5) ── */
+.slide{
+  width:1080px;height:1350px;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+  margin:0 0 3px;
+}
+.slide.dark{
+  background:var(--bg);color:var(--paper);
+  --tx:var(--paper);
+  --sbg:#060605;
+  --dim:rgba(234,230,222,.62);
+  --ghost:rgba(234,230,222,.32);
+  --line:rgba(234,230,222,.10);
+  --faint:rgba(234,230,222,.05);
+  --ln:rgba(234,230,222,.78);
+  --ln2:rgba(234,230,222,.30);
+  --acc:var(--rust);
+  --grid:rgba(234,230,222,.045);
+}
+.slide.light{
+  background:var(--paper);color:var(--ink);
+  --tx:var(--ink);
+  --sbg:#EAE6DE;
+  --dim:rgba(13,12,10,.66);
+  --ghost:rgba(13,12,10,.38);
+  --line:rgba(13,12,10,.12);
+  --faint:rgba(13,12,10,.04);
+  --ln:rgba(13,12,10,.80);
+  --ln2:rgba(13,12,10,.28);
+  --acc:var(--rust-d);
+  --grid:rgba(13,12,10,.06);
+}
+/* grão de filme, igual aos outros carrosséis */
+.slide::after{
+  content:'';position:absolute;inset:0;z-index:100;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.slide.dark::after{opacity:.16;mix-blend-mode:screen;}
+.slide.light::after{opacity:.22;mix-blend-mode:multiply;}
+.acc-bar{position:absolute;top:0;left:0;right:0;height:3px;z-index:50;
+  background:linear-gradient(90deg,var(--rust) 0%,var(--rust) 240px,transparent 240px);}
+
+.lbl{
+  display:inline-flex;align-items:center;gap:14px;
+  font-family:var(--I);font-size:17px;font-weight:600;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--acc);
+}
+.lbl::before{content:'';width:32px;height:2px;background:currentColor;}
+
+/* ── PROGRESSO + SETA (fazem parte da imagem) ── */
+.prog{
+  position:absolute;left:0;right:0;bottom:0;z-index:60;
+  padding:0 72px 44px;display:flex;align-items:center;gap:22px;
+}
+.prog-track{flex:1;height:6px;border-radius:4px;overflow:hidden;background:var(--line);}
+.prog-fill{height:100%;border-radius:4px;background:var(--acc);}
+.dark .prog-fill{background:var(--paper);}
+.prog-n{font-family:var(--I);font-size:22px;font-weight:500;color:var(--ghost);letter-spacing:.06em;min-width:52px;text-align:right;}
+.prog-brand{font-family:var(--F);font-size:30px;letter-spacing:.14em;color:var(--tx);opacity:.85;}
+.swipe{
+  position:absolute;right:0;top:0;bottom:0;width:104px;z-index:55;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(to right,transparent,var(--faint));
+}
+.swipe svg path{stroke:var(--ghost);}
+
+/* ══ CAPA ══ */
+#s1{background:var(--bg);}
+#s1 .photo-bg{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(to top,
+      rgba(6,6,5,1) 0%, rgba(6,6,5,.97) 30%, rgba(6,6,5,.8) 48%,
+      rgba(6,6,5,.5) 66%, rgba(6,6,5,.4) 82%, rgba(6,6,5,.62) 100%),
+    url('./steel_frame_lgm.jpg.jpeg') center 20%/cover no-repeat;
+}
+#s1 .top{
+  position:absolute;top:56px;left:72px;right:72px;z-index:5;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.logo-row{display:flex;align-items:center;gap:16px;}
+.logo-mark{
+  width:64px;height:64px;border-radius:50%;background:var(--rust);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--F);font-size:26px;letter-spacing:.06em;color:var(--bg);padding-top:3px;
+}
+.logo-name{font-family:var(--F);font-size:34px;letter-spacing:.16em;line-height:1;color:var(--paper);}
+.logo-sub{font-family:var(--C);font-size:17px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,230,222,.8);margin-top:4px;text-shadow:0 1px 8px rgba(0,0,0,.8);}
+#s1 .lbl{background:rgba(6,6,5,.78);padding:12px 18px;color:var(--rust-l);}
+#s1 .handle{font-family:var(--C);font-size:24px;font-weight:600;letter-spacing:.06em;color:var(--paper);
+  border:1px solid rgba(234,230,222,.25);padding:10px 22px;background:rgba(6,6,5,.35);backdrop-filter:blur(6px);}
+#s1 .shell{
+  position:absolute;left:72px;right:72px;bottom:116px;z-index:5;
+}
+#s1 .h1{
+  font-family:var(--F);font-size:232px;line-height:.8;
+  color:var(--paper);letter-spacing:.005em;margin:26px 0 30px;
+  text-shadow:0 6px 80px rgba(0,0,0,.6);
+}
+#s1 .h1 em{color:var(--rust);font-style:normal;text-shadow:0 0 140px rgba(200,121,62,.45);}
+#s1 .sub{
+  font-family:var(--C);font-size:34px;font-weight:300;
+  color:rgba(234,230,222,.78);letter-spacing:.02em;line-height:1.35;
+  padding-left:26px;border-left:3px solid var(--rust);max-width:820px;margin-bottom:44px;
+}
+#s1 .sub b{color:var(--paper);font-weight:600;}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(234,230,222,.14);border-bottom:1px solid rgba(234,230,222,.14);}
+.kpi{padding:24px 0 22px 24px;border-left:1px solid rgba(234,230,222,.14);}
+.kpi:first-child{border-left:none;padding-left:0;}
+.kpi-n{font-family:var(--F);font-size:70px;line-height:.9;color:var(--paper);letter-spacing:.01em;white-space:nowrap;}
+.kpi-n small{font-size:.5em;color:var(--rust);margin-left:4px;}
+.kpi-l{font-family:var(--C);font-size:19px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(234,230,222,.5);margin-top:8px;}
+
+/* ══ PROJETOS ══ */
+.ph{
+  position:relative;height:650px;flex-shrink:0;overflow:hidden;
+  background-color:var(--faint);
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:40px 40px;
+  background-position:-1px -1px;
+}
+.ph svg.draw{position:absolute;inset:0;width:100%;height:100%;}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;}
+.ph::after{ /* funde a imagem no painel de informações */
+  content:'';position:absolute;left:0;right:0;bottom:0;height:90px;z-index:3;
+}
+.dark .ph::after{background:linear-gradient(to bottom,rgba(6,6,5,0),rgba(6,6,5,.85) 75%,var(--bg));}
+.light .ph::after{background:linear-gradient(to bottom,rgba(234,230,222,0),rgba(234,230,222,.8) 75%,var(--paper));}
+.ph.has-photo::before{content:'';position:absolute;inset:0;z-index:3;background:linear-gradient(to bottom,rgba(6,6,5,.55),rgba(6,6,5,0) 32%);}
+.ph-head{
+  position:absolute;top:52px;left:72px;right:130px;z-index:6;
+  display:flex;justify-content:space-between;align-items:flex-start;
+}
+.ph-proj{font-family:var(--I);font-size:17px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--acc);}
+.ph-num{font-family:var(--F);font-size:150px;line-height:.8;color:transparent;-webkit-text-stroke:2px var(--acc);margin-top:10px;letter-spacing:.02em;}
+.ph-of{font-family:var(--F);font-size:40px;color:var(--ghost);letter-spacing:.08em;}
+.has-photo .ph-proj,.has-photo .ph-of{color:var(--paper);}
+.has-photo .ph-num{-webkit-text-stroke-color:var(--paper);}
+.badge{
+  position:relative;z-index:6;
+  font-family:var(--C);font-size:24px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--rust);color:#0D0C0A;padding:10px 22px 9px;
+}
+
+.info{flex:1;padding:22px 128px 120px 72px;display:flex;flex-direction:column;}
+.info .lbl{margin-bottom:34px;}
+.info h2{
+  font-family:var(--F);font-size:150px;line-height:.86;letter-spacing:.005em;
+  color:var(--tx);white-space:nowrap;
+}
+.info h2 em{font-style:normal;color:var(--acc);}
+.dark .info h2 em{color:var(--rust);}
+.desc{
+  font-family:var(--C);font-size:33px;font-weight:300;line-height:1.3;color:var(--dim);
+  margin-top:18px;max-width:860px;
+}
+.desc b{font-weight:600;color:var(--tx);}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:auto;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.st{padding:20px 0 18px 26px;border-left:1px solid var(--line);}
+.st:first-child{border-left:none;padding-left:0;}
+.st-l{font-family:var(--I);font-size:15px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--ghost);}
+.st-v{font-family:var(--F);font-size:62px;line-height:1;margin-top:8px;color:var(--tx);white-space:nowrap;}
+.st-v small{font-size:.55em;color:var(--acc);margin-left:4px;}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+.pill{
+  font-family:var(--C);font-size:21px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--dim);border:1px solid var(--line);background:var(--faint);padding:8px 16px 7px;
+}
+
+/* traços dos desenhos técnicos */
+.ln{stroke:var(--ln);stroke-width:3;fill:none;stroke-linejoin:round;stroke-linecap:round;}
+.lt{stroke:var(--ln2);stroke-width:2;fill:none;stroke-linecap:round;}
+.ac{stroke:var(--rust);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.acf{fill:var(--rust);}
+.fl{fill:var(--faint);}
+.tx{fill:var(--ln);font-family:var(--C);font-size:22px;font-weight:600;letter-spacing:.14em;}
+.txa{fill:var(--rust);font-family:var(--C);font-size:24px;font-weight:700;letter-spacing:.14em;}
+
+/* ══ CTA ══ */
+#s8{
+  background:
+    radial-gradient(ellipse 80% 55% at 85% 0%,rgba(200,121,62,.42) 0%,transparent 60%),
+    radial-gradient(ellipse 70% 50% at 0% 100%,rgba(159,92,40,.35) 0%,transparent 65%),
+    linear-gradient(165deg,#170E07 0%,#0B0806 55%,#060605 100%);
+}
+#s8 .shell{position:relative;z-index:5;flex:1;padding:96px 120px 130px 72px;display:flex;flex-direction:column;}
+#s8 .wm{position:absolute;right:-40px;top:120px;z-index:1;font-family:var(--F);font-size:520px;line-height:.8;color:rgba(234,230,222,.035);letter-spacing:.04em;}
+#s8 h2{font-family:var(--F);font-size:150px;white-space:nowrap;line-height:.84;color:var(--paper);margin:28px 0 30px;}
+#s8 h2 em{font-style:normal;color:var(--rust);}
+#s8 .lead{font-family:var(--C);font-size:34px;font-weight:300;line-height:1.35;color:rgba(234,230,222,.75);max-width:820px;}
+#s8 .lead b{color:var(--paper);font-weight:600;}
+.checks{margin-top:44px;border-top:1px solid rgba(234,230,222,.12);}
+.chk{display:flex;align-items:center;gap:22px;padding:19px 0;border-bottom:1px solid rgba(234,230,222,.12);}
+.chk-i{width:44px;height:44px;border:2px solid var(--rust);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.chk-t{font-family:var(--C);font-size:31px;font-weight:600;letter-spacing:.03em;color:var(--paper);}
+.chk-t span{font-weight:300;color:rgba(234,230,222,.55);}
+.cta{
+  margin-top:auto;display:flex;align-items:center;justify-content:space-between;
+  background:var(--paper);color:var(--ink);padding:30px 36px;
+}
+.cta-l{font-family:var(--I);font-size:16px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--rust-d);}
+.cta-n{font-family:var(--F);font-size:66px;line-height:1;letter-spacing:.03em;margin-top:6px;}
+.cta-arrow{width:92px;height:92px;background:var(--rust);display:flex;align-items:center;justify-content:center;}
+.cta-foot{display:flex;justify-content:space-between;align-items:center;margin-top:28px;}
+.save{font-family:var(--C);font-size:24px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(234,230,222,.6);display:flex;align-items:center;gap:12px;}
+
+/* ══ ÁREA DE APOIO (não faz parte das imagens) ══ */
+.kit{max-width:1080px;margin:60px 0 80px;padding:48px 56px;background:#0E0D0B;color:var(--paper);border-top:3px solid var(--rust);}
+.kit h3{font-family:var(--F);font-size:44px;letter-spacing:.06em;margin-bottom:6px;}
+.kit p.note{font-family:var(--I);font-size:15px;color:rgba(234,230,222,.55);line-height:1.6;margin-bottom:24px;}
+.kit code{color:var(--rust-l);}
+.kit pre{white-space:pre-wrap;font-family:var(--I);font-size:16px;line-height:1.65;color:rgba(234,230,222,.85);background:#060605;border:1px solid rgba(234,230,222,.1);padding:28px;}
+.kit button{margin-top:16px;font-family:var(--C);font-size:20px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--rust);color:#0D0C0A;border:0;padding:14px 28px;cursor:pointer;}
+@media print{.kit{display:none;}}
+</style>
+</head>
+<body>
+
+<div id="deck"></div>
+
+<section class="kit" id="kit">
+  <h3>LEGENDA DO POST</h3>
+  <p class="note">
+    Fotos: coloque as fotos das obras nesta pasta com os mesmos nomes usados no <code>portfolio.html</code>
+    (<code>p1_01.png</code>, <code>p2_01.png</code>, <code>p3_01.png</code>, <code>p4_01.png</code>, <code>p5_02.png</code>, <code>p6_02.png</code>)
+    e elas substituem automaticamente os desenhos técnicos. Sem as fotos, cada slide mostra a ilustração técnica do projeto.
+  </p>
+  <pre id="caption">6 obras. 2.015 m². Um único responsável técnico do primeiro traço ao habite-se. 🏗️
+
+Esses são os últimos projetos que a LGM Engenharia tirou do papel — cada um com um desafio diferente:
+
+01 · Clínica Grizzo (Jaú) — sistema misto: subsolo em alvenaria estrutural + pavimentos em Light Steel Frame
+02 · Residência A.J. (Marília) — 750 m² com planejamento financeiro e INSS de obra otimizado
+03 · Casa Cubo (Marília) — arquitetura minimalista com execução racionalizada
+04 · Residência Steeltec (Marília) — 100% Light Steel Frame em condomínio
+05 · Estande de Vendas (Marília) — decorado pronto para vender em 40 dias
+06 · Barracão + Loft — vão livre acima de 10 m em steel frame
+
+Projeto, execução, gestão e regularização com ART registrada em cada etapa.
+
+👇 Qual é o seu favorito? Comenta o número!
+💾 Salva o post e manda pra quem está planejando construir.
+
+📲 Orçamento pelo WhatsApp: (14) 99185-0799
+📍 Marília – SP e região
+
+#engenhariacivil #steelframe #lightsteelframe #construcaocivil #construcaoaseco #marilia #mariliasp #jau #obras #gestaodeobra #arquiteturamoderna #casamoderna #regularizacaodeimoveis #engenheirocivil #portfolio</pre>
+  <button onclick="navigator.clipboard.writeText(document.getElementById('caption').innerText);this.textContent='Legenda copiada ✓'">Copiar legenda</button>
+</section>
+
+<script>
+const TOTAL = 8;
+
+/* ── Desenhos técnicos (viewBox 1080×650) ── */
+function studs(x0, x1, y0, y1, step, skip = []) {
+  let s = '';
+  for (let x = x0; x <= x1; x += step) {
+    if (skip.some(([a, b]) => x > a && x < b)) continue;
+    s += `<line class="lt" x1="${x}" y1="${y0}" x2="${x}" y2="${y1}"/>`;
+  }
+  return s;
+}
+function dimH(x0, x1, y, label, cls = 'tx') {
+  return `<line class="ac" x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke-width="2"/>
+    <line class="ac" x1="${x0}" y1="${y - 12}" x2="${x0}" y2="${y + 12}" stroke-width="2"/>
+    <line class="ac" x1="${x1}" y1="${y - 12}" x2="${x1}" y2="${y + 12}" stroke-width="2"/>
+    <line class="ac" x1="${x0 - 8}" y1="${y + 8}" x2="${x0 + 8}" y2="${y - 8}" stroke-width="2"/>
+    <line class="ac" x1="${x1 - 8}" y1="${y + 8}" x2="${x1 + 8}" y2="${y - 8}" stroke-width="2"/>
+    <text class="${cls}" x="${(x0 + x1) / 2}" y="${y - 16}" text-anchor="middle">${label}</text>`;
+}
+
+const DRAW = {
+  // Clínica Grizzo — subsolo em alvenaria + 2 pavimentos LSF
+  grizzo() {
+    let bricks = '';
+    for (let r = 0, y = 470; y < 590; y += 24, r++) {
+      bricks += `<line class="lt" x1="330" y1="${y}" x2="770" y2="${y}"/>`;
+      for (let x = 330 + (r % 2 ? 30 : 0); x < 770; x += 60)
+        bricks += `<line class="lt" x1="${x}" y1="${y}" x2="${x}" y2="${y + 24}"/>`;
+    }
+    const win = (y) => [370, 480, 590].map(x =>
+      `<rect class="ln" x="${x + 6}" y="${y}" width="80" height="70" style="fill:var(--sbg)"/><line class="lt" x1="${x + 46}" y1="${y}" x2="${x + 46}" y2="${y + 70}"/>`).join('');
+    return `
+      <line class="ln" x1="80" y1="470" x2="1000" y2="470" stroke-width="4"/>
+      ${Array.from({ length: 23 }, (_, i) => `<line class="lt" x1="${90 + i * 40}" y1="${i * 40 + 90 > 320 && i * 40 + 90 < 790 ? 590 : 490}" x2="${110 + i * 40}" y2="${i * 40 + 90 > 320 && i * 40 + 90 < 790 ? 610 : 470}"/>`).join('')}
+      <rect class="ln" x="320" y="470" width="460" height="120"/>
+      ${bricks}
+      <rect class="ln" x="320" y="320" width="460" height="150"/>
+      <rect class="ln" x="320" y="170" width="460" height="150"/>
+      ${studs(344, 760, 176, 314, 32)}${studs(344, 760, 326, 464, 32)}
+      ${win(210)}${win(360)}
+      <rect class="acf" x="308" y="158" width="484" height="12"/>
+      <rect class="acf" x="308" y="314" width="484" height="8" opacity=".85"/>
+      <line class="ac" x1="320" y1="245" x2="250" y2="245"/><circle class="acf" cx="320" cy="245" r="6"/>
+      <text class="txa" x="240" y="240" text-anchor="end">LIGHT</text>
+      <text class="txa" x="240" y="266" text-anchor="end">STEEL FRAME</text>
+      <line class="ac" x1="320" y1="530" x2="250" y2="530"/><circle class="acf" cx="320" cy="530" r="6"/>
+      <text class="tx" x="240" y="524" text-anchor="end">ALVENARIA</text>
+      <text class="tx" x="240" y="550" text-anchor="end">+ CONCRETO</text>
+      <line class="ac" x1="840" y1="158" x2="840" y2="590" stroke-width="2"/>
+      ${[158, 320, 470, 590].map(y => `<line class="ac" x1="828" y1="${y}" x2="852" y2="${y}" stroke-width="2"/>`).join('')}
+      <text class="tx" x="868" y="246">PAV. 2</text><text class="tx" x="868" y="402">PAV. 1</text><text class="tx" x="868" y="538">SUBSOLO</text>`;
+  },
+
+  // Residência A.J. — 750 m², volumes sobrepostos com balanço
+  aj() {
+    return `
+      <line class="ln" x1="60" y1="500" x2="1020" y2="500" stroke-width="4"/>
+      <circle class="ln" cx="140" cy="380" r="64"/><circle class="lt" cx="140" cy="380" r="40"/>
+      <line class="ln" x1="140" y1="444" x2="140" y2="500"/>
+      <rect class="ln" x="200" y="360" width="460" height="140"/>
+      <rect class="ln" x="230" y="384" width="400" height="116" style="fill:var(--faint)"/>
+      ${studs(230, 630, 384, 500, 80)}
+      <rect class="acf" x="370" y="222" width="610" height="12"/>
+      <rect class="ln" x="380" y="234" width="590" height="126"/>
+      <rect class="ln" x="420" y="266" width="510" height="62" style="fill:var(--faint)"/>
+      ${studs(420, 930, 266, 328, 85)}
+      <rect class="acf" x="190" y="352" width="480" height="8" opacity=".85"/>
+      <line class="ln" x1="930" y1="360" x2="930" y2="500"/>
+      <path class="ac" d="M690 520 L1000 520 L980 560 L670 560 Z"/>
+      <path class="ac" d="M715 540 q15 -8 30 0 t30 0 t30 0 M845 540 q15 -8 30 0 t30 0 t30 0" stroke-width="2"/>
+      ${dimH(380, 970, 180, 'BALANÇO · VOLUME SUPERIOR')}
+`;
+  },
+
+  // Casa Cubo — isométrica
+  cubo() {
+    const L = (u, v) => [349 + 191 * u, 220 + 110 * u + 220 * v];
+    const R = (u, v) => [540 + 191 * u, 330 - 110 * u + 220 * v];
+    const poly = (f, a, b, c, d) => [f(...a), f(...b), f(...c), f(...d)].map(p => p.join(',')).join(' ');
+    let hatch = '';
+    for (let u = 0.08; u < 1; u += 0.08) {
+      const [x1, y1] = R(u, 0), [x2, y2] = R(u, 1);
+      hatch += `<line class="lt" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" opacity=".6"/>`;
+    }
+    let ground = '';
+    for (let k = -4; k <= 4; k++) {
+      ground += `<line class="lt" x1="${540 + k * 96 - 300}" y1="${550 + k * 55 + 172}" x2="${540 + k * 96 + 300}" y2="${550 + k * 55 - 172}" opacity=".5"/>`;
+    }
+    return `
+      ${ground}
+      <polygon points="731,440 900,537 709,647 540,550" class="acf" opacity=".18"/>
+      <polygon class="ln" points="540,110 731,220 540,330 349,220" style="fill:var(--faint)"/>
+      <polygon class="ln" points="349,220 540,330 540,550 349,440" style="fill:var(--sbg)"/>
+      <polygon class="ln" points="540,330 731,220 731,440 540,550" style="fill:var(--sbg)"/>
+      ${hatch}
+      <polygon class="ac" points="${poly(L, [0.14, 0.22], [0.86, 0.22], [0.86, 0.94], [0.14, 0.94])}" style="fill:var(--faint)" stroke-width="4"/>
+      <polygon class="lt" points="${poly(L, [0.2, 0.28], [0.8, 0.28], [0.8, 0.94], [0.2, 0.94])}"/>
+      <polygon class="ln" points="${poly(R, [0.12, 0.24], [0.55, 0.24], [0.55, 0.36], [0.12, 0.36])}" style="fill:var(--sbg)"/>
+      <polygon class="ln" points="${poly(R, [0.66, 0.5], [0.84, 0.5], [0.84, 1], [0.66, 1])}" style="fill:var(--sbg)"/>
+      <line class="ac" x1="349" y1="330" x2="250" y2="330"/><circle class="acf" cx="349" cy="330" r="6"/>
+      <text class="txa" x="240" y="324" text-anchor="end">VOLUMETRIA</text>
+      <text class="txa" x="240" y="350" text-anchor="end">PURA</text>
+      <line class="ac" x1="731" y1="330" x2="830" y2="330"/><circle class="acf" cx="731" cy="330" r="6"/>
+      <text class="tx" x="842" y="324">LINHAS</text><text class="tx" x="842" y="350">RETAS</text>`;
+  },
+
+  // Residência Steeltec — estrutura LSF exposta
+  steeltec() {
+    const topY = x => x <= 540 ? 340 - (x - 240) * 0.5 : 340 - (840 - x) * 0.5;
+    const webs = [[315, 390], [465, 390], [465, 540], [615, 540], [615, 690], [765, 690]]
+      .map(([t, b]) => `<line class="lt" x1="${t}" y1="${topY(t)}" x2="${b}" y2="340"/>`).join('');
+    return `
+      <rect class="ln" x="220" y="540" width="640" height="26" style="fill:var(--faint)"/>
+      <line class="ln" x1="140" y1="566" x2="940" y2="566" stroke-width="4"/>
+      <line class="ln" x1="210" y1="355" x2="540" y2="190"/><line class="ln" x1="540" y1="190" x2="870" y2="355"/>
+      <line class="ln" x1="240" y1="340" x2="840" y2="340"/>
+      ${webs}<line class="lt" x1="540" y1="190" x2="540" y2="340"/>
+      <line class="ln" x1="240" y1="346" x2="840" y2="346"/>
+      <line class="ln" x1="240" y1="534" x2="840" y2="534"/>
+      <line class="ln" x1="240" y1="540" x2="840" y2="540"/>
+      ${studs(240, 840, 346, 534, 40, [[316, 444], [596, 684]])}
+      <line class="ln" x1="240" y1="346" x2="240" y2="534"/><line class="ln" x1="840" y1="346" x2="840" y2="534"/>
+      <rect class="ln" x="320" y="392" width="120" height="10"/><rect class="ln" x="320" y="474" width="120" height="8"/>
+      <line class="lt" x1="360" y1="482" x2="360" y2="534"/><line class="lt" x1="400" y1="482" x2="400" y2="534"/>
+      <rect class="ln" x="600" y="400" width="80" height="10"/>
+      <line class="ln" x1="320" y1="392" x2="320" y2="534"/><line class="ln" x1="440" y1="392" x2="440" y2="534"/>
+      <line class="ln" x1="600" y1="400" x2="600" y2="534"/><line class="ln" x1="680" y1="400" x2="680" y2="534"/>
+      <line class="ac" x1="440" y1="346" x2="600" y2="534"/><line class="ac" x1="440" y1="534" x2="600" y2="346"/>
+      <line class="ac" x1="720" y1="346" x2="840" y2="534" opacity=".7"/><line class="ac" x1="720" y1="534" x2="840" y2="346" opacity=".7"/>
+      <line class="ac" x1="840" y1="440" x2="920" y2="440"/><circle class="acf" cx="840" cy="440" r="6"/>
+      <text class="txa" x="930" y="434">PERFIS</text><text class="txa" x="930" y="460">GALV.</text>
+      <text class="tx" x="540" y="140" text-anchor="end" transform="translate(0,0)">TOLERÂNCIA</text>
+      <text class="txa" x="552" y="140">±1 mm</text>
+      ${dimH(240, 840, 610, '')}`;
+  },
+
+  // Estande de vendas — pavilhão com decorado
+  estande() {
+    return `
+      <line class="ln" x1="80" y1="540" x2="1000" y2="540" stroke-width="4"/>
+      <rect class="ln" x="180" y="520" width="700" height="20" style="fill:var(--faint)"/>
+      <rect class="acf" x="200" y="246" width="700" height="16"/>
+      <rect class="ln" x="230" y="262" width="620" height="258"/>
+      <rect class="ln" x="230" y="262" width="620" height="64" style="fill:var(--faint)"/>
+      <text x="540" y="306" text-anchor="middle" style="font-family:var(--F);font-size:40px;letter-spacing:.32em;fill:var(--ln)">APARTAMENTO DECORADO</text>
+      <rect class="ln" x="260" y="346" width="560" height="174" style="fill:var(--faint)"/>
+      ${studs(260, 820, 346, 520, 80, [[500, 580]])}
+      <rect class="ac" x="500" y="380" width="80" height="140"/>
+      <line class="ac" x1="566" y1="440" x2="566" y2="468"/>
+      <line class="lt" x1="200" y1="262" x2="200" y2="520" stroke-dasharray="6 8"/>
+      <line class="lt" x1="900" y1="262" x2="900" y2="520" stroke-dasharray="6 8"/>
+      <path class="ln" d="M120 520 L120 470 L160 470 L160 520 M140 470 q-30 -50 0 -90 q30 40 0 90"/>
+      <path class="ln" d="M920 520 L920 470 L960 470 L960 520 M940 470 q-30 -50 0 -90 q30 40 0 90"/>
+      <circle class="ac" cx="955" cy="215" r="72" stroke-width="4"/>
+      <circle class="ac" cx="955" cy="215" r="60" stroke-width="2" stroke-dasharray="4 7"/>
+      <text x="955" y="230" text-anchor="middle" style="font-family:var(--F);font-size:62px;fill:var(--rust)">40</text>
+      <text x="955" y="258" text-anchor="middle" class="txa" style="font-size:18px">DIAS</text>
+`;
+  },
+
+  // Barracão + Loft — vão livre > 10 m em LSF
+  barracao() {
+    const topY = x => x <= 540 ? 300 - (x - 160) * 100 / 380 : 300 - (920 - x) * 100 / 380;
+    let truss = '';
+    const nodes = Array.from({ length: 9 }, (_, k) => 160 + 95 * k);
+    nodes.forEach((x, k) => {
+      truss += `<line class="lt" x1="${x}" y1="300" x2="${x}" y2="${topY(x)}"/>`;
+      if (k < 8) {
+        const n = nodes[k + 1];
+        truss += x < 540
+          ? `<line class="lt" x1="${x}" y1="300" x2="${n}" y2="${topY(n)}"/>`
+          : `<line class="lt" x1="${x}" y1="${topY(x)}" x2="${n}" y2="300"/>`;
+      }
+    });
+    return `
+      <line class="ln" x1="70" y1="560" x2="1010" y2="560" stroke-width="4"/>
+      <line class="ln" x1="140" y1="306" x2="540" y2="201"/><line class="ln" x1="540" y1="201" x2="940" y2="306"/>
+      <line class="ln" x1="160" y1="300" x2="920" y2="300"/>
+      ${truss}
+      <rect class="ln" x="148" y="300" width="24" height="260" style="fill:var(--faint)"/>
+      <rect class="ln" x="908" y="300" width="24" height="260" style="fill:var(--faint)"/>
+      <rect class="acf" x="640" y="420" width="268" height="10"/>
+      <rect class="ln" x="760" y="330" width="148" height="90" style="fill:var(--faint)"/>
+      ${studs(790, 880, 330, 420, 30)}
+      <line class="ln" x1="640" y1="384" x2="760" y2="384"/>
+      ${[640, 680, 720].map(x => `<line class="lt" x1="${x}" y1="384" x2="${x}" y2="420"/>`).join('')}
+      <path class="ln" d="M560 560 L640 430"/>
+      ${[0, 1, 2, 3, 4].map(i => `<line class="lt" x1="${560 + i * 16}" y1="${560 - i * 26}" x2="${584 + i * 16}" y2="${560 - i * 26}"/>`).join('')}
+      <path class="ln" d="M220 532 L232 500 Q240 486 270 484 L300 484 Q322 452 356 450 L404 450 Q440 452 458 484 L476 490 Q492 500 488 532 Z" style="fill:var(--faint)"/>
+      <line class="lt" x1="300" y1="484" x2="458" y2="484"/>
+      <circle class="ln" cx="282" cy="536" r="24" style="fill:var(--sbg)"/><circle class="ln" cx="430" cy="536" r="24" style="fill:var(--sbg)"/>
+      <text class="tx" x="834" y="316" text-anchor="middle">LOFT</text>
+      ${dimH(160, 920, 610, 'VÃO LIVRE > 10 m', 'txa')}`;
+  },
+};
+
+const PROJECTS = [
+  { key: 'grizzo', img: 'p1_01.png', cat: 'Comercial · Jaú – SP', title: 'CLÍNICA <em>GRIZZO</em>', badge: 'Sistema misto',
+    desc: 'Salas de saúde para locação. <b>Subsolo em alvenaria estrutural</b> e pavimentos superiores em <b>Light Steel Frame</b>.',
+    stats: [['Área', '380<small>m²</small>'], ['Prazo', '7<small>meses</small>'], ['Local', 'JAÚ']],
+    scope: ['Projeto estrutural', 'Execução', 'Gerenciamento', 'Plan. financeiro', 'Regularização'] },
+  { key: 'aj', img: 'p2_01.png', cat: 'Residencial · Marília – SP', title: 'RESIDÊNCIA <em>A.J.</em>', badge: 'INSS de obra otimizado',
+    desc: 'Execução eficiente com <b>planejamento estratégico</b> e regularização completa — segurança jurídica e custo otimizado.',
+    stats: [['Área', '750<small>m²</small>'], ['Prazo', '10<small>meses</small>'], ['Local', 'MARÍLIA']],
+    scope: ['Projeto estrutural', 'Gerenciamento', 'Plan. financeiro', 'CNO / INSS', 'Averbação'] },
+  { key: 'cubo', img: 'p3_01.png', cat: 'Residencial · Marília – SP', title: 'CASA <em>CUBO</em>', badge: 'Arquitetura minimalista',
+    desc: 'Volumetria pura e linhas retas. <b>Identidade forte</b> com uma solução construtiva racionalizada.',
+    stats: [['Área', '180<small>m²</small>'], ['Prazo', '6<small>meses</small>'], ['Local', 'MARÍLIA']],
+    scope: ['Execução', 'Gerenciamento', 'Planejamento técnico'] },
+  { key: 'steeltec', img: 'p4_01.png', cat: 'Residencial · Condomínio · Marília – SP', title: 'RESIDÊNCIA <em>STEELTEC</em>', badge: '100% Light Steel Frame',
+    desc: 'Tecnologia e inovação em <b>Light Steel Frame</b>: desempenho, precisão milimétrica e obra a seco.',
+    stats: [['Área', '200<small>m²</small>'], ['Prazo', '6<small>meses</small>'], ['Local', 'MARÍLIA']],
+    scope: ['Projeto estrutural', 'Execução', 'Gerenciamento', 'Planejamento'] },
+  { key: 'estande', img: 'p5_02.png', cat: 'Comercial · Marília – SP', title: 'ESTANDE DE <em>VENDAS</em>', badge: 'Entregue em 40 dias',
+    desc: 'Estande para construtora com <b>apartamento decorado</b> — pronto para vender em <b>40 dias</b>.',
+    stats: [['Área', '55<small>m²</small>'], ['Prazo', '40<small>dias</small>'], ['Local', 'MARÍLIA']],
+    scope: ['Projeto', 'Execução'] },
+  { key: 'barracao', img: 'p6_02.png', cat: 'Misto · Steel Frame', title: 'BARRACÃO <em>+ LOFT</em>', badge: 'Vão livre 10 m+',
+    desc: 'Garagem para carros antigos com loft no mezanino. <b>Vão livre acima de 10 m</b> em steel frame — um dos maiores desafios do sistema.',
+    stats: [['Área', '450<small>m²</small>'], ['Prazo', '9<small>meses</small>'], ['Sistema', '100% LSF']],
+    scope: ['Projeto estrutural', 'Execução', 'Gerenciamento'] },
+];
+
+const chevron = `<div class="swipe"><svg width="52" height="52" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
+const prog = i => `<div class="prog">
+    <span class="prog-brand">LGM</span>
+    <div class="prog-track"><div class="prog-fill" style="width:${(i / TOTAL) * 100}%"></div></div>
+    <span class="prog-n">${i}/${TOTAL}</span></div>`;
+
+let html = `
+<section class="slide dark" id="s1">
+  <div class="photo-bg"></div>
+  <div class="acc-bar"></div>
+  <div class="top">
+    <div class="logo-row">
+      <div class="logo-mark">LGM</div>
+      <div><div class="logo-name">LGM ENGENHARIA</div><div class="logo-sub">Marília – SP · CREA–SP 5071068977</div></div>
+    </div>
+    <div class="handle">@eng.gustavomaia</div>
+  </div>
+  <div class="shell">
+    <span class="lbl">Portfólio · obras entregues</span>
+    <div class="h1">ÚLTIMOS<br>PROJETOS<br><em>ENTREGUES.</em></div>
+    <div class="sub">Do projeto estrutural ao habite-se. <b>6 obras reais</b>, um único responsável técnico e <b>ART em cada etapa.</b></div>
+    <div class="kpis">
+      <div class="kpi"><div class="kpi-n">2.015<small>m²</small></div><div class="kpi-l">Construídos</div></div>
+      <div class="kpi"><div class="kpi-n">6</div><div class="kpi-l">Projetos</div></div>
+      <div class="kpi"><div class="kpi-n">40<small>dias</small></div><div class="kpi-l">Obra mais rápida</div></div>
+      <div class="kpi"><div class="kpi-n">10<small>m+</small></div><div class="kpi-l">Vão livre em LSF</div></div>
+    </div>
+  </div>
+  ${chevron}${prog(1)}
+</section>`;
+
+PROJECTS.forEach((p, k) => {
+  const n = String(k + 1).padStart(2, '0');
+  const theme = k % 2 === 0 ? 'light' : 'dark';
+  html += `
+<section class="slide ${theme} proj" id="s${k + 2}">
+  <div class="acc-bar"></div>
+  <div class="ph">
+    <svg class="draw" viewBox="0 0 1080 650" preserveAspectRatio="xMidYMid meet"><g transform="translate(0,-22)">${DRAW[p.key]()}</g></svg>
+    <img src="${p.img}" alt="" onload="this.parentNode.classList.add('has-photo')" onerror="this.remove()">
+    <div class="ph-head">
+      <div><div class="ph-proj">Projeto</div><div class="ph-num">${n}</div></div>
+      <div class="badge">${p.badge}</div>
+    </div>
+  </div>
+  <div class="info">
+    <span class="lbl">${p.cat}</span>
+    <h2>${p.title}</h2>
+    <p class="desc">${p.desc}</p>
+    <div class="stats">${p.stats.map(([l, v]) => `<div class="st"><div class="st-l">${l}</div><div class="st-v">${v}</div></div>`).join('')}</div>
+    <div class="pills">${p.scope.map(s => `<span class="pill">${s}</span>`).join('')}</div>
+  </div>
+  ${chevron}${prog(k + 2)}
+</section>`;
+});
+
+const check = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#C8793E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+html += `
+<section class="slide dark" id="s8">
+  <div class="acc-bar"></div>
+  <div class="wm">LGM</div>
+  <div class="shell">
+    <span class="lbl">O próximo pode ser o seu</span>
+    <h2>VAI CONSTRUIR?<br><em>SEM SURPRESAS.</em></h2>
+    <p class="lead">Projeto, execução, gestão e regularização com <b>um único responsável técnico</b> — e ART registrada em cada disciplina.</p>
+    <div class="checks">
+      <div class="chk"><div class="chk-i">${check}</div><div class="chk-t">Projeto arquitetônico e estrutural <span>· aprovação</span></div></div>
+      <div class="chk"><div class="chk-i">${check}</div><div class="chk-t">Steel frame e sistema misto <span>· obra a seco</span></div></div>
+      <div class="chk"><div class="chk-i">${check}</div><div class="chk-t">CNO e INSS de obra <span>· redução legal</span></div></div>
+      <div class="chk"><div class="chk-i">${check}</div><div class="chk-t">Habite-se, averbação e CND <span>· imóvel regular</span></div></div>
+    </div>
+    <div class="cta">
+      <div><div class="cta-l">Orçamento pelo WhatsApp</div><div class="cta-n">(14) 99185-0799</div></div>
+      <div class="cta-arrow"><svg width="44" height="44" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#0D0C0A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="cta-foot">
+      <div class="save"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6 3h12v18l-6-4.5L6 21z" stroke="#C8793E" stroke-width="2" stroke-linejoin="round"/></svg>Salve e envie pra quem vai construir</div>
+      <div class="save" style="color:var(--paper)">@eng.gustavomaia</div>
+    </div>
+  </div>
+  ${prog(8)}
+</section>`;
+
+document.getElementById('deck').innerHTML = html;
+
+/* encaixa títulos longos numa linha */
+function fitTitles() {
+  document.querySelectorAll('.info h2').forEach(h => {
+    let fs = 150;
+    h.style.fontSize = fs + 'px';
+    while (h.scrollWidth > h.clientWidth && fs > 80) h.style.fontSize = (fs -= 2) + 'px';
+  });
+}
+fitTitles();
+document.fonts && document.fonts.ready.then(fitTitles);
+</script>
+</body>
+</html>

@@ -1,26 +1,23 @@
-# Legenda — Carrossel "Últimos Projetos"
+# Legenda — Carrossel "Últimos projetos e serviços"
 
-Publique os 8 PNGs desta pasta na ordem (01 → 08), formato 4:5 (1080×1350).
+Publique os 10 PNGs desta pasta na ordem (01 → 10), formato 4:5 (1080×1350).
 
 ```
-6 obras. 2.015 m². Um único responsável técnico do primeiro traço ao habite-se. 🏗️
+Últimos projetos e serviços da LGM.
 
-Esses são os últimos projetos que a LGM Engenharia tirou do papel — cada um com um desafio diferente:
+Do projeto executivo em BIM para o BCB Recife (PE) a obras entregues em Marília e Jaú — com um único responsável técnico e ART registrada em cada etapa.
 
-01 · Clínica Grizzo (Jaú) — sistema misto: subsolo em alvenaria estrutural + pavimentos em Light Steel Frame
-02 · Residência A.J. (Marília) — 750 m² com planejamento financeiro e INSS de obra otimizado
-03 · Casa Cubo (Marília) — arquitetura minimalista com execução racionalizada
-04 · Residência Steeltec (Marília) — 100% Light Steel Frame em condomínio
-05 · Estande de Vendas (Marília) — decorado pronto para vender em 40 dias
-06 · Barracão + Loft — vão livre acima de 10 m em steel frame
+01 · BCB Recife – PE — projeto executivo: estrutura, coberturas peça a peça e drenagem
+02 · Clínica Grizzo (Jaú) — subsolo em concreto, pavimentos em Light Steel Frame
+03 · Barracão + Loft — 10 m de vão livre em steel frame
+04 · Residência A.J., Residência Steeltec, Casa Cubo e Estande de Vendas
+05 · Obra em Conta — INSS de obra e planejamento documental
+06 · Guia do Proprietário — o que conferir antes de pagar o INSS da obra
 
-Projeto, execução, gestão e regularização com ART registrada em cada etapa.
+Quer o guia? Peça pelo direct.
+Vai construir, regularizar ou revisar o INSS da sua obra? WhatsApp (14) 99185-0799.
 
-👇 Qual é o seu favorito? Comenta o número!
-💾 Salva o post e manda pra quem está planejando construir.
+LGM Engenharia & Construções · Marília – SP · CREA–SP 5071068977
 
-📲 Orçamento pelo WhatsApp: (14) 99185-0799
-📍 Marília – SP e região
-
-#engenhariacivil #steelframe #lightsteelframe #construcaocivil #construcaoaseco #marilia #mariliasp #jau #obras #gestaodeobra #arquiteturamoderna #casamoderna #regularizacaodeimoveis #engenheirocivil #portfolio
+#engenhariacivil #steelframe #lightsteelframe #projetoestrutural #bim #inssdeobra #regularizacaodeimoveis #construcaocivil #mariliasp #recife #engenheirocivil
 ```

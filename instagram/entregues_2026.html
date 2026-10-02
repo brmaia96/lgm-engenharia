@@ -22,116 +22,103 @@ html,body{background:#0d0c0a;}
 /* cabeçalho e rodapé */
 .hd{position:absolute;top:0;left:72px;right:72px;height:128px;z-index:20;
   display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(26,24,20,.16);}
-.dk .hd,.ov .hd{border-color:rgba(244,241,234,.18);}
+.dk .hd{border-color:rgba(244,241,234,.18);}
 .wm{font-family:var(--D);font-weight:400;font-size:32px;letter-spacing:-.01em;}
 .wm em{font-style:italic;font-weight:300;color:var(--terra);}
-.dk .wm em,.ov .wm em{color:var(--terra-c);}
+.dk .wm em{color:var(--terra-c);}
 .mono{font-family:var(--M);font-weight:500;font-size:15px;letter-spacing:.24em;text-transform:uppercase;line-height:1.7;}
 .hd .mono{text-align:right;color:var(--muted);}
-.dk .hd .mono,.ov .hd .mono{color:rgba(244,241,234,.62);}
+.dk .hd .mono{color:rgba(244,241,234,.62);}
 .ft{position:absolute;bottom:0;left:72px;right:72px;height:110px;z-index:20;
   display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(26,24,20,.16);color:var(--muted);}
-.dk .ft,.ov .ft{border-color:rgba(244,241,234,.18);color:rgba(244,241,234,.55);}
+.dk .ft{border-color:rgba(244,241,234,.18);color:rgba(244,241,234,.55);}
 
 /* tipografia */
 .kick{font-family:var(--M);font-weight:500;font-size:17px;letter-spacing:.26em;text-transform:uppercase;color:var(--terra);}
-.dk .kick,.ov .kick{color:var(--terra-c);}
+.dk .kick{color:var(--terra-c);}
 .h{font-family:var(--D);font-weight:300;letter-spacing:-.03em;line-height:.98;font-variation-settings:'opsz' 144;}
 .h em{font-style:italic;color:var(--terra);}
-.dk .h em,.ov .h em{color:var(--terra-c);}
-.p{font-family:var(--B);font-weight:400;font-size:28px;line-height:1.5;color:rgba(26,24,20,.78);}
-.dk .p,.ov .p{color:rgba(244,241,234,.82);}
-.bar{width:96px;height:2px;background:var(--terra);margin:34px 0;}
-.dk .bar,.ov .bar{background:var(--terra-c);}
+.dk .h em{color:var(--terra-c);}
+.p{font-family:var(--B);font-weight:400;font-size:27px;line-height:1.5;color:rgba(26,24,20,.78);}
+.dk .p{color:rgba(244,241,234,.82);}
 .cap{font-family:var(--M);font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);}
-.dk .cap,.ov .cap{color:rgba(244,241,234,.55);}
+.dk .cap{color:rgba(244,241,234,.55);}
 .tags{display:flex;flex-wrap:wrap;gap:12px;}
 .tag{font-family:var(--M);font-weight:500;font-size:14px;letter-spacing:.2em;text-transform:uppercase;
   border:1px solid currentColor;padding:9px 14px 8px;opacity:.85;}
 
 /* ficha técnica */
 .spec{display:grid;border-top:1px solid rgba(26,24,20,.16);}
-.dk .spec,.ov .spec{border-color:rgba(244,241,234,.18);}
+.dk .spec{border-color:rgba(244,241,234,.18);}
 .spec>div{padding:22px 20px 0 0;}
 .spec>div+div{padding-left:22px;border-left:1px solid rgba(26,24,20,.16);}
-.dk .spec>div+div,.ov .spec>div+div{border-color:rgba(244,241,234,.18);}
+.dk .spec>div+div{border-color:rgba(244,241,234,.18);}
 .spec .k{font-family:var(--M);font-weight:500;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
-.dk .spec .k,.ov .spec .k{color:rgba(244,241,234,.55);}
-.spec .v{font-family:var(--D);font-weight:300;font-size:46px;letter-spacing:-.02em;margin-top:8px;line-height:1.05;white-space:nowrap;}
+.dk .spec .k{color:rgba(244,241,234,.55);}
+.spec .v{font-family:var(--D);font-weight:300;font-size:40px;letter-spacing:-.02em;margin-top:8px;line-height:1.05;white-space:nowrap;}
 .spec .v small{font-size:.55em;}
 .spec .v em{font-style:italic;color:var(--terra);}
-.dk .spec .v em,.ov .spec .v em{color:var(--terra-c);}
-.spec.four .v{font-size:40px;}
+.dk .spec .v em{color:var(--terra-c);}
 
 /* imagens */
 .bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;}
 .shade{position:absolute;inset:0;z-index:1;}
-.ov{color:var(--papel);}
 .box{position:absolute;left:72px;right:72px;z-index:10;}
-.draw{background-size:contain;background-position:center;background-repeat:no-repeat;mix-blend-mode:multiply;}
+.draw{background-size:contain;background-position:center;background-repeat:no-repeat;}
 
 /* ═════ 01 · CAPA ═════ */
-#s1 .draw{position:absolute;left:60px;right:60px;top:150px;height:330px;z-index:1;
-  background-image:url('../assets/projetos/bcb-perspectiva.png');
-  filter:invert(1) sepia(.35);mix-blend-mode:screen;opacity:.30;}
-#s1 .box{bottom:150px;}
-#s1 .h{font-size:176px;margin-top:26px;}
-#s1 .p{margin-top:34px;max-width:780px;font-size:29px;}
-#s1 .idx{display:grid;grid-template-columns:repeat(4,1fr);column-gap:28px;margin-top:56px;border-top:1px solid rgba(244,241,234,.18);}
+#s1 .bg{background-image:url('../assets/projetos/debora-casa.jpg');background-position:center 92%;}
+#s1 .shade{background:linear-gradient(to bottom,var(--tinta) 0%,rgba(26,24,20,.97) 30%,rgba(26,24,20,.6) 40%,rgba(26,24,20,.05) 50%,rgba(26,24,20,.05) 68%,rgba(26,24,20,.9) 84%,var(--tinta) 100%);}
+#s1 .box{top:170px;}
+#s1 .idxbox{position:absolute;left:72px;right:72px;bottom:134px;z-index:10;}
+#s1 .shade{}
+#s1 .h{font-size:150px;margin-top:20px;}
+#s1 .p{margin-bottom:26px;max-width:760px;font-size:27px;}
+#s1 .idx{display:grid;grid-template-columns:repeat(4,1fr);column-gap:28px;border-top:1px solid rgba(244,241,234,.18);}
 #s1 .idx div{padding-top:18px;font-family:var(--D);font-weight:300;font-size:25px;line-height:1.25;color:rgba(244,241,234,.9);}
 #s1 .idx b{display:block;font-family:var(--M);font-weight:500;font-size:13px;letter-spacing:.22em;color:var(--terra-c);margin-bottom:8px;}
 
-/* ═════ 02 · BCB ═════ */
-#s2 .top{position:absolute;top:186px;left:72px;right:72px;}
-#s2 .h{font-size:104px;margin-top:22px;}
-#s2 .p{font-size:26px;max-width:880px;}
-#s2 .draw{position:absolute;left:20px;right:20px;top:700px;height:380px;
-  background-image:url('../assets/projetos/bcb-perspectiva.png');}
-#s2 .cap{position:absolute;right:72px;top:676px;}
-#s2 .spec{position:absolute;left:72px;right:72px;bottom:110px;grid-template-columns:1fr 1.25fr 1.2fr 1.05fr;padding-bottom:26px;}
+/* ═════ 02 · DOM SILVÉRIO ═════ */
+#s2 .img1{position:absolute;left:0;right:0;top:129px;height:430px;background:url('../assets/projetos/dom-silverio-fachada.jpg') center 58%/cover;}
+#s2 .img2{position:absolute;left:0;right:0;top:562px;height:200px;background:url('../assets/projetos/dom-silverio-plenario.jpg') center 62%/cover;}
+#s2 .cap{position:absolute;right:72px;top:786px;}
+#s2 .top{position:absolute;top:812px;left:72px;right:72px;}
+#s2 .h{font-size:72px;margin-top:16px;}
+#s2 .p{font-size:22px;margin-top:16px;max-width:900px;}
+#s2 .spec{position:absolute;left:72px;right:72px;bottom:110px;grid-template-columns:1fr 1fr 1.25fr 1fr;padding-bottom:26px;}
 
-/* ═════ 03 · DOM SILVÉRIO ═════ */
-#s3 .bg{top:129px;bottom:auto;height:420px;background-image:url('../assets/projetos/dom-silverio-fachada.jpg');background-position:50% 55%;}
-#s3 .top{position:absolute;top:596px;left:72px;right:72px;display:grid;grid-template-columns:1fr 360px;column-gap:44px;}
-#s3 .h{font-size:84px;margin-top:20px;}
-#s3 .p{font-size:24px;margin-top:26px;max-width:600px;}
-#s3 .fig{width:360px;height:218px;margin-top:6px;background:url('../assets/projetos/dom-silverio-planta.png') center/cover;
-  border:1px solid rgba(244,241,234,.18);}
-#s3 .fig-cap{margin-top:12px;}
-#s3 .spec{position:absolute;left:72px;right:72px;bottom:110px;grid-template-columns:1fr 1fr 1.25fr 1fr;padding-bottom:26px;}
+/* ═════ 03 · MARINHA ═════ */
+#s3 .cap{position:absolute;left:72px;top:160px;}
+#s3 .draw1{position:absolute;left:30px;right:30px;top:196px;height:360px;background-image:url('../assets/projetos/marinha-planta-inv.png');}
+#s3 .draw2{position:absolute;left:30px;right:30px;top:576px;height:160px;background-image:url('../assets/projetos/marinha-corte-inv.png');opacity:.85;}
+#s3 .cap2{position:absolute;left:72px;top:742px;}
+#s3 .top{position:absolute;top:790px;left:72px;right:72px;}
+#s3 .h{font-size:72px;margin-top:16px;}
+#s3 .p{font-size:22px;margin-top:16px;max-width:900px;}
+#s3 .spec{position:absolute;left:72px;right:72px;bottom:110px;grid-template-columns:1fr 1.15fr 1.25fr 1fr;padding-bottom:26px;}
 
-/* ═════ 04 · MARINHA ═════ */
-#s4{background:var(--papel2);}
-#s4 .cap{position:absolute;left:72px;top:160px;}
-#s4 .draw{position:absolute;left:30px;right:30px;top:196px;height:390px;
-  background-image:url('../assets/projetos/marinha-planta.png');}
-#s4 .top{position:absolute;top:600px;left:72px;right:72px;}
+/* ═════ 04 · DÉBORA LSF ═════ */
+#s4 .bg{background-image:url('../assets/projetos/debora-explodido.jpg');background-position:center 38%;background-size:118%;}
+#s4 .shade{background:linear-gradient(to bottom,rgba(26,24,20,.5) 0%,rgba(26,24,20,0) 18%,rgba(26,24,20,0) 60%,rgba(26,24,20,.88) 76%,var(--tinta) 90%);}
+#s4 .box{bottom:150px;}
 #s4 .h{font-size:92px;margin-top:20px;}
-#s4 .p{font-size:25px;margin-top:26px;max-width:900px;}
-#s4 .spec{position:absolute;left:72px;right:72px;bottom:110px;grid-template-columns:1fr 1.15fr 1.25fr 1fr;padding-bottom:26px;}
+#s4 .tags{margin-top:30px;}
+#s4 .spec{margin-top:40px;grid-template-columns:1.1fr 1fr 1.05fr;}
 
-/* ═════ 05 · DÉBORA LSF ═════ */
-#s5 .bg{top:129px;bottom:auto;height:760px;background-image:url('../assets/projetos/debora-casa.jpg');background-position:center 62%;}
-#s5 .shade{top:129px;bottom:auto;height:760px;background:linear-gradient(to bottom,rgba(26,24,20,0) 55%,rgba(26,24,20,.9) 88%,var(--tinta) 100%);}
-#s5 .box{top:700px;}
+/* ═════ 05 · CHALÉ ═════ */
+#s5 .bg{background-image:url('../assets/projetos/chale-md.jpg');background-position:center 30%;}
+#s5 .shade{background:linear-gradient(to bottom,rgba(26,24,20,.72) 0%,rgba(26,24,20,.1) 22%,rgba(26,24,20,0) 50%,rgba(26,24,20,.82) 72%,var(--tinta) 88%);}
+#s5 .box{bottom:150px;}
 #s5 .h{font-size:92px;margin-top:20px;}
-#s5 .tags{margin-top:34px;}
-#s5 .spec{position:absolute;left:72px;right:72px;bottom:110px;grid-template-columns:1.1fr 1fr 1.05fr;padding-bottom:26px;}
+#s5 .p{font-size:26px;margin-top:24px;max-width:820px;}
+#s5 .stamp{display:inline-block;margin-top:34px;border:1px solid var(--terra-c);color:var(--terra-c);padding:12px 18px 10px;}
 
-/* ═════ 06 · CHALÉ ═════ */
-#s6 .top{position:absolute;top:184px;left:72px;right:72px;}
-#s6 .h{font-size:92px;margin-top:22px;}
-#s6 .p{font-size:25px;max-width:860px;margin-top:22px;}
-#s6 .img{position:absolute;left:0;right:0;top:600px;bottom:110px;background:url('../assets/projetos/chale-md.jpg') center 48%/cover;}
-#s6 .ft{background:var(--papel);}
-#s6 .stamp{position:absolute;left:72px;bottom:140px;z-index:5;background:var(--papel);padding:14px 20px 12px;color:var(--terra);}
-
-/* ═════ 07 · FECHO ═════ */
-#s7 .mark{position:absolute;left:50%;top:356px;transform:translateX(-50%);width:400px;height:447px;
+/* ═════ 06 · FECHO ═════ */
+#s6 .mark{position:absolute;left:50%;top:356px;transform:translateX(-50%);width:400px;height:447px;
   background:url('../assets/logo-L.png') center/contain no-repeat;}
-#s7 .line{position:absolute;left:72px;right:72px;top:870px;text-align:center;
+#s6 .line{position:absolute;left:72px;right:72px;top:870px;text-align:center;
   font-family:var(--D);font-weight:300;font-size:78px;letter-spacing:-.02em;color:var(--tinta);}
-#s7 .line em{font-style:italic;color:var(--terra);}
+#s6 .line em{font-style:italic;color:var(--terra);}
 
 /* apoio (fora das imagens) */
 .kit{width:1080px;margin:40px 0 80px;padding:56px 72px;background:var(--papel);color:var(--tinta);font-family:var(--B);}
@@ -147,138 +134,114 @@ html,body{background:#0d0c0a;}
 
 <!-- 01 · CAPA -->
 <section class="slide dk" id="s1">
-  <div class="draw"></div>
+  <div class="bg"></div><div class="shade"></div>
   <div class="hd"><div class="wm">LGM <em>Engenharia</em></div><div class="mono">Entregues<br>2026</div></div>
   <div class="box">
     <div class="kick">Fig. 01 — Últimos projetos</div>
     <div class="h">Saiu da<br><em>prancheta.</em></div>
-    <p class="p">Quatro projetos entregues em 2026 — de Recife a Cuiabá, do aço galvanizado ao steel frame.</p>
+  </div>
+  <div class="idxbox">
+    <p class="p">Três projetos entregues em 2026 — de Minas a Cuiabá, do orçamento público ao steel frame.</p>
     <div class="idx">
-      <div><b>01 · PE</b>Banco Central Recife</div>
-      <div><b>02 · MG</b>Câmara de Dom Silvério</div>
-      <div><b>03 · MT</b>Marinha do Brasil</div>
-      <div><b>04 · MG</b>Residência em LSF</div>
+      <div><b>01 · MG</b>Câmara de Dom Silvério</div>
+      <div><b>02 · MT</b>Marinha do Brasil</div>
+      <div><b>03 · MG</b>Residência em LSF</div>
+      <div><b>Em curso</b>Chalé em Marília</div>
     </div>
   </div>
-  <div class="ft"><span class="mono">Do risco à chave</span><span class="mono">01 / 07</span></div>
+  <div class="ft"><span class="mono">Do risco à chave</span><span class="mono">01 / 06</span></div>
 </section>
 
-<!-- 02 · BCB RECIFE -->
-<section class="slide" id="s2">
-  <div class="hd"><div class="wm">LGM <em>Engenharia</em></div><div class="mono">Banco Central · Edifício-Sede<br>Recife — PE</div></div>
-  <div class="top">
-    <div class="kick">01 — Projeto executivo</div>
-    <div class="h">Nove coberturas<br><em>em aço.</em></div>
-    <div class="bar"></div>
-    <p class="p">Vistoria, projeto das coberturas em perfis galvanizados formados a frio, drenagem pluvial, especificações técnicas, orçamento em base SINAPI e cronograma — em volume único.</p>
-  </div>
-  <div class="cap">Fig. — Perspectivas, coberturas 1-2-3 · R01</div>
-  <div class="draw"></div>
-  <div class="spec four">
-    <div><div class="k">Coberturas</div><div class="v">9</div></div>
-    <div><div class="k">Aço galvanizado</div><div class="v">18,07 <small>t</small></div></div>
-    <div><div class="k">Orçamento</div><div class="v"><em>SINAPI</em></div></div>
-    <div><div class="k">Normas</div><div class="v">NBR <small>14762</small></div></div>
-  </div>
-  <div class="ft"><span class="mono">Estrutura · Drenagem · Orçamento · Cronograma</span><span class="mono">02 / 07</span></div>
-</section>
-
-<!-- 03 · DOM SILVÉRIO -->
-<section class="slide dk" id="s3">
-  <div class="bg"></div>
+<!-- 02 · DOM SILVÉRIO -->
+<section class="slide dk" id="s2">
+  <div class="img1"></div><div class="img2"></div>
   <div class="hd"><div class="wm">LGM <em>Engenharia</em></div><div class="mono">Câmara Municipal<br>Dom Silvério — MG</div></div>
+  <div class="cap">Fig. — Fachada e plenário</div>
   <div class="top">
-    <div>
-      <div class="kick">02 — Orçamento de obra pública</div>
-      <div class="h">Reforma pública,<br><em>conta fechada.</em></div>
-      <p class="p">Orçamento analítico em base SINAPI-MG, curva ABC, memoriais descritivos e cronograma físico-financeiro — cobertura nova, plenário e salas.</p>
-    </div>
-    <div>
-      <div class="fig"></div>
-      <div class="cap fig-cap">Fig. — Planta baixa · 1/75</div>
-    </div>
+    <div class="kick">01 — Orçamento de obra pública</div>
+    <div class="h">Reforma pública,<br><em>conta fechada.</em></div>
+    <p class="p">Orçamento analítico em base SINAPI-MG, curva ABC, memoriais e cronograma físico-financeiro — cobertura nova, plenário e salas.</p>
   </div>
-  <div class="spec four">
+  <div class="spec">
     <div><div class="k">Intervenção</div><div class="v">210 <small>m²</small></div></div>
     <div><div class="k">Serviços</div><div class="v">119</div></div>
     <div><div class="k">Base</div><div class="v"><em>SINAPI</em>-MG</div></div>
     <div><div class="k">Prazo</div><div class="v">2 <small>meses</small></div></div>
   </div>
-  <div class="ft"><span class="mono">Orçamento · Curva ABC · Cronograma</span><span class="mono">03 / 07</span></div>
+  <div class="ft"><span class="mono">Orçamento · Curva ABC · Cronograma</span><span class="mono">02 / 06</span></div>
 </section>
 
-<!-- 04 · MARINHA -->
-<section class="slide" id="s4">
+<!-- 03 · MARINHA -->
+<section class="slide dk" id="s3">
   <div class="hd"><div class="wm">LGM <em>Engenharia</em></div><div class="mono">Marinha do Brasil · CFMT<br>Cuiabá — MT</div></div>
   <div class="cap">Fig. — Planta baixa · anexo administrativo</div>
-  <div class="draw"></div>
+  <div class="draw draw1"></div>
+  <div class="draw draw2"></div>
+  <div class="cap cap2">Corte AA</div>
   <div class="top">
-    <div class="kick">03 — Projeto básico e orçamento</div>
+    <div class="kick">02 — Projeto básico e orçamento</div>
     <div class="h">Anexo administrativo<br><em>da Capitania.</em></div>
-    <p class="p">Projeto básico, orçamento analítico em base SINAPI-MT, memorial de quantitativos e especificações para o anexo em alvenaria estrutural sobre radier, com cobertura metálica.</p>
+    <p class="p">Projeto básico, orçamento analítico em base SINAPI-MT, memorial de quantitativos e especificações — alvenaria estrutural, radier e cobertura metálica.</p>
   </div>
-  <div class="spec four">
+  <div class="spec">
     <div><div class="k">Área construída</div><div class="v">177 <small>m²</small></div></div>
     <div><div class="k">Serviços</div><div class="v">81 <small>· 10 etapas</small></div></div>
     <div><div class="k">Base</div><div class="v"><em>SINAPI</em>-MT</div></div>
     <div><div class="k">Prazo de obra</div><div class="v">4 <small>meses</small></div></div>
   </div>
-  <div class="ft"><span class="mono">Projeto básico · Orçamento · Memorial</span><span class="mono">04 / 07</span></div>
+  <div class="ft"><span class="mono">Projeto básico · Orçamento · Memorial</span><span class="mono">03 / 06</span></div>
 </section>
 
-<!-- 05 · DÉBORA LSF -->
-<section class="slide ov dk" id="s5">
+<!-- 04 · DÉBORA LSF -->
+<section class="slide dk" id="s4">
   <div class="bg"></div><div class="shade"></div>
   <div class="hd"><div class="wm">LGM <em>Engenharia</em></div><div class="mono">Residência Débora<br>Taquaraçu de Minas — MG</div></div>
   <div class="box">
-    <div class="kick">04 — Projeto estrutural</div>
+    <div class="kick">03 — Projeto estrutural</div>
     <div class="h">A casa inteira,<br><em>perfil a perfil.</em></div>
     <div class="tags"><span class="tag">Montantes</span><span class="tag">Guias</span><span class="tag">Ligações</span><span class="tag">Contraventamento</span></div>
+    <div class="spec">
+      <div><div class="k">Sistema</div><div class="v"><em>Light</em> Steel Frame</div></div>
+      <div><div class="k">Escopo</div><div class="v">Executivo</div></div>
+      <div><div class="k">Programa</div><div class="v">Casa <small>+ anexo</small></div></div>
+    </div>
   </div>
-  <div class="spec">
-    <div><div class="k">Sistema</div><div class="v"><em>Light</em> Steel Frame</div></div>
-    <div><div class="k">Escopo</div><div class="v">Executivo</div></div>
-    <div><div class="k">Programa</div><div class="v">Casa <small>+ anexo</small></div></div>
-  </div>
-  <div class="ft"><span class="mono">Precisão desde o primeiro perfil</span><span class="mono">05 / 07</span></div>
+  <div class="ft"><span class="mono">Precisão desde o primeiro perfil</span><span class="mono">04 / 06</span></div>
 </section>
 
-<!-- 06 · CHALÉ -->
-<section class="slide" id="s6">
+<!-- 05 · CHALÉ -->
+<section class="slide dk" id="s5">
+  <div class="bg"></div><div class="shade"></div>
   <div class="hd"><div class="wm">LGM <em>Engenharia</em></div><div class="mono">Chalé M.D.<br>Marília — SP</div></div>
-  <div class="top">
+  <div class="box">
     <div class="kick">Em desenvolvimento</div>
     <div class="h">E o próximo<br><em>já tem forma.</em></div>
     <p class="p">Projeto arquitetônico em revisão: chalé em dois pavimentos, varanda em madeira e piscina.</p>
+    <div class="stamp mono">Rev. 01 · em curso</div>
   </div>
-  <div class="img"></div>
-  <div class="stamp mono">Rev. 01 · em curso</div>
-  <div class="ft"><span class="mono">Arquitetura · Render</span><span class="mono">06 / 07</span></div>
+  <div class="ft"><span class="mono">Arquitetura · Render</span><span class="mono">05 / 06</span></div>
 </section>
 
-<!-- 07 · FECHO -->
-<section class="slide" id="s7">
+<!-- 06 · FECHO -->
+<section class="slide" id="s6">
   <div class="mark"></div>
   <div class="line">Do risco <em>à chave.</em></div>
 </section>
 
 <section class="kit">
   <h3>Legenda <em>do post.</em></h3>
-  <p>Publique os 7 slides na ordem. Sem telefone, CREA ou créditos de terceiros nos slides e na legenda.</p>
+  <p>Publique os 6 slides na ordem. Sem telefone, CREA ou créditos de terceiros nos slides e na legenda.</p>
   <pre id="caption">Saiu da prancheta.
 
-Quatro projetos entregues pela LGM em 2026 — de Recife a Cuiabá:
+Três projetos entregues pela LGM em 2026 — de Minas a Cuiabá:
 
-01 · Banco Central, Edifício-Sede (Recife – PE)
-Projeto executivo de 9 coberturas em aço galvanizado: estrutura, drenagem, especificações, orçamento em base SINAPI e cronograma.
-
-02 · Câmara Municipal de Dom Silvério (MG)
+01 · Câmara Municipal de Dom Silvério (MG)
 Orçamento analítico em base SINAPI-MG, curva ABC, memoriais e cronograma físico-financeiro da reforma.
 
-03 · Marinha do Brasil, Capitania Fluvial de MT (Cuiabá)
+02 · Marinha do Brasil, Capitania Fluvial de MT (Cuiabá)
 Projeto básico, orçamento em base SINAPI-MT e memorial do anexo administrativo em alvenaria estrutural.
 
-04 · Residência Débora (Taquaraçu de Minas – MG)
+03 · Residência Débora (Taquaraçu de Minas – MG)
 Projeto estrutural executivo em Light Steel Frame.
 
 E na prancheta agora: um chalé em Marília.
@@ -286,7 +249,7 @@ E na prancheta agora: um chalé em Marília.
 Do risco à chave.
 Seu projeto é o próximo? Chama no direct.
 
-#engenhariacivil #projetoestrutural #steelframe #lightsteelframe #orcamentodeobra #sinapi #estruturametalica #engenheirocivil #mariliasp #lgmengenharia</pre>
+#engenhariacivil #projetoestrutural #steelframe #lightsteelframe #orcamentodeobra #sinapi #engenheirocivil #mariliasp #lgmengenharia</pre>
   <button onclick="navigator.clipboard.writeText(document.getElementById('caption').innerText);this.textContent='Legenda copiada'">Copiar legenda</button>
 </section>
 

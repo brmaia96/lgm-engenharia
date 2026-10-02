@@ -14,10 +14,10 @@ Projeto executivo de 9 coberturas em aço galvanizado: estrutura, drenagem, espe
 Orçamento analítico em base SINAPI-MG, curva ABC, memoriais e cronograma físico-financeiro da reforma.
 
 03 · Marinha do Brasil, Capitania Fluvial de MT (Cuiabá)
-Projeto básico, orçamento em base SINAPI-MT e memorial do anexo administrativo em alvenaria estrutural.
+Orçamento analítico em base SINAPI-MT, memorial de quantitativos e especificações do anexo administrativo.
 
 04 · Residência Débora (Taquaraçu de Minas – MG)
-Projeto estrutural executivo em Light Steel Frame.
+Projetos completos: arquitetônico, estrutural em Light Steel Frame, fundação em radier, muro de arrimo, elétrico e hidrossanitário.
 
 E na prancheta agora: um chalé em Marília.
 

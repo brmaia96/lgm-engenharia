@@ -105,13 +105,17 @@ html,body{background:#0d0c0a;}
 #s4 .p{font-size:22px;margin-top:16px;max-width:900px;}
 #s4 .spec{position:absolute;left:72px;right:72px;bottom:110px;grid-template-columns:1fr 1.15fr 1.25fr 1fr;padding-bottom:26px;}
 
-/* ═════ 05 · DÉBORA LSF ═════ */
-#s5 .bg{background-image:url('../assets/projetos/debora-explodido.jpg');background-position:center 38%;background-size:118%;}
-#s5 .shade{background:linear-gradient(to bottom,rgba(26,24,20,.5) 0%,rgba(26,24,20,0) 18%,rgba(26,24,20,0) 60%,rgba(26,24,20,.88) 76%,var(--tinta) 90%);}
-#s5 .box{bottom:150px;}
-#s5 .h{font-size:92px;margin-top:20px;}
-#s5 .tags{margin-top:30px;}
-#s5 .spec{margin-top:40px;grid-template-columns:1.1fr 1fr 1.05fr;}
+/* ═════ 05 · DÉBORA ═════ */
+#s5{background:var(--papel2);}
+#s5 .cap{position:absolute;left:72px;top:160px;}
+#s5 .iso{position:absolute;left:40px;right:40px;top:186px;height:470px;
+  background:url('../assets/projetos/debora-iso3d.png') center/contain no-repeat;mix-blend-mode:multiply;}
+#s5 .top{position:absolute;top:690px;left:72px;right:72px;display:grid;grid-template-columns:1fr 300px;column-gap:44px;}
+#s5 .h{font-size:72px;margin-top:16px;}
+#s5 .p{font-size:22px;margin-top:16px;max-width:620px;}
+#s5 .fig{width:300px;height:262px;margin-top:8px;background:url('../assets/projetos/debora-radier.png') center/contain no-repeat;mix-blend-mode:multiply;}
+#s5 .fig-cap{position:static;margin-top:8px;}
+#s5 .spec{position:absolute;left:72px;right:72px;bottom:110px;grid-template-columns:1.15fr 1fr 1.15fr 1fr;padding-bottom:26px;}
 
 /* ═════ 06 · CHALÉ ═════ */
 #s6 .bg{background-image:url('../assets/projetos/chale-md.jpg');background-position:center 45%;}
@@ -152,7 +156,7 @@ html,body{background:#0d0c0a;}
       <div><b>01 · PE</b>Banco Central Recife</div>
       <div><b>02 · MG</b>Câmara de Dom Silvério</div>
       <div><b>03 · MT</b>Marinha do Brasil</div>
-      <div><b>04 · MG</b>Residência em LSF</div>
+      <div><b>04 · MG</b>Residência Débora</div>
     </div>
   </div>
   <div class="ft"><span class="mono">Do risco à chave</span><span class="mono">01 / 07</span></div>
@@ -218,21 +222,29 @@ html,body{background:#0d0c0a;}
   <div class="ft"><span class="mono">Orçamento · Memorial · Especificações</span><span class="mono">04 / 07</span></div>
 </section>
 
-<!-- 05 · DÉBORA LSF -->
-<section class="slide dk" id="s5">
-  <div class="bg"></div><div class="shade"></div>
+<!-- 05 · DÉBORA -->
+<section class="slide" id="s5">
   <div class="hd"><div class="wm">LGM <em>Engenharia</em></div><div class="mono">Residência Débora<br>Taquaraçu de Minas — MG</div></div>
-  <div class="box">
-    <div class="kick">04 — Projeto estrutural</div>
-    <div class="h">A casa inteira,<br><em>perfil a perfil.</em></div>
-    <div class="tags"><span class="tag">Montantes</span><span class="tag">Guias</span><span class="tag">Ligações</span><span class="tag">Contraventamento</span></div>
-    <div class="spec">
-      <div><div class="k">Sistema</div><div class="v"><em>Light</em> Steel Frame</div></div>
-      <div><div class="k">Escopo</div><div class="v">Executivo</div></div>
-      <div><div class="k">Programa</div><div class="v">Casa <small>+ anexo</small></div></div>
+  <div class="cap">Fig. — Implantação 3D · residência e edícula</div>
+  <div class="iso"></div>
+  <div class="top">
+    <div>
+      <div class="kick">04 — Projetos completos</div>
+      <div class="h">A casa inteira,<br><em>do radier à cobertura.</em></div>
+      <p class="p">Arquitetônico e aprovação, estrutural em Light Steel Frame, fundação em radier sobre estacas, muro de arrimo, elétrico e hidrossanitário — com ART.</p>
+    </div>
+    <div>
+      <div class="fig"></div>
+      <div class="cap fig-cap">Fig. — Forma de radier</div>
     </div>
   </div>
-  <div class="ft"><span class="mono">Precisão desde o primeiro perfil</span><span class="mono">05 / 07</span></div>
+  <div class="spec">
+    <div><div class="k">Área construída</div><div class="v">296 <small>m²</small></div></div>
+    <div><div class="k">Aço LSF</div><div class="v">5,1 <small>t</small></div></div>
+    <div><div class="k">Painéis e tesouras</div><div class="v">118</div></div>
+    <div><div class="k">Fundação</div><div class="v"><em>Radier</em></div></div>
+  </div>
+  <div class="ft"><span class="mono">Arquitetônico · LSF · Fundação · Elétrico · Hidro</span><span class="mono">05 / 07</span></div>
 </section>
 
 <!-- 06 · CHALÉ -->
@@ -271,7 +283,7 @@ Orçamento analítico em base SINAPI-MG, curva ABC, memoriais e cronograma físi
 Orçamento analítico em base SINAPI-MT, memorial de quantitativos e especificações do anexo administrativo.
 
 04 · Residência Débora (Taquaraçu de Minas – MG)
-Projeto estrutural executivo em Light Steel Frame.
+Projetos completos: arquitetônico, estrutural em Light Steel Frame, fundação em radier, muro de arrimo, elétrico e hidrossanitário.
 
 E na prancheta agora: um chalé em Marília.
 

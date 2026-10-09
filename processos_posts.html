@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="UTF-8">
+<title>LGM · Série Método · Processos, INSS de obra, eficiência e soluções</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="projetos/_carrossel-base.css">
+<style>
+/* Série Método: display em sans geométrica (Gill Sans / Century Gothic no hub; Jost como equivalente web) */
+:root{--S:'Jost','Gill Sans MT','Century Gothic',sans-serif}
+.display,h2,h3,.list-title,.num-big,.spec-v,.frame-cap .t{font-family:var(--S);font-weight:300}
+.display em,h2 em,h3 em,.list-title em,.num-big em,.spec-v em{font-family:var(--D)}
+.s-mast .logo{font-family:var(--D)}
+.num-big{font-weight:200}
+.display{letter-spacing:-.02em}
+h2{letter-spacing:-.015em;font-size:96px}
+h3{font-size:62px}
+p.body-t{font-family:var(--D)}
+
+/* helpers desta série */
+.note{margin-top:44px;border-top:1px solid rgba(11,11,10,.2);padding-top:18px;font-family:var(--M);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);line-height:1.9}
+.slide.dark .note{border-top-color:rgba(255,255,255,.18)}
+.eyebrow{font-family:var(--M);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px}
+.slide.dark .eyebrow{color:#888}
+
+/* fluxo (etapas em linha) */
+.flow{display:flex;flex-direction:column;margin-top:40px;border-top:1.5px solid var(--ink)}
+.slide.dark .flow{border-top-color:rgba(255,255,255,.35)}
+.flow-row{display:grid;grid-template-columns:120px 1fr 240px;gap:24px;padding:22px 0;border-bottom:1px solid rgba(11,11,10,.14);align-items:baseline}
+.slide.dark .flow-row{border-bottom-color:rgba(255,255,255,.12)}
+.flow-n{font-family:var(--D);font-style:italic;font-weight:300;font-size:36px;color:var(--terra);line-height:1}
+.flow-t{font-family:var(--S);font-weight:300;font-size:36px;line-height:1.1;letter-spacing:-.01em}
+.flow-t em{font-family:var(--D);font-style:italic;color:var(--terra)}
+.flow-d{font-family:var(--M);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);text-align:right;line-height:1.7}
+.slide.dark .flow-d{color:#8f8a80}
+
+/* conta (linhas de cálculo) */
+.calc{margin-top:40px;border-top:1.5px solid var(--ink)}
+.slide.dark .calc{border-top-color:rgba(255,255,255,.35)}
+.calc-row{display:grid;grid-template-columns:1fr auto;gap:30px;padding:22px 0;border-bottom:1px solid rgba(11,11,10,.14);align-items:baseline}
+.slide.dark .calc-row{border-bottom-color:rgba(255,255,255,.12)}
+.calc-k{font-family:var(--D);font-weight:300;font-size:30px;line-height:1.25;color:var(--ink2)}
+.slide.dark .calc-k{color:#C8C4BC}
+.calc-k small{display:block;font-family:var(--M);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-top:8px;font-style:normal}
+.calc-v{font-family:var(--S);font-weight:300;font-size:40px;letter-spacing:-.01em;white-space:nowrap}
+.calc-v em{font-family:var(--D);font-style:italic;color:var(--terra)}
+.calc-row.total{border-bottom:1.5px solid var(--ink);border-top:1.5px solid var(--ink);margin-top:-1px}
+.slide.dark .calc-row.total{border-color:rgba(255,255,255,.35)}
+.calc-row.total .calc-v{font-size:58px;color:var(--terra)}
+
+/* grandes números em colunas */
+.cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px;margin-top:50px}
+.cols.two{grid-template-columns:1fr 1fr}
+.col{border-top:1px solid rgba(11,11,10,.25);padding-top:18px}
+.slide.dark .col{border-top-color:rgba(255,255,255,.25)}
+.col .k{font-family:var(--M);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra)}
+.col .v{font-family:var(--S);font-weight:300;font-size:92px;line-height:1;letter-spacing:-.02em;margin-top:14px}
+.col .v em{font-family:var(--D);font-style:italic;color:var(--terra);font-size:.6em}
+.col .d{font-family:var(--D);font-style:italic;font-weight:300;font-size:22px;color:var(--ink3);margin-top:12px;line-height:1.35}
+.slide.dark .col .d{color:#a0988a}
+
+/* anéis (carga por cenário) */
+.rings{display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px;margin-top:60px}
+.ring{text-align:center}
+.ring .r{width:250px;height:250px;border-radius:50%;margin:0 auto;position:relative;border:1px solid var(--ink)}
+.ring .r::after{content:"";position:absolute;inset:60px;border-radius:50%;background:var(--paper);border:1px solid var(--ink)}
+.slide.paper2 .ring .r::after{background:var(--paper2)}
+.ring .pct{font-family:var(--S);font-weight:300;font-size:86px;line-height:1;margin-top:40px;letter-spacing:-.02em}
+.ring .pct em{font-family:var(--D);font-style:italic;color:var(--terra);font-size:.55em}
+.ring .t{font-family:var(--D);font-weight:300;font-size:34px;line-height:1.1;margin-top:14px}
+.ring .t em{font-style:italic;color:var(--terra)}
+.ring .s{font-family:var(--M);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-top:12px;line-height:1.7}
+
+/* barras (custo da mudança por etapa) */
+.bars{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;align-items:end;height:520px;margin-top:50px;border-bottom:1.5px solid var(--ink);padding-bottom:0}
+.bar{display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.bar .b{background:var(--ink);width:100%}
+.bar.terra .b{background:var(--terra)}
+.bar .v{font-family:var(--S);font-weight:300;font-size:52px;line-height:1;margin-bottom:14px;letter-spacing:-.02em}
+.bar .v em{font-family:var(--D);font-style:italic;color:var(--terra);font-size:.55em}
+.bars-k{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:18px}
+.bars-k div{font-family:var(--M);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);line-height:1.7}
+.bars-k div b{display:block;font-family:var(--D);font-weight:300;font-style:italic;font-size:24px;letter-spacing:0;text-transform:none;color:var(--ink);margin-bottom:6px}
+
+/* par contra/pro */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:50px;border-top:1.5px solid var(--ink)}
+.slide.dark .vs{border-top-color:rgba(255,255,255,.35)}
+.vs > div{padding:34px 0}
+.vs > div:first-child{border-right:1px solid rgba(11,11,10,.15);padding-right:40px}
+.vs > div:last-child{padding-left:40px}
+.slide.dark .vs > div:first-child{border-right-color:rgba(255,255,255,.12)}
+.vs .k{font-family:var(--M);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink3);margin-bottom:22px}
+.vs .k.terra{color:var(--terra)}
+.vs p{font-family:var(--D);font-weight:300;font-size:27px;line-height:1.4;color:var(--ink2);margin-bottom:20px}
+.slide.dark .vs p{color:#C8C4BC}
+.vs p em{font-style:italic;color:var(--terra)}
+.strike{text-decoration:line-through;text-decoration-color:var(--terra);text-decoration-thickness:1.5px;color:var(--ink3)}
+</style>
+</head><body>
+
+<!-- ══════════════════════════════════════════════════════════
+     Nº 31 · MÉTODO · COMO UMA OBRA NASCE NA LGM
+     ══════════════════════════════════════════════════════════ -->
+<div class="page-head"><b>LGM <em>Engenharia</em></b> Nº 31 · Método · Do risco à chave · 7 slides</div>
+<div class="carousel">
+
+<div class="slide dark" data-post="31-do-risco-a-chave" data-n="1">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>Nº 31 · MMXXVI</span><div class="logo">LGM <em>Engenharia</em></div><span>§ 03 · Método</span></div>
+  <div class="body" style="justify-content:flex-end;padding-bottom:180px">
+    <div class="kicker">Fig. 31 · Processo</div>
+    <div class="display md">Do risco<br><em>à chave.</em></div>
+    <p class="lede" style="margin-top:50px">Sete etapas, na ordem em que acontecem. Nenhuma pulada. É assim que uma obra nasce na LGM.</p>
+  </div>
+  <div class="s-foot"><span>@eng.gustavomaia</span><span class="swipe">arraste →</span></div>
+</div>
+
+<div class="slide" data-post="31-do-risco-a-chave" data-n="2">
+  <div class="corners"></div>
+  <div class="s-mast"><span>02 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Visão geral</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">O caminho inteiro</div>
+    <h3>Cada etapa fecha <em>antes</em> da seguinte abrir.</h3>
+    <div class="flow">
+      <div class="flow-row"><div class="flow-n">I.</div><div class="flow-t">Diagnóstico</div><div class="flow-d">1 reunião<br>terreno · matrícula · verba</div></div>
+      <div class="flow-row"><div class="flow-n">II.</div><div class="flow-t">Estudo preliminar</div><div class="flow-d">2 a 3 semanas<br>partido · implantação</div></div>
+      <div class="flow-row"><div class="flow-n">III.</div><div class="flow-t">Projeto executivo</div><div class="flow-d">4 a 8 semanas<br>todas as disciplinas</div></div>
+      <div class="flow-row"><div class="flow-n">IV.</div><div class="flow-t">Orçamento e CNO</div><div class="flow-d">antes da 1ª nota<br>memorial · cronograma</div></div>
+      <div class="flow-row"><div class="flow-n">V.</div><div class="flow-t">Compras em janelas</div><div class="flow-d">por etapa<br>prazo de cada item</div></div>
+      <div class="flow-row"><div class="flow-n">VI.</div><div class="flow-t">Execução em fases</div><div class="flow-d">ciclos de 2 semanas<br>vistoria · medição</div></div>
+      <div class="flow-row"><div class="flow-n">VII.</div><div class="flow-t">Entrega e <em>regularização</em></div><div class="flow-d">habite-se · Receita<br>averbação</div></div>
+    </div>
+  </div>
+  <div class="s-foot"><span>02 · Sete etapas</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="31-do-risco-a-chave" data-n="3">
+  <div class="corners"></div>
+  <div class="s-mast"><span>03 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Etapas I · II</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="num-big">I<em>.</em></div>
+    <h3 style="margin-top:30px">Diagnóstico, <em>depois</em> desenho.</h3>
+    <p class="body-t" style="margin-top:34px">Antes de qualquer traço: matrícula do terreno, zoneamento, recuos, verba disponível e prazo real. Uma reunião. Sai com uma resposta: o que cabe, o que não cabe e o que custa descobrir.</p>
+    <p class="body-t" style="margin-top:24px">Só então o estudo preliminar. Partido, implantação, áreas por ambiente. É aqui que mudar é barato.</p>
+    <div class="corner-tag">mudar no papel custa uma reunião.</div>
+  </div>
+  <div class="s-foot"><span>03 · Diagnóstico</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide" data-post="31-do-risco-a-chave" data-n="4">
+  <div class="corners"></div>
+  <div class="s-mast"><span>04 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Etapas III · IV</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="num-big">III<em>.</em></div>
+    <h3 style="margin-top:30px">Projeto executivo <em>completo.</em></h3>
+    <p class="body-t" style="margin-top:34px">Arquitetura, estrutura, hidráulica, elétrica e detalhamento. Compatibilizados entre si antes de ir para a obra. Memorial descritivo com marca e modelo. ART registrada no CREA.</p>
+    <p class="body-t" style="margin-top:24px">Com o projeto fechado, o orçamento tem base. E o CNO é aberto na Receita antes da primeira nota de mão de obra, não depois.</p>
+    <div class="corner-tag">projetar bem é construir menos vezes.</div>
+  </div>
+  <div class="s-foot"><span>04 · Executivo</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="31-do-risco-a-chave" data-n="5">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>05 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Etapas V · VI</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="num-big">V<em>.</em></div>
+    <h3 style="margin-top:30px">Compra na janela. <em>Executa em fase.</em></h3>
+    <p class="body-t" style="margin-top:34px">Cada material tem prazo de entrega. A compra entra no cronograma contando esse prazo para trás. Esquadria pedida com antecedência não para a obra.</p>
+    <p class="body-t" style="margin-top:24px">A execução anda em ciclos de duas semanas. Fim de ciclo: vistoria técnica, registro com data e GPS, medição do que foi feito. O cliente paga o executado.</p>
+    <div class="corner-tag">engenharia lenta, obra rápida.</div>
+  </div>
+  <div class="s-foot"><span>05 · Execução</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="31-do-risco-a-chave" data-n="6">
+  <div class="corners"></div>
+  <div class="s-mast"><span>06 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Etapa VII</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="num-big">VII<em>.</em></div>
+    <h3 style="margin-top:30px">A obra acaba <em>no cartório.</em></h3>
+    <p class="body-t" style="margin-top:34px">Chave na mão não é obra encerrada. Faltam três papéis, nesta ordem: habite-se na prefeitura, aferição e certidão na Receita Federal, averbação na matrícula.</p>
+    <p class="body-t" style="margin-top:24px">Sem o último, a casa não vende, não financia e não entra no inventário como construída.</p>
+    <div class="corner-tag">o silêncio também projeta.</div>
+  </div>
+  <div class="s-foot"><span>06 · Regularização</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="31-do-risco-a-chave" data-n="7">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>07 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Contato</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Primeira etapa</div>
+    <div class="display sm">Uma reunião.<br><em>Sem compromisso.</em></div>
+    <p class="lede" style="margin-top:50px">Traga a matrícula, a ideia e a verba. Saímos com o diagnóstico. O resto é etapa por etapa.</p>
+    <div class="contact">DM · @eng.gustavomaia<br>WA · (14) 99185 0799<br>→ Marília · SP</div>
+  </div>
+  <div class="s-foot"><span>LGM · CREA-SP 5071068977</span><span class="swipe">salvar ♡</span></div>
+</div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     Nº 32 · INSS DE OBRA · A CONTA ANTES DO BOLETO
+     ══════════════════════════════════════════════════════════ -->
+<div class="page-head"><b>LGM <em>Engenharia</em></b> Nº 32 · INSS de obra · A conta antes do boleto · 7 slides</div>
+<div class="carousel">
+
+<div class="slide dark" data-post="32-a-conta-antes-do-boleto" data-n="1">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>Nº 32 · MMXXVI</span><div class="logo">LGM <em>Engenharia</em></div><span>§ 04 · INSS de obra</span></div>
+  <div class="body" style="justify-content:flex-end;padding-bottom:180px">
+    <div class="kicker">Fig. 32 · Receita Federal</div>
+    <div class="display md">A conta<br>antes <em>do boleto.</em></div>
+    <p class="lede" style="margin-top:50px">Toda obra paga INSS. Quem conhece a fórmula decide antes. Quem não conhece, descobre na certidão.</p>
+  </div>
+  <div class="s-foot"><span>@eng.gustavomaia</span><span class="swipe">arraste →</span></div>
+</div>
+
+<div class="slide" data-post="32-a-conta-antes-do-boleto" data-n="2">
+  <div class="corners"></div>
+  <div class="s-mast"><span>02 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ O que a Receita vê</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Aferição indireta · Sero</div>
+    <h2>A Receita não vê<br>sua obra. <em>Vê quatro<br>números.</em></h2>
+    <div class="spec" style="margin-top:50px">
+      <div class="spec-row"><div class="spec-k">Área</div><div class="spec-v">Principal, coberta e descoberta <em>em m²</em></div></div>
+      <div class="spec-row"><div class="spec-k">Tipo</div><div class="spec-v">Unifamiliar, multifamiliar, comercial, galpão</div></div>
+      <div class="spec-row"><div class="spec-k">Padrão</div><div class="spec-v">Alvenaria, mista ou madeira <em>· pré-fabricado</em></div></div>
+      <div class="spec-row"><div class="spec-k">Responsável</div><div class="spec-v">Pessoa física <em>ou</em> pessoa jurídica</div></div>
+    </div>
+    <div class="note">Sem folha de pagamento declarada, a Receita afere por área e padrão · IN RFB 2.021/2021</div>
+  </div>
+  <div class="s-foot"><span>02 · Quatro números</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="32-a-conta-antes-do-boleto" data-n="3">
+  <div class="corners"></div>
+  <div class="s-mast"><span>03 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ A fórmula</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Cinco multiplicações</div>
+    <h3>Da área ao <em>valor devido.</em></h3>
+    <div class="flow">
+      <div class="flow-row"><div class="flow-n">I.</div><div class="flow-t">Área equivalente</div><div class="flow-d">área × equivalência<br>casa: 89% até 1.000 m²</div></div>
+      <div class="flow-row"><div class="flow-n">II.</div><div class="flow-t">Custo aferido</div><div class="flow-d">× VAU<br>tabela Sero, não CUB</div></div>
+      <div class="flow-row"><div class="flow-n">III.</div><div class="flow-t">Parcela de mão de obra</div><div class="flow-d">× 20% alvenaria<br>× 15% mista ou madeira</div></div>
+      <div class="flow-row"><div class="flow-n">IV.</div><div class="flow-t">Fator social <em>(só PF)</em></div><div class="flow-d">× 20% até 100 m²<br>40% até 200 · 55% até 300</div></div>
+      <div class="flow-row"><div class="flow-n">V.</div><div class="flow-t">Contribuição</div><div class="flow-d">× 36,8%<br>o número do boleto</div></div>
+    </div>
+    <div class="note">VAU · Valor atualizado por metro quadrado, publicado pela Receita por tipo e padrão. Pessoa jurídica não tem fator social.</div>
+  </div>
+  <div class="s-foot"><span>03 · Fórmula</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide" data-post="32-a-conta-antes-do-boleto" data-n="4">
+  <div class="corners"></div>
+  <div class="s-mast"><span>04 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Exemplo</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Exemplo didático · valores hipotéticos</div>
+    <h3>Casa de 200 m², alvenaria, <em>pessoa física.</em></h3>
+    <div class="calc">
+      <div class="calc-row"><div class="calc-k">Área equivalente<small>200 m² × 0,89</small></div><div class="calc-v">178 m²</div></div>
+      <div class="calc-row"><div class="calc-k">Custo aferido<small>178 m² × VAU fictício de R$ 2.500</small></div><div class="calc-v">R$ 445.000</div></div>
+      <div class="calc-row"><div class="calc-k">Remuneração de mão de obra<small>× 20% · alvenaria</small></div><div class="calc-v">R$ 89.000</div></div>
+      <div class="calc-row"><div class="calc-k">Fator social<small>× 40% · PF, 101 a 200 m²</small></div><div class="calc-v">R$ 35.600</div></div>
+      <div class="calc-row total"><div class="calc-k">Contribuição estimada<small>× 36,8%</small></div><div class="calc-v">R$ 13.100<em>,80</em></div></div>
+    </div>
+    <div class="note">VAU usado é fictício. O valor real sai da tabela vigente no Sero na data da aferição. Esta conta não é uma promessa de resultado.</div>
+  </div>
+  <div class="s-foot"><span>04 · Conta aberta</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="32-a-conta-antes-do-boleto" data-n="5">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>05 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ O que abate</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Reduz de verdade</div>
+    <h3>Três coisas <em>abatem.</em><br>Nenhuma é mágica.</h3>
+    <div class="list">
+      <div class="list-item"><div class="list-num">I.</div><div><div class="list-title">Remuneração declarada</div><div class="list-desc">Mão de obra com nota, folha e recolhimento vinculados ao CNO vira crédito. Só o que foi declarado abate.</div></div></div>
+      <div class="list-item"><div class="list-num">II.</div><div><div class="list-title">Fator social <em>(PF)</em></div><div class="list-desc">Pessoa física paga por faixa de área. Até 100 m², 20% da base. É regra, não desconto negociado.</div></div></div>
+      <div class="list-item"><div class="list-num">III.</div><div><div class="list-title">Pré-fabricado elegível</div><div class="list-desc">Até 70% de redução da remuneração apurada, com componentes elegíveis, notas de aquisição e montagem, dentro do limite legal. Condicionado, caso a caso.</div></div></div>
+    </div>
+  </div>
+  <div class="s-foot"><span>05 · Créditos</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="32-a-conta-antes-do-boleto" data-n="6">
+  <div class="corners"></div>
+  <div class="s-mast"><span>06 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ O que não existe</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Promessas que não assinamos</div>
+    <h2><em>Zerar</em> o INSS<br>não existe.</h2>
+    <div class="vs">
+      <div>
+        <div class="k">O que ouvimos por aí</div>
+        <p class="strike">"Zeramos o INSS da obra."</p>
+        <p class="strike">"Economia garantida."</p>
+        <p class="strike">"Steel frame tem 70% em qualquer caso."</p>
+        <p class="strike">"Até 70 m² é sempre isento."</p>
+      </div>
+      <div>
+        <div class="k terra">O que a regra diz</div>
+        <p>Há base de cálculo e há créditos. <em>Abater</em> é possível. Zerar, não.</p>
+        <p>O valor depende da tabela vigente e do que foi declarado. Estimativa é estimativa.</p>
+        <p>A redução depende de componente, nota e patamar. <em>Enquadramento</em> se prova.</p>
+        <p>Há condições e há exceções. Cada caso é lido na norma.</p>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot"><span>06 · Limites</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="32-a-conta-antes-do-boleto" data-n="7">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>07 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Contato</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Antes de abrir a obra</div>
+    <div class="display sm">Faça a conta<br><em>primeiro.</em></div>
+    <p class="lede" style="margin-top:50px">Aferição prévia com os dados da sua obra: área, padrão, sistema e responsável. Um número para planejar, não para descobrir.</p>
+    <div class="contact">DM · @eng.gustavomaia<br>WA · (14) 99185 0799<br>→ Marília · SP</div>
+  </div>
+  <div class="s-foot"><span>LGM · CREA-SP 5071068977</span><span class="swipe">salvar ♡</span></div>
+</div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     Nº 33 · INSS DE OBRA · ECONOMIA BRUTA NÃO É LÍQUIDA
+     ══════════════════════════════════════════════════════════ -->
+<div class="page-head"><b>LGM <em>Engenharia</em></b> Nº 33 · INSS de obra · Bruta não é líquida · 6 slides</div>
+<div class="carousel">
+
+<div class="slide paper2" data-post="33-bruta-nao-e-liquida" data-n="1">
+  <div class="corners"></div>
+  <div class="s-mast"><span>Nº 33 · MMXXVI</span><div class="logo">LGM <em>Engenharia</em></div><span>§ 04 · INSS de obra</span></div>
+  <div class="body" style="justify-content:flex-end;padding-bottom:180px">
+    <div class="kicker">Fig. 33 · Honestidade estrutural</div>
+    <div class="display md">Economia bruta<br>não é <em>líquida.</em></div>
+    <p class="lede" style="margin-top:50px">Quem promete INSS menor tem que mostrar duas contas. A do antes e a do depois dos honorários.</p>
+  </div>
+  <div class="s-foot"><span>@eng.gustavomaia</span><span class="swipe">arraste →</span></div>
+</div>
+
+<div class="slide" data-post="33-bruta-nao-e-liquida" data-n="2">
+  <div class="corners"></div>
+  <div class="s-mast"><span>02 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Duas contas</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Exemplo hipotético · números redondos</div>
+    <h3>Mesma obra. <em>Quatro</em> números.</h3>
+    <div class="cols two">
+      <div class="col"><div class="k">Aferição sem trabalho</div><div class="v">R$ 100<em>mil</em></div><div class="d">INSS estimado sem créditos, sem enquadramento, sem documento.</div></div>
+      <div class="col"><div class="k">Aferição com trabalho</div><div class="v">R$ 60<em>mil</em></div><div class="d">Após créditos de remuneração declarada e enquadramento comprovado.</div></div>
+      <div class="col"><div class="k">Economia bruta</div><div class="v">R$ 40<em>mil</em></div><div class="d">A diferença que aparece no anúncio.</div></div>
+      <div class="col"><div class="k">Economia líquida</div><div class="v" style="color:var(--terra)">R$ 20<em>mil</em></div><div class="d">Descontados honorários de 50% sobre a bruta. O número que importa.</div></div>
+    </div>
+    <div class="note">Valores ilustrativos. Honorário por êxito varia por contrato. Economia real depende da tabela vigente e dos documentos da obra.</div>
+  </div>
+  <div class="s-foot"><span>02 · Quatro números</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="33-bruta-nao-e-liquida" data-n="3">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>03 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ De onde vem</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Origem da redução</div>
+    <h3>A redução vem de <em>documento,</em><br>não de argumento.</h3>
+    <div class="list">
+      <div class="list-item"><div class="list-num">I.</div><div><div class="list-title">CNO aberto no prazo</div><div class="list-desc">Cadastro Nacional de Obras em até 30 dias do início. Toda nota de mão de obra vincula a ele.</div></div></div>
+      <div class="list-item"><div class="list-num">II.</div><div><div class="list-title">Folha e nota declaradas</div><div class="list-desc">Remuneração recolhida vira crédito. Dinheiro pago sem nota não abate nada.</div></div></div>
+      <div class="list-item"><div class="list-num">III.</div><div><div class="list-title">Enquadramento provado</div><div class="list-desc">Tipo, padrão e sistema construtivo com projeto, memorial e notas de fábrica quando houver pré-fabricado.</div></div></div>
+      <div class="list-item"><div class="list-num">IV.</div><div><div class="list-title">Aferição conferida</div><div class="list-desc">Área informada no Sero bate com projeto aprovado e habite-se. Divergência vira autuação.</div></div></div>
+    </div>
+  </div>
+  <div class="s-foot"><span>03 · Documento</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide" data-post="33-bruta-nao-e-liquida" data-n="4">
+  <div class="corners"></div>
+  <div class="s-mast"><span>04 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Fator de ajuste</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="num-big">≠<em></em></div>
+    <h3 style="margin-top:30px">Fator de ajuste <em>não é</em> botão de desconto.</h3>
+    <p class="body-t" style="margin-top:34px">Ele existe para corrigir a base quando a obra tem característica que a tabela não captura. Pede justificativa técnica, memorial e responsável com ART.</p>
+    <p class="body-t" style="margin-top:24px">Aplicado sem prova, a Receita refaz a conta. Com juros.</p>
+    <div class="corner-tag">a norma se lê, não se negocia.</div>
+  </div>
+  <div class="s-foot"><span>04 · Ajuste</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="33-bruta-nao-e-liquida" data-n="5">
+  <div class="corners"></div>
+  <div class="s-mast"><span>05 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Como trabalhamos</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">O que a LGM entrega</div>
+    <h3>Aferição em <em>três</em> momentos.</h3>
+    <div class="flow">
+      <div class="flow-row"><div class="flow-n">I.</div><div class="flow-t">Antes da obra</div><div class="flow-d">estimativa pelo projeto<br>cenários por sistema</div></div>
+      <div class="flow-row"><div class="flow-n">II.</div><div class="flow-t">Durante</div><div class="flow-d">CNO · notas · folha<br>arquivo mês a mês</div></div>
+      <div class="flow-row"><div class="flow-n">III.</div><div class="flow-t">Depois</div><div class="flow-d">aferição no Sero<br>certidão · averbação</div></div>
+    </div>
+    <p class="body-t" style="margin-top:40px">O número final sai da Receita. O nosso trabalho é chegar lá com a obra documentada e a conta já feita.</p>
+  </div>
+  <div class="s-foot"><span>05 · Método</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="33-bruta-nao-e-liquida" data-n="6">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>06 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Contato</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Peça as duas contas</div>
+    <div class="display sm">Bruta <em>e</em><br>líquida.</div>
+    <p class="lede" style="margin-top:50px">Mandamos a estimativa com os dados da sua obra e o honorário escrito ao lado. Você compara e decide.</p>
+    <div class="contact">DM · @eng.gustavomaia<br>WA · (14) 99185 0799<br>→ Marília · SP</div>
+  </div>
+  <div class="s-foot"><span>LGM · CREA-SP 5071068977</span><span class="swipe">salvar ♡</span></div>
+</div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     Nº 34 · EFICIÊNCIA · O CUSTO DE MUDAR
+     ══════════════════════════════════════════════════════════ -->
+<div class="page-head"><b>LGM <em>Engenharia</em></b> Nº 34 · Eficiência · O custo de mudar · 6 slides</div>
+<div class="carousel">
+
+<div class="slide dark" data-post="34-o-custo-de-mudar" data-n="1">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>Nº 34 · MMXXVI</span><div class="logo">LGM <em>Engenharia</em></div><span>§ 05 · Eficiência</span></div>
+  <div class="body" style="justify-content:flex-end;padding-bottom:180px">
+    <div class="kicker">Fig. 34 · Economia de obra</div>
+    <div class="display md">Mudar custa.<br>Depende <em>de quando.</em></div>
+    <p class="lede" style="margin-top:50px">A mesma decisão custa uma reunião no estudo, um desenho no executivo e uma marreta na obra.</p>
+  </div>
+  <div class="s-foot"><span>@eng.gustavomaia</span><span class="swipe">arraste →</span></div>
+</div>
+
+<div class="slide" data-post="34-o-custo-de-mudar" data-n="2">
+  <div class="corners"></div>
+  <div class="s-mast"><span>02 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Fig. 34.1</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Custo relativo de uma mesma alteração</div>
+    <h3>Mover uma parede, <em>em quatro</em> momentos.</h3>
+    <div class="bars">
+      <div class="bar"><div class="v">1<em>×</em></div><div class="b" style="height:6%"></div></div>
+      <div class="bar"><div class="v">5<em>×</em></div><div class="b" style="height:22%"></div></div>
+      <div class="bar terra"><div class="v">25<em>×</em></div><div class="b" style="height:60%"></div></div>
+      <div class="bar terra"><div class="v">50<em>×</em></div><div class="b" style="height:100%"></div></div>
+    </div>
+    <div class="bars-k">
+      <div><b>Estudo</b>uma conversa<br>e um traço</div>
+      <div><b>Executivo</b>redesenhar e<br>recompatibilizar</div>
+      <div><b>Estrutura pronta</b>demolir, refazer,<br>parar a equipe</div>
+      <div><b>Acabada</b>demolir, refazer,<br>reacabar, atrasar</div>
+    </div>
+    <div class="note">Ordem de grandeza ilustrativa. O múltiplo real depende da alteração. A direção da curva não muda.</div>
+  </div>
+  <div class="s-foot"><span>02 · A curva</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="34-o-custo-de-mudar" data-n="3">
+  <div class="corners"></div>
+  <div class="s-mast"><span>03 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Onde vaza</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Quatro vazamentos silenciosos</div>
+    <h3>A obra não perde dinheiro <em>de uma vez.</em></h3>
+    <div class="list">
+      <div class="list-item"><div class="list-num">I.</div><div><div class="list-title">Equipe esperando material</div><div class="list-desc">Diária paga, parede parada. Compra feita na véspera chega depois da equipe.</div></div></div>
+      <div class="list-item"><div class="list-num">II.</div><div><div class="list-title">Compra de urgência</div><div class="list-desc">Sem tempo de cotar, paga-se o preço de quem tem em estoque hoje.</div></div></div>
+      <div class="list-item"><div class="list-num">III.</div><div><div class="list-title">Retrabalho</div><div class="list-desc">Hidráulica que cruza viga, ponto elétrico atrás do armário. Projeto incompatível se resolve com martelo.</div></div></div>
+      <div class="list-item"><div class="list-num">IV.</div><div><div class="list-title">Medição por confiança</div><div class="list-desc">Pagamento adiantado sem conferência. O saldo some antes do acabamento.</div></div></div>
+    </div>
+  </div>
+  <div class="s-foot"><span>03 · Vazamentos</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide" data-post="34-o-custo-de-mudar" data-n="4">
+  <div class="corners"></div>
+  <div class="s-mast"><span>04 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Solução</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Um fecha o outro</div>
+    <h3>Cada vazamento tem <em>uma</em> válvula.</h3>
+    <div class="spec" style="margin-top:50px">
+      <div class="spec-row"><div class="spec-k">Espera</div><div class="spec-v">Compra em janela: <em>data de uso menos prazo de entrega</em></div></div>
+      <div class="spec-row"><div class="spec-k">Urgência</div><div class="spec-v">Lista de compras por etapa, <em>cotada com 3 semanas</em></div></div>
+      <div class="spec-row"><div class="spec-k">Retrabalho</div><div class="spec-v">Executivo compatibilizado <em>antes</em> da fundação</div></div>
+      <div class="spec-row"><div class="spec-k">Confiança</div><div class="spec-v">Medição quinzenal. <em>Paga-se o executado.</em></div></div>
+    </div>
+    <div class="corner-tag">o caro não é planejar. caro é corrigir.</div>
+  </div>
+  <div class="s-foot"><span>04 · Válvulas</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="34-o-custo-de-mudar" data-n="5">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>05 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Prazo</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="num-big">2<em>sem.</em></div>
+    <h3 style="margin-top:30px">A obra anda em <em>ciclos</em> de duas semanas.</h3>
+    <p class="body-t" style="margin-top:34px">Cada ciclo tem meta escrita, material já no canteiro e vistoria no fim. O que não fechou no ciclo é tratado antes do próximo começar, não no fim da obra.</p>
+    <p class="body-t" style="margin-top:24px">Cronograma verbal não se cobra. Cronograma escrito, sim.</p>
+    <div class="corner-tag">obra lenta para casa rápida.</div>
+  </div>
+  <div class="s-foot"><span>05 · Ciclos</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="34-o-custo-de-mudar" data-n="6">
+  <div class="corners"></div>
+  <div class="s-mast"><span>06 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Contato</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Decida cedo</div>
+    <div class="display sm">Mude no papel.<br><em>Não no tijolo.</em></div>
+    <p class="lede" style="margin-top:50px">Vai começar ou já começou? Nos dois casos, a primeira conversa é um diagnóstico do que ainda dá para decidir barato.</p>
+    <div class="contact">DM · @eng.gustavomaia<br>WA · (14) 99185 0799<br>→ Marília · SP</div>
+  </div>
+  <div class="s-foot"><span>LGM · CREA-SP 5071068977</span><span class="swipe">salvar ♡</span></div>
+</div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     Nº 35 · SOLUÇÕES · O QUE A LGM RESOLVE
+     ══════════════════════════════════════════════════════════ -->
+<div class="page-head"><b>LGM <em>Engenharia</em></b> Nº 35 · Soluções · O que a LGM resolve · 7 slides</div>
+<div class="carousel">
+
+<div class="slide dark" data-post="35-o-que-resolvemos" data-n="1">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>Nº 35 · MMXXVI</span><div class="logo">LGM <em>Engenharia</em></div><span>§ 06 · Soluções</span></div>
+  <div class="body" style="justify-content:flex-end;padding-bottom:180px">
+    <div class="kicker">Fig. 35 · Escopo</div>
+    <div class="display md">Cinco problemas.<br><em>Cinco entregas.</em></div>
+    <p class="lede" style="margin-top:50px">O que chega na primeira conversa e o que sai assinado no fim. Sem adjetivo, só o documento.</p>
+  </div>
+  <div class="s-foot"><span>@eng.gustavomaia</span><span class="swipe">arraste →</span></div>
+</div>
+
+<div class="slide" data-post="35-o-que-resolvemos" data-n="2">
+  <div class="corners"></div>
+  <div class="s-mast"><span>02 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ I · Projeto</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="num-big">I<em>.</em></div>
+    <div class="eyebrow" style="margin-top:30px">Problema</div>
+    <h3>"Tenho o terreno. <em>Não sei o que cabe."</em></h3>
+    <div class="eyebrow" style="margin-top:44px">Entrega</div>
+    <p class="body-t">Estudo preliminar e projeto executivo completo: arquitetura, estrutura, instalações, detalhamento e memorial. ART no CREA. Pronto para aprovar e para orçar.</p>
+    <div class="corner-tag">4 a 8 semanas.</div>
+  </div>
+  <div class="s-foot"><span>02 · Projeto</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="35-o-que-resolvemos" data-n="3">
+  <div class="corners"></div>
+  <div class="s-mast"><span>03 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ II · Gestão</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="num-big">II<em>.</em></div>
+    <div class="eyebrow" style="margin-top:30px">Problema</div>
+    <h3>"A obra começou e <em>ninguém responde</em> por ela."</h3>
+    <div class="eyebrow" style="margin-top:44px">Entrega</div>
+    <p class="body-t">Gestão técnica: cronograma escrito, compras em janela, vistoria semanal com registro datado, medição quinzenal e relatório mensal. Um engenheiro responsável, com ART.</p>
+    <div class="corner-tag">paga-se o executado.</div>
+  </div>
+  <div class="s-foot"><span>03 · Gestão</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide" data-post="35-o-que-resolvemos" data-n="4">
+  <div class="corners"></div>
+  <div class="s-mast"><span>04 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ III · INSS</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="num-big">III<em>.</em></div>
+    <div class="eyebrow" style="margin-top:30px">Problema</div>
+    <h3>"Vou pagar <em>quanto</em> de INSS nessa obra?"</h3>
+    <div class="eyebrow" style="margin-top:44px">Entrega</div>
+    <p class="body-t">Estimativa prévia pelo projeto, abertura do CNO, organização de notas e folha durante a obra, aferição no Sero e certidão ao final. Economia bruta e líquida por escrito.</p>
+    <div class="corner-tag">a conta antes do boleto.</div>
+  </div>
+  <div class="s-foot"><span>04 · INSS</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="35-o-que-resolvemos" data-n="5">
+  <div class="corners"></div>
+  <div class="s-mast"><span>05 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ IV · Regularização</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="num-big">IV<em>.</em></div>
+    <div class="eyebrow" style="margin-top:30px">Problema</div>
+    <h3>"A casa existe. <em>No papel, não."</em></h3>
+    <div class="eyebrow" style="margin-top:44px">Entrega</div>
+    <p class="body-t">Levantamento do existente, projeto de regularização, aprovação na prefeitura, habite-se, aferição na Receita e averbação na matrícula. A casa passa a valer o que vale.</p>
+    <div class="corner-tag">termina no cartório.</div>
+  </div>
+  <div class="s-foot"><span>05 · Regularização</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="35-o-que-resolvemos" data-n="6">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>06 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ V · Steel frame</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="num-big">V<em>.</em></div>
+    <div class="eyebrow" style="margin-top:30px">Problema</div>
+    <h3>"Quero steel frame. <em>Quem projeta</em> e quem responde?"</h3>
+    <div class="eyebrow" style="margin-top:44px">Entrega</div>
+    <p class="body-t">Projeto executivo em LSF pela NBR 15253: painéis numerados, mapa de montagem, quantitativo de perfis, fixações e passagens. Enquadramento documentado para a aferição do INSS.</p>
+    <div class="corner-tag">cada painel tem nome.</div>
+  </div>
+  <div class="s-foot"><span>06 · Steel frame</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide" data-post="35-o-que-resolvemos" data-n="7">
+  <div class="corners"></div>
+  <div class="s-mast"><span>07 / 07</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Contato</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Qual é o seu</div>
+    <div class="display sm">Diga o problema.<br><em>Mostramos a entrega.</em></div>
+    <p class="lede" style="margin-top:50px">Proposta por escrito, com escopo, prazo e o que fica assinado no fim. Compare antes de decidir.</p>
+    <div class="contact">DM · @eng.gustavomaia<br>WA · (14) 99185 0799<br>→ Marília · SP</div>
+  </div>
+  <div class="s-foot"><span>LGM · CREA-SP 5071068977</span><span class="swipe">salvar ♡</span></div>
+</div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     Nº 36 · REGULARIZAÇÃO · HABITE-SE NÃO É OBRA REGULARIZADA
+     ══════════════════════════════════════════════════════════ -->
+<div class="page-head"><b>LGM <em>Engenharia</em></b> Nº 36 · Regularização · Três papéis · 6 slides</div>
+<div class="carousel">
+
+<div class="slide paper2" data-post="36-tres-papeis" data-n="1">
+  <div class="corners"></div>
+  <div class="s-mast"><span>Nº 36 · MMXXVI</span><div class="logo">LGM <em>Engenharia</em></div><span>§ 07 · Regularização</span></div>
+  <div class="body" style="justify-content:flex-end;padding-bottom:180px">
+    <div class="kicker">Fig. 36 · Pós-obra</div>
+    <div class="display md">Habite-se<br>não é <em>o fim.</em></div>
+    <p class="lede" style="margin-top:50px">Três órgãos, três papéis, uma ordem. Pular um deles é descobrir na hora de vender.</p>
+  </div>
+  <div class="s-foot"><span>@eng.gustavomaia</span><span class="swipe">arraste →</span></div>
+</div>
+
+<div class="slide" data-post="36-tres-papeis" data-n="2">
+  <div class="corners"></div>
+  <div class="s-mast"><span>02 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Três órgãos</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Cada um olha uma coisa</div>
+    <h3>Prefeitura, Receita, <em>cartório.</em></h3>
+    <div class="spec" style="margin-top:50px">
+      <div class="spec-row"><div class="spec-k">Prefeitura</div><div class="spec-v">Habite-se. <em>A obra segue o projeto aprovado.</em></div></div>
+      <div class="spec-row"><div class="spec-k">Receita</div><div class="spec-v">Aferição no Sero e certidão. <em>O INSS da obra está quitado.</em></div></div>
+      <div class="spec-row"><div class="spec-k">Cartório</div><div class="spec-v">Averbação. <em>A construção passa a existir na matrícula.</em></div></div>
+    </div>
+    <p class="body-t" style="margin-top:44px">O cartório não averba sem a certidão da Receita. A Receita não afere sem área e habite-se. A ordem não é opcional.</p>
+  </div>
+  <div class="s-foot"><span>02 · Três papéis</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="36-tres-papeis" data-n="3">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>03 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Sem averbação</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">O que a casa não faz sem o terceiro papel</div>
+    <h3>Casa sem averbação é <em>terreno</em> com telhado.</h3>
+    <div class="list">
+      <div class="list-item"><div class="list-num">I.</div><div><div class="list-title">Não financia</div><div class="list-desc">Banco avalia a matrícula. Se nela só existe o lote, o crédito é do lote.</div></div></div>
+      <div class="list-item"><div class="list-num">II.</div><div><div class="list-title">Não vende pelo que vale</div><div class="list-desc">Comprador com financiamento não consegue fechar. Sobra comprador à vista, com desconto.</div></div></div>
+      <div class="list-item"><div class="list-num">III.</div><div><div class="list-title">Não entra no inventário</div><div class="list-desc">Herdeiros recebem o terreno. A casa vira pendência com juros acumulados.</div></div></div>
+    </div>
+  </div>
+  <div class="s-foot"><span>03 · Consequências</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="36-tres-papeis" data-n="4">
+  <div class="corners"></div>
+  <div class="s-mast"><span>04 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Área</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="num-big">m<em>²</em></div>
+    <h3 style="margin-top:30px">A mesma área nos <em>três</em> papéis.</h3>
+    <p class="body-t" style="margin-top:34px">Projeto aprovado, habite-se, Sero e matrícula precisam dizer o mesmo número. Área a mais no habite-se e a menos na Receita é diferença que vira cobrança retroativa.</p>
+    <p class="body-t" style="margin-top:24px">Por isso o levantamento do existente vem antes de qualquer protocolo.</p>
+    <div class="corner-tag">um número. quatro documentos.</div>
+  </div>
+  <div class="s-foot"><span>04 · Coerência</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide" data-post="36-tres-papeis" data-n="5">
+  <div class="corners"></div>
+  <div class="s-mast"><span>05 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Roteiro</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Como a LGM conduz</div>
+    <h3>Seis passos, <em>um protocolo</em> de cada vez.</h3>
+    <div class="flow">
+      <div class="flow-row"><div class="flow-n">I.</div><div class="flow-t">Levantamento</div><div class="flow-d">medição do existente<br>fotos · croqui</div></div>
+      <div class="flow-row"><div class="flow-n">II.</div><div class="flow-t">Projeto de regularização</div><div class="flow-d">pranchas · ART<br>conforme o código</div></div>
+      <div class="flow-row"><div class="flow-n">III.</div><div class="flow-t">Aprovação</div><div class="flow-d">prefeitura<br>prazo do município</div></div>
+      <div class="flow-row"><div class="flow-n">IV.</div><div class="flow-t">Habite-se</div><div class="flow-d">vistoria<br>certidão municipal</div></div>
+      <div class="flow-row"><div class="flow-n">V.</div><div class="flow-t">Receita Federal</div><div class="flow-d">CNO · Sero<br>certidão da obra</div></div>
+      <div class="flow-row"><div class="flow-n">VI.</div><div class="flow-t">Averbação</div><div class="flow-d">registro de imóveis<br>matrícula atualizada</div></div>
+    </div>
+  </div>
+  <div class="s-foot"><span>05 · Roteiro</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="36-tres-papeis" data-n="6">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>06 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Contato</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Sua casa está na matrícula?</div>
+    <div class="display sm">Confira<br><em>antes de precisar.</em></div>
+    <p class="lede" style="margin-top:50px">Mande a matrícula e uma foto da fachada. Dizemos em qual dos três papéis a sua obra parou.</p>
+    <div class="contact">DM · @eng.gustavomaia<br>WA · (14) 99185 0799<br>→ Marília · SP</div>
+  </div>
+  <div class="s-foot"><span>LGM · CREA-SP 5071068977</span><span class="swipe">salvar ♡</span></div>
+</div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     Nº 37 · INSS DE OBRA · O SISTEMA MUDA A CONTA
+     ══════════════════════════════════════════════════════════ -->
+<div class="page-head"><b>LGM <em>Engenharia</em></b> Nº 37 · INSS de obra · O sistema muda a conta · 6 slides</div>
+<div class="carousel">
+
+<div class="slide dark" data-post="37-o-sistema-muda-a-conta" data-n="1">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>Nº 37 · MMXXVI</span><div class="logo">LGM <em>Engenharia</em></div><span>§ 04 · INSS de obra</span></div>
+  <div class="body" style="justify-content:flex-end;padding-bottom:180px">
+    <div class="kicker">Fig. 37 · Sistema construtivo</div>
+    <div class="display md">Mesma casa.<br><em>Outra conta.</em></div>
+    <p class="lede" style="margin-top:50px">O INSS de obra é calculado sobre mão de obra. Sistema com menos canteiro tem menos base. Com uma condição: provar.</p>
+  </div>
+  <div class="s-foot"><span>@eng.gustavomaia</span><span class="swipe">arraste →</span></div>
+</div>
+
+<div class="slide" data-post="37-o-sistema-muda-a-conta" data-n="2">
+  <div class="corners"></div>
+  <div class="s-mast"><span>02 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Parcela de mão de obra</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Percentual da base que é mão de obra · Sero</div>
+    <h3>O que a tabela <em>já</em> reconhece.</h3>
+    <div class="rings">
+      <div class="ring"><div class="r" style="background:conic-gradient(var(--ink) 0 100%, transparent 0)"></div><div class="pct">20<em>%</em></div><div class="t">Alvenaria<br><em>convencional</em></div><div class="s">residencial<br>e comercial</div></div>
+      <div class="ring"><div class="r" style="background:conic-gradient(var(--terra) 0 75%, transparent 0)"></div><div class="pct">15<em>%</em></div><div class="t">Mista ou<br><em>madeira</em></div><div class="s">estrutura leve<br>vedação industrial</div></div>
+      <div class="ring"><div class="r" style="background:conic-gradient(var(--terra) 0 60%, transparent 0)"></div><div class="pct">12<em>%</em></div><div class="t">Galpão<br><em>industrial</em></div><div class="s">7% quando<br>pré-fabricado</div></div>
+    </div>
+    <div class="note">Percentuais da tabela de aferição indireta · IN RFB 2.021/2021. Anéis em proporção à alvenaria.</div>
+  </div>
+  <div class="s-foot"><span>02 · Tabela</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="37-o-sistema-muda-a-conta" data-n="3">
+  <div class="corners"></div>
+  <div class="s-mast"><span>03 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Pré-fabricado</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="num-big">70<em>%</em></div>
+    <h3 style="margin-top:30px">É <em>teto,</em> não garantia.</h3>
+    <p class="body-t" style="margin-top:34px">Obra com componentes pré-fabricados elegíveis pode reduzir até 70% da remuneração apurada. Vale para o que foi comprado pronto e montado, com nota de aquisição e de montagem, e respeita o patamar legal sobre o custo da obra.</p>
+    <p class="body-t" style="margin-top:24px">Não acumula com os 15% da mista. É um ou outro. Painel de steel frame montado perfil a perfil no canteiro não é pré-fabricado.</p>
+    <div class="corner-tag">enquadramento se prova.</div>
+  </div>
+  <div class="s-foot"><span>03 · Condições</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="37-o-sistema-muda-a-conta" data-n="4">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>04 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ O que prova</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Documentos que sustentam o enquadramento</div>
+    <h3>Sem papel, a Receita <em>afere</em> como alvenaria.</h3>
+    <div class="list">
+      <div class="list-item"><div class="list-num">I.</div><div><div class="list-title">Projeto executivo do sistema</div><div class="list-desc">Painéis, perfis e fixações pela NBR 15253. Memorial descrevendo o que vem de fábrica.</div></div></div>
+      <div class="list-item"><div class="list-num">II.</div><div><div class="list-title">Nota fiscal de fábrica</div><div class="list-desc">Aquisição dos componentes com descrição e CNO da obra no documento.</div></div></div>
+      <div class="list-item"><div class="list-num">III.</div><div><div class="list-title">Nota de montagem</div><div class="list-desc">Serviço de montagem separado, com remuneração declarada e vinculada ao CNO.</div></div></div>
+      <div class="list-item"><div class="list-num">IV.</div><div><div class="list-title">ART do responsável</div><div class="list-desc">Engenheiro assinando projeto e execução. É o que dá fé ao memorial.</div></div></div>
+    </div>
+  </div>
+  <div class="s-foot"><span>04 · Prova</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide" data-post="37-o-sistema-muda-a-conta" data-n="5">
+  <div class="corners"></div>
+  <div class="s-mast"><span>05 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Quando decidir</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Momento da decisão</div>
+    <h3>O sistema se escolhe no <em>estudo,</em><br>não na aferição.</h3>
+    <p class="body-t" style="margin-top:34px">Alvenaria, mista ou pré-fabricado: cada um muda custo, prazo, fundação e INSS. A conta dos quatro juntos é que decide. Fazer só a do INSS depois da obra pronta é tarde.</p>
+    <p class="body-t" style="margin-top:24px">Na LGM, a estimativa de INSS entra no estudo preliminar, por cenário. O cliente escolhe com os números na mesa.</p>
+    <div class="corner-tag">projetar devagar pra obra andar rápido.</div>
+  </div>
+  <div class="s-foot"><span>05 · Decisão</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="37-o-sistema-muda-a-conta" data-n="6">
+  <div class="corners"></div>
+  <div class="s-mast"><span>06 / 06</span><div class="logo">LGM <em>Engenharia</em></div><span>§ Contato</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Dois cenários, uma obra</div>
+    <div class="display sm">Alvenaria <em>ou</em><br>steel frame?</div>
+    <p class="lede" style="margin-top:50px">Mande área e cidade. Devolvemos a estimativa de INSS nos dois sistemas, com as condições escritas ao lado.</p>
+    <div class="contact">DM · @eng.gustavomaia<br>WA · (14) 99185 0799<br>→ Marília · SP</div>
+  </div>
+  <div class="s-foot"><span>LGM · CREA-SP 5071068977</span><span class="swipe">salvar ♡</span></div>
+</div>
+
+</div>
+
+</body></html>

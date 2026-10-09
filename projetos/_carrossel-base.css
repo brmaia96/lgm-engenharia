@@ -1,0 +1,125 @@
+/* LGM CARROSSEL BASE. 1080×1350 (4:5). Mesmo sistema do hub mkt-2026. */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0B0B0A; --ink2:#2A2A28; --ink3:#6C6C66;
+  --paper:#F4F1EC; --paper2:#E8E4DC; --terra:#8A6B4A; --terra2:#B08864;
+  --D:'Fraunces',Georgia,serif;
+  --S:'Fraunces',Georgia,serif;
+  --B:'Inter',system-ui,sans-serif;
+  --M:'JetBrains Mono',monospace;
+}
+body{background:#1a1a19;font-family:var(--B);padding:40px 20px;min-height:100vh}
+.carousel{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+.page-head{color:#888;font-family:var(--M);font-size:11px;letter-spacing:.2em;text-transform:uppercase;text-align:center;padding:30px 0 10px}
+.page-head b{color:var(--paper);font-family:var(--D);font-weight:300;font-size:22px;letter-spacing:0;text-transform:none;margin-right:16px}
+.page-head b em{font-style:italic;color:var(--terra2)}
+
+/* SLIDE */
+.slide{width:1080px;height:1350px;background:var(--paper);color:var(--ink);position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4);flex-shrink:0}
+.slide.dark{background:var(--ink);color:var(--paper)}
+.slide.paper2{background:var(--paper2)}
+
+/* MASTHEAD */
+.s-mast{position:absolute;top:0;left:0;right:0;padding:30px 60px;display:flex;justify-content:space-between;align-items:center;font-family:var(--M);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);border-bottom:1px solid rgba(11,11,10,.15);z-index:5}
+.slide.dark .s-mast{color:#888;border-bottom-color:rgba(255,255,255,.1)}
+.s-mast .logo{font-family:var(--D);font-weight:300;font-size:22px;letter-spacing:0;color:var(--ink);text-transform:none}
+.s-mast .logo em{font-style:italic;color:var(--terra)}
+.slide.dark .s-mast .logo{color:var(--paper)}
+.s-mast .logo.l{font-size:28px}
+
+/* FOOTER */
+.s-foot{position:absolute;bottom:0;left:0;right:0;padding:30px 60px;display:flex;justify-content:space-between;align-items:center;font-family:var(--M);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);border-top:1px solid rgba(11,11,10,.15);z-index:5}
+.slide.dark .s-foot{color:#888;border-top-color:rgba(255,255,255,.1)}
+.s-foot .swipe{color:var(--terra);display:flex;align-items:center;gap:10px}
+
+/* CORNER MARKS */
+.corners{position:absolute;inset:90px 60px 90px 60px;pointer-events:none;z-index:4;
+  background:
+    linear-gradient(var(--terra),var(--terra)) left top/22px 1.5px no-repeat,
+    linear-gradient(var(--terra),var(--terra)) left top/1.5px 22px no-repeat,
+    linear-gradient(var(--terra),var(--terra)) right top/22px 1.5px no-repeat,
+    linear-gradient(var(--terra),var(--terra)) right top/1.5px 22px no-repeat,
+    linear-gradient(var(--terra),var(--terra)) left bottom/22px 1.5px no-repeat,
+    linear-gradient(var(--terra),var(--terra)) left bottom/1.5px 22px no-repeat,
+    linear-gradient(var(--terra),var(--terra)) right bottom/22px 1.5px no-repeat,
+    linear-gradient(var(--terra),var(--terra)) right bottom/1.5px 22px no-repeat}
+.slide.dark .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--ink2) 1px,transparent 1px),linear-gradient(90deg,var(--ink2) 1px,transparent 1px);background-size:90px 90px;opacity:.3;pointer-events:none}
+
+/* CONTENT */
+.body{position:absolute;inset:120px 90px 120px 90px;display:flex;flex-direction:column;z-index:3}
+.kicker{font-family:var(--M);font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);margin-bottom:30px}
+.display{font-family:var(--S);font-weight:300;font-size:150px;line-height:.92;letter-spacing:-.035em}
+.display em{font-family:var(--D);font-style:italic;font-weight:300;color:var(--terra)}
+.display.md{font-size:116px}
+.display.sm{font-size:92px}
+h2{font-family:var(--S);font-weight:300;font-size:92px;line-height:.98;letter-spacing:-.03em}
+h2 em{font-family:var(--D);font-style:italic;font-weight:300;color:var(--terra)}
+h3{font-family:var(--S);font-weight:300;font-size:60px;line-height:1.02;letter-spacing:-.02em}
+h3 em{font-family:var(--D);font-style:italic;color:var(--terra);font-weight:300}
+.lede{font-family:var(--D);font-weight:300;font-style:italic;font-size:34px;line-height:1.32;color:var(--ink2);max-width:800px}
+.slide.dark .lede{color:#C8C4BC}
+p.body-t{font-family:var(--D);font-weight:300;font-size:29px;line-height:1.45;color:var(--ink2);max-width:800px}
+.slide.dark p.body-t{color:#C8C4BC}
+.num-big{font-family:var(--S);font-weight:200;font-size:340px;line-height:.85;letter-spacing:-.04em;color:var(--terra)}
+.num-big em{font-family:var(--D);font-style:italic;font-weight:300}
+
+/* LISTA ROMANA */
+.list{display:flex;flex-direction:column;margin-top:30px;border-top:1.5px solid var(--ink)}
+.slide.dark .list{border-top-color:rgba(255,255,255,.35)}
+.list-item{display:grid;grid-template-columns:80px 1fr auto;gap:30px;padding:30px 0;border-bottom:1px solid rgba(11,11,10,.15);align-items:start}
+.slide.dark .list-item{border-bottom-color:rgba(255,255,255,.12)}
+.list-num{font-family:var(--D);font-style:italic;font-weight:300;font-size:44px;color:var(--terra);line-height:1}
+.list-title{font-family:var(--S);font-weight:300;font-size:40px;line-height:1.08;letter-spacing:-.015em}
+.list-title em{font-family:var(--D);font-style:italic;color:var(--terra)}
+.list-desc{font-family:var(--D);font-weight:300;font-style:italic;font-size:21px;line-height:1.4;color:var(--ink3);margin-top:8px}
+.slide.dark .list-desc{color:#a0988a}
+.list-val{text-align:right;font-family:var(--D);font-style:italic;font-weight:300;font-size:40px;color:var(--terra);line-height:1}
+.list-val small{display:block;font-family:var(--M);font-style:normal;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-top:8px}
+
+/* FICHA TÉCNICA */
+.spec{margin-top:40px;border-top:1.5px solid var(--ink)}
+.slide.dark .spec{border-top-color:rgba(255,255,255,.35)}
+.spec-row{display:grid;grid-template-columns:220px 1fr;gap:30px;padding:24px 0;border-bottom:1px solid rgba(11,11,10,.12);align-items:baseline}
+.slide.dark .spec-row{border-bottom-color:rgba(255,255,255,.1)}
+.spec-k{font-family:var(--M);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3)}
+.spec-v{font-family:var(--D);font-weight:300;font-size:32px;line-height:1.3}
+.spec-v em{font-style:italic;color:var(--terra)}
+
+/* TAG DE CANTO (caixa mono) */
+.tag{position:absolute;top:118px;right:60px;z-index:6;font-family:var(--M);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);border:1px solid var(--ink);padding:8px 14px;background:rgba(244,241,236,.85)}
+.slide.dark .tag,.slide.photo .tag{color:var(--paper);border-color:var(--paper);background:rgba(11,11,10,.55)}
+.corner-tag{position:absolute;bottom:120px;right:90px;font-family:var(--D);font-style:italic;font-weight:300;font-size:28px;color:var(--terra);z-index:3}
+
+/* FOTO SANGRADA (capa / foto cheia) */
+.slide.photo{background:var(--ink);color:var(--paper)}
+.slide.photo .pic{position:absolute;inset:0;background-size:cover;background-position:center;z-index:1}
+.slide.photo .veil{position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom, rgba(11,11,10,.55) 0%, rgba(11,11,10,.05) 22%, rgba(11,11,10,0) 42%, rgba(11,11,10,.72) 62%, rgba(11,11,10,.94) 78%, rgba(11,11,10,.98) 100%)}
+.slide.photo .s-mast{border-bottom-color:rgba(255,255,255,.14);color:#C8C4BC}
+.slide.photo .s-mast .logo{color:var(--paper)}
+.slide.photo .s-foot{border-top-color:rgba(255,255,255,.14);color:#C8C4BC}
+.slide.photo .body{justify-content:flex-end;padding-bottom:30px}
+.slide.photo .lede{color:#E2DDD4}
+.slide.photo .meta{display:flex;gap:40px;margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.22);font-family:var(--M);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#B4AFA5}
+.slide.photo h2{font-size:104px}
+.slide.photo h2 em{color:var(--terra2)}
+
+/* FOTO EMOLDURADA (sobre papel) */
+.frame{position:absolute;left:60px;right:60px;top:120px;height:860px;background-size:cover;background-position:center;z-index:2}
+.frame.tall{height:960px}
+.frame-cap{position:absolute;left:90px;right:90px;top:1010px;z-index:3;display:flex;justify-content:space-between;align-items:flex-end;border-top:1.5px solid var(--ink);padding-top:22px}
+.frame.tall + .frame-cap{top:1110px}
+.frame-cap .k{font-family:var(--M);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra)}
+.frame-cap .t{font-family:var(--D);font-weight:300;font-size:46px;line-height:1;letter-spacing:-.02em;margin-top:10px}
+.frame-cap .t em{font-style:italic;color:var(--terra)}
+.frame-cap .r{font-family:var(--D);font-style:italic;font-weight:300;font-size:22px;color:var(--ink3);max-width:380px;text-align:right;line-height:1.35}
+.slide.dark .frame-cap{border-top-color:rgba(255,255,255,.35)}
+.slide.dark .frame-cap .r{color:#a0988a}
+
+/* DUAS FOTOS */
+.duo{position:absolute;left:60px;right:60px;top:120px;height:760px;display:grid;grid-template-columns:1fr 1fr;gap:12px;z-index:2}
+.duo div{background-size:cover;background-position:center;position:relative}
+.duo div span{position:absolute;left:18px;bottom:16px;font-family:var(--M);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--paper);background:rgba(11,11,10,.6);padding:7px 12px}
+.duo-body{position:absolute;left:90px;right:90px;top:920px;bottom:120px;z-index:3;display:flex;flex-direction:column}
+
+/* CONTATO (fechamento) */
+.contact{margin-top:60px;font-family:var(--M);font-size:22px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);line-height:2.1}

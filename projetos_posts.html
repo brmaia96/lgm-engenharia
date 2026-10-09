@@ -1,581 +1,518 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<html lang="pt-BR"><head>
 <meta charset="UTF-8">
-<title>LGM Engenharia · Posts de Projetos · Série L.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#060605;
-  --paper:#EAE6DE;
-  --dim:rgba(234,230,222,.55);
-  --ghost:rgba(234,230,222,.18);
-  --faint:rgba(234,230,222,.055);
-  --line:rgba(234,230,222,.08);
-  --rust:#C8793E;
-  --rust-d:#9F5C28;
-  --rust-bg:rgba(200,121,62,.09);
-  --rust-bd:rgba(200,121,62,.28);
-  --F:'Bebas Neue',sans-serif;
-  --C:'Barlow Condensed',sans-serif;
-  --I:'Inter',sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-html,body{background:#020201;font-family:var(--I);}
-body{padding:24px;display:flex;flex-direction:column;gap:3px;align-items:flex-start;}
+<title>LGM · Posts de projetos · Série Projeto 01–06</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="projetos/_carrossel-base.css">
+</head><body>
 
-/* ── índice da série (só na tela, não exporta) ── */
-.serie{color:var(--dim);font-family:var(--C);font-size:14px;letter-spacing:.2em;text-transform:uppercase;padding:28px 0 12px;}
-.serie b{color:var(--paper);font-family:var(--F);font-size:28px;letter-spacing:.1em;font-weight:400;margin-right:14px;}
-.serie i{color:var(--rust);font-style:normal;}
+<!-- ══════════════════════════════════════════════════════════
+     PROJETO 01 · CHALÉ DIMANNO · MARÍLIA
+     ══════════════════════════════════════════════════════════ -->
+<div class="page-head"><b>L<em>.</em></b> Projeto 01 · Chalé Dimanno · Marília/SP · 6 slides</div>
+<div class="carousel">
 
-/* ── BASE SLIDE ── */
-.slide{
-  width:1080px;height:1080px;position:relative;overflow:hidden;
-  background:var(--bg);display:flex;flex-direction:column;flex-shrink:0;
-}
-.slide::after{
-  content:'';position:absolute;inset:0;z-index:100;pointer-events:none;opacity:.18;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
-  mix-blend-mode:screen;
-}
-.acc{position:absolute;top:0;left:0;right:0;height:2px;z-index:50;
-  background:linear-gradient(90deg,var(--rust) 0%,var(--rust) 220px,transparent 220px);}
-
-/* ── monograma editorial L. ── */
-.mono{position:absolute;top:40px;left:56px;z-index:40;font-family:var(--F);font-size:74px;line-height:1;color:var(--paper);letter-spacing:.02em;}
-.mono i{font-style:normal;color:var(--rust);}
-.issue{position:absolute;top:58px;right:56px;z-index:40;font-family:var(--I);font-size:10px;font-weight:500;letter-spacing:.38em;text-transform:uppercase;color:var(--dim);text-align:right;line-height:1.9;}
-.issue b{display:block;color:var(--paper);font-weight:600;}
-
-.bot{
-  height:76px;flex-shrink:0;border-top:1px solid var(--line);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 56px;position:relative;z-index:10;background:var(--bg);
-}
-.b-pg{font-family:var(--I);font-size:10px;font-weight:400;letter-spacing:.38em;color:var(--ghost);text-transform:uppercase;}
-.b-lg{display:flex;align-items:center;gap:10px;}
-.b-nm{font-family:var(--F);font-size:26px;color:var(--paper);letter-spacing:.12em;}
-.b-sp{width:1px;height:18px;background:var(--line);}
-.b-sb{font-family:var(--C);font-size:9px;color:var(--ghost);letter-spacing:.2em;text-transform:uppercase;line-height:1.7;}
-.lbl{
-  display:inline-flex;align-items:center;gap:10px;flex-shrink:0;
-  font-family:var(--I);font-size:10px;font-weight:600;
-  letter-spacing:.34em;text-transform:uppercase;color:var(--rust);
-}
-.lbl::before{content:'';width:20px;height:1px;background:var(--rust);}
-.shell{flex:1;padding:150px 56px 28px;display:flex;flex-direction:column;position:relative;z-index:5;}
-
-/* ── CAPA ── */
-.cover .photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center;}
-.cover .veil{position:absolute;inset:0;z-index:2;
-  background:
-    linear-gradient(to bottom, rgba(6,6,5,.78) 0%, rgba(6,6,5,.40) 14%, rgba(6,6,5,0) 32%),
-    linear-gradient(to right, rgba(6,6,5,.15) 0%, rgba(6,6,5,0) 40%, rgba(6,6,5,.35) 100%),
-    linear-gradient(to top, rgba(6,6,5,1) 0%, rgba(6,6,5,1) 14%, rgba(6,6,5,.88) 30%, rgba(6,6,5,.35) 52%, rgba(6,6,5,.05) 72%, rgba(6,6,5,.25) 100%);}
-.cover .shell{position:absolute;inset:0;bottom:76px;z-index:5;justify-content:flex-end;padding-bottom:40px;}
-.cover .bot,.quote .bot{position:absolute;left:0;right:0;bottom:0;}
-.h1{font-family:var(--F);font-size:150px;line-height:.84;color:var(--paper);letter-spacing:.005em;margin:18px 0 22px;}
-.h1 em{font-style:normal;color:var(--rust);}
-.sub{font-family:var(--C);font-size:22px;font-weight:300;font-style:italic;color:var(--dim);line-height:1.35;max-width:720px;}
-.tags{display:flex;gap:8px;margin-top:26px;flex-wrap:wrap;}
-.tag{font-family:var(--I);font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);padding:10px 14px;}
-.tag.hl{color:var(--rust);border-color:var(--rust-bd);background:var(--rust-bg);}
-
-/* ── TÍTULO DE SLIDE INTERNO ── */
-.t{font-family:var(--F);font-size:84px;line-height:.88;color:var(--paper);margin:14px 0 30px;}
-.t em{font-style:normal;color:var(--rust);}
-.t.sm{font-size:68px;}
-
-/* ── LISTA NUMERADA ── */
-.list{display:flex;flex-direction:column;}
-.row{display:flex;gap:26px;padding:24px 0;border-top:1px solid var(--line);align-items:flex-start;}
-.row:last-child{border-bottom:1px solid var(--line);}
-.num{font-family:var(--F);font-size:54px;color:var(--rust);line-height:.9;width:64px;flex-shrink:0;}
-.row strong{display:block;font-family:var(--C);font-size:24px;font-weight:700;color:var(--paper);letter-spacing:.01em;line-height:1.1;margin-bottom:6px;}
-.row span{display:block;font-family:var(--I);font-size:14px;font-weight:300;color:var(--dim);line-height:1.55;}
-
-/* ── FOTO + TEXTO (foto em cima) ── */
-.split .photo{height:520px;flex-shrink:0;background-size:cover;background-position:center;position:relative;}
-.split .photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(6,6,5,1) 0%, rgba(6,6,5,.0) 30%), linear-gradient(to bottom, rgba(6,6,5,.78) 0%, rgba(6,6,5,.35) 22%, rgba(6,6,5,0) 42%);}
-.split .cap{position:absolute;left:56px;bottom:22px;z-index:3;font-family:var(--C);font-size:13px;font-style:italic;font-weight:300;color:var(--dim);letter-spacing:.05em;}
-.split .shell{padding-top:14px;}
-.split .t{font-size:62px;margin:10px 0 18px;}
-.split .row{padding:16px 0;}
-.split .num{font-size:40px;width:52px;}
-.split .row strong{font-size:20px;margin-bottom:3px;}
-.split .row span{font-size:13px;}
-
-/* ── COLUNAS (foto à esquerda) ── */
-.cols .shell{flex-direction:row;gap:40px;padding-top:150px;}
-.cols .pic{width:440px;flex-shrink:0;background-size:cover;background-position:center;border:1px solid var(--line);position:relative;}
-.cols .pic::after{content:'';position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(6,6,5,.6);}
-.cols .txt{flex:1;display:flex;flex-direction:column;}
-.cols .t{font-size:70px;}
-.cols .row{padding:18px 0;}
-.cols .num{font-size:42px;width:54px;}
-.cols .row strong{font-size:21px;}
-.cols .row span{font-size:13px;}
-
-/* ── GRADE DE 6 ── */
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:6px;}
-.cell{border:1px solid var(--line);padding:22px 20px 20px;min-height:168px;display:flex;flex-direction:column;justify-content:space-between;background:var(--faint);}
-.cell .n{font-family:var(--F);font-size:38px;color:var(--rust);line-height:1;}
-.cell .l{font-family:var(--C);font-size:21px;font-weight:600;color:var(--paper);line-height:1.1;letter-spacing:.01em;}
-.cell .l small{display:block;font-family:var(--I);font-size:11px;font-weight:300;color:var(--dim);margin-top:6px;letter-spacing:0;line-height:1.45;}
-.note{margin-top:auto;padding-top:22px;border-top:1px solid var(--line);display:flex;align-items:center;gap:18px;}
-.note .q{font-family:var(--C);font-size:24px;font-style:italic;font-weight:300;color:var(--paper);line-height:1.2;}
-.note .q b{color:var(--rust);font-weight:400;}
-.strip{height:230px;background-size:cover;background-position:center;margin:0 -56px 30px;position:relative;}
-.strip::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom, rgba(6,6,5,.0) 40%, rgba(6,6,5,1) 100%);}
-
-/* ── DUAS FOTOS LADO A LADO ── */
-.duo{display:flex;gap:10px;margin:0 0 26px;}
-.duo div{flex:1;height:360px;background-size:cover;background-position:center;position:relative;border:1px solid var(--line);}
-.duo div i{position:absolute;left:14px;top:14px;font-family:var(--I);font-size:10px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--paper);background:rgba(6,6,5,.7);padding:8px 12px;font-style:normal;}
-
-/* ── CITAÇÃO SOBRE FOTO ── */
-.quote .photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center;filter:saturate(.85);}
-.quote .veil{position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom, rgba(6,6,5,.7) 0%, rgba(6,6,5,0) 30%), linear-gradient(to top, rgba(6,6,5,1) 0%, rgba(6,6,5,.92) 38%, rgba(6,6,5,.45) 70%, rgba(6,6,5,.2) 100%);}
-.quote .shell{position:absolute;inset:0;bottom:76px;z-index:5;justify-content:flex-end;padding-bottom:44px;}
-.qq{font-family:var(--F);font-size:96px;line-height:.9;color:var(--paper);margin:16px 0 26px;}
-.qq em{font-style:normal;color:var(--rust);}
-.qs{font-family:var(--I);font-size:15px;font-weight:300;color:var(--dim);line-height:1.6;max-width:640px;}
-
-/* ── NÚMERO GIGANTE ── */
-.big{font-family:var(--F);font-size:420px;line-height:.78;color:var(--paper);letter-spacing:-.01em;margin:-10px 0 0 -8px;}
-.big small{font-size:120px;color:var(--rust);letter-spacing:0;}
-
-/* ── CTA ── */
-.cta .shell{align-items:center;text-align:center;justify-content:center;padding-top:110px;}
-.cta .glow{position:absolute;left:50%;top:46%;width:900px;height:900px;transform:translate(-50%,-50%);z-index:1;
-  background:radial-gradient(circle, rgba(200,121,62,.13) 0%, rgba(200,121,62,0) 60%);}
-.cta .mono{position:static;font-size:260px;margin-bottom:0;}
-.cta .lg-tag{font-family:var(--C);font-size:14px;letter-spacing:.42em;text-transform:uppercase;color:var(--dim);margin:6px 0 38px;}
-.cta .divider{width:60px;height:1px;background:var(--rust);margin-bottom:36px;}
-.cta .q{font-family:var(--C);font-size:30px;font-style:italic;font-weight:300;color:var(--paper);line-height:1.25;max-width:760px;margin-bottom:14px;}
-.cta .a{font-family:var(--F);font-size:64px;color:var(--rust);letter-spacing:.04em;line-height:1;margin-bottom:38px;}
-.cta .btn{background:var(--rust);color:#fff;font-family:var(--I);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:20px 72px;display:inline-block;margin-bottom:20px;}
-.cta .handle{font-family:var(--I);font-size:12px;font-weight:300;color:var(--ghost);letter-spacing:.08em;}
-</style>
-</head>
-<body>
-
-<!-- ╔═══════════════════════════════════════════════════════════════╗
-     POST 01 · CYNTHIA & MARCUS · PROJETO EXECUTIVO LSF (260005)
-     ╚═══════════════════════════════════════════════════════════════╝ -->
-<div class="serie"><b>L<i>.</i></b> Post 01 · Cynthia &amp; Marcus · Projeto executivo em steel frame</div>
-
-<div class="slide cover" data-post="01-cynthia-marcus" data-n="1">
-  <div class="acc"></div>
-  <div class="photo" style="background-image:url('projetos/img/cm_capa.jpg');background-size:118%;background-position:50% 42%;"></div>
+<div class="slide photo" data-post="01-chale-dimanno" data-n="1">
+  <div class="pic" style="background-image:url('projetos/img/mayra.jpg');background-position:50% 30%"></div>
   <div class="veil"></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Projetos · Nº 01<b>Steel Frame</b></div>
-  <div class="shell">
-    <div><div class="lbl">Projeto executivo · Light Steel Frame</div></div>
-    <div class="h1">A CASA<br>EXISTE ANTES<br><em>DA OBRA.</em></div>
-    <div class="sub">Residência Cynthia &amp; Marcus · projeto 260005. Cada perfil de aço já tem posição, comprimento e função antes de chegar ao canteiro.</div>
-    <div class="tags"><div class="tag hl">Light Steel Frame</div><div class="tag">Projeto executivo</div><div class="tag">Montagem mapeada</div></div>
+  <div class="s-mast"><span>Nº 01 · MMXXVI</span><div class="logo l">L<em>.</em></div><span>§ Projeto 01</span></div>
+  <div class="body">
+    <div class="kicker">Chalé · Marília/SP</div>
+    <h2>Chalé <em>Dimanno.</em></h2>
+    <p class="lede" style="margin-top:34px">Duas águas, varanda aberta para a piscina e um mezanino sob a cumeeira. Projeto completo em steel frame.</p>
+    <div class="meta"><span>Até 70 m²</span><span>Térreo + mezanino</span><span>Steel frame</span><span>Marília · SP</span></div>
   </div>
-  <div class="bot"><div class="b-pg">01 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
+  <div class="s-foot"><span>@eng.gustavomaia</span><span class="swipe">arraste →</span></div>
 </div>
 
-<div class="slide cols" data-post="01-cynthia-marcus" data-n="2">
-  <div class="acc"></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Projetos · Nº 01<b>Steel Frame</b></div>
-  <div class="shell">
-    <div class="pic" style="background-image:url('projetos/img/cm_mapa.jpg');background-size:cover;background-position:50% 50%;"></div>
-    <div class="txt">
-      <div class="lbl">Mapa de montagem</div>
-      <div class="t">CADA PAINEL<br>TEM COR,<br>NOME E <em>LUGAR.</em></div>
-      <div class="list">
-        <div class="row"><div class="num">01</div><div><strong>Cortado em fábrica</strong><span>Perfis de aço galvanizado usinados por software, com precisão de milímetro. Nada é cortado na serra do canteiro.</span></div></div>
-        <div class="row"><div class="num">02</div><div><strong>Identificado por cor</strong><span>A equipe monta lendo o mapa, não improvisando. Painel rosa vai no lugar do painel rosa.</span></div></div>
-        <div class="row"><div class="num">03</div><div><strong>Compatibilizado antes</strong><span>Estrutura, elétrica e hidráulica resolvidas no projeto. O primeiro parafuso já sabe onde passa o conduíte.</span></div></div>
-      </div>
+<div class="slide" data-post="01-chale-dimanno" data-n="2">
+  <div class="s-mast"><span>02 / 06</span><div class="logo l">L<em>.</em></div><span>§ Implantação</span></div>
+  <div class="frame tall" style="background-image:url('projetos/img/mayra.jpg');background-position:50% 38%"></div>
+  <div class="frame-cap"><div><div class="k">Fig. 02 · Fachada principal</div><div class="t">Pedra, <em>madeira,</em> vidro.</div></div><div class="r">Base em pedra, varanda em madeira, vista aberta para o lote.</div></div>
+  <div class="s-foot"><span>02 · Fachada</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide" data-post="01-chale-dimanno" data-n="3">
+  <div class="corners"></div>
+  <div class="s-mast"><span>03 / 06</span><div class="logo l">L<em>.</em></div><span>§ Partido</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Partido</div>
+    <h2>Pequeno <em>no chão.</em><br>Alto <em>na cumeeira.</em></h2>
+    <p class="body-t" style="margin-top:50px">Até 70 m² de projeção. O telhado de duas águas abre o pé-direito e cria o mezanino. A casa cresce para cima, não para os lados.</p>
+    <div class="corner-tag">proporção vale mais que tamanho.</div>
+  </div>
+  <div class="s-foot"><span>03 · Partido</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="01-chale-dimanno" data-n="4">
+  <div class="corners"></div>
+  <div class="s-mast"><span>04 / 06</span><div class="logo l">L<em>.</em></div><span>§ Ficha técnica</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Ficha técnica</div>
+    <h3>Projeto <em>160 / 2026.</em></h3>
+    <div class="spec">
+      <div class="spec-row"><div class="spec-k">Cliente</div><div class="spec-v">Família Dimanno</div></div>
+      <div class="spec-row"><div class="spec-k">Local</div><div class="spec-v">Marília <em>· SP</em></div></div>
+      <div class="spec-row"><div class="spec-k">Área</div><div class="spec-v">Até 70 m² <em>· térreo + mezanino</em></div></div>
+      <div class="spec-row"><div class="spec-k">Sistema</div><div class="spec-v">Steel frame <em>· NBR 15253</em></div></div>
+      <div class="spec-row"><div class="spec-k">Escopo</div><div class="spec-v">Arquitetura, estrutura e caderno de montagem</div></div>
+      <div class="spec-row"><div class="spec-k">Responsável</div><div class="spec-v">Luis Gustavo Maia <em>· CREA-SP 5071068977</em></div></div>
     </div>
   </div>
-  <div class="bot"><div class="b-pg">02 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
+  <div class="s-foot"><span>04 · Ficha</span><span class="swipe">→</span></div>
 </div>
 
-<div class="slide" data-post="01-cynthia-marcus" data-n="3">
-  <div class="acc"></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Projetos · Nº 01<b>Steel Frame</b></div>
-  <div class="shell" style="padding-top:140px;">
-    <div class="strip" style="background-image:url('projetos/img/cm_topo.jpg');background-size:cover;background-position:50% 50%;"></div>
-    <div class="lbl">Entregáveis</div>
-    <div class="t sm">O QUE VOCÊ RECEBE NO<br>PROJETO EXECUTIVO <em>LSF</em></div>
-    <div class="grid">
-      <div class="cell"><div class="n">01</div><div class="l">Planta de painéis<small>Cada parede vira um painel numerado</small></div></div>
-      <div class="cell"><div class="n">02</div><div class="l">Mapa de montagem<small>Ordem, posição e cor de cada peça</small></div></div>
-      <div class="cell"><div class="n">03</div><div class="l">Quantitativo de perfis<small>Lista de corte para a fábrica, sem sobra</small></div></div>
-      <div class="cell"><div class="n">04</div><div class="l">Fixação e ancoragem<small>Detalhes de parafusos, chumbadores e vigas</small></div></div>
-      <div class="cell"><div class="n">05</div><div class="l">Instalações<small>Passagens de elétrica e hidráulica previstas</small></div></div>
-      <div class="cell"><div class="n">06</div><div class="l">Memorial e ART<small>Responsabilidade técnica registrada no CREA</small></div></div>
-    </div>
-    <div class="note"><div class="q">Sem projeto executivo, <b>steel frame vira improviso caro.</b></div></div>
-  </div>
-  <div class="bot"><div class="b-pg">03 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
-</div>
-
-<div class="slide cta" data-post="01-cynthia-marcus" data-n="4">
-  <div class="acc"></div>
-  <div class="glow"></div>
-  <div class="shell">
-    <div class="mono">L<i>.</i></div>
-    <div class="lg-tag">LGM Engenharia &amp; Construções</div>
-    <div class="divider"></div>
-    <div class="q">Vai construir em steel frame?<br>Comece pelo projeto executivo, não pelo orçamento do perfil.</div>
-    <div class="a">FALE COM A LGM</div>
-    <div class="btn">SOLICITAR PROJETO</div>
-    <div class="handle">@eng.gustavomaia · (14) 99185-0799</div>
-  </div>
-  <div class="bot"><div class="b-pg">04 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
-</div>
-
-
-<!-- ╔═══════════════════════════════════════════════════════════════╗
-     POST 02 · RESIDÊNCIA MAYRA DIMANNO · MARÍLIA
-     ╚═══════════════════════════════════════════════════════════════╝ -->
-<div class="serie"><b>L<i>.</i></b> Post 02 · Chalé Mayra Dimanno · Marília – SP</div>
-
-<div class="slide cover" data-post="02-chale-marilia" data-n="1">
-  <div class="acc"></div>
-  <div class="photo" style="background-image:url('projetos/img/mayra.jpg');background-position:50% 35%;"></div>
-  <div class="veil"></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Projetos · Nº 02<b>Residencial</b></div>
-  <div class="shell">
-    <div><div class="lbl">Projeto arquitetônico · Marília – SP</div></div>
-    <div class="h1">UM CHALÉ<br>EM <em>MARÍLIA.</em></div>
-    <div class="sub">Residência Mayra Dimanno. Volume de duas águas, varanda integrada à piscina e vista aberta para o terreno.</div>
-    <div class="tags"><div class="tag hl">Residencial</div><div class="tag">Marília – SP</div><div class="tag">Projeto completo</div></div>
-  </div>
-  <div class="bot"><div class="b-pg">01 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
-</div>
-
-<div class="slide" data-post="02-chale-marilia" data-n="2">
-  <div class="acc"></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Projetos · Nº 02<b>Residencial</b></div>
-  <div class="shell">
-    <div class="lbl">Conteúdo do projeto</div>
-    <div class="t">DO RENDER<br>À <em>PRANCHA.</em></div>
-    <div class="grid">
-      <div class="cell"><div class="n">01</div><div class="l">Planta de localização<small>O lote na quadra, com confrontantes</small></div></div>
-      <div class="cell"><div class="n">02</div><div class="l">Implantação<small>Recuos, níveis e posição da casa no terreno</small></div></div>
-      <div class="cell"><div class="n">03</div><div class="l">Planta baixa<small>Térreo cotado, com áreas e esquadrias</small></div></div>
-      <div class="cell"><div class="n">04</div><div class="l">Planta de cobertura<small>Caimentos, calhas e beirais</small></div></div>
-      <div class="cell"><div class="n">05</div><div class="l">Cortes e fachadas<small>Frontal, posterior, direita e esquerda</small></div></div>
-      <div class="cell"><div class="n">06</div><div class="l">Prescrições<small>Legenda, notas técnicas e quadro de áreas</small></div></div>
-    </div>
-    <div class="note"><div class="q">O render convence a família. <b>A prancha é o que a prefeitura aprova e o pedreiro executa.</b></div></div>
-  </div>
-  <div class="bot"><div class="b-pg">02 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
-</div>
-
-<div class="slide quote" data-post="02-chale-marilia" data-n="3">
-  <div class="acc"></div>
-  <div class="photo" style="background-image:url('projetos/img/mayra.jpg');background-position:50% 30%;background-size:135%;"></div>
-  <div class="veil"></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Projetos · Nº 02<b>Residencial</b></div>
-  <div class="shell">
-    <div><div class="lbl">Por que isso importa</div></div>
-    <div class="qq">RENDER BONITO<br>NÃO APROVA PROJETO.<br><em>PRANCHA COMPLETA, SIM.</em></div>
-    <div class="qs">Por isso todo projeto da LGM sai com memorial descritivo, ART registrada e o jogo de pranchas que o processo de aprovação exige. Bonito na tela e correto no protocolo.</div>
-  </div>
-  <div class="bot"><div class="b-pg">03 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
-</div>
-
-<div class="slide cta" data-post="02-chale-marilia" data-n="4">
-  <div class="acc"></div>
-  <div class="glow"></div>
-  <div class="shell">
-    <div class="mono">L<i>.</i></div>
-    <div class="lg-tag">LGM Engenharia &amp; Construções</div>
-    <div class="divider"></div>
-    <div class="q">Tem um terreno e uma ideia?<br>A LGM transforma em projeto aprovável, com ART e pranchas completas.</div>
-    <div class="a">FALE COM A LGM</div>
-    <div class="btn">SOLICITAR PROJETO</div>
-    <div class="handle">@eng.gustavomaia · (14) 99185-0799</div>
-  </div>
-  <div class="bot"><div class="b-pg">04 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
-</div>
-
-
-<!-- ╔═══════════════════════════════════════════════════════════════╗
-     POST 03 · JOSÉ AMÉRICO · CONTAGEM MG · ESTRUTURA → CASA
-     ╚═══════════════════════════════════════════════════════════════╝ -->
-<div class="serie"><b>L<i>.</i></b> Post 03 · José Américo · Contagem – MG · Estrutura e casa</div>
-
-<div class="slide cover" data-post="03-jose-americo" data-n="1">
-  <div class="acc"></div>
-  <div class="photo" style="background-image:url('projetos/img/ja_estrutura.jpg');background-position:50% 60%;"></div>
-  <div class="veil"></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Projetos · Nº 03<b>Steel Frame</b></div>
-  <div class="shell">
-    <div><div class="lbl">Light Steel Frame · Contagem – MG</div></div>
-    <div class="h1">PRIMEIRO,<br>A <em>ESTRUTURA.</em></div>
-    <div class="sub">Residência José Américo. Perfis de aço galvanizado montados sobre a laje, prontos para receber fechamento, esquadrias e acabamento.</div>
-    <div class="tags"><div class="tag hl">Light Steel Frame</div><div class="tag">Contagem – MG</div><div class="tag">Arraste para ver pronta</div></div>
-  </div>
-  <div class="bot"><div class="b-pg">01 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
-</div>
-
-<div class="slide cover" data-post="03-jose-americo" data-n="2">
-  <div class="acc"></div>
-  <div class="photo" style="background-image:url('projetos/img/ja_casa.jpg');background-position:50% 55%;"></div>
-  <div class="veil"></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Projetos · Nº 03<b>Steel Frame</b></div>
-  <div class="shell">
-    <div><div class="lbl">A mesma casa · fechamento e acabamento</div></div>
-    <div class="h1">DEPOIS,<br>A <em>CASA.</em></div>
-    <div class="sub">Mesmo projeto, mesma estrutura do slide anterior. Reboco, esquadrias pretas, iluminação e pátio: a parte que o cliente vê. A engenharia está por baixo.</div>
-    <div class="tags"><div class="tag hl">Obra a seco</div><div class="tag">Sem entulho</div><div class="tag">Prazo previsível</div></div>
-  </div>
-  <div class="bot"><div class="b-pg">02 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
-</div>
-
-<div class="slide" data-post="03-jose-americo" data-n="3">
-  <div class="acc"></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Projetos · Nº 03<b>Steel Frame</b></div>
-  <div class="shell" style="padding-top:140px;">
-    <div class="duo">
-      <div style="background-image:url('projetos/img/ja_estrutura.jpg');"><i>Estrutura</i></div>
-      <div style="background-image:url('projetos/img/ja_casa.jpg');"><i>Casa pronta</i></div>
-    </div>
-    <div class="lbl">Dois momentos, um projeto</div>
-    <div class="t sm">O QUE MUDA QUANDO<br>A ESTRUTURA É <em>DE AÇO</em></div>
+<div class="slide dark" data-post="01-chale-dimanno" data-n="5">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>05 / 06</span><div class="logo l">L<em>.</em></div><span>§ Pranchas</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">O que o cliente recebe</div>
+    <h2>Uma <em>prancha</em><br>para cada decisão.</h2>
     <div class="list">
-      <div class="row"><div class="num">01</div><div><strong>Cerca de 1/6 do peso da alvenaria</strong><span>Perto de 50 kg/m² contra 300 kg/m². Fundação menor, menos concreto, menos escavação.</span></div></div>
-      <div class="row"><div class="num">02</div><div><strong>O projeto viaja. O improviso, não.</strong><span>Projetado em Marília e executado em Contagem (MG). Com projeto executivo, a equipe local monta sem adivinhar.</span></div></div>
-      <div class="row"><div class="num">03</div><div><strong>Obra a seco, canteiro limpo</strong><span>Sem espera de cura, sem entulho de argamassa. O que chega é o que vai ser usado.</span></div></div>
+      <div class="list-item"><div class="list-num">I.</div><div><div class="list-title">Implantação e localização</div><div class="list-desc">Recuos, níveis e o lote na quadra.</div></div></div>
+      <div class="list-item"><div class="list-num">II.</div><div><div class="list-title">Planta baixa <em>cotada</em></div><div class="list-desc">Térreo e mezanino, com áreas e esquadrias.</div></div></div>
+      <div class="list-item"><div class="list-num">III.</div><div><div class="list-title">Cortes e quatro fachadas</div><div class="list-desc">Frontal, posterior, direita e esquerda.</div></div></div>
+      <div class="list-item"><div class="list-num">IV.</div><div><div class="list-title">Cobertura e caimentos</div><div class="list-desc">Calhas, beirais e prescrições.</div></div></div>
+      <div class="list-item"><div class="list-num">V.</div><div><div class="list-title">Caderno de <em>montagem</em></div><div class="list-desc">Painéis de steel frame, peça a peça.</div></div></div>
     </div>
   </div>
-  <div class="bot"><div class="b-pg">03 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
+  <div class="s-foot"><span>05 · Pranchas</span><span class="swipe">→</span></div>
 </div>
 
-<div class="slide cta" data-post="03-jose-americo" data-n="4">
-  <div class="acc"></div>
-  <div class="glow"></div>
-  <div class="shell">
-    <div class="mono">L<i>.</i></div>
-    <div class="lg-tag">LGM Engenharia &amp; Construções</div>
-    <div class="divider"></div>
-    <div class="q">Quer ver sua casa antes de construir?<br>Projeto em steel frame com estrutura, fechamento e instalações resolvidos no papel.</div>
-    <div class="a">FALE COM A LGM</div>
-    <div class="btn">SOLICITAR ORÇAMENTO</div>
-    <div class="handle">@eng.gustavomaia · (14) 99185-0799</div>
+<div class="slide dark" data-post="01-chale-dimanno" data-n="6">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>06 / 06</span><div class="logo l">L<em>.</em></div><span>§ Convite</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Se você tem um terreno</div>
+    <div class="display sm">Projeto <em>antes.</em><br>Obra <em>depois.</em></div>
+    <p class="lede" style="margin-top:50px">Primeira conversa sem compromisso. Trinta minutos para entender se faz sentido.</p>
+    <div class="contact">DM · @eng.gustavomaia<br>WA · (14) 99185 0799<br>→ Marília · SP</div>
   </div>
-  <div class="bot"><div class="b-pg">04 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
+  <div class="s-foot"><span>LGM · CREA-SP 5071068977</span><span class="swipe">salvar ♡</span></div>
 </div>
 
+</div>
 
-<!-- ╔═══════════════════════════════════════════════════════════════╗
-     POST 04 · CLÍNICA UNIMED · GARÇA
-     ╚═══════════════════════════════════════════════════════════════╝ -->
-<div class="serie"><b>L<i>.</i></b> Post 04 · Clínica Unimed · Garça – SP · Projeto comercial de saúde</div>
+<!-- ══════════════════════════════════════════════════════════
+     PROJETO 02 · PAINÉIS COM NOME · LSF EXECUTIVO 260005
+     ══════════════════════════════════════════════════════════ -->
+<div class="page-head"><b>L<em>.</em></b> Projeto 02 · Painéis com nome · Executivo em steel frame · 6 slides</div>
+<div class="carousel">
 
-<div class="slide cover" data-post="04-clinica-garca" data-n="1">
-  <div class="acc"></div>
-  <div class="photo" style="background-image:url('projetos/img/un_fachada.jpg');background-position:50% 50%;background-size:cover;"></div>
+<div class="slide photo" data-post="02-paineis-com-nome" data-n="1">
+  <div class="pic" style="background-image:url('projetos/img/cm_capa.jpg');background-size:130%;background-position:50% 44%"></div>
   <div class="veil"></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Projetos · Nº 04<b>Comercial</b></div>
-  <div class="shell">
-    <div><div class="lbl">Projeto comercial · Saúde · Garça – SP</div></div>
-    <div class="h1">SAÚDE<br>TAMBÉM<br>SE <em>PROJETA.</em></div>
-    <div class="sub">Clínica Unimed Garça. Fachada em brise de madeira, cobertura para embarque de ambulância e estacionamento próprio.</div>
-    <div class="tags"><div class="tag hl">Comercial · Saúde</div><div class="tag">Garça – SP</div><div class="tag">Estudo preliminar R02</div></div>
+  <div class="s-mast"><span>Nº 02 · MMXXVI</span><div class="logo l">L<em>.</em></div><span>§ Projeto 02</span></div>
+  <div class="body">
+    <div class="kicker">Residencial · Light steel frame</div>
+    <h2>Painéis <em>com nome.</em></h2>
+    <p class="lede" style="margin-top:34px">Projeto executivo 260005. Cada perfil tem posição, comprimento e função antes do primeiro parafuso.</p>
+    <div class="meta"><span>Steel frame</span><span>Executivo</span><span>Mapa de montagem</span><span>2026</span></div>
   </div>
-  <div class="bot"><div class="b-pg">01 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
+  <div class="s-foot"><span>@eng.gustavomaia</span><span class="swipe">arraste →</span></div>
 </div>
 
-<div class="slide split" data-post="04-clinica-garca" data-n="2">
-  <div class="acc"></div>
-  <div class="photo" style="background-image:url('projetos/img/un_recepcao.jpg');background-position:50% 100%;"><div class="cap">Recepção e espera · estudo R02</div></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Projetos · Nº 04<b>Comercial</b></div>
-  <div class="shell">
-    <div class="lbl">Setorização e fluxos</div>
-    <div class="t">RECEPÇÃO, FLUXOS<br>E <em>ESPERA.</em></div>
+<div class="slide dark" data-post="02-paineis-com-nome" data-n="2">
+  <div class="s-mast"><span>02 / 06</span><div class="logo l">L<em>.</em></div><span>§ Montagem</span></div>
+  <div class="frame tall" style="background-image:url('projetos/img/cm_mapa.jpg');background-size:contain;background-repeat:no-repeat;background-color:#000"></div>
+  <div class="frame-cap"><div><div class="k">Fig. 02 · Mapa de montagem</div><div class="t">Cor é <em>instrução.</em></div></div><div class="r">Cada painel ganha uma cor e um número. A equipe monta lendo o mapa.</div></div>
+  <div class="s-foot"><span>02 · Mapa</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide" data-post="02-paineis-com-nome" data-n="3">
+  <div class="corners"></div>
+  <div class="s-mast"><span>03 / 06</span><div class="logo l">L<em>.</em></div><span>§ Fábrica</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Fábrica</div>
+    <h2>Cortado <em>a milímetro.</em></h2>
+    <p class="body-t" style="margin-top:50px">Perfis de aço galvanizado usinados por software. Nada é cortado na serra do canteiro. O que chega à obra é o que vai ser usado.</p>
+    <p class="body-t" style="margin-top:20px">Estrutura, elétrica e hidráulica compatibilizadas no projeto. O primeiro parafuso já sabe onde passa o conduíte.</p>
+    <div class="corner-tag">zero improviso.</div>
+  </div>
+  <div class="s-foot"><span>03 · Fábrica</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="02-paineis-com-nome" data-n="4">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>04 / 06</span><div class="logo l">L<em>.</em></div><span>§ Entregáveis</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">O executivo entrega</div>
+    <h2>Seis <em>documentos.</em><br>Uma obra.</h2>
     <div class="list">
-      <div class="row"><div class="num">01</div><div><strong>Alas separadas</strong><span>Recepção, consultórios, área clínica e espaço Viver Bem em setores próprios.</span></div></div>
-      <div class="row"><div class="num">02</div><div><strong>Fluxos que não se cruzam</strong><span>Paciente, equipe e serviço circulam por caminhos distintos.</span></div></div>
-      <div class="row"><div class="num">03</div><div><strong>Conforto que acalma</strong><span>Luz natural, pátio interno e espera sem corredor.</span></div></div>
+      <div class="list-item"><div class="list-num">I.</div><div><div class="list-title">Planta de painéis</div><div class="list-desc">Cada parede vira um painel numerado.</div></div></div>
+      <div class="list-item"><div class="list-num">II.</div><div><div class="list-title">Mapa de <em>montagem</em></div><div class="list-desc">Ordem, posição e cor de cada peça.</div></div></div>
+      <div class="list-item"><div class="list-num">III.</div><div><div class="list-title">Quantitativo de perfis</div><div class="list-desc">Lista de corte para a fábrica, sem sobra.</div></div></div>
+      <div class="list-item"><div class="list-num">IV.</div><div><div class="list-title">Fixações e ancoragens</div><div class="list-desc">Parafusos, chumbadores e vigas de borda.</div></div></div>
+      <div class="list-item"><div class="list-num">V.</div><div><div class="list-title">Passagens de instalações</div><div class="list-desc">Elétrica e hidráulica previstas nos montantes.</div></div></div>
+      <div class="list-item"><div class="list-num">VI.</div><div><div class="list-title">Memorial e <em>ART</em></div><div class="list-desc">Responsabilidade técnica registrada no CREA.</div></div></div>
     </div>
   </div>
-  <div class="bot"><div class="b-pg">02 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
+  <div class="s-foot"><span>04 · Entregáveis</span><span class="swipe">→</span></div>
 </div>
 
-<div class="slide" data-post="04-clinica-garca" data-n="3">
-  <div class="acc"></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Projetos · Nº 04<b>Comercial</b></div>
-  <div class="shell">
-    <div class="lbl">Projeto de saúde não é projeto de loja</div>
-    <div class="t">O QUE MUDA EM UMA<br>CLÍNICA <em>DE VERDADE</em></div>
-    <div class="list">
-      <div class="row"><div class="num">01</div><div><strong>RDC 50 da ANVISA</strong><span>Dimensionamento mínimo, ambientes obrigatórios e acabamentos laváveis definidos por norma, não por gosto.</span></div></div>
-      <div class="row"><div class="num">02</div><div><strong>NBR 9050 em todo o percurso</strong><span>Da vaga ao consultório: rampas, portas, sanitários e balcão acessíveis.</span></div></div>
-      <div class="row"><div class="num">03</div><div><strong>Embarque de ambulância coberto</strong><span>Acesso direto, sem cruzar a espera, com cobertura e manobra prevista.</span></div></div>
-      <div class="row"><div class="num">04</div><div><strong>Duas aprovações</strong><span>Prefeitura e Vigilância Sanitária. Projetar para as duas desde o início evita refazer a obra depois.</span></div></div>
+<div class="slide paper2" data-post="02-paineis-com-nome" data-n="5">
+  <div class="corners"></div>
+  <div class="s-mast"><span>05 / 06</span><div class="logo l">L<em>.</em></div><span>§ Ficha técnica</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Ficha técnica</div>
+    <h3>Projeto <em>260005.</em></h3>
+    <div class="spec">
+      <div class="spec-row"><div class="spec-k">Tipologia</div><div class="spec-v">Residência unifamiliar</div></div>
+      <div class="spec-row"><div class="spec-k">Sistema</div><div class="spec-v">Light steel frame <em>· NBR 15253</em></div></div>
+      <div class="spec-row"><div class="spec-k">Etapa</div><div class="spec-v">Projeto executivo <em>· revisão 00</em></div></div>
+      <div class="spec-row"><div class="spec-k">Entrega</div><div class="spec-v">Painéis, mapa de montagem, quantitativo</div></div>
+      <div class="spec-row"><div class="spec-k">Modelo</div><div class="spec-v">3D peça a peça, perfis e ligações</div></div>
+      <div class="spec-row"><div class="spec-k">Responsável</div><div class="spec-v">Luis Gustavo Maia <em>· CREA-SP 5071068977</em></div></div>
     </div>
   </div>
-  <div class="bot"><div class="b-pg">03 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
+  <div class="s-foot"><span>05 · Ficha</span><span class="swipe">→</span></div>
 </div>
 
-<div class="slide cta" data-post="04-clinica-garca" data-n="4">
-  <div class="acc"></div>
-  <div class="glow"></div>
-  <div class="shell">
-    <div class="mono">L<i>.</i></div>
-    <div class="lg-tag">LGM Engenharia &amp; Construções</div>
-    <div class="divider"></div>
-    <div class="q">Vai abrir ou ampliar uma clínica, consultório ou laboratório?<br>Projeto que passa na prefeitura e na vigilância de uma vez.</div>
-    <div class="a">FALE COM A LGM</div>
-    <div class="btn">AGENDAR CONVERSA</div>
-    <div class="handle">@eng.gustavomaia · (14) 99185-0799</div>
+<div class="slide dark" data-post="02-paineis-com-nome" data-n="6">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>06 / 06</span><div class="logo l">L<em>.</em></div><span>§ Convite</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Vai construir em steel frame</div>
+    <div class="display sm">Comece pelo <em>projeto.</em></div>
+    <p class="lede" style="margin-top:50px">Perfil sem projeto executivo é improviso caro. Conversa inicial sem compromisso.</p>
+    <div class="contact">DM · @eng.gustavomaia<br>WA · (14) 99185 0799<br>→ Marília · SP</div>
   </div>
-  <div class="bot"><div class="b-pg">04 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
+  <div class="s-foot"><span>LGM · CREA-SP 5071068977</span><span class="swipe">salvar ♡</span></div>
 </div>
 
+</div>
 
-<!-- ╔═══════════════════════════════════════════════════════════════╗
-     POST 05 · RIFUGIO · 1 MÓDULO · 20 M²
-     ╚═══════════════════════════════════════════════════════════════╝ -->
-<div class="serie"><b>L<i>.</i></b> Post 05 · Rifugio · módulo de 20 m²</div>
+<!-- ══════════════════════════════════════════════════════════
+     PROJETO 03 · PRIMEIRO A ESTRUTURA · CONTAGEM/MG
+     ══════════════════════════════════════════════════════════ -->
+<div class="page-head"><b>L<em>.</em></b> Projeto 03 · Primeiro a estrutura · Contagem/MG · 6 slides</div>
+<div class="carousel">
 
-<div class="slide cover" data-post="05-rifugio-20m2" data-n="1">
-  <div class="acc"></div>
-  <div class="photo" style="background-image:url('projetos/img/rif_int.jpg');background-position:50% 40%;"></div>
+<div class="slide photo" data-post="03-primeiro-a-estrutura" data-n="1">
+  <div class="pic" style="background-image:url('projetos/img/ja_estrutura.jpg');background-position:50% 60%"></div>
   <div class="veil"></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Projetos · Nº 05<b>Modular</b></div>
-  <div class="shell">
-    <div><div class="lbl">Rifugio · 1 módulo · 20 m²</div></div>
-    <div class="h1">20 M²<br>QUE <em>FUNCIONAM.</em></div>
-    <div class="sub">Módulo compacto com cozinha, bancada para dois, dormitório e banheiro sob um telhado de duas águas. Pensado para fabricar fora e montar no terreno.</div>
-    <div class="tags"><div class="tag hl">Construção modular</div><div class="tag">Steel frame</div><div class="tag">Off-site</div></div>
+  <div class="s-mast"><span>Nº 03 · MMXXVI</span><div class="logo l">L<em>.</em></div><span>§ Projeto 03</span></div>
+  <div class="body">
+    <div class="kicker">Residencial · Contagem/MG</div>
+    <h2>Primeiro <em>a estrutura.</em></h2>
+    <p class="lede" style="margin-top:34px">Perfis galvanizados sobre a laje. A casa já existe. Só não tem fechamento.</p>
+    <div class="meta"><span>Steel frame</span><span>Residencial</span><span>Contagem · MG</span><span>2026</span></div>
   </div>
-  <div class="bot"><div class="b-pg">01 · 03</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
+  <div class="s-foot"><span>@eng.gustavomaia</span><span class="swipe">arraste →</span></div>
 </div>
 
-<div class="slide cols" data-post="05-rifugio-20m2" data-n="2">
-  <div class="acc"></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Projetos · Nº 05<b>Modular</b></div>
-  <div class="shell" style="gap:30px;">
-    <div class="txt" style="flex:0 0 380px;justify-content:flex-end;">
-      <div class="big">20<small>m²</small></div>
-      <div class="lbl" style="margin-top:28px;">Um módulo. Tudo dentro.</div>
-    </div>
-    <div class="txt">
-      <div class="t" style="font-size:62px;margin-top:0;">O QUE CABE<br>EM <em>20 M²</em></div>
-      <div class="list">
-        <div class="row"><div class="num">01</div><div><strong>Cozinha com bancada</strong><span>Cuba, cooktop e armários em linha, encostados na parede da janela.</span></div></div>
-        <div class="row"><div class="num">02</div><div><strong>Mesa para dois</strong><span>Bancada fixa sob o pé-direito mais baixo, onde ninguém precisa ficar em pé.</span></div></div>
-        <div class="row"><div class="num">03</div><div><strong>Dormitório e banheiro</strong><span>Separados da área social por porta, não por cortina.</span></div></div>
-        <div class="row"><div class="num">04</div><div><strong>Pé-direito na cumeeira</strong><span>Telhado de duas águas dá altura onde importa e luz linear embutida no forro.</span></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="bot"><div class="b-pg">02 · 03</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
-</div>
-
-<div class="slide cta" data-post="05-rifugio-20m2" data-n="3">
-  <div class="acc"></div>
-  <div class="glow"></div>
-  <div class="shell">
-    <div class="mono">L<i>.</i></div>
-    <div class="lg-tag">LGM Engenharia &amp; Construções</div>
-    <div class="divider"></div>
-    <div class="q">Refúgio no sítio, chalé para alugar ou edícula no fundo do lote?<br>Um módulo resolve, e o projeto já existe.</div>
-    <div class="a">FALE COM A LGM</div>
-    <div class="btn">QUERO UM MÓDULO</div>
-    <div class="handle">@eng.gustavomaia · (14) 99185-0799</div>
-  </div>
-  <div class="bot"><div class="b-pg">03 · 03</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
-</div>
-
-
-<!-- ╔═══════════════════════════════════════════════════════════════╗
-     POST 06 · DIÁRIO DE OBRA · PLS · MARÍLIA · MÊS 03
-     ╚═══════════════════════════════════════════════════════════════╝ -->
-<div class="serie"><b>L<i>.</i></b> Post 06 · Diário de obra · Marília – SP · Mês 03</div>
-
-<div class="slide cover" data-post="06-diario-de-obra" data-n="1">
-  <div class="acc"></div>
-  <div class="photo" style="background-image:url('projetos/img/pls_12.jpg');background-position:50% 40%;"></div>
+<div class="slide photo" data-post="03-primeiro-a-estrutura" data-n="2">
+  <div class="pic" style="background-image:url('projetos/img/ja_casa.jpg');background-position:50% 55%"></div>
   <div class="veil"></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Diário de obra<b>Mês 03</b></div>
-  <div class="shell">
-    <div><div class="lbl">Diário de obra · Marília – SP · Outubro 2026</div></div>
-    <div class="h1">OBRA REAL.<br>SEM <em>RENDER.</em></div>
-    <div class="sub">Laje concretada, alvenaria subindo, areia no canteiro. É assim que uma obra acompanhada toda semana se parece no terceiro mês.</div>
-    <div class="tags"><div class="tag hl">Gestão de obra</div><div class="tag">Residencial</div><div class="tag">Mês 03 de execução</div></div>
+  <div class="s-mast"><span>02 / 06</span><div class="logo l">L<em>.</em></div><span>§ Fachada</span></div>
+  <div class="body">
+    <div class="kicker">Mesma casa · fechamento e acabamento</div>
+    <h2>Depois <em>a casa.</em></h2>
+    <p class="lede" style="margin-top:34px">Mesmo projeto, mesma estrutura do slide anterior. Reboco, esquadrias pretas, pátio. A engenharia fica por baixo.</p>
+    <div class="meta"><span>Obra a seco</span><span>Sem entulho</span><span>Prazo previsível</span></div>
   </div>
-  <div class="bot"><div class="b-pg">01 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
+  <div class="s-foot"><span>02 · Fachada</span><span class="swipe">→</span></div>
 </div>
 
-<div class="slide split" data-post="06-diario-de-obra" data-n="2">
-  <div class="acc"></div>
-  <div class="photo" style="background-image:url('projetos/img/pls_01.jpg');background-position:50% 40%;"><div class="cap">Escoramento da laje · registro de 07/10/2026</div></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Diário de obra<b>Mês 03</b></div>
-  <div class="shell">
-    <div class="lbl">Escoramento</div>
-    <div class="t">O QUE O RENDER<br>NÃO <em>MOSTRA.</em></div>
-    <div class="list">
-      <div class="row"><div class="num">01</div><div><strong>Laje só vira laje depois de 28 dias</strong><span>Concreto atinge a resistência de projeto com o tempo. Até lá, a escora sustenta.</span></div></div>
-      <div class="row"><div class="num">02</div><div><strong>Cada escora tem posição calculada</strong><span>Retirar antes da hora é o erro mais caro de uma obra: flecha, trinca e, no pior caso, colapso.</span></div></div>
-      <div class="row"><div class="num">03</div><div><strong>A visita técnica confere isso</strong><span>Não é foto bonita. É verificação de etapa antes de liberar a próxima.</span></div></div>
+<div class="slide" data-post="03-primeiro-a-estrutura" data-n="3">
+  <div class="s-mast"><span>03 / 06</span><div class="logo l">L<em>.</em></div><span>§ Dois momentos</span></div>
+  <div class="duo">
+    <div style="background-image:url('projetos/img/ja_estrutura.jpg')"><span>Estrutura</span></div>
+    <div style="background-image:url('projetos/img/ja_casa.jpg')"><span>Casa pronta</span></div>
+  </div>
+  <div class="duo-body">
+    <div class="kicker">Peso próprio</div>
+    <h3>A estrutura pesa <em>um sexto</em><br>da alvenaria.</h3>
+    <p class="body-t" style="margin-top:26px;font-size:26px">Cerca de 50 kg/m² contra 300 kg/m². Fundação menor, menos concreto, menos escavação.</p>
+  </div>
+  <div class="s-foot"><span>03 · Peso</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="03-primeiro-a-estrutura" data-n="4">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>04 / 06</span><div class="logo l">L<em>.</em></div><span>§ Distância</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Distância</div>
+    <h2>O projeto <em>viaja.</em><br>O improviso, não.</h2>
+    <p class="body-t" style="margin-top:50px">Projetado em Marília. Executado em Minas Gerais. Com o executivo em mãos, a equipe local monta sem adivinhar.</p>
+    <p class="body-t" style="margin-top:20px">Obra a seco: sem espera de cura, sem entulho de argamassa.</p>
+    <div class="corner-tag">prancha é linguagem comum.</div>
+  </div>
+  <div class="s-foot"><span>04 · Distância</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="03-primeiro-a-estrutura" data-n="5">
+  <div class="corners"></div>
+  <div class="s-mast"><span>05 / 06</span><div class="logo l">L<em>.</em></div><span>§ Ficha técnica</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Ficha técnica</div>
+    <h3>Residência <em>José Américo.</em></h3>
+    <div class="spec">
+      <div class="spec-row"><div class="spec-k">Local</div><div class="spec-v">Contagem <em>· MG</em></div></div>
+      <div class="spec-row"><div class="spec-k">Tipologia</div><div class="spec-v">Residência térrea compacta</div></div>
+      <div class="spec-row"><div class="spec-k">Sistema</div><div class="spec-v">Light steel frame <em>· NBR 15253</em></div></div>
+      <div class="spec-row"><div class="spec-k">Fechamento</div><div class="spec-v">Placa cimentícia, reboco, esquadrias em alumínio preto</div></div>
+      <div class="spec-row"><div class="spec-k">Escopo</div><div class="spec-v">Arquitetura e estrutura <em>· projeto a distância</em></div></div>
+      <div class="spec-row"><div class="spec-k">Responsável</div><div class="spec-v">Luis Gustavo Maia <em>· CREA-SP 5071068977</em></div></div>
     </div>
   </div>
-  <div class="bot"><div class="b-pg">02 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
+  <div class="s-foot"><span>05 · Ficha</span><span class="swipe">→</span></div>
 </div>
 
-<div class="slide split" data-post="06-diario-de-obra" data-n="3">
-  <div class="acc"></div>
-  <div class="photo" style="background-image:url('projetos/img/pls_07.jpg');background-position:50% 55%;"><div class="cap">Alvenaria e laje do térreo · registro de 07/10/2026</div></div>
-  <div class="mono">L<i>.</i></div>
-  <div class="issue">Diário de obra<b>Mês 03</b></div>
-  <div class="shell">
-    <div class="lbl">Gestão técnica</div>
-    <div class="t">O QUE A LGM FAZ<br><em>TODO MÊS.</em></div>
+<div class="slide dark" data-post="03-primeiro-a-estrutura" data-n="6">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>06 / 06</span><div class="logo l">L<em>.</em></div><span>§ Convite</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Antes de construir</div>
+    <div class="display sm">Veja a casa <em>antes.</em></div>
+    <p class="lede" style="margin-top:50px">Projeto em steel frame com estrutura, fechamento e instalações resolvidos no papel. Em qualquer estado.</p>
+    <div class="contact">DM · @eng.gustavomaia<br>WA · (14) 99185 0799<br>→ Marília · SP</div>
+  </div>
+  <div class="s-foot"><span>LGM · CREA-SP 5071068977</span><span class="swipe">salvar ♡</span></div>
+</div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PROJETO 04 · CLÍNICA EM GARÇA
+     ══════════════════════════════════════════════════════════ -->
+<div class="page-head"><b>L<em>.</em></b> Projeto 04 · Clínica em Garça · Comercial · 6 slides</div>
+<div class="carousel">
+
+<div class="slide photo" data-post="04-clinica-em-garca" data-n="1">
+  <div class="pic" style="background-image:url('projetos/img/un_fachada.jpg');background-position:62% 50%"></div>
+  <div class="veil"></div>
+  <div class="s-mast"><span>Nº 04 · MMXXVI</span><div class="logo l">L<em>.</em></div><span>§ Projeto 04</span></div>
+  <div class="body">
+    <div class="kicker">Comercial · Saúde · Garça/SP</div>
+    <h2>Clínica <em>em Garça.</em></h2>
+    <p class="lede" style="margin-top:34px">Brise de madeira, embarque coberto para ambulância e estacionamento próprio. Estudo preliminar, revisão 02.</p>
+    <div class="meta"><span>Comercial</span><span>Saúde</span><span>Garça · SP</span><span>Estudo R02</span></div>
+  </div>
+  <div class="s-foot"><span>@eng.gustavomaia</span><span class="swipe">arraste →</span></div>
+</div>
+
+<div class="slide" data-post="04-clinica-em-garca" data-n="2">
+  <div class="s-mast"><span>02 / 06</span><div class="logo l">L<em>.</em></div><span>§ Interior</span></div>
+  <div class="frame" style="background-image:url('projetos/img/un_recepcao.jpg');background-position:50% 70%"></div>
+  <div class="frame-cap"><div><div class="k">Fig. 02 · Recepção e espera</div><div class="t">Espera <em>sem corredor.</em></div></div><div class="r">Luz natural, pátio interno e balcão baixo. Quem chega vê o jardim, não a porta do consultório.</div></div>
+  <div class="s-foot"><span>02 · Recepção</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide" data-post="04-clinica-em-garca" data-n="3">
+  <div class="corners"></div>
+  <div class="s-mast"><span>03 / 06</span><div class="logo l">L<em>.</em></div><span>§ Fluxos</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Setorização</div>
+    <h2>Três fluxos que <em>não se cruzam.</em></h2>
     <div class="list">
-      <div class="row"><div class="num">01</div><div><strong>Registro com data, hora e GPS</strong><span>Toda foto carimbada. Serve para o cliente, para o INSS da obra e para o financiamento.</span></div></div>
-      <div class="row"><div class="num">02</div><div><strong>Conferência de etapa</strong><span>Fundação, laje, alvenaria: cada uma liberada por engenheiro antes da seguinte começar.</span></div></div>
-      <div class="row"><div class="num">03</div><div><strong>Medição e relatório</strong><span>O cliente paga o que foi executado, com relatório em mãos. Sem surpresa no fim do mês.</span></div></div>
+      <div class="list-item"><div class="list-num">I.</div><div><div class="list-title">Paciente</div><div class="list-desc">Recepção, espera, consultório. Caminho curto, sem passar por área técnica.</div></div></div>
+      <div class="list-item"><div class="list-num">II.</div><div><div class="list-title">Equipe</div><div class="list-desc">Acesso próprio, vestiário e área clínica.</div></div></div>
+      <div class="list-item"><div class="list-num">III.</div><div><div class="list-title">Serviço</div><div class="list-desc">Carga, resíduo e ambulância pelos fundos, com cobertura.</div></div></div>
+    </div>
+    <div class="corner-tag">fluxo é projeto, não sorte.</div>
+  </div>
+  <div class="s-foot"><span>03 · Fluxos</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="04-clinica-em-garca" data-n="4">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>04 / 06</span><div class="logo l">L<em>.</em></div><span>§ Norma</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Norma</div>
+    <h2>Saúde tem <em>regra própria.</em></h2>
+    <div class="list">
+      <div class="list-item"><div class="list-num">I.</div><div><div class="list-title">RDC 50 <em>· Anvisa</em></div><div class="list-desc">Ambientes obrigatórios, dimensões mínimas, acabamentos laváveis.</div></div></div>
+      <div class="list-item"><div class="list-num">II.</div><div><div class="list-title">NBR 9050</div><div class="list-desc">Acessibilidade da vaga ao consultório: rampa, porta, sanitário, balcão.</div></div></div>
+      <div class="list-item"><div class="list-num">III.</div><div><div class="list-title">Duas <em>aprovações</em></div><div class="list-desc">Prefeitura e vigilância sanitária. Projetar para as duas evita refazer a obra.</div></div></div>
     </div>
   </div>
-  <div class="bot"><div class="b-pg">03 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
+  <div class="s-foot"><span>04 · Norma</span><span class="swipe">→</span></div>
 </div>
 
-<div class="slide cta" data-post="06-diario-de-obra" data-n="4">
-  <div class="acc"></div>
-  <div class="glow"></div>
-  <div class="shell">
-    <div class="mono">L<i>.</i></div>
-    <div class="lg-tag">LGM Engenharia &amp; Construções</div>
-    <div class="divider"></div>
-    <div class="q">Sua obra tem engenheiro passando toda semana?<br>Gestão técnica com registro, medição e ART em cada etapa.</div>
-    <div class="a">FALE COM A LGM</div>
-    <div class="btn">QUERO ACOMPANHAMENTO</div>
-    <div class="handle">@eng.gustavomaia · (14) 99185-0799</div>
+<div class="slide paper2" data-post="04-clinica-em-garca" data-n="5">
+  <div class="corners"></div>
+  <div class="s-mast"><span>05 / 06</span><div class="logo l">L<em>.</em></div><span>§ Ficha técnica</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Ficha técnica</div>
+    <h3>Clínica <em>· Garça/SP.</em></h3>
+    <div class="spec">
+      <div class="spec-row"><div class="spec-k">Tipologia</div><div class="spec-v">Clínica de saúde <em>· comercial</em></div></div>
+      <div class="spec-row"><div class="spec-k">Etapa</div><div class="spec-v">Estudo preliminar <em>· revisão 02</em></div></div>
+      <div class="spec-row"><div class="spec-k">Programa</div><div class="spec-v">Recepção, consultórios, área clínica, espaço de convivência</div></div>
+      <div class="spec-row"><div class="spec-k">Acesso</div><div class="spec-v">Embarque coberto de ambulância e estacionamento próprio</div></div>
+      <div class="spec-row"><div class="spec-k">Fachada</div><div class="spec-v">Brise de madeira e volume branco</div></div>
+      <div class="spec-row"><div class="spec-k">Responsável</div><div class="spec-v">Luis Gustavo Maia <em>· CREA-SP 5071068977</em></div></div>
+    </div>
   </div>
-  <div class="bot"><div class="b-pg">04 · 04</div><div class="b-lg"><div class="b-nm">LGM</div><div class="b-sp"></div><div class="b-sb">Engenharia<br>&amp; Construções</div></div></div>
+  <div class="s-foot"><span>05 · Ficha</span><span class="swipe">→</span></div>
 </div>
 
-</body>
-</html>
+<div class="slide dark" data-post="04-clinica-em-garca" data-n="6">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>06 / 06</span><div class="logo l">L<em>.</em></div><span>§ Convite</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Vai abrir ou ampliar</div>
+    <div class="display sm">Clínica, consultório, <em>laboratório.</em></div>
+    <p class="lede" style="margin-top:50px">Projeto que passa na prefeitura e na vigilância de uma vez. Conversa inicial sem compromisso.</p>
+    <div class="contact">DM · @eng.gustavomaia<br>WA · (14) 99185 0799<br>→ Marília · SP</div>
+  </div>
+  <div class="s-foot"><span>LGM · CREA-SP 5071068977</span><span class="swipe">salvar ♡</span></div>
+</div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PROJETO 05 · VINTE METROS · RIFUGIO
+     ══════════════════════════════════════════════════════════ -->
+<div class="page-head"><b>L<em>.</em></b> Projeto 05 · Vinte metros · Módulo Rifugio · 5 slides</div>
+<div class="carousel">
+
+<div class="slide photo" data-post="05-vinte-metros" data-n="1">
+  <div class="pic" style="background-image:url('projetos/img/rif_int.jpg');background-position:55% 50%"></div>
+  <div class="veil"></div>
+  <div class="s-mast"><span>Nº 05 · MMXXVI</span><div class="logo l">L<em>.</em></div><span>§ Projeto 05</span></div>
+  <div class="body">
+    <div class="kicker">Modular · um módulo</div>
+    <h2>Vinte <em>metros.</em></h2>
+    <p class="lede" style="margin-top:34px">Cozinha, bancada para dois, dormitório e banheiro sob duas águas. Um módulo, fabricado fora, montado no terreno.</p>
+    <div class="meta"><span>20 m²</span><span>Modular</span><span>Steel frame</span><span>Off-site</span></div>
+  </div>
+  <div class="s-foot"><span>@eng.gustavomaia</span><span class="swipe">arraste →</span></div>
+</div>
+
+<div class="slide" data-post="05-vinte-metros" data-n="2">
+  <div class="corners"></div>
+  <div class="s-mast"><span>02 / 05</span><div class="logo l">L<em>.</em></div><span>§ Programa</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Programa</div>
+    <div class="num-big" style="font-size:300px">20<em style="font-size:120px">m²</em></div>
+    <div class="list" style="margin-top:40px">
+      <div class="list-item" style="padding:20px 0"><div class="list-num">I.</div><div><div class="list-title">Cozinha em linha</div><div class="list-desc">Cuba, cooktop e armários sob a janela.</div></div></div>
+      <div class="list-item" style="padding:20px 0"><div class="list-num">II.</div><div><div class="list-title">Bancada para dois</div><div class="list-desc">Fixa, sob o pé-direito mais baixo.</div></div></div>
+      <div class="list-item" style="padding:20px 0"><div class="list-num">III.</div><div><div class="list-title">Dormitório e banheiro</div><div class="list-desc">Separados por porta, não por cortina.</div></div></div>
+    </div>
+  </div>
+  <div class="s-foot"><span>02 · Programa</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="05-vinte-metros" data-n="3">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>03 / 05</span><div class="logo l">L<em>.</em></div><span>§ Off-site</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Off-site</div>
+    <h2>Fabrica <em>lá.</em><br>Monta <em>aqui.</em></h2>
+    <p class="body-t" style="margin-top:50px">Painéis prontos chegam de caminhão. Em dias, não meses, o módulo está fechado. Serve de refúgio no sítio, chalé de aluguel ou edícula no fundo do lote.</p>
+    <div class="corner-tag">o silêncio também projeta.</div>
+  </div>
+  <div class="s-foot"><span>03 · Off-site</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide paper2" data-post="05-vinte-metros" data-n="4">
+  <div class="corners"></div>
+  <div class="s-mast"><span>04 / 05</span><div class="logo l">L<em>.</em></div><span>§ Ficha técnica</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Ficha técnica</div>
+    <h3>Rifugio <em>· 1 módulo.</em></h3>
+    <div class="spec">
+      <div class="spec-row"><div class="spec-k">Área</div><div class="spec-v">20 m² <em>· um módulo</em></div></div>
+      <div class="spec-row"><div class="spec-k">Sistema</div><div class="spec-v">Steel frame modular <em>· NBR 15253</em></div></div>
+      <div class="spec-row"><div class="spec-k">Cobertura</div><div class="spec-v">Duas águas, pé-direito alto na cumeeira</div></div>
+      <div class="spec-row"><div class="spec-k">Acabamento</div><div class="spec-v">Madeira clara, luz linear embutida no forro</div></div>
+      <div class="spec-row"><div class="spec-k">Uso</div><div class="spec-v">Refúgio, locação, edícula</div></div>
+      <div class="spec-row"><div class="spec-k">Responsável</div><div class="spec-v">Luis Gustavo Maia <em>· CREA-SP 5071068977</em></div></div>
+    </div>
+  </div>
+  <div class="s-foot"><span>04 · Ficha</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="05-vinte-metros" data-n="5">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>05 / 05</span><div class="logo l">L<em>.</em></div><span>§ Convite</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Refúgio, aluguel ou edícula</div>
+    <div class="display sm">Um módulo <em>resolve.</em></div>
+    <p class="lede" style="margin-top:50px">O projeto já existe. Falta o terreno. Conversa inicial sem compromisso.</p>
+    <div class="contact">DM · @eng.gustavomaia<br>WA · (14) 99185 0799<br>→ Marília · SP</div>
+  </div>
+  <div class="s-foot"><span>LGM · CREA-SP 5071068977</span><span class="swipe">salvar ♡</span></div>
+</div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PROJETO 06 · MÊS TRÊS · DIÁRIO DE OBRA · MARÍLIA
+     ══════════════════════════════════════════════════════════ -->
+<div class="page-head"><b>L<em>.</em></b> Canteiro 06 · Mês três · Diário de obra · Marília/SP · 6 slides</div>
+<div class="carousel">
+
+<div class="slide photo" data-post="06-mes-tres" data-n="1">
+  <div class="pic" style="background-image:url('projetos/img/pls_12.jpg');background-position:50% 40%"></div>
+  <div class="veil"></div>
+  <div class="s-mast"><span>Nº 06 · MMXXVI</span><div class="logo l">L<em>.</em></div><span>§ Canteiro</span></div>
+  <div class="body">
+    <div class="kicker">Diário de obra · Marília/SP</div>
+    <h2>Mês <em>três.</em></h2>
+    <p class="lede" style="margin-top:34px">Laje concretada, alvenaria subindo, areia no canteiro. Sem vídeo acelerado. Só o que cabe em um mês de calendário.</p>
+    <div class="meta"><span>Residencial</span><span>Marília · SP</span><span>Outubro 2026</span></div>
+  </div>
+  <div class="s-foot"><span>@eng.gustavomaia</span><span class="swipe">arraste →</span></div>
+</div>
+
+<div class="slide" data-post="06-mes-tres" data-n="2">
+  <div class="s-mast"><span>02 / 06</span><div class="logo l">L<em>.</em></div><span>§ Escoramento</span></div>
+  <div class="frame tall" style="background-image:url('projetos/img/pls_01.jpg');background-position:50% 45%"></div>
+  <div class="frame-cap"><div><div class="k">Fig. 02 · Escoramento · 07/10/2026</div><div class="t">Escora <em>fica.</em></div></div><div class="r">Concreto atinge a resistência de projeto aos 28 dias. Até lá, a escora sustenta a laje.</div></div>
+  <div class="s-foot"><span>02 · Escoramento</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide" data-post="06-mes-tres" data-n="3">
+  <div class="corners"></div>
+  <div class="s-mast"><span>03 / 06</span><div class="logo l">L<em>.</em></div><span>§ Cura</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">O que o render não mostra</div>
+    <h2>Tirar escora <em>cedo</em><br>é o erro mais caro.</h2>
+    <p class="body-t" style="margin-top:50px">Flecha, trinca e, no limite, colapso. Cada escora tem posição calculada. A visita técnica confere antes de liberar a próxima etapa.</p>
+    <div class="corner-tag">28 dias são 28 dias.</div>
+  </div>
+  <div class="s-foot"><span>03 · Cura</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide" data-post="06-mes-tres" data-n="4">
+  <div class="s-mast"><span>04 / 06</span><div class="logo l">L<em>.</em></div><span>§ Alvenaria</span></div>
+  <div class="frame tall" style="background-image:url('projetos/img/pls_07.jpg');background-position:50% 55%"></div>
+  <div class="frame-cap"><div><div class="k">Fig. 04 · Alvenaria do térreo · 07/10/2026</div><div class="t">Parede <em>sobe.</em></div></div><div class="r">Registro fotográfico com data, hora e coordenada. Serve ao cliente, ao INSS da obra e ao banco.</div></div>
+  <div class="s-foot"><span>04 · Alvenaria</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="06-mes-tres" data-n="5">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>05 / 06</span><div class="logo l">L<em>.</em></div><span>§ Gestão</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Gestão técnica</div>
+    <h2>Todo mês, <em>três</em><br>entregas.</h2>
+    <div class="list">
+      <div class="list-item"><div class="list-num">I.</div><div><div class="list-title">Registro</div><div class="list-desc">Fotos com data, hora e GPS. Histórico que ninguém contesta.</div></div></div>
+      <div class="list-item"><div class="list-num">II.</div><div><div class="list-title">Conferência</div><div class="list-desc">Fundação, laje, alvenaria. Cada etapa liberada por engenheiro antes da seguinte.</div></div></div>
+      <div class="list-item"><div class="list-num">III.</div><div><div class="list-title">Medição</div><div class="list-desc">O cliente paga o que foi executado, com relatório em mãos.</div></div></div>
+    </div>
+  </div>
+  <div class="s-foot"><span>05 · Gestão</span><span class="swipe">→</span></div>
+</div>
+
+<div class="slide dark" data-post="06-mes-tres" data-n="6">
+  <div class="grid-bg"></div><div class="corners"></div>
+  <div class="s-mast"><span>06 / 06</span><div class="logo l">L<em>.</em></div><span>§ Convite</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">Sua obra</div>
+    <div class="display sm">Engenheiro <em>toda semana.</em></div>
+    <p class="lede" style="margin-top:50px">Acompanhamento técnico com registro, medição e ART em cada etapa. Conversa inicial sem compromisso.</p>
+    <div class="contact">DM · @eng.gustavomaia<br>WA · (14) 99185 0799<br>→ Marília · SP</div>
+  </div>
+  <div class="s-foot"><span>LGM · CREA-SP 5071068977</span><span class="swipe">salvar ♡</span></div>
+</div>
+
+</div>
+
+</body></html>

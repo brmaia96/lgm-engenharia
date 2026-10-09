@@ -1,135 +1,143 @@
-# Legendas · Posts de Projetos · Série L.
+# Legendas · Série Projeto 01–06
+**Copy & paste direto no Instagram.** Slides em PNG 1080×1350 nas pastas de `projetos/`.
+Fonte editável: `projetos_posts.html` + `projetos/_carrossel-base.css` (mesmo sistema do hub mkt-2026).
 
-Cada pasta em `projetos/` tem os slides em PNG 1080×1080, na ordem de postagem.
-Fonte das imagens: Google Drive da LGM (renders e fotos de obra dos próprios projetos).
-Arquivo editável: `projetos_posts.html` (abrir no navegador para ver todos os slides).
-
-Sugestão de ritmo: um post de projeto por semana, intercalado com os carrosséis técnicos.
-Horário com melhor alcance para o nicho: terça a quinta, 11h30 ou 18h30.
+Ritmo sugerido: um projeto por semana, intercalado com os carrosséis de método. Ordem: 01, 06, 02, 04, 03, 05.
 
 ---
 
-## 01 · Cynthia & Marcus · Projeto executivo em steel frame
-Pasta: `projetos/01-cynthia-marcus/` (4 slides)
+## PROJETO 01 · Chalé Dimanno · Marília/SP
+Pasta: `projetos/01-chale-dimanno/` · 6 slides
 
-A casa existe antes da obra.
+> Pequeno no chão. Alto na cumeeira.
 
-Isso aqui é a Residência Cynthia & Marcus antes de um único perfil chegar ao terreno. Cada painel de aço tem cor, nome e posição no mapa de montagem. A equipe monta lendo o mapa, não improvisando.
+Chalé Dimanno, em Marília. Até 70 m² de projeção, térreo e mezanino sob um telhado de duas águas. A casa cresce para cima, não para os lados.
 
-É o que o projeto executivo em Light Steel Frame entrega:
-• Planta de painéis
-• Mapa de montagem
-• Quantitativo de perfis para a fábrica
-• Detalhes de fixação e ancoragem
-• Passagens de elétrica e hidráulica previstas
-• Memorial e ART
+Projeto completo em steel frame: implantação, planta cotada, cortes, quatro fachadas, cobertura e caderno de montagem. Uma prancha para cada decisão.
 
-Sem isso, steel frame vira improviso caro.
+Se você tem um terreno e uma ideia, a primeira conversa é sem compromisso.
 
-Vai construir em steel frame? Comece pelo projeto, não pelo orçamento do perfil. Chama no direct ou no (14) 99185-0799.
+↓ WhatsApp (14) 99185-0799
 
-#steelframe #lightsteelframe #projetoexecutivo #engenhariacivil #construcaoaseco #marilia #lgmengenharia
+.
+.
+.
+
+#projetoresidencial #chale #steelframe #marilia #arquiteturamarilia #engenhariacivil #altopadrao #engenharialenta
 
 ---
 
-## 02 · Chalé Mayra Dimanno · Marília – SP
-Pasta: `projetos/02-chale-marilia/` (4 slides)
+## PROJETO 02 · Painéis com nome · Executivo em steel frame
+Pasta: `projetos/02-paineis-com-nome/` · 6 slides
 
-Um chalé em Marília.
+> Cada painel tem cor, número e lugar.
 
-Volume de duas águas, varanda integrada à piscina e vista aberta para o terreno. O render convence a família. A prancha é o que a prefeitura aprova e o pedreiro executa.
+Projeto executivo 260005. Antes do primeiro parafuso, cada perfil já tem posição, comprimento e função. A equipe monta lendo o mapa, não improvisando.
 
-O que compõe o projeto completo:
-01 Planta de localização
-02 Implantação
-03 Planta baixa
-04 Planta de cobertura
-05 Cortes e fachadas
-06 Prescrições e quadro de áreas
+Seis documentos saem do executivo: planta de painéis, mapa de montagem, quantitativo de perfis, fixações e ancoragens, passagens de instalações, memorial com ART.
 
-Tudo com memorial descritivo e ART registrada no CREA. Bonito na tela e correto no protocolo.
+Perfil sem projeto executivo é improviso caro. Vai construir em steel frame? Comece pelo projeto.
 
-Tem um terreno e uma ideia? A LGM transforma em projeto aprovável. (14) 99185-0799.
+↓ WhatsApp (14) 99185-0799
 
-#projetoarquitetonico #chale #marilia #casadecampo #engenhariacivil #projetoaprovado #lgmengenharia
+.
+.
+.
+
+#steelframe #lightsteelframe #projetoexecutivo #nbr15253 #engenhariacivil #construcaoaseco #marilia #engenharialenta
 
 ---
 
-## 03 · José Américo · Contagem – MG · Estrutura e casa
-Pasta: `projetos/03-jose-americo/` (4 slides)
+## PROJETO 03 · Primeiro a estrutura · Contagem/MG
+Pasta: `projetos/03-primeiro-a-estrutura/` · 6 slides
 
-Primeiro, a estrutura. Depois, a casa.
+> Primeiro a estrutura. Depois a casa.
 
-Os dois primeiros slides mostram a mesma residência: a estrutura em Light Steel Frame montada sobre a laje e, depois, a casa pronta com reboco, esquadrias pretas e pátio.
+Residência em Contagem, Minas Gerais. Os dois primeiros slides mostram a mesma casa: a estrutura em steel frame sobre a laje e, depois, reboco, esquadrias pretas e pátio.
 
-O que muda quando a estrutura é de aço:
-• Cerca de 1/6 do peso da alvenaria. Fundação menor, menos concreto.
-• O projeto viaja, o improviso não. Projetado em Marília, executado em Contagem (MG).
-• Obra a seco: sem espera de cura, sem entulho de argamassa.
+A estrutura pesa cerca de um sexto da alvenaria: perto de 50 kg/m² contra 300 kg/m². Fundação menor, menos concreto, menos escavação.
 
-Quer ver sua casa antes de construir? Chama a LGM: (14) 99185-0799.
+Projetado em Marília, executado a centenas de quilômetros. O projeto viaja. O improviso, não.
 
-#steelframe #antesedepois #construcaoaseco #contagem #minasgerais #engenhariacivil #lgmengenharia
+↓ WhatsApp (14) 99185-0799
+
+.
+.
+.
+
+#steelframe #antesedepois #construcaoaseco #contagem #minasgerais #engenhariacivil #projetoresidencial #engenharialenta
 
 ---
 
-## 04 · Clínica Unimed Garça · Projeto comercial de saúde
-Pasta: `projetos/04-clinica-garca/` (4 slides)
+## PROJETO 04 · Clínica em Garça · Comercial
+Pasta: `projetos/04-clinica-em-garca/` · 6 slides
 
-Saúde também se projeta.
+> Saúde tem regra própria.
 
-Estudo preliminar da Clínica Unimed Garça: fachada em brise de madeira, cobertura para embarque de ambulância, estacionamento próprio e uma recepção que não parece corredor.
+Estudo preliminar de uma clínica em Garça. Brise de madeira, embarque coberto para ambulância, estacionamento próprio e uma espera que vê o jardim, não a porta do consultório.
 
-Projeto de saúde não é projeto de loja:
-• RDC 50 da ANVISA define dimensionamento e ambientes obrigatórios
-• NBR 9050 em todo o percurso, da vaga ao consultório
-• Fluxos de paciente, equipe e serviço separados
-• Duas aprovações: prefeitura e vigilância sanitária
+Três fluxos que não se cruzam: paciente, equipe e serviço. Duas normas que mandam: RDC 50 da Anvisa e NBR 9050. Duas aprovações: prefeitura e vigilância sanitária.
 
 Projetar para as duas desde o início evita refazer a obra depois.
 
-Vai abrir ou ampliar clínica, consultório ou laboratório? (14) 99185-0799.
+Vai abrir ou ampliar clínica, consultório ou laboratório? Conversa inicial sem compromisso.
 
-#projetocomercial #clinica #arquiteturahospitalar #rdc50 #nbr9050 #garca #engenhariacivil #lgmengenharia
+↓ WhatsApp (14) 99185-0799
 
----
+.
+.
+.
 
-## 05 · Rifugio · módulo de 20 m²
-Pasta: `projetos/05-rifugio-20m2/` (3 slides)
-
-20 m² que funcionam.
-
-Um módulo só: cozinha com bancada, mesa para dois, dormitório e banheiro separados por porta, pé-direito alto na cumeeira e luz linear embutida no forro.
-
-Pensado para steel frame: fabrica fora, monta no terreno. Serve de refúgio no sítio, chalé para alugar ou edícula no fundo do lote.
-
-O projeto já existe. Quer um módulo? (14) 99185-0799.
-
-#construcaomodular #tinyhouse #steelframe #chale #edicula #offsite #engenhariacivil #lgmengenharia
+#projetocomercial #clinica #arquiteturadasaude #rdc50 #nbr9050 #garca #engenhariacivil #engenharialenta
 
 ---
 
-## 06 · Diário de obra · Marília – SP · Mês 03
-Pasta: `projetos/06-diario-de-obra/` (4 slides)
+## PROJETO 05 · Vinte metros · Módulo Rifugio
+Pasta: `projetos/05-vinte-metros/` · 5 slides
 
-Obra real. Sem render.
+> Vinte metros que funcionam.
 
-Terceiro mês de uma residência em Marília: laje concretada, alvenaria subindo, areia no canteiro. É assim que uma obra acompanhada toda semana se parece.
+Um módulo de 20 m²: cozinha em linha, bancada para dois, dormitório e banheiro separados por porta. Duas águas, pé-direito alto na cumeeira, luz linear no forro.
 
-O que o render não mostra: a laje só vira laje depois de 28 dias. Até lá, cada escora tem posição calculada. Tirar antes da hora é o erro mais caro de uma obra.
+Fabrica lá, monta aqui. Painéis prontos chegam de caminhão e o módulo fecha em dias. Serve de refúgio no sítio, chalé de aluguel ou edícula no fundo do lote.
 
-O que a LGM faz todo mês:
-• Registro fotográfico com data, hora e coordenada GPS
-• Conferência de cada etapa antes de liberar a próxima
-• Medição e relatório: o cliente paga o que foi executado
+O projeto já existe. Falta o terreno.
 
-Sua obra tem engenheiro passando toda semana? (14) 99185-0799.
+↓ WhatsApp (14) 99185-0799
 
-#diariodeobra #gestaodeobra #engenhariacivil #marilia #obra #acompanhamentodeobra #lgmengenharia
+.
+.
+.
+
+#construcaomodular #tinyhouse #steelframe #chale #edicula #offsite #engenhariacivil #engenharialenta
 
 ---
 
-## Observações
-- O post 06 usa fotos reais da obra. As marcas de GPS e data foram recortadas das imagens; a data do registro aparece em texto na legenda do slide.
-- O post 04 mostra a marca Unimed nos renders por se tratar do projeto do cliente. Confirmar com o cliente antes de publicar.
-- Nomes de clientes (Cynthia & Marcus, Mayra Dimanno, José Américo) aparecem nos slides. Trocar por "Residência C.M." etc. se preferir não expor.
+## CANTEIRO 06 · Mês três · Diário de obra · Marília/SP
+Pasta: `projetos/06-mes-tres/` · 6 slides
+
+> Mês três. Sem vídeo acelerado.
+
+Laje concretada, alvenaria subindo, areia no canteiro. Só o que cabe em um mês de calendário.
+
+O que o render não mostra: concreto atinge a resistência de projeto aos 28 dias. Até lá, a escora fica. Tirar cedo é o erro mais caro de uma obra.
+
+Todo mês, três entregas da gestão técnica: registro com data, hora e GPS; conferência de cada etapa antes da seguinte; medição, para o cliente pagar o que foi executado.
+
+Sua obra tem engenheiro toda semana?
+
+↓ WhatsApp (14) 99185-0799
+
+.
+.
+.
+
+#diariodeobra #gestaodeobra #engenhariacivil #marilia #acompanhamentodeobra #canteiro #engenharialenta
+
+---
+
+## Antes de publicar
+- Post 04 mostra a marca do cliente nos renders. Confirmar autorização antes de postar.
+- Posts 01 e 03 citam o nome do cliente na ficha técnica. Trocar por iniciais se preferir.
+- Post 06 usa fotos reais com carimbo de GPS recortado. As datas ficaram apenas nas legendas dos slides.
+- Renders são estudos. Nenhum slide chama render de obra executada.

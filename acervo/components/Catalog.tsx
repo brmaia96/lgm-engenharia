@@ -74,7 +74,7 @@ export function Catalog({ projects, initial }: { projects: ProjetoResumo[]; init
         test: (p, v) =>
           v === "piscina" ? Boolean(p.piscina)
           : v === "gourmet" ? Boolean(p.gourmet)
-          : v === "pendente" ? p.area == null || p.suites == null || p.terreno == null
+          : v === "pendente" ? p.area == null || p.suites == null || p.terreno == null || p.pavimentos === "ND"
           : v === "rerender" ? Boolean(p.tags?.includes("re-render"))
           : CATEGORIAS_ESSENCIAIS.every((c) => p.counts[c]),
       },

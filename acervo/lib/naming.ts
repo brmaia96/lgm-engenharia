@@ -26,6 +26,7 @@ export const PAVIMENTOS: Record<Pavimento, string> = {
   S: "Sobrado",
   "3P": "3 pavimentos",
   SS: "Com subsolo",
+  ND: "A confirmar",
 };
 
 export const CATEGORIAS: Record<Categoria, string> = {

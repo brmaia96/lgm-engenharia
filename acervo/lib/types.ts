@@ -1,7 +1,7 @@
 // Modelo de dados do acervo. O catálogo inteiro vive criptografado em vault/catalog.enc.
 
 export type Tipo = "R" | "C" | "H" | "I" | "M";
-export type Pavimento = "T" | "TM" | "S" | "3P" | "SS";
+export type Pavimento = "T" | "TM" | "S" | "3P" | "SS" | "ND";
 export type Categoria =
   | "fachada"
   | "interna"

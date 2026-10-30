@@ -9,7 +9,16 @@ export async function proxy(req: NextRequest) {
   if (PUBLIC.includes(pathname)) return NextResponse.next();
 
   const user = await verifySession(req.cookies.get(SESSION_COOKIE)?.value);
-  if (user) return NextResponse.next();
+  if (user) {
+    // /api/m/<id>/<t|f> → rota da fatia correspondente (/api/m<1º caractere>/…)
+    const m = pathname.match(/^\/api\/m\/([0-9a-f])([0-9a-f]{15})\/([tf])$/);
+    if (m) {
+      const url = req.nextUrl.clone();
+      url.pathname = `/api/m${m[1]}/${m[1]}${m[2]}/${m[3]}`;
+      return NextResponse.rewrite(url);
+    }
+    return NextResponse.next();
+  }
 
   if (pathname.startsWith("/api/")) {
     return NextResponse.json({ error: "não autorizado" }, { status: 401 });

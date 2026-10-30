@@ -18,9 +18,13 @@ const config: NextConfig = {
   reactStrictMode: true,
   // o cofre criptografado precisa acompanhar as funções serverless
   outputFileTracingIncludes: {
-    "/api/m/[id]/[size]": ["./vault/media/**/*"],
+    ...Object.fromEntries([..."0123456789abcdef"].map((c) => [`/api/m${c}/[id]/[size]`, [`./vault/media/${c}*`]])),
     "/": ["./vault/catalog.enc"],
     "/p/[code]": ["./vault/catalog.enc"],
+    "/p/[code]/editar": ["./vault/catalog.enc"],
+    "/lixeira": ["./vault/catalog.enc"],
+    "/api/projetos/[code]": ["./vault/catalog.enc"],
+    "/api/projetos/[code]/restaurar": ["./vault/catalog.enc"],
   },
   async headers() {
     return [

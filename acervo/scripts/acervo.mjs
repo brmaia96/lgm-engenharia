@@ -38,7 +38,7 @@ const ALIASES = {
   situacao: "implantacao", cortes: "corte", elevacao: "corte", elevacoes: "corte",
 };
 const TIPOS = ["R", "H", "C", "I", "M"];
-const PAVS = ["T", "TM", "S", "3P", "SS"];
+const PAVS = ["T", "TM", "S", "3P", "SS", "ND"];
 const IMG_EXT = new Set([".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff"]);
 
 // ---------- env / cripto ----------

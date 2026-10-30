@@ -4,7 +4,7 @@
 set -euo pipefail
 REPO="${SOURCE_REPO:-brmaia96/lgm-engenharia}"
 REF="${SOURCE_REF:-main}"
-curl -fsSL "https://codeload.github.com/${REPO}/tar.gz/refs/heads/${REF}" -o /tmp/src.tgz
+node -e 'fetch(process.argv[1]).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.arrayBuffer()}).then(b=>require("fs").writeFileSync("/tmp/src.tgz",Buffer.from(b)))' "https://codeload.github.com/${REPO}/tar.gz/refs/heads/${REF}"
 mkdir -p /tmp/src && tar xzf /tmp/src.tgz -C /tmp/src --strip-components=1
 cp -a /tmp/src/acervo/. .
 rm -rf /tmp/src /tmp/src.tgz

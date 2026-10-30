@@ -124,7 +124,7 @@ function Lightbox({ items, start, onClose, baseName }: { items: Midia[]; start: 
           src={`/api/m/${m.id}/f`}
           alt={m.legenda ?? CATEGORIAS[m.cat]}
           draggable={false}
-          style={{ transform: `scale(${zoom}) translate(${pan.x}px, ${pan.y}px)`, backgroundImage: `url(/api/m/${m.id}/t)`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}
+          style={{ transform: `scale(${zoom}) translate(${pan.x}px, ${pan.y}px)` }}
         />
         {items.length > 1 && <button className="lb-arrow r" onClick={() => go(1)} aria-label="Próxima">›</button>}
       </div>

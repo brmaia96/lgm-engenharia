@@ -146,6 +146,7 @@ function legendaDe(name) {
     .basename(name, path.extname(name))
     .replace(/^[a-z]+(__|--)/i, "")
     .replace(/^\d+[\s._-]*/, "")
+    .replace(/\bcapa\b/i, "")
     .replace(/[_-]+/g, " ")
     .trim()
     .slice(0, 80);
@@ -205,7 +206,7 @@ async function cmdAdd(dir, flags) {
     }
     process.stdout.write(".");
   }
-  const capa = items.findIndex((i) => /(^|[\\/])capa[^\\/]*$/i.test(i.file));
+  const capa = items.findIndex((i) => /capa[^\\/]*$/i.test(i.file));
   const projeto = {
     ...meta,
     code,

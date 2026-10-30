@@ -1,7 +1,7 @@
 import { Catalog } from "@/components/Catalog";
 import { Topbar } from "@/components/Topbar";
 import { currentUser } from "@/lib/auth";
-import { getCatalog, summarize } from "@/lib/vault";
+import { getAcervo, summarize } from "@/lib/vault";
 import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 export default async function Home(props: PageProps<"/">) {
   const user = await currentUser();
   if (!user) redirect("/login");
-  const catalog = await getCatalog();
+  const catalog = await getAcervo();
   const projects = catalog.projects.map(summarize);
   const imgs = catalog.projects.reduce((n, p) => n + p.media.length, 0);
   const m2 = catalog.projects.reduce((n, p) => n + (p.area ?? 0), 0);

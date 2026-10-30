@@ -20,6 +20,7 @@
     "node": ">=20"
   },
   "dependencies": {
+    "@vercel/blob": "^2.8.2",
     "jose": "^6.2.14",
     "next": "^16.4.3",
     "react": "^19.3.1",

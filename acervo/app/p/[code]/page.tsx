@@ -7,7 +7,8 @@ import { Mark } from "@/components/Logo";
 import { Topbar } from "@/components/Topbar";
 import { currentUser } from "@/lib/auth";
 import { CATEGORIAS, CATEGORIAS_ESSENCIAIS, PAVIMENTOS, TIPOS, terrenoLabel } from "@/lib/naming";
-import { getCatalog, getProject } from "@/lib/vault";
+import { RestoreButton } from "@/components/ProjectActions";
+import { getAcervo, getProject, summarize } from "@/lib/vault";
 
 export const dynamic = "force-dynamic";
 
@@ -20,14 +21,15 @@ export default async function ProjectPage(props: PageProps<"/p/[code]">) {
   const user = await currentUser();
   if (!user) redirect("/login");
   const { code } = await props.params;
+  const { salvo } = await props.searchParams;
   const p = await getProject(code);
   if (!p) notFound();
 
-  const all = (await getCatalog()).projects;
+  const all = (await getAcervo()).projects;
   const idx = all.findIndex((x) => x.code === p.code);
   const prev = all[(idx - 1 + all.length) % all.length];
   const next = all[(idx + 1) % all.length];
-  const cover = p.cover ?? p.media.find((m) => m.cat === "fachada")?.id ?? p.media[0]?.id;
+  const cover = summarize(p).cover;
   const faltam = CATEGORIAS_ESSENCIAIS.filter((c) => !p.media.some((m) => m.cat === c));
   const fullName = `${p.code}_${p.name}`;
 
@@ -47,7 +49,16 @@ export default async function ProjectPage(props: PageProps<"/p/[code]">) {
   return (
     <>
       <Topbar user={user} active="acervo" />
+      {salvo && <div className="toast toast-auto" role="status">Alterações salvas</div>}
       <main>
+        {p.lixeira && (
+          <div className="trash-banner">
+            <div className="wrap">
+              <span>Este projeto está na <b>lixeira</b>{p.lixeira.motivo ? ` — ${p.lixeira.motivo}` : ""}.</span>
+              <RestoreButton code={p.code} />
+            </div>
+          </div>
+        )}
         <section className="p-hero">
           <Link href="/" className="p-back">← Acervo</Link>
           {cover ? (
@@ -76,6 +87,7 @@ export default async function ProjectPage(props: PageProps<"/p/[code]">) {
                   <div className="mono" style={{ fontWeight: 600 }}>{p.code}</div>
                   <div className="eyebrow" style={{ letterSpacing: ".12em" }}>Ficha técnica</div>
                 </div>
+                <Link href={`/p/${p.code}/editar`} className="btn sheet-edit">Editar</Link>
               </div>
               <dl>
                 {specs.map(([k, v]) => (
@@ -90,6 +102,11 @@ export default async function ProjectPage(props: PageProps<"/p/[code]">) {
               )}
               {p.descricao && <p className="desc">{p.descricao}</p>}
               {p.tags?.length ? <div className="tags">{p.tags.map((t) => <span key={t}>{t}</span>)}</div> : null}
+              {p.editado && (
+                <p className="desc" style={{ borderTop: "1px solid var(--linha)", fontSize: 12, color: "var(--muted)" }}>
+                  Editado por {p.editado.por} em {new Date(p.editado.em).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}
+                </p>
+              )}
               {faltam.length > 0 && (
                 <p className="desc" style={{ borderTop: "1px solid var(--linha)", fontSize: 12 }}>
                   Pendente no acervo: {faltam.map((c) => CATEGORIAS[c].toLowerCase()).join(", ")}.

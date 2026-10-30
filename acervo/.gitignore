@@ -10,3 +10,4 @@ export/
 next-env.d.ts
 .vercel
 PRIVADO-*.txt
+.data/

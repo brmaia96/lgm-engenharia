@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 
-export function Topbar({ user, active }: { user: string; active?: "acervo" | "padrao" }) {
+export function Topbar({ user, active }: { user: string; active?: "acervo" | "padrao" | "lixeira" }) {
   return (
     <header className="topbar">
       <div className="wrap">
@@ -10,6 +10,7 @@ export function Topbar({ user, active }: { user: string; active?: "acervo" | "pa
         <nav className="nav">
           <Link href="/" aria-current={active === "acervo" ? "page" : undefined}>Acervo</Link>
           <Link href="/padrao" aria-current={active === "padrao" ? "page" : undefined}>Padrão</Link>
+          <Link href="/lixeira" aria-current={active === "lixeira" ? "page" : undefined}>Lixeira</Link>
         </nav>
         <div className="top-right">
           <ThemeToggle />

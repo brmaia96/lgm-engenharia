@@ -52,6 +52,10 @@ export interface Projeto {
   data?: string;
   cover?: string;
   media: Midia[];
+  /** presente quando o projeto foi para a lixeira */
+  lixeira?: { em: string; por: string; motivo?: string };
+  /** última edição feita pelo site */
+  editado?: { em: string; por: string };
 }
 
 export interface Catalogo {

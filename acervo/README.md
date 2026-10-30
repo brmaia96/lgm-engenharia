@@ -58,8 +58,12 @@ Junte as linhas com `;` na variável `AUTH_USERS` do servidor e reimplante. Remo
 
 ## Hospedagem
 
-- **Vercel** (atual): variáveis `VAULT_KEY`, `AUTH_SECRET`, `AUTH_USERS`. Sem integração Git, o
-  install command `bash deploy/bootstrap.sh` baixa este código do GitHub (`SOURCE_REF` = branch).
+- **Vercel** (atual, projeto `cobogo-acervo`): variáveis `VAULT_KEY`, `AUTH_SECRET`, `AUTH_USERS`
+  (tipo *Sensitive*). O projeto não está ligado ao Git: o install command `bash deploy/bootstrap.sh`
+  baixa este código do GitHub na branch definida em `SOURCE_REF`. Para publicar uma mudança:
+  push no GitHub → **Deployments → Redeploy** no painel da Vercel.
+  Para deploy automático a cada push, conecte o GitHub em *Settings → Git* (aponte *Root Directory* para `acervo`
+  e remova o install command customizado).
 - **Render**: `render.yaml` na raiz do repositório (Blueprint), mesmas variáveis.
 
 ## Desenvolvimento

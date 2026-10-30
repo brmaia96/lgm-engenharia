@@ -1,0 +1,19 @@
+# Alternativa à Vercel: Render (Blueprint). New + > Blueprint > selecione este repositório.
+services:
+  - type: web
+    name: cobogo-acervo
+    runtime: node
+    rootDir: acervo
+    plan: starter
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /login
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: VAULT_KEY
+        sync: false
+      - key: AUTH_SECRET
+        sync: false
+      - key: AUTH_USERS
+        sync: false

@@ -1,0 +1,35 @@
+{
+  "name": "cobogo-acervo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cobogó Arquitetura — acervo privado de projetos",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p ${PORT:-3000}",
+    "lint": "tsc --noEmit",
+    "acervo:add": "node scripts/acervo.mjs add",
+    "acervo:list": "node scripts/acervo.mjs list",
+    "acervo:edit": "node scripts/acervo.mjs edit",
+    "acervo:remove": "node scripts/acervo.mjs remove",
+    "acervo:export": "node scripts/acervo.mjs export",
+    "acervo:keygen": "node scripts/acervo.mjs keygen",
+    "acervo:user": "node scripts/acervo.mjs user"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "jose": "^6.2.14",
+    "next": "^16.4.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "sharp": "^0.35.5",
+    "typescript": "^7.0.2"
+  }
+}

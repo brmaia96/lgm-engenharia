@@ -1,0 +1,18 @@
+{
+  "tipo": "R",
+  "terreno": { "frente": 15, "fundo": 20 },
+  "pavimentos": "T",
+  "area": 150,
+  "suites": 3,
+  "quartos": 3,
+  "banheiros": 4,
+  "vagas": 2,
+  "piscina": true,
+  "gourmet": true,
+  "sistema": "Alvenaria",
+  "estilo": "Contemporâneo",
+  "titulo": "Casa térrea com 3 suítes e piscina",
+  "descricao": "Planta em L voltada para a área de lazer, integração sala/cozinha/gourmet.",
+  "tags": ["planta em L", "pé-direito duplo"],
+  "data": "2026-10"
+}

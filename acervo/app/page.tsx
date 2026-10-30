@@ -23,6 +23,7 @@ export default async function Home(props: PageProps<"/">) {
             <p className="eyebrow accent">Acervo de arquitetura</p>
             <h1 className="display">Projetos</h1>
           </div>
+          <a href="/novo" className="btn primary">+ Novo projeto</a>
           <div className="stats">
             <div><b>{projects.length}</b><span>projetos</span></div>
             <div><b>{imgs.toLocaleString("pt-BR")}</b><span>imagens</span></div>

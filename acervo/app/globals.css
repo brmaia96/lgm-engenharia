@@ -437,3 +437,41 @@ pre.tree { font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; backg
 .p-hero::after { background: linear-gradient(180deg, rgba(10,9,8,.4) 0%, transparent 22%, transparent 38%, rgba(10,9,8,.55) 62%, rgba(10,9,8,.86) 100%), linear-gradient(90deg, rgba(10,9,8,.35) 0%, transparent 60%); }
 .p-hero h1 { text-shadow: 0 1px 24px rgba(0,0,0,.25); }
 @media (max-width: 860px) { .filterbar { position: static; } }
+
+/* ---------- Histórico ---------- */
+.hist-filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.hist { list-style: none; padding-bottom: 120px; }
+.hist > li { display: grid; grid-template-columns: 200px 1fr; gap: 28px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+.hist-when { display: grid; gap: 4px; font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.hist-when b { color: var(--text); font-weight: 500; }
+.hist-what p { font-size: 15px; }
+.hist-proj { font-family: var(--font-display); font-size: 20px; }
+.hist-proj:hover { text-decoration: underline; text-underline-offset: 4px; }
+.hist-acao { font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; padding: 3px 8px; border: 1px solid var(--line-strong); vertical-align: middle; }
+.hist-acao.excluiu { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 40%, transparent); }
+.hist-acao.criou, .hist-acao.restaurou { color: var(--accent); border-color: var(--accent); }
+.hist-what ul { list-style: none; margin-top: 10px; display: grid; gap: 6px; font-size: 13.5px; color: var(--muted); }
+.hist-what .campo { display: inline-block; min-width: 120px; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; }
+.hist-what s { color: var(--faint); }
+.hist-what ul b { color: var(--text); font-weight: 500; }
+@media (max-width: 700px) { .hist > li { grid-template-columns: 1fr; gap: 8px; } }
+
+/* cards com altura e proporções idênticas */
+.grid { align-items: stretch; }
+.card { grid-template-rows: auto 1fr; height: 100%; }
+.card-body { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.card-meta { min-height: 18px; }
+.card-meta .eyebrow { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-title {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  line-height: 1.15; min-height: calc(2 * 1.15em); text-wrap: balance;
+}
+.card-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; word-break: normal; }
+.ficha { margin-top: auto; }
+.ficha span { min-width: 0; }
+.ficha strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.dropzone { border: 1px dashed var(--line-strong); padding: 40px 24px; text-align: center; display: grid; gap: 8px; cursor: pointer; transition: all .25s var(--ease); background: var(--surface); }
+.dropzone:hover, .dropzone.over { border-color: var(--text); background: var(--bg-alt); }
+.dz-title { font-family: var(--font-display); font-size: 26px; }
+.page-head .btn { align-self: flex-end; }

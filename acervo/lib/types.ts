@@ -54,6 +54,8 @@ export interface Projeto {
   media: Midia[];
   /** presente quando o projeto foi para a lixeira */
   lixeira?: { em: string; por: string; motivo?: string };
+  /** imagens retiradas pela edição (podem voltar) */
+  retiradas?: Midia[];
   /** última edição feita pelo site */
   editado?: { em: string; por: string };
 }

@@ -40,6 +40,11 @@ export async function getBaseCatalog(): Promise<Catalogo> {
   return base;
 }
 
+export async function getLog() {
+  const { readOverlay } = await import("./store");
+  return (await readOverlay()).log ?? [];
+}
+
 export interface Acervo {
   /** projetos ativos (fora da lixeira) */
   projects: Projeto[];
@@ -53,7 +58,12 @@ export interface Acervo {
 export async function getAcervo(): Promise<Acervo> {
   const { readOverlay } = await import("./store");
   const [b, overlay] = await Promise.all([getBaseCatalog(), readOverlay()]);
-  const all = b.projects.map((p) => overlay.projects[p.code] ?? p);
+  const baseCodes = new Set(b.projects.map((p) => p.code));
+  const all = [
+    ...b.projects.map((p) => overlay.projects[p.code] ?? p),
+    // projetos criados pelo site
+    ...Object.values(overlay.projects).filter((p) => !baseCodes.has(p.code)),
+  ];
   return {
     projects: all.filter((p) => !p.lixeira),
     trash: all.filter((p) => p.lixeira),
@@ -91,6 +101,8 @@ export async function readMedia(id: string, size: "t" | "f"): Promise<Buffer | n
     const buf = await readFile(path.join(VAULT_DIR, "media", `${id}.${size}.enc`));
     return decrypt(buf);
   } catch {
-    return null;
+    // imagem enviada pelo site (fora do cofre do repositório)
+    const { getMedia } = await import("./store");
+    return getMedia(id, size);
   }
 }

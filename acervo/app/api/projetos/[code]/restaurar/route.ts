@@ -9,5 +9,5 @@ export async function POST(req: NextRequest, ctx: RouteContext<"/api/projetos/[c
   const p = await getProject(code);
   if (!p) return NextResponse.json({ error: "projeto não encontrado" }, { status: 404 });
   const { lixeira: _removido, ...rest } = p;
-  return persist([{ ...rest, editado: { em: new Date().toISOString(), por: user } }], user, await currentRev());
+  return persist([{ project: { ...rest, editado: { em: new Date().toISOString(), por: user } }, acao: "restaurou", mudancas: [] }], user, await currentRev());
 }

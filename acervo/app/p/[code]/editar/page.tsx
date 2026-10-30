@@ -18,14 +18,16 @@ export default async function EditPage(props: PageProps<"/p/[code]/editar">) {
   if (!user) redirect("/login");
   const { code } = await props.params;
   const [p, base, { rev }] = await Promise.all([getProject(code), getBaseProject(code), getAcervo()]);
-  if (!p || !base) notFound();
+  if (!p) notFound();
+  const all = [...p.media, ...(p.retiradas ?? []), ...(base?.media ?? [])];
+  const baseMedia = all.filter((m, i) => all.findIndex((x) => x.id === m.id) === i);
   return (
     <>
       <Topbar user={user} active="acervo" />
       {storeMode() === "readonly" ? (
         <main className="wrap doc"><p>A edição pelo site ainda não está ativada neste servidor (falta o armazenamento de edições).</p></main>
       ) : (
-        <ProjectEditor project={p} baseMedia={base.media} rev={rev} />
+        <ProjectEditor project={p} baseMedia={baseMedia} rev={rev} />
       )}
     </>
   );

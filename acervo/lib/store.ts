@@ -13,14 +13,38 @@ import { decrypt, vaultKey } from "./vault";
 // Armazenamento: Vercel Blob privado (BLOB_READ_WRITE_TOKEN) em produção;
 // pasta local .data/ em desenvolvimento.
 
+export interface Mudanca {
+  campo: string;
+  de?: string;
+  para?: string;
+}
+
+export interface Registro {
+  em: string;
+  por: string;
+  acao: "criou" | "editou" | "excluiu" | "restaurou";
+  code: string;
+  titulo: string;
+  mudancas: Mudanca[];
+}
+
 export interface Overlay {
   rev: number;
   updatedAt: string;
   by: string;
   projects: Record<string, Projeto>;
+  /** histórico de alterações, mais recente primeiro */
+  log?: Registro[];
 }
 
-const EMPTY: Overlay = { rev: 0, updatedAt: new Date(0).toISOString(), by: "", projects: {} };
+export interface Alteracao {
+  project: Projeto;
+  acao: Registro["acao"];
+  mudancas: Mudanca[];
+}
+
+const EMPTY: Overlay = { rev: 0, updatedAt: new Date(0).toISOString(), by: "", projects: {}, log: [] };
+const LOG_MAX = 5000;
 const PREFIX = "acervo/overlay-";
 const LOCAL_DIR = path.join(process.cwd(), ".data");
 const KEEP = 60;
@@ -111,7 +135,7 @@ export async function readOverlay(): Promise<Overlay> {
 }
 
 /** Grava uma nova revisão com os projetos alterados. Recusa se outra revisão entrou no meio. */
-export async function saveProjects(changed: Projeto[], by: string, baseRev: number): Promise<Overlay> {
+export async function saveProjects(changes: Alteracao[], by: string, baseRev: number): Promise<Overlay> {
   if (storeMode() === "readonly") throw new Error("Armazenamento de edições não configurado (BLOB_READ_WRITE_TOKEN).");
   const current = await readOverlay();
   if (current.rev !== baseRev) throw new ConflictError("O acervo foi alterado por outra pessoa. Recarregue a página.");
@@ -120,8 +144,12 @@ export async function saveProjects(changed: Projeto[], by: string, baseRev: numb
     updatedAt: new Date().toISOString(),
     by,
     projects: { ...current.projects },
+    log: [
+      ...changes.map((c) => ({ em: new Date().toISOString(), por: by, acao: c.acao, code: c.project.code, titulo: c.project.titulo, mudancas: c.mudancas })),
+      ...(current.log ?? []),
+    ].slice(0, LOG_MAX),
   };
-  for (const p of changed) next.projects[p.code] = p;
+  for (const c of changes) next.projects[c.project.code] = c.project;
   await writeRev(revName(next.rev), encrypt(Buffer.from(JSON.stringify(next))));
   cache = { name: revName(next.rev), data: next };
   void prune();
@@ -140,4 +168,35 @@ async function prune() {
   } catch {
     // limpeza é opcional
   }
+}
+
+// ---------- imagens enviadas pelo site ----------
+const mediaName = (id: string, size: "t" | "f") => `acervo/media/${id}.${size}.enc`;
+
+export async function putMedia(id: string, size: "t" | "f", data: Buffer) {
+  const enc = encrypt(data);
+  if (storeMode() === "blob") {
+    const { put } = await import("@vercel/blob");
+    await put(mediaName(id, size), enc, { access: "private", addRandomSuffix: false, allowOverwrite: false, contentType: "application/octet-stream" });
+    return;
+  }
+  if (storeMode() === "readonly") throw new Error("Armazenamento não configurado (BLOB_READ_WRITE_TOKEN).");
+  const file = path.join(LOCAL_DIR, mediaName(id, size));
+  await mkdir(path.dirname(file), { recursive: true });
+  await writeFile(file, enc);
+}
+
+export async function getMedia(id: string, size: "t" | "f"): Promise<Buffer | null> {
+  try {
+    if (storeMode() === "blob") {
+      const { get } = await import("@vercel/blob");
+      const r = await get(mediaName(id, size), { access: "private" });
+      if (!r || r.statusCode !== 200) return null;
+      return decrypt(Buffer.from(await new Response(r.stream).arrayBuffer()));
+    }
+    if (storeMode() === "local") return decrypt(await readFile(path.join(LOCAL_DIR, mediaName(id, size))));
+  } catch {
+    return null;
+  }
+  return null;
 }

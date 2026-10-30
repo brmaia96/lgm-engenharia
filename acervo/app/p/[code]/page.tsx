@@ -102,6 +102,7 @@ export default async function ProjectPage(props: PageProps<"/p/[code]">) {
             )}
             <div className="side-actions">
               <Link href={`/p/${p.code}/editar`} className="btn">Editar projeto</Link>
+              <Link href={`/historico?p=${p.code}`} className="btn">Histórico</Link>
             </div>
             {p.editado && (
               <p className="side-note">

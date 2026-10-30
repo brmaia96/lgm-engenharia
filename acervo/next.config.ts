@@ -23,6 +23,8 @@ const config: NextConfig = {
     "/p/[code]": ["./vault/catalog.enc"],
     "/p/[code]/editar": ["./vault/catalog.enc"],
     "/lixeira": ["./vault/catalog.enc"],
+    "/historico": ["./vault/catalog.enc"],
+    "/api/projetos": ["./vault/catalog.enc"],
     "/api/projetos/[code]": ["./vault/catalog.enc"],
     "/api/projetos/[code]/restaurar": ["./vault/catalog.enc"],
   },

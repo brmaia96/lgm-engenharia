@@ -2,7 +2,7 @@ import "server-only";
 import { NextResponse, type NextRequest } from "next/server";
 import { currentUser } from "./auth";
 import { buildName, CATEGORIAS, PAVIMENTOS, TIPOS } from "./naming";
-import { ConflictError, saveProjects } from "./store";
+import { ConflictError, saveProjects, type Alteracao, type Mudanca } from "./store";
 import type { Categoria, Midia, Pavimento, Projeto, Tipo } from "./types";
 import { getAcervo, getBaseProject, getProject } from "./vault";
 
@@ -48,10 +48,10 @@ const num = (v: unknown, int = false) => {
 };
 
 /** Aplica as alterações sobre o projeto atual, validando tudo. */
-export async function applyEdit(code: string, body: EditPayload, user: string): Promise<Projeto> {
-  const cur = await getProject(code);
+export async function applyEdit(code: string, body: EditPayload, user: string, draft?: Projeto): Promise<Projeto> {
+  const cur = draft ?? (await getProject(code));
   const base = await getBaseProject(code);
-  if (!cur || !base) throw new Error("projeto não encontrado");
+  if (!cur) throw new Error("projeto não encontrado");
   const p: Projeto = structuredClone(cur);
 
   const titulo = str(body.titulo, 140);
@@ -93,7 +93,7 @@ export async function applyEdit(code: string, body: EditPayload, user: string): 
   }
   if (body.media !== undefined) {
     // só aceita imagens que existem no cofre deste projeto; a ordem enviada vira a ordem da galeria
-    const known = new Map(base.media.map((m) => [m.id, m]));
+    const known = new Map([...(base?.media ?? []), ...(cur.retiradas ?? []), ...cur.media].map((m) => [m.id, m]));
     const seen = new Set<string>();
     const media: Midia[] = [];
     for (const m of body.media) {
@@ -105,6 +105,8 @@ export async function applyEdit(code: string, body: EditPayload, user: string): 
       media.push({ ...orig, cat: m.cat, legenda: legenda || undefined });
     }
     p.media = media;
+    const ret = [...known.values()].filter((m) => !media.some((x) => x.id === m.id));
+    p.retiradas = ret.length ? ret : undefined;
   }
   if (body.cover !== undefined) p.cover = body.cover;
   if (p.cover && !p.media.some((m) => m.id === p.cover)) p.cover = p.media.find((m) => m.cat === "fachada")?.id ?? p.media[0]?.id;
@@ -114,10 +116,10 @@ export async function applyEdit(code: string, body: EditPayload, user: string): 
   return p;
 }
 
-export async function persist(projects: Projeto[], user: string, rev: number) {
+export async function persist(changes: Alteracao[], user: string, rev: number) {
   try {
-    const o = await saveProjects(projects, user, rev);
-    return NextResponse.json({ ok: true, rev: o.rev, projects: projects.map((p) => ({ code: p.code, name: p.name })) });
+    const o = await saveProjects(changes, user, rev);
+    return NextResponse.json({ ok: true, rev: o.rev, projects: changes.map((c) => ({ code: c.project.code, name: c.project.name })) });
   } catch (e) {
     if (e instanceof ConflictError) return NextResponse.json({ error: e.message }, { status: 409 });
     throw e;
@@ -126,4 +128,47 @@ export async function persist(projects: Projeto[], user: string, rev: number) {
 
 export async function currentRev() {
   return (await getAcervo()).rev;
+}
+
+// ---------- diferenças para o histórico ----------
+const ROTULOS: Record<string, string> = {
+  titulo: "Título", descricao: "Descrição", tipo: "Tipo", pavimentos: "Pavimentos", terreno: "Terreno", area: "Área",
+  suites: "Suítes", quartos: "Dormitórios", banheiros: "Banheiros", vagas: "Vagas", piscina: "Piscina", gourmet: "Área gourmet",
+  destaque: "Destaque", sistema: "Sistema", estilo: "Estilo", data: "Data", tags: "Etiquetas", name: "Nome padrão",
+};
+
+function show(k: string, v: unknown): string {
+  if (v === undefined || v === null || v === "" || (Array.isArray(v) && !v.length)) return "—";
+  if (k === "tipo") return TIPOS[v as Tipo] ?? String(v);
+  if (k === "pavimentos") return PAVIMENTOS[v as Pavimento] ?? String(v);
+  if (k === "terreno") return `${(v as { frente: number }).frente} x ${(v as { fundo: number }).fundo} m`;
+  if (k === "area") return `${v} m²`;
+  if (typeof v === "boolean") return v ? "Sim" : "Não";
+  if (Array.isArray(v)) return v.join(", ");
+  const s = String(v);
+  return s.length > 140 ? s.slice(0, 137) + "…" : s;
+}
+
+export function diff(a: Projeto | undefined, b: Projeto): Mudanca[] {
+  if (!a) return [{ campo: "Projeto", para: `${b.code} criado com ${b.media.length} imagens` }];
+  const out: Mudanca[] = [];
+  for (const k of Object.keys(ROTULOS) as (keyof Projeto)[]) {
+    const x = show(k, a[k]);
+    const y = show(k, b[k]);
+    if (x !== y) out.push({ campo: ROTULOS[k], de: x, para: y });
+  }
+  const ida = a.media.map((m) => m.id);
+  const idb = b.media.map((m) => m.id);
+  const tiradas = ida.filter((i) => !idb.includes(i)).length;
+  const voltaram = idb.filter((i) => !ida.includes(i)).length;
+  if (tiradas) out.push({ campo: "Imagens", para: `${tiradas} retirada(s)` });
+  if (voltaram) out.push({ campo: "Imagens", para: `${voltaram} adicionada(s)` });
+  const cats = b.media.filter((m) => { const o = a.media.find((x) => x.id === m.id); return o && o.cat !== m.cat; }).length;
+  if (cats) out.push({ campo: "Imagens", para: `${cats} mudaram de categoria` });
+  const legs = b.media.filter((m) => { const o = a.media.find((x) => x.id === m.id); return o && (o.legenda ?? "") !== (m.legenda ?? ""); }).length;
+  if (legs) out.push({ campo: "Imagens", para: `${legs} legenda(s) alterada(s)` });
+  const common = idb.filter((i) => ida.includes(i));
+  if (common.join() !== ida.filter((i) => idb.includes(i)).join()) out.push({ campo: "Imagens", para: "ordem alterada" });
+  if ((a.cover ?? "") !== (b.cover ?? "")) out.push({ campo: "Capa", para: "trocada" });
+  return out;
 }

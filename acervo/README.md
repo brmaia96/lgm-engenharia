@@ -27,6 +27,19 @@ ARQ_R_15X20_T_150M2_3SUITES        código curto: CB001, CB002…
 
 O site tem um gerador interativo na aba **Padrão**.
 
+## Editar e excluir pelo site
+
+Na página do projeto, botão **Editar**: ficha técnica (o nome padrão é recalculado na hora), capa,
+ordem, categoria e legenda das imagens, e “Tirar” para esconder uma imagem. **Excluir projeto** manda
+para a **Lixeira** (menu do topo), de onde dá para restaurar.
+
+As edições ficam num armazenamento Blob **privado** da Vercel, cifradas com a mesma `VAULT_KEY`, uma
+revisão por salvamento (guarda as últimas 60). Se os dois salvarem o mesmo acervo ao mesmo tempo, o
+segundo recebe um aviso para recarregar em vez de apagar o trabalho do outro.
+
+Configuração (uma vez): Vercel → Storage → Create → **Blob** (acesso *Private*) → conectar ao projeto
+`cobogo-acervo` → Redeploy. Isso cria a variável `BLOB_READ_WRITE_TOKEN`.
+
 ## Incluir um projeto novo
 
 ```

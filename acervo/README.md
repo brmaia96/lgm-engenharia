@@ -40,7 +40,16 @@ segundo recebe um aviso para recarregar em vez de apagar o trabalho do outro.
 Configuração (uma vez): Vercel → Storage → Create → **Blob** (acesso *Private*) → conectar ao projeto
 `cobogo-acervo` → Redeploy. Isso cria a variável `BLOB_READ_WRITE_TOKEN`.
 
-## Incluir um projeto novo
+## Histórico e novo projeto pelo site
+
+- **Histórico** (menu do topo): toda criação, edição, exclusão e restauração fica registrada com data/hora,
+  usuário e o que mudou (de → para). Filtros por pessoa, ação e projeto; na página do projeto, botão
+  “Histórico” mostra só aquele projeto.
+- **+ Novo projeto** (página inicial): preencha a ficha e arraste as imagens. O navegador otimiza cada
+  imagem (WebP, até 2400 px + miniatura), que é gravada cifrada no Blob. O código CB é gerado sozinho.
+  Confira antes que as imagens não tenham nome de cliente, endereço ou carimbo.
+
+## Incluir um projeto novo (lote, pela linha de comando)
 
 ```
 incoming/casa-nova/

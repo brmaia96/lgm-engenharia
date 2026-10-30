@@ -18,14 +18,14 @@ export default async function Home(props: PageProps<"/">) {
     <>
       <Topbar user={user} active="acervo" />
       <main>
-        <div className="wrap hero">
+        <div className="wrap page-head reveal">
           <div>
-            <p className="eyebrow">Base de projetos · uso interno</p>
-            <h1 className="display">Acervo<br /><em>de projetos</em></h1>
+            <p className="eyebrow accent">Acervo de arquitetura</p>
+            <h1 className="display">Projetos</h1>
           </div>
-          <div className="hero-stats">
+          <div className="stats">
             <div><b>{projects.length}</b><span>projetos</span></div>
-            <div><b>{imgs}</b><span>imagens</span></div>
+            <div><b>{imgs.toLocaleString("pt-BR")}</b><span>imagens</span></div>
             <div><b>{Math.round(m2).toLocaleString("pt-BR")}</b><span>m² projetados</span></div>
           </div>
         </div>

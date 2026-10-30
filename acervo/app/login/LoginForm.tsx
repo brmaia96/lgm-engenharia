@@ -30,11 +30,11 @@ export function LoginForm({ next }: { next: string }) {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="field">
+      <div className="line-field">
         <label htmlFor="user">Usuário</label>
         <input id="user" name="user" autoComplete="username" autoCapitalize="none" spellCheck={false} required />
       </div>
-      <div className="field">
+      <div className="line-field">
         <label htmlFor="password">Senha</label>
         <input id="password" name="password" type="password" autoComplete="current-password" required />
       </div>

@@ -3,7 +3,7 @@
 export function ThemeToggle() {
   function toggle() {
     const root = document.documentElement;
-    const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    const dark = root.dataset.theme === "dark";
     root.dataset.theme = dark ? "light" : "dark";
     try { localStorage.setItem("cb-theme", root.dataset.theme); } catch {}
   }

@@ -30,7 +30,7 @@ export function Gallery({ media, baseName }: { media: Midia[]; baseName: string 
       ) : (
         <div className="gallery">
           {list.map((m, i) => (
-            <button key={m.id} onClick={() => setOpen(i)} aria-label={`Abrir ${m.legenda ?? CATEGORIAS[m.cat]}`}>
+            <button key={m.id} onClick={() => setOpen(i)} aria-label={`Abrir ${m.legenda ?? CATEGORIAS[m.cat]}`} className={["planta", "layout", "implantacao", "cobertura", "corte"].includes(m.cat) ? "is-plan" : undefined}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={`/api/m/${m.id}/t`} width={m.w} height={m.h} alt={m.legenda ?? CATEGORIAS[m.cat]} loading={i < 4 ? "eager" : "lazy"} decoding="async" style={{ aspectRatio: `${m.w}/${m.h}` }} />
               {m.rerender && <span className="badge-ia">RE-RENDER</span>}

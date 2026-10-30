@@ -15,8 +15,8 @@ export default async function Padrao() {
       <main className="wrap">
         <article className="doc">
           <div>
-            <p className="eyebrow">Como o acervo se organiza</p>
-            <h1 className="display">Padrão<br />de nomes</h1>
+            <p className="eyebrow accent">Como o acervo se organiza</p>
+            <h1 className="display">Padrão <em>de nomes</em></h1>
           </div>
 
           <section>

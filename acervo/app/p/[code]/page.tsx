@@ -4,10 +4,10 @@ import { notFound, redirect } from "next/navigation";
 import { CopyButton } from "@/components/CopyButton";
 import { Gallery } from "@/components/Gallery";
 import { Mark } from "@/components/Logo";
+import { RestoreButton } from "@/components/ProjectActions";
 import { Topbar } from "@/components/Topbar";
 import { currentUser } from "@/lib/auth";
 import { CATEGORIAS, CATEGORIAS_ESSENCIAIS, PAVIMENTOS, TIPOS, terrenoLabel } from "@/lib/naming";
-import { RestoreButton } from "@/components/ProjectActions";
 import { getAcervo, getProject, summarize } from "@/lib/vault";
 
 export const dynamic = "force-dynamic";
@@ -27,23 +27,23 @@ export default async function ProjectPage(props: PageProps<"/p/[code]">) {
 
   const all = (await getAcervo()).projects;
   const idx = all.findIndex((x) => x.code === p.code);
-  const prev = all[(idx - 1 + all.length) % all.length];
-  const next = all[(idx + 1) % all.length];
+  const prev = idx >= 0 && all.length > 1 ? all[(idx - 1 + all.length) % all.length] : null;
+  const next = idx >= 0 && all.length > 1 ? all[(idx + 1) % all.length] : null;
   const cover = summarize(p).cover;
   const faltam = CATEGORIAS_ESSENCIAIS.filter((c) => !p.media.some((m) => m.cat === c));
   const fullName = `${p.code}_${p.name}`;
+  const nd = <dd className="nd">a confirmar</dd>;
 
-  const specs: [string, React.ReactNode][] = [
-    ["Área construída", p.area != null ? <>{p.area}<small> m²</small></> : <small>a confirmar</small>],
-    ["Terreno", p.terreno ? <>{terrenoLabel(p.terreno).toLowerCase()}<small> m · {Math.round(p.terreno.frente * p.terreno.fundo)} m²</small></> : <small>a confirmar</small>],
-    ["Suítes", p.suites ?? <small>a confirmar</small>],
+  const details: [string, React.ReactNode][] = [
+    ["Tipo", TIPOS[p.tipo]],
     ["Dormitórios", p.quartos ?? "—"],
     ["Banheiros", p.banheiros ?? "—"],
     ["Vagas", p.vagas ?? "—"],
-    ["Pavimentos", PAVIMENTOS[p.pavimentos]],
-    ["Tipo", TIPOS[p.tipo]],
     ["Sistema", p.sistema ?? "—"],
     ["Estilo", p.estilo ?? "—"],
+    ["Piscina", p.piscina ? "Sim" : "—"],
+    ["Área gourmet", p.gourmet ? "Sim" : "—"],
+    ["Data", p.data ?? "—"],
   ];
 
   return (
@@ -54,7 +54,7 @@ export default async function ProjectPage(props: PageProps<"/p/[code]">) {
         {p.lixeira && (
           <div className="trash-banner">
             <div className="wrap">
-              <span>Este projeto está na <b>lixeira</b>{p.lixeira.motivo ? ` — ${p.lixeira.motivo}` : ""}.</span>
+              <span>Este projeto está na lixeira{p.lixeira.motivo ? ` — ${p.lixeira.motivo}` : ""}.</span>
               <RestoreButton code={p.code} />
             </div>
           </div>
@@ -65,61 +65,57 @@ export default async function ProjectPage(props: PageProps<"/p/[code]">) {
             // eslint-disable-next-line @next/next/no-img-element
             <img src={`/api/m/${cover}/f`} alt={p.titulo} />
           ) : (
-            <div style={{ display: "grid", placeItems: "center", height: "100%" }}><Mark size={96} /></div>
+            <div style={{ display: "grid", placeItems: "center", height: "100%", color: "#46403a" }}><Mark size={96} /></div>
           )}
-          <div className="wrap">
-            <p className="eyebrow">{TIPOS[p.tipo]}{p.area != null ? ` · ${p.area} m²` : ""}{p.suites != null ? ` · ${p.suites} ${p.suites === 1 ? "suíte" : "suítes"}` : ""}</p>
-            <h1 className="display">{p.titulo}</h1>
-            <div className="codebar mono">
-              <b>{p.code}</b> <span>{p.name}</span>
+          <div className="wrap reveal">
+            <p className="eyebrow">{p.code} · {TIPOS[p.tipo]}</p>
+            <h1>{p.titulo}</h1>
+            <div className="codebar">
+              <span>{p.name}</span>
               <CopyButton text={fullName} />
             </div>
           </div>
         </section>
 
+        <dl className="specbar">
+          <div className="wrap">
+            <div><dt>Área construída</dt>{p.area != null ? <dd>{p.area.toLocaleString("pt-BR")}<small>m²</small></dd> : nd}</div>
+            <div><dt>Terreno</dt>{p.terreno ? <dd>{terrenoLabel(p.terreno).toLowerCase()}<small>m</small></dd> : nd}</div>
+            <div><dt>Suítes</dt>{p.suites != null ? <dd>{p.suites}</dd> : nd}</div>
+            <div><dt>Pavimentos</dt><dd>{PAVIMENTOS[p.pavimentos]}</dd></div>
+            <div><dt>Imagens</dt><dd>{p.media.length}</dd></div>
+          </div>
+        </dl>
+
         <div className="wrap p-body">
           <Gallery media={p.media} baseName={fullName} />
           <aside className="p-side">
-            <div className="sheet">
-              <div className="sheet-head">
-                <Mark size={22} />
-                <div>
-                  <div className="mono" style={{ fontWeight: 600 }}>{p.code}</div>
-                  <div className="eyebrow" style={{ letterSpacing: ".12em" }}>Ficha técnica</div>
-                </div>
-                <Link href={`/p/${p.code}/editar`} className="btn sheet-edit">Editar</Link>
-              </div>
-              <dl>
-                {specs.map(([k, v]) => (
-                  <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
-                ))}
-              </dl>
-              {(p.piscina || p.gourmet) && (
-                <div className="tags" style={{ paddingTop: 16 }}>
-                  {p.piscina && <span>Piscina</span>}
-                  {p.gourmet && <span>Área gourmet</span>}
-                </div>
-              )}
-              {p.descricao && <p className="desc">{p.descricao}</p>}
-              {p.tags?.length ? <div className="tags">{p.tags.map((t) => <span key={t}>{t}</span>)}</div> : null}
-              {p.editado && (
-                <p className="desc" style={{ borderTop: "1px solid var(--linha)", fontSize: 12, color: "var(--muted)" }}>
-                  Editado por {p.editado.por} em {new Date(p.editado.em).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}
-                </p>
-              )}
-              {faltam.length > 0 && (
-                <p className="desc" style={{ borderTop: "1px solid var(--linha)", fontSize: 12 }}>
-                  Pendente no acervo: {faltam.map((c) => CATEGORIAS[c].toLowerCase()).join(", ")}.
-                </p>
-              )}
+            {p.descricao && <p className="desc">{p.descricao}</p>}
+            <dl>
+              {details.map(([k, v]) => (
+                <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
+              ))}
+            </dl>
+            {p.tags?.length ? <div className="tags">{p.tags.map((t) => <span key={t}>{t}</span>)}</div> : null}
+            {faltam.length > 0 && (
+              <p className="pending">Ainda falta no acervo: {faltam.map((c) => CATEGORIAS[c].toLowerCase()).join(", ")}.</p>
+            )}
+            <div className="side-actions">
+              <Link href={`/p/${p.code}/editar`} className="btn">Editar projeto</Link>
             </div>
+            {p.editado && (
+              <p className="side-note">
+                Editado por <span style={{ textTransform: "capitalize" }}>{p.editado.por}</span> em{" "}
+                {new Date(p.editado.em).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", dateStyle: "short", timeStyle: "short" })}
+              </p>
+            )}
           </aside>
         </div>
 
-        {all.length > 1 && (
+        {prev && next && (
           <nav className="wrap pnav">
-            <Link href={`/p/${prev.code}`}><small>← Anterior</small><span className="mono">{prev.code}</span>{prev.titulo}</Link>
-            <Link href={`/p/${next.code}`}><small>Próximo →</small><span className="mono">{next.code}</span>{next.titulo}</Link>
+            <Link href={`/p/${prev.code}`}><small>← Anterior · {prev.code}</small><span>{prev.titulo}</span></Link>
+            <Link href={`/p/${next.code}`}><small>{next.code} · Próximo →</small><span>{next.titulo}</span></Link>
           </nav>
         )}
       </main>

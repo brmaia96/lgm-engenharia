@@ -13,17 +13,18 @@ export default async function LoginPage(props: PageProps<"/login">) {
   return (
     <main className="login">
       <div className="login-art">
-        <CobogoWall cols={7} rows={9} />
+        <CobogoWall />
         <div className="tag">
-          <div className="display">Acervo<br />Cobogó</div>
-          <p>Base privada de projetos de arquitetura — plantas, layouts, internas e fachadas.</p>
+          <span className="eyebrow">Uso interno · acesso restrito</span>
+          <div className="display">Acervo<br /><em>de projetos</em></div>
+          <p>Plantas, layouts, interiores e fachadas de todos os projetos do escritório, num só lugar.</p>
         </div>
       </div>
       <div className="login-panel">
         <Logo />
         <div>
-          <p className="eyebrow">Acesso restrito</p>
-          <h1>Entrar no acervo</h1>
+          <p className="eyebrow accent">Bem-vindo</p>
+          <h1>Entrar</h1>
         </div>
         <LoginForm next={dest} />
         <p className="login-foot">

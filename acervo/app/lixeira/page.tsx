@@ -19,12 +19,12 @@ export default async function Lixeira() {
     <>
       <Topbar user={user} active="lixeira" />
       <main className="wrap">
-        <div className="hero">
+        <div className="page-head">
           <div>
-            <p className="eyebrow">Fora do acervo · pode restaurar</p>
+            <p className="eyebrow accent">Fora do acervo · pode restaurar</p>
             <h1 className="display">Lixeira</h1>
           </div>
-          <div className="hero-stats"><div><b>{items.length}</b><span>projetos</span></div></div>
+          <div className="stats"><div><b>{items.length}</b><span>projetos</span></div></div>
         </div>
         {items.length === 0 ? (
           <div className="empty"><Mark size={48} /><p>Nada na lixeira.</p></div>
@@ -39,11 +39,10 @@ export default async function Lixeira() {
                   ) : <Mark size={32} />}
                 </Link>
                 <div className="trash-info">
-                  <Link href={`/p/${p.code}`}><b className="mono">{p.code}</b> · {p.titulo}</Link>
-                  <span className="mono card-name">{p.name}</span>
-                  <span className="specs">
-                    {p.lixeira.motivo ? <span>Motivo: <b>{p.lixeira.motivo}</b></span> : null}
-                    <span>por {p.lixeira.por} em {new Date(p.lixeira.em).toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" })}</span>
+                  <span className="eyebrow">{p.code}</span>
+                  <Link href={`/p/${p.code}`} className="t">{p.titulo}</Link>
+                  <span className="m">
+                    {p.lixeira.motivo ? `${p.lixeira.motivo} · ` : ""}por {p.lixeira.por} em {new Date(p.lixeira.em).toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" })}
                   </span>
                 </div>
                 <RestoreButton code={p.code} compact />

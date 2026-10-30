@@ -9,3 +9,4 @@ export/
 *.tsbuildinfo
 next-env.d.ts
 .vercel
+PRIVADO-*.txt

@@ -5,102 +5,115 @@ WhatsApp (14) 99185-0799 · engmaia1996@gmail.com · @eng.gustavomaia
 
 ## Regra
 
-**Toda peça visual — site, apresentação, proposta, carrossel, relatório — segue a
-identidade editorial abaixo.** Não há exceção por pressa ou por formato.
+Toda peça visual segue a identidade abaixo. Ela **não foi inventada**: foi
+extraída de `portfolio.html` e `presentation.html`, que são o material aprovado
+pelo cliente. Em dúvida, abra esses arquivos — eles são a fonte, este documento
+é o resumo.
 
-Referências do cliente: **SysHaus** e **Studio Arthur Casas**. Arquitetura
-brasileira de alto padrão: papel, respiro, régua fina, tipografia leve.
-Silêncio visual é o ponto, não ausência de esforço.
+Direção: **minimalista e editorial.** Referências do cliente: **SysHaus** e
+**Studio Arthur Casas**. O objetivo declarado é respeito e identificação com o
+público-alvo de alto padrão — silêncio visual, não estridência.
 
-## Marca
-
-A assinatura é **`L.`** — um L com ponto, peso leve, o ponto em terra.
-Nunca em caixa-alta condensada, nunca com contorno, nunca sobre fundo colorido.
-Em peça pequena, `L.` sozinho; em peça grande, `L.` com
-`LGM ENGENHARIA` em micro-rótulo ao lado.
-
-## Cor
+## Tokens (exatos, de portfolio.html)
 
 ```css
---paper:  #F6F4F0   /* fundo */
---paper2: #EFECE6   /* fundo alternado */
---ink:    #14120F   /* texto principal */
---ink2:   #55504A   /* texto secundário */
---ink3:   #8C867D   /* rótulo, legenda */
---terra:  #7A6B5A   /* acento — pedra quente */
---rule:   rgba(20,18,15,.14)   /* régua */
---rule2:  rgba(20,18,15,.07)   /* régua sutil */
+--ink:   #0D0D0D;   /* texto principal */
+--ink2:  #3A3A3A;   /* texto secundário */
+--ink3:  #888880;   /* rótulo, legenda */
+--paper: #F6F4F0;   /* fundo da página */
+--p2:    #ECEAE5;   /* fundo alternado */
+--terra: #7A6B5A;   /* rótulo, eyebrow, régua de acento */
+--rust:  #C9703A;   /* numeral de destaque — só número */
+--line:  rgba(13,13,13,.10);
+--D: 'Gill Sans MT','Gill Sans','Century Gothic',Calibri,sans-serif;  /* display */
+--B: 'Segoe UI',system-ui,-apple-system,Arial,sans-serif;             /* corpo */
 ```
 
-Escuro (inversão, mesma lógica): `--paper:#0E0D0B` · `--ink:#EDEAE4` ·
-`--ink2:#A8A29A` · `--ink3:#716B63` · `--terra:#A8947C`.
+Fundo do envelope (fora da página, na tela): `#E8E6E2`.
 
-Terra é o **único** acento. Usar com parcimônia: um dado, uma palavra, o ponto
-da marca. Nunca em bloco grande, nunca em botão preenchido.
+**Dois acentos, com função separada:** terra em rótulo e régua; rust **apenas em
+numeral de destaque** (valor de pilar, número de etapa, paginação). Nunca rust em
+bloco, botão ou texto corrido.
 
-**Proibido:** laranja ferrugem `#C8793E`, fundo preto industrial `#060605`,
-gradiente, qualquer cor saturada. Essa é a linguagem dos carrosséis antigos de
-Instagram e está aposentada para peça institucional.
+Em web, onde Gill Sans e Century Gothic não existem, carregar **Jost** do Google
+Fonts como fallback — colocar **depois** das faces nomeadas, nunca no lugar delas.
 
-## Tipografia
+## Tipografia — medidas que são a assinatura
 
-```css
---fs: 'Jost', 'Century Gothic', 'Futura', system-ui, sans-serif;  /* sistema */
---fe: 'Spectral', Georgia, serif;                                 /* editorial */
-```
+- **Eyebrow: 7–8px**, `letter-spacing` .22em a .32em, caixa-alta, cor terra.
+  Minúsculo e muito espaçado. É o detalhe que identifica a marca.
+- **Display em peso 200 ou 300.** Nunca negrito. Numeral grande em 200.
+- Título de página: 19–22px, peso 300, `letter-spacing` −.01em.
+- Numeral de destaque: 26–28px peso 200; logo de capa 72px peso 200 com
+  `letter-spacing` .14em.
+- Subtítulo em itálico: 13px, peso 300.
+- Corpo: 9–13px na página A4.
 
-- **Jost** em 200/300/400/500. Display sempre em **200 ou 300** — peso leve em
-  tamanho grande é a assinatura. `letter-spacing` negativo no display (−.02em).
-- **Spectral 300 itálico** só para citação e nome de projeto. Com moderação.
-- Micro-rótulo: 0.59rem, peso 500, `letter-spacing: .2em`, caixa-alta, `--ink3`.
-- Corpo: peso 300, `line-height` 1.75 ou mais. Respiro é conteúdo.
-- **Bebas Neue está proibida** em peça institucional.
+Escala pequena é proposital: a peça é A4, não tela grande.
 
 ## Layout
 
-- Margem generosa. `padding` de seção em `clamp(62px, 10vw, 120px)`.
-- **Régua fina separa; cartão não.** Sem `border-radius`, sem `box-shadow`,
-  sem fundo em caixa. Hierarquia por espaço, peso e régua.
-- Sempre alinhado à esquerda. Nunca centralizado.
-- Lista de projetos como **índice tipográfico** (numeral romano, nome, local,
-  dado), no espírito de sumário de monografia — não como grade de cards.
-- Número grande em peso 200, com unidade em `<sup>`.
-- Grade assimétrica. Coluna de texto em até ~34em.
+- **Print-first.** Sistema de página: `.page` 390×693px na tela, **A4 retrato na
+  impressão** (`@page { size: A4 portrait; margin: 0 }`), com
+  `page-break-after: always`. Toda peça institucional nasce para virar PDF.
+- Margem interna em print: **8mm** nas laterais.
+- **Régua é um tique curto de 32px × 1px**, não linha de ponta a ponta.
+  `.rule-terra` quando precisa de acento.
+- **Fotografia é protagonista.** Containers `.photo` com placeholder e altura
+  fixa: projeto 145mm, grade 72mm, sobre 50mm, capa full-bleed 210×297mm.
+  `object-fit: cover`. O placeholder desaparece sozinho com
+  `.photo:has(img) .photo-placeholder { display:none }`.
+  **Não substituir foto por tipografia** — o sistema foi feito para a foto.
+- Paginação discreta: `.pg-badge` no topo direito, 8px, opacidade baixa.
+- Alinhado à esquerda. Sem `border-radius`, sem sombra.
 
 ## Texto
 
-Tom do cliente: direto, técnico, vende pela consequência do erro, não pelo
-benefício. Frases curtas. Sem emoji. Sem exclamação.
+Direto, técnico, vende pela consequência do erro. Frases curtas. Sem emoji,
+sem exclamação.
 
-Frases da casa, usar como estão:
+Frases da casa:
 - "Do terreno. À chave."
 - "Projeto, execução e a engenharia tributária da obra — com uma única
   responsabilidade técnica."
 - "Sem terceirizar, sem delegar o que importa."
+- "Steel frame não é moda. É engenharia."
 
 ## Posicionamento
 
-**INSS e CNO é o gancho** (ninguém no nicho fala disso; R$ 28.000 de economia
-por obra chama atenção). **Projeto e execução é o motor** (é o que fatura).
-Em peça institucional, projeto vem primeiro; INSS entra como o diferencial.
+**INSS e CNO é o gancho** — nenhum concorrente de Instagram fala disso, e
+R$ 28.000 de economia por obra para o scroll. **Projeto e execução é o motor** —
+é o que fatura. Em peça institucional, projeto primeiro; INSS como diferencial.
 
-## Dados que podem ser citados
+## Dados citáveis
 
 - 8 anos em Light Steel Frame, desde 2018 (estágio 2018–2020, formação 2020,
-  construtora 2022, operação própria dez/2023, integral 2026)
-- 6 projetos, 2.015 m²: Clínica Grizzo 380m² Jaú · Residência A.J. 750m² Marília
-  (com CNO e averbação) · Casa Cubo 180m² · Residência Steeltec 200m² LSF ·
-  Estande de Vendas 55m² em 40 dias · Barracão e Loft 450m² 100% LSF com vão
-  livre acima de 10m
+  administradora de obra 2020, construtora 2022, operação própria dez/2023,
+  dedicação integral 2026)
+- 6 projetos, 2.015 m²: Clínica Grizzo 380 m² Jaú · Residência A.J. 750 m²
+  Marília (com CNO e averbação) · Casa Cubo 180 m² · Residência Steeltec
+  200 m² LSF · Estande de Vendas 55 m² em 40 dias · Barracão e Loft 450 m²
+  100% LSF com vão livre acima de 10 m
 - LSF é cerca de 3% da construção civil brasileira
 
-**Antes de citar norma, portaria, taxa de financiamento ou número de mercado em
+**Credenciais a acertar:** `presentation.html` diz "8+ anos / 120+ projetos",
+`portfolio.html` diz "7+ anos / 85+ unidades". Usar a trajetória acima, que é
+verificável, até o cliente definir o número.
+
+**Antes de citar norma, portaria, taxa de financiamento ou dado de mercado em
 peça pública: confirmar na fonte primária** (ABNT, DOU, Caixa, CBCA). O CREA
 dele vai no rodapé.
 
+## Pendência conhecida
+
+As **20 imagens** referenciadas (`p1_01.png` a `p6_04.png`, `obra.svg`,
+`casa.svg`) e o retrato não estão no repositório — `portfolio.html` e
+`presentation.html` renderizam com placeholder no lugar. Conseguir essas fotos é
+pré-requisito para qualquer peça pública.
+
 ## Organização de arquivo
 
-O sistema real vive em `Desktop\LGM - Engenharia`, espelhado no Drive.
+Sistema real em `Desktop\LGM - Engenharia`, espelhado no Drive.
 Clientes em `03. Clientes\<Código Permanente 4 dígitos>. Nome - Cidade`, com
 subpastas `00. Recebidos` · `01. Projeto` · `02. Comunicações` ·
 `03. Documentos` · `04. Entregas` · `05. Modelo Revit` · `06. Proposta` ·

@@ -27,11 +27,42 @@ abaixo já servem esse papel — `--terra` é marrom de madeira, `--ink3` tem de
 quente de alumínio escovado, `--rust` é acento material e não dourado. Por isso
 não há motivo para trocá-los: o material aprovado e a referência concordam.
 
-*Nota de procedência: os sites dos dois estúdios estão bloqueados na rede deste
-ambiente. O acima vem de Dezeen, Architectural Record, ArchDaily, Dwell e da
-página About do estúdio — relato, não inspeção. Nenhum hex nem fonte deles foi
-confirmado, e nenhum foi copiado. Para inspecionar de fato, liberar
-`arthurcasas.com` e `sys.haus` na rede do ambiente.*
+### Referência medida (inspeção direta, nov/2026)
+
+Os dois sites foram abertos e medidos no navegador. Isto é observação, não relato.
+
+**arthurcasas.com**
+- Fundo `#F8F7F3`. Texto e marca em taupe `#BCAFA6`; corpo em cinza quente. **Nunca preto.**
+- Fonte própria `KMR` (grotesca neo-Helvetica), fallback Helvetica Neue.
+- **Zero tracking, zero caixa-alta, zero régua, zero eyebrow.** Hierarquia por
+  **negrito × regular no mesmo tamanho** (11–12px).
+- Grade: marca no canto superior esquerdo, conteúdo começando a ~1/3 da largura,
+  coluna esquerda vazia. Foto às vezes invade a coluna vazia.
+- Legenda de projeto: uma linha sob a foto — **nome em negrito à esquerda**,
+  cidade em regular à direita.
+- Sobre: texto grande (~24px), peso leve, cinza, coluna larga.
+- Home: painel claro com a marca centralizada + foto em duotone quente ao lado.
+
+**sys.haus**
+- **Futura Light / Book** (Jost é o clone livre). Didot itálico como acento raro.
+- Navegação em **minúscula**, 14px, cinza `#A0A09F`.
+- Título 28px Futura Light, cinza-grafite `#2F2E2E`.
+- Corpo cinza, coluna estreita, **destaque em negrito dentro da frase**.
+- Espaço vertical enorme entre blocos. Foto e citação em par assimétrico.
+- Rodapé: blocos com rótulo em negrito e texto regular.
+
+**Consequência para a web:** a peça web segue esse vocabulário — Jost, texto em
+cinza quente, rótulo em negrito 12px sem tracking, navegação minúscula, coluna
+de conteúdo a 1/3, legenda nome × cidade, foto em duotone quente, nenhuma régua.
+O eyebrow de 7px com tracking .32em e a régua de 32px vêm do `portfolio.html`
+antigo e **não existem nas referências** — não usar em peça nova.
+
+Implementação de referência: o site publicado (`site-lgm.html`), tokens
+`--ink #3A3632`, `--body #6B655E`, `--quiet #A39A90`, `--tone #E6E0D7`,
+`--paper #F6F4F0`, `--rust #C9703A` só no numeral de destaque.
+
+Instagram (`@eng.gustavomaia`) passa pela rede, mas exige login — não é
+acessível sem conta. Para referência dos posts, pedir print ao cliente.
 
 ## Tokens (exatos, de portfolio.html)
 

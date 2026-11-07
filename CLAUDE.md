@@ -44,12 +44,38 @@ Fonts como fallback — colocar **depois** das faces nomeadas, nunca no lugar de
   Minúsculo e muito espaçado. É o detalhe que identifica a marca.
 - **Display em peso 200 ou 300.** Nunca negrito. Numeral grande em 200.
 - Título de página: 19–22px, peso 300, `letter-spacing` −.01em.
-- Numeral de destaque: 26–28px peso 200; logo de capa 72px peso 200 com
-  `letter-spacing` .14em.
+- Numeral de destaque: 26–28px, peso 200.
 - Subtítulo em itálico: 13px, peso 300.
 - Corpo: 9–13px na página A4.
 
 Escala pequena é proposital: a peça é A4, não tela grande.
+
+### Texto corrido é sempre justificado
+
+Instrução direta do cliente: **sempre justificar, sempre alinhar.** É a
+convenção de monografia e revista de arquitetura — e é o que separa a peça
+editorial do post de rede social.
+
+```css
+text-align: justify;
+text-justify: inter-word;
+hyphens: auto;          /* junto de -webkit-hyphens: auto */
+```
+
+A hifenização não é opcional: sem ela, justificar em português abre rios de
+espaço entre palavras e o efeito se inverte. Exige `lang="pt-BR"` no elemento
+que envolve o texto, ou o navegador não sabe onde hifenizar.
+
+Justifica-se **texto corrido**. Rótulo, eyebrow, numeral, valor em coluna e
+título continuam alinhados à esquerda (ou à direita, quando em coluna de
+valores). Coluna de texto justificado precisa de largura mínima razoável —
+abaixo de ~28 caracteres, justificar piora.
+
+### Alinhamento
+
+Tudo assenta na mesma grade. Valor em coluna usa `grid`, não `flex-wrap`, para
+que as colunas fiquem alinhadas de fato. Rótulo e valor compartilham a mesma
+borda esquerda em todas as linhas. Nada centralizado.
 
 ## Layout
 
@@ -103,6 +129,20 @@ verificável, até o cliente definir o número.
 **Antes de citar norma, portaria, taxa de financiamento ou dado de mercado em
 peça pública: confirmar na fonte primária** (ABNT, DOU, Caixa, CBCA). O CREA
 dele vai no rodapé.
+
+## A LOGO NÃO ESTÁ DEFINIDA AQUI
+
+O cliente confirmou que **a logo usada nos arquivos deste repositório está
+errada** — o `LGM` tipografado em 72px de `portfolio.html` e
+`presentation.html` não é a marca atual.
+
+**Não desenhar, não deduzir e não reaproveitar o `LGM` tipografado.** Logo é a
+única coisa que não se infere. Enquanto o cliente não fornecer o arquivo (SVG
+de preferência) ou a especificação, deixar um espaço reservado nomeado e
+perguntar.
+
+Quando a marca chegar, registrar aqui: arquivo, área de respiro, tamanho
+mínimo, versão reversa e usos indevidos.
 
 ## Pendência conhecida
 

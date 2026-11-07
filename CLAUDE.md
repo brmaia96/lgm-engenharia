@@ -10,9 +10,28 @@ extraída de `portfolio.html` e `presentation.html`, que são o material aprovad
 pelo cliente. Em dúvida, abra esses arquivos — eles são a fonte, este documento
 é o resumo.
 
-Direção: **minimalista e editorial.** Referências do cliente: **SysHaus** e
+Direção: **editorial e sóbria.** Referências do cliente: **SysHaus** e
 **Studio Arthur Casas**. O objetivo declarado é respeito e identificação com o
-público-alvo de alto padrão — silêncio visual, não estridência.
+público-alvo de alto padrão.
+
+**Não é minimalismo branco clínico.** A página About do Studio Arthur Casas diz
+que os ambientes não devem seguir modas, tendências ou estilos, nem buscar o
+gesto dramático e espetacular. A crítica descreve estética sóbria, materiais
+nobres e atenção meticulosa ao detalhe — modernismo brasileiro. O alvo é
+**sobriedade com calor material**: branco puro e vazio frio erram o tom tanto
+quanto estridência erra.
+
+A paleta da SysHaus nasce de material real: alumínio reciclado sobre estrutura
+de aço, madeira clara, **freijó** nos puxadores, inox nos módulos. Os tokens
+abaixo já servem esse papel — `--terra` é marrom de madeira, `--ink3` tem desvio
+quente de alumínio escovado, `--rust` é acento material e não dourado. Por isso
+não há motivo para trocá-los: o material aprovado e a referência concordam.
+
+*Nota de procedência: os sites dos dois estúdios estão bloqueados na rede deste
+ambiente. O acima vem de Dezeen, Architectural Record, ArchDaily, Dwell e da
+página About do estúdio — relato, não inspeção. Nenhum hex nem fonte deles foi
+confirmado, e nenhum foi copiado. Para inspecionar de fato, liberar
+`arthurcasas.com` e `sys.haus` na rede do ambiente.*
 
 ## Tokens (exatos, de portfolio.html)
 
@@ -70,6 +89,12 @@ Justifica-se **texto corrido**. Rótulo, eyebrow, numeral, valor em coluna e
 título continuam alinhados à esquerda (ou à direita, quando em coluna de
 valores). Coluna de texto justificado precisa de largura mínima razoável —
 abaixo de ~28 caracteres, justificar piora.
+
+**Distinguir o meio.** Em peça A4 impressa — proposta, portfólio, apresentação —
+justificar é a convenção de monografia e está certo. Em web, o padrão de site de
+estúdio de arquitetura é coluna estreita alinhada à esquerda, porque o navegador
+hifeniza pior e a largura varia com a janela. Justificar na tela só com coluna
+de largura controlada e hifenização ativa; em dúvida na web, esquerda.
 
 ### Alinhamento
 

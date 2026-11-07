@@ -130,19 +130,37 @@ verificável, até o cliente definir o número.
 peça pública: confirmar na fonte primária** (ABNT, DOU, Caixa, CBCA). O CREA
 dele vai no rodapé.
 
-## A LOGO NÃO ESTÁ DEFINIDA AQUI
+## A marca é `L.`
 
-O cliente confirmou que **a logo usada nos arquivos deste repositório está
-errada** — o `LGM` tipografado em 72px de `portfolio.html` e
-`presentation.html` não é a marca atual.
+**A marca é o lettermark `L.` — um L seguido de ponto.** Instrução direta e
+repetida do cliente.
 
-**Não desenhar, não deduzir e não reaproveitar o `LGM` tipografado.** Logo é a
-única coisa que não se infere. Enquanto o cliente não fornecer o arquivo (SVG
-de preferência) ou a especificação, deixar um espaço reservado nomeado e
-perguntar.
+**O `LGM` tipografado que aparece em `portfolio.html` e `presentation.html`
+não é a marca.** Aqueles arquivos são a fonte da paleta e das medidas, não da
+marca. `LGM` não tem relação com `L.` — não substituir um pelo outro, não
+alternar entre os dois, não usar `LGM` como marca em peça nova.
 
-Quando a marca chegar, registrar aqui: arquivo, área de respiro, tamanho
-mínimo, versão reversa e usos indevidos.
+Aplicação:
+
+```css
+font-family: var(--D);
+font-weight: 200;
+letter-spacing: -.025em;   /* dois glifos: tracking amplo solta o ponto */
+line-height: .9;
+```
+
+- Peça A4: 88px na tela, 42mm em print. Marca d'água: 300px / 170mm,
+  opacidade .05.
+- **Monocromática.** O ponto é da mesma cor da letra. Não colorir o ponto,
+  não usar terra nem rust na marca — minimalismo não decora.
+- Tracking **negativo**. O tracking amplo de .14em era para a palavra `LGM`;
+  em dois glifos ele desgruda o ponto do L e quebra a marca.
+- Onde o nome por extenso é necessário (rodapé de documento técnico, registro
+  profissional), usar **Luis Gustavo Maia · CREA–SP 5071068977** — é em nome
+  dele que a ART é registrada.
+
+Ainda não fornecido pelo cliente: arquivo SVG, área de respiro formal, tamanho
+mínimo e versão reversa. Se ele enviar, registrar aqui.
 
 ## Pendência conhecida
 

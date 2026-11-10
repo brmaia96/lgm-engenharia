@@ -114,9 +114,16 @@ só mostra que há know-how, sem excesso.
   projeto e ficha curta. A seleção fica na camada `LEAN` de `site-build/data.py`.
 - Fora do ar, guardados em `data.py` (`HELD`): **Casa Duo**, até as imagens serem
   corrigidas (árvore na cobertura dos vizinhos, portão sem muro, bancada da
-  cozinha e porta da lavanderia mudando entre vistas); **Chalé Analândia**, até
-  existir imagem renderizada; **Do aço à estrutura**, que não tem fachada nem
-  interior.
+  cozinha e porta da lavanderia mudando entre vistas); **Do aço à estrutura**,
+  que não tem fachada nem interior.
+- **Chalé Analândia** usa os seis renders do projeto que estão no Drive (A-frame
+  com volume revestido em pedra, piscina e churrasqueira). As duas imagens da
+  casa branca com pergolado que estão na mesma pasta são de outro cliente e não
+  entram. O cliente quer versão ultra realista por IA: usar esses renders como
+  base (`site-build/render-analandia/gen.py`, OpenRouter) e conferir cada
+  detalhe de obra antes de publicar. O modelo de teste em Blender
+  (`chale.py`) tinha o guarda-corpo da sacada atravessando o telhado e o anexo
+  em branco; não usar sem corrigir.
 - Conferir toda imagem com acabamento por IA antes de publicar: elementos que
   mudam de uma vista para outra derrubam a credibilidade.
 - Salas comerciais (Marília): fotos reais de obra concluída. Não citar que a

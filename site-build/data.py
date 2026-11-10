@@ -207,7 +207,6 @@ FAM={
  'taquaracu':{'07-planta-baixa.jpg':'b','08-fundacao-e-estrutura.jpg':'c','12-telha-sanduiche.jpg':'c'},
  'chale-acolher':{'03-render-fachada-frontal-lateral.jpg':'d','04-render-lateral-direita-lavanderia.jpg':'d','06-render-estrutura-lsf.jpg':'c'},
  'chale-viver':{'12a-corte-aa.jpg':'b'},
- 'chale-analandia':{k:'b' for k in ('01-planta-layout-terreo.jpg','02-planta-layout-superior.jpg','04-fachada-sul.jpg','05-fachada-oeste.jpg','07-corte-aa.jpg','08-corte-bb.jpg')},
  'estrutura-bh':{k:'c' for k in ('03-montagem-etapa-1.jpg','04-montagem-etapa-2.jpg','05-montagem-etapa-3.jpg','06-montagem-cobertura.jpg')},
 }
 
@@ -293,8 +292,22 @@ PROJECTS.insert(next(i for i,_p in enumerate(PROJECTS) if _p['slug']=='patio-esc
     I('03-patio-frontal-platibanda.jpg',('Pátio frontal','platibanda e moldura da janela'),'Pátio frontal com piso amadeirado e fachada verde','third'),
     I('04-fundos-estacionamento.jpg',('Estacionamento','seis vagas nos fundos'),'Fundos do imóvel com o estacionamento em piso intertravado','third'),
     I('06-circulacao-coberta.jpg',('Circulação coberta','cobertura de vidro e cobogó'),'Circulação lateral com cobertura de vidro e parede de cobogó','third')])]))
-# chale-analandia: fora do site até existir imagem renderizada (o cliente pediu para tirar as fachadas com cotas).
-HELD.append('chale-analandia')
+# chale-analandia: renders do projeto encontrados no Drive (frente, três quartos com piscina, fundos e dois interiores); sem pranchas.
+for _p in PROJECTS:
+    if _p['slug']=='chale-analandia':
+        _p.update(card=dict(src=C+'21-render.jpg',crop=(0,0,.9,1),focus=(.35,.5),alt='Cabana A-frame com frente de vidro, piscina e área de churrasqueira'),
+          hero=dict(src=C+'21-render.jpg',crop=(0,0,.9,1),pos='50% 55%',alt='Cabana A-frame com a frente de vidro voltada para a piscina e a área de churrasqueira ao lado'),
+          lead='Cabana A-frame de dois pavimentos em steel framing, <b>com piscina e churrasqueira.</b>',
+          text=['O triângulo tem 7,00 m de base por 7,00 m de altura, com a frente toda em vidro voltada para a piscina. No térreo ficam sala, cozinha, lavanderia e banheiro. No pavimento superior, a suíte.',
+                'Paredes e laje são em light steel frame. A piscina e a área da churrasqueira seguem em concreto armado.'],
+          sections=[
+           dict(label='Fachadas',items=[
+            I('20-render.jpg',('Frente','vidro do piso à cumeeira'),'Frente da cabana: empena de vidro com a escada e o mezanino à vista, piscina em primeiro plano','full',pos='50% 45%'),
+            I('22-render.jpg',('Fundos e lateral','cobertura metálica e volume de dois pavimentos'),'Vista de três quartos pelos fundos, com a água da cobertura metálica e o volume revestido em pedra',r='16/9'),
+            I('23-render.jpg',('Fundos','sacada da suíte'),'Fundos da cabana, com a sacada do pavimento superior e o volume de dois pavimentos',r='16/9')]),
+           dict(label='Interiores',items=[
+            I('24-render.jpg',('Sala','escada e vista para a piscina'),'Sala com a escada de madeira e a frente de vidro aberta para a piscina',r='16/9'),
+            I('25-render.jpg',('Frente de vidro','estar sob o mezanino'),'Interior visto da varanda da frente, com estar, escada e mezanino',r='16/9')])])
 PROJECTS_FULL=PROJECTS
 PROJECTS=_lean(PROJECTS)
 OBRAS_META='%d projetos · casas, chalés e estruturas em aço'%len(PROJECTS)

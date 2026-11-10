@@ -155,4 +155,67 @@ dict(slug='fator-de-ajuste', tema='imposto', mins=4,
  ],
  fontes=[(F_IN2021[0] + ' Arts. 24 e 31 a 33.', F_IN2021[1]), (F_MANUAL[0] + ' Item 22, Fator de Ajuste.', F_MANUAL[1])],
  rel=['steel-frame-paga-menos-inss', 'cno-prazo-e-inscricao'], call='Quer a obra declarada do jeito certo?'),
+
+dict(slug='steel-frame-e-mais-caro', tema='steel frame', mins=4,
+ title='Steel frame é mais caro?',
+ h1='Steel frame é mais caro? <b>Na planilha de materiais, quase sempre. Na conta inteira, depende.</b>',
+ lead='Quem compara só o custo direto costuma parar na alvenaria. <b>Prazo, repetição e imposto mudam o resultado, e o imposto é a parte que quase ninguém põe na conta.</b>',
+ resumo='O que os comparativos mostram, o que eles deixam de fora e onde o INSS entra.',
+ desc='Steel frame é mais caro que alvenaria? O que os comparativos acadêmicos mostram, o que fica fora da planilha e como o INSS de obra entra na conta.',
+ body=[
+  ('Resposta curta', '<p class="big">No custo direto, a maioria dos comparativos brasileiros encontra o steel frame acima da alvenaria. A diferença cai, e às vezes se inverte, quando entram o prazo de obra, a repetição do projeto e o INSS.</p>'),
+  ('O que os estudos mostram', '<p>Os comparativos publicados por universidades brasileiras são estudos de caso: uma casa, uma cidade, uma data. Não chegam ao mesmo número, nem ao mesmo sinal.</p>'
+   '<ul><li>A maior parte encontra custo direto maior no steel frame, com a estrutura como o item que mais pesa.</li>'
+   '<li>Alguns encontram o contrário, em geral quando há repetição de unidades ou quando o prazo entra na conta.</li>'
+   '<li>Quase todos registram obra mais curta.</li></ul>'
+   '<p>A conclusão honesta é que não existe um percentual que valha para toda obra. Existe a conta de cada projeto.</p>'),
+  ('O que fica fora da planilha', '<ul><li><b>Prazo.</b> Obra mais curta custa menos em canteiro, administração e aluguel pago enquanto a casa não fica pronta.</li>'
+   '<li><b>Projeto.</b> No steel frame o aço é comprado e cortado pelo projeto. O que não foi resolvido no desenho vira retrabalho caro, e o que foi resolvido vira previsibilidade.</li>'
+   '<li><b>Fornecedor.</b> A distância da fábrica e o frete pesam. Mão de obra de montagem treinada também.</li>'
+   '<li><b>Repetição.</b> Painel que se repete dilui o custo de engenharia e de fabricação.</li></ul>'),
+  ('O imposto na conta', '<p>É a linha que falta em quase todo comparativo. A casa em steel frame pode ser enquadrada como obra do tipo misto ou como pré-fabricado, e isso muda o INSS apurado no fim.</p>'
+   + fig([N.bar('Alvenaria, sem planejamento', N.INSS_ALV, N.INSS_ALV, 'mute'), N.bar('Steel frame, tipo misto', N.INSS_MIS, N.INSS_ALV, small='estrutura de metal comprovada por nota'),
+          N.bar('Steel frame, pré-fabricado', N.INSS_PRE, N.INSS_ALV, 'hl', 'notas de 40% do custo da obra')],
+         'INSS apurado na aferição', CASA,
+         'INSS apurado: alvenaria sem planejamento, %s; steel frame como tipo misto, %s; steel frame com pré-fabricado comprovado, %s.' % (brl(N.INSS_ALV), brl(N.INSS_MIS), brl(N.INSS_PRE)))
+   + '<p><a href="b-steel-frame-paga-menos-inss.html">Como cada enquadramento funciona e que notas ele exige.</a></p>'),
+  ('Como comparar orçamentos', '<ol><li>Compare a casa pronta, com o mesmo acabamento, e não o metro quadrado de parede.</li>'
+   '<li>Ponha o prazo em reais: meses de canteiro, de aluguel e de juros.</li>'
+   '<li>Peça o orçamento do steel frame com projeto executivo, para a quantidade de aço não ser estimativa.</li>'
+   '<li>Inclua o INSS da obra nos dois cenários, com o enquadramento que cada um permite.</li></ol>'
+   '<p style="margin-top:2em"><a class="lnk" href="inss.html#simulador">Simular o INSS da minha obra</a></p>'),
+ ],
+ fontes=[('Comparativo de custo entre light steel frame e alvenaria convencional, estudo de caso em Goiânia. PUC Goiás.', 'https://repositorio.pucgoias.edu.br/jspui/bitstream/123456789/877/1/TCC2_042_vers%c3%a3o%20final.pdf'),
+         ('Análise comparativa orçamentária dos sistemas construtivos convencional e light steel frame. Unipar.', 'https://www.unipar.br/documentos/259/ANALISE_COMPARATIVA_ORCAMENTARIA_DOS_SISTEMAS_CONSTRUTIVOS_CONVENCIONAL.pdf'),
+         ('Estudo de caso comparativo em Palmas, TO. Ceulp/Ulbra, 2017.', 'https://ulbra-to.br/bibliotecadigital/uploads/document5f3e6bff22ac8.pdf'),
+         (F_IN2021[0] + ' Arts. 25 e 26.', F_IN2021[1])],
+ rel=['steel-frame-paga-menos-inss', 'steel-frame-conforto-termoacustico'], call='Quer a conta inteira do seu projeto?'),
+
+dict(slug='steel-frame-conforto-termoacustico', tema='steel frame', mins=4,
+ title='Steel frame tem melhor conforto termoacústico?',
+ h1='Conforto térmico e acústico: <b>quem responde é a parede, não o aço.</b>',
+ lead='A parede de steel frame é um conjunto de camadas. <b>Com lã mineral no miolo, o isolamento de som medido em laboratório passa com folga do mínimo. No calor, o resultado depende do projeto.</b>',
+ resumo='O que o ensaio do IPT mediu em som e o que a simulação mostrou em temperatura.',
+ desc='Conforto térmico e acústico do steel frame: resultados de ensaio de isolamento sonoro e de simulação térmica em documento de avaliação técnica do IPT, e o que o projeto precisa garantir.',
+ body=[
+  ('Resposta curta', '<p class="big">No som, sim: a parede com lã de vidro no miolo isolou bem acima do mínimo exigido. No calor, depende: isolante, cor da fachada, sombreamento e ventilação decidem se a casa atende ou não.</p>'),
+  ('A parede', '<p>No sistema avaliado pelo IPT, a parede externa tem quatro camadas: placa cimentícia por fora, perfis de aço zincado, manta de lã de vidro de 50 mm no miolo e chapa de gesso para drywall por dentro.</p>'
+   '<p>O aço sustenta. Quem isola é o conjunto: duas placas separadas por uma câmara preenchida com lã.</p>'),
+  ('Som', '<p>O ensaio de laboratório mediu o índice de redução sonora da parede de fachada e da parede entre duas casas geminadas.</p>'
+   '<table class="tb"><thead><tr><th scope="col">Parede</th><th scope="col">Mínimo exigido</th><th scope="col">Medido em laboratório</th></tr></thead><tbody>'
+   '<tr><th scope="row">Fachada</th><td>30 dB</td><td class="hl">50 dB</td></tr>'
+   '<tr><th scope="row">Entre unidades</th><td>45 dB</td><td class="hl">51 dB</td></tr></tbody></table>'
+   '<p>O número vale para a parede. Na casa pronta, a janela costuma ser o ponto fraco: a fachada só entrega o que a esquadria permite.</p>'),
+  ('Calor', '<p>O desempenho térmico foi avaliado por simulação nas oito zonas bioclimáticas do país. O sistema atendeu ao critério mínimo, com condições.</p>'
+   '<ul><li>Lã de vidro de 50 mm nas paredes, em todo o perímetro, e sobre o forro. Na zona 8, 100 mm sobre o forro.</li>'
+   '<li>Beiral de 60 cm.</li>'
+   '<li>Fachada em cor clara ou média, conforme a zona.</li>'
+   '<li>Em parte das zonas, só com janelas sombreadas, com ventilação, ou com as duas coisas.</li></ul>'
+   '<p>A parede leve tem pouca massa para acumular calor. O conforto vem do isolamento e do projeto: orientação, sombra e ventilação cruzada.</p>'),
+  ('O que isso quer dizer', '<p>Steel frame não é mais confortável nem menos confortável por ser steel frame. Com as camadas certas, isola o som melhor do que a norma pede. Sem isolante, ou com fachada escura sem sombra, perde.</p>'
+   '<p><b>Conforto se especifica no projeto:</b> espessura da lã, tipo de placa, cor, beiral e esquadria.</p>'
+   '<p class="note">Os números são do Documento de Avaliação Técnica nº 14 do SINAT, emitido em 2013 com avaliação do IPT, para um sistema específico de casas térreas. Valem como referência de ordem de grandeza. Cada projeto tem a sua composição de parede.</p>'),
+ ],
+ fontes=[('SINAT. Documento de Avaliação Técnica nº 14, Sistema construtivo a seco em light steel frame. Avaliação técnica do IPT, abril de 2013.', 'https://www.cbca-acobrasil.org.br/upfiles/downloads/Datec-14-LSF.pdf')],
+ rel=['steel-frame-e-mais-caro', 'steel-frame-paga-menos-inss'], call='Vai construir em steel frame?'),
 ]

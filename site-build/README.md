@@ -9,7 +9,7 @@
 - `portrait.py` — retrato: mantém a pessoa e troca o fundo por estúdio liso.
 - `styles.css`, `site.js` — estilo e comportamento (comparador, filtro, galeria, vídeo).
 - `video/film.html` + `video/cap.js` — vídeo de apresentação, renderizado quadro a quadro e codificado com ffmpeg.
-- `recife_block.txt` — projeto de Recife, fora do ar até o cliente confirmar.
+- `recife_block.txt` e `data_com_recife.py` — projeto de Recife, fora do ar até o cliente confirmar. Reativação testada: `SITE_DATA=data_com_recife.py` gera as 11 páginas.
 
 As imagens de origem (renders limpos por projeto) não estão no repositório: vêm
 do Drive do cliente. Os caminhos em `build.py` apontam para a pasta de trabalho

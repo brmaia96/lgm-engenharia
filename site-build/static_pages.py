@@ -92,3 +92,57 @@ SOBRE_BODY = '''<main>
 <div><dt>Base</dt><dd>Marília, SP. Projetos em todo o Brasil</dd></div>
 </dl></section>
 </main>'''
+
+# Página de agenda. AGENDA_URL: link da página de agendamento do Google Agenda (quando existir, vira o botão principal).
+AGENDA_URL = ''
+def agenda_body():
+    top = ('<p style="margin-top:34px"><a class="btn" style="margin-top:0" href="%s" target="_blank" rel="noopener">Ver horários livres na agenda</a></p>' % AGENDA_URL) if AGENDA_URL else ''
+    return '''<main>
+<section class="col phead"><p class="crumb">agenda</p>
+<h1>Marque uma reunião.</h1>
+<p class="lead" style="margin-top:26px">Trinta minutos por vídeo, <b>para entender o terreno, o projeto ou o INSS da obra.</b></p>''' + top + '''</section>
+
+<section class="band sec-s"><div class="tag"><b>Escolha o horário</b></div><div>
+<form id="ag" novalidate>
+<div class="calc four">
+<div><label for="ag-nome">Seu nome</label><input id="ag-nome" type="text" autocomplete="name" placeholder="Nome e sobrenome" aria-describedby="ag-h"><p class="hint" id="ag-h" role="alert"></p></div>
+<div><label for="ag-ass">Assunto</label><select id="ag-ass"><option>Projeto em steel frame</option><option>INSS e CNO da obra</option><option>Projeto e INSS</option><option>Outro assunto</option></select></div>
+<div><label for="ag-dia">Dia</label><select id="ag-dia"></select></div>
+<div><label for="ag-hora">Horário de Brasília</label><select id="ag-hora"><option>09:00</option><option>10:00</option><option>11:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option></select></div>
+</div>
+<button class="btn" type="submit">Pedir este horário</button>
+</form>
+<div class="out" id="ag-out" hidden aria-live="polite">
+<p class="meta">Seu pedido</p>
+<div class="num" id="ag-res" style="font-size:clamp(26px,3vw,40px);line-height:1.25"></div>
+<p>Envie o pedido pelo WhatsApp. <b>Eu confirmo o horário e mando o link do Google Meet.</b></p>
+<p style="margin-top:30px"><a class="lnk" id="ag-wa" href="https://wa.me/5514991850799" target="_blank" rel="noopener">Enviar pedido pelo WhatsApp</a></p>
+</div>
+</div></section>
+
+<section class="band sec"><div class="tag"><b>Como funciona</b></div>
+<dl class="tl">
+<div><dt>1</dt><dd>Você escolhe o dia e o horário e envia o pedido.</dd></div>
+<div><dt>2</dt><dd>Eu confirmo e a reunião entra na agenda, com link do Google Meet.</dd></div>
+<div><dt>3</dt><dd>Na conversa, vemos o terreno, o projeto e o INSS da obra. Depois você recebe a proposta.</dd></div>
+</dl></section>
+
+<section class="band sec"><div class="tag"><b>Contato direto</b></div>
+<dl class="tl">
+<div><dt>WhatsApp</dt><dd><a href="https://wa.me/5514991850799" target="_blank" rel="noopener">(14) 99185-0799</a></dd></div>
+<div><dt>Instagram</dt><dd><a href="https://www.instagram.com/eng.gustavomaia/" target="_blank" rel="noopener">@eng.gustavomaia</a></dd></div>
+<div><dt>Base</dt><dd>Marília, SP. Projetos em todo o Brasil</dd></div>
+</dl></section>
+</main>
+<script>(function(){var f=document.getElementById('ag');if(!f)return;var dia=document.getElementById('ag-dia'),nome=document.getElementById('ag-nome'),h=document.getElementById('ag-h'),out=document.getElementById('ag-out');
+var DS=['domingo','segunda','terça','quarta','quinta','sexta','sábado'],d=new Date();d.setHours(12,0,0,0);var n=0;
+while(n<10){d.setDate(d.getDate()+1);var w=d.getDay();if(w===0||w===6)continue;var o=document.createElement('option');
+o.textContent=DS[w]+', '+('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2);dia.appendChild(o);n++}
+nome.addEventListener('input',function(){nome.classList.remove('err');h.textContent=''});
+f.addEventListener('submit',function(ev){ev.preventDefault();var nm=nome.value.trim();
+if(nm.length<2){nome.classList.add('err');h.textContent='Informe seu nome.';nome.focus();out.hidden=true;return}
+var a=document.getElementById('ag-ass').value,dd=dia.value,hh=document.getElementById('ag-hora').value;
+document.getElementById('ag-res').textContent=dd+', às '+hh;
+var m=['Olá Gustavo, quero marcar uma reunião.','','Nome: '+nm,'Assunto: '+a,'Dia: '+dd,'Horário: '+hh+' (Brasília)','','Pode confirmar?'];
+document.getElementById('ag-wa').href='https://wa.me/5514991850799?text='+encodeURIComponent(m.join('\\n'));
+out.hidden=false;out.scrollIntoView({behavior:'smooth',block:'nearest'})});})();</script>'''

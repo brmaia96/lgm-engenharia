@@ -4,8 +4,8 @@ from PIL import Image
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 import grade as G
 S='/tmp/claude-0/-home-user-lgm-engenharia/49376ed1-2cbe-5161-a523-12fb37b2af57/scratchpad'
-A=S+'/assets'; B=S+'/build'; OUT=S+'/site'
-spec=importlib.util.spec_from_file_location('data',B+'/data.py'); D=importlib.util.module_from_spec(spec); spec.loader.exec_module(D)
+A=S+'/assets'; B=S+'/build'; OUT=os.environ.get('SITE_OUT',S+'/site'); AUX=OUT if os.environ.get('SITE_OUT') else B
+spec=importlib.util.spec_from_file_location('data',os.environ.get('SITE_DATA',B+'/data.py')); D=importlib.util.module_from_spec(spec); spec.loader.exec_module(D)
 P=D.PROJECTS
 WA='https://wa.me/5514991850799'
 e=html.escape
@@ -41,12 +41,12 @@ def put(src, dst, maxw=1800, crop=None, ratio=None, focus=(.5,.5), q=80, pad=Non
 FONTS='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:ital@0;1&display=swap"><link rel="stylesheet" href="styles.css">'
 def header(cur):
     nav=''.join('<a href="%s"%s>%s</a>'%(h,' aria-current="page"' if k==cur else '',t) for k,h,t in
-        (('obras','obras.html','obras'),('inss','inss.html','inss'),('sobre','sobre.html','sobre')))
+        (('obras','obras.html','obras'),('inss','inss.html','inss'),('sobre','sobre.html','sobre'),('agenda','agenda.html','agenda')))
     return ('<header class="top col"><a class="mk" href="index.html" aria-label="L. Engenharia, início">L<i>.</i></a>'
-            '<nav class="nav" aria-label="Páginas">%s<a href="%s" target="_blank" rel="noopener">contato</a></nav></header>')%(nav,WA)
+            '<nav class="nav" aria-label="Páginas">%s</nav></header>')%nav
 FOOT=('<footer class="col"><div class="ft">'
  '<div><b>Luis Gustavo Maia</b>Engenheiro civil<br>CREA-SP 5071068977</div>'
- '<div><b>Contato</b><a href="%s" target="_blank" rel="noopener">WhatsApp (14) 99185-0799</a><br><a href="https://www.instagram.com/eng.gustavomaia/" target="_blank" rel="noopener">Instagram @eng.gustavomaia</a></div>'
+ '<div><b>Contato</b><a href="agenda.html">Marcar reunião</a><br><a href="%s" target="_blank" rel="noopener">WhatsApp (14) 99185-0799</a><br><a href="https://www.instagram.com/eng.gustavomaia/" target="_blank" rel="noopener">Instagram @eng.gustavomaia</a></div>'
  '<div><b>Atendimento</b>Marília, SP<br>Projetos em todo o Brasil</div>'
  '</div></footer>')%WA
 def page(fn,title,cur,body,main=False):
@@ -59,12 +59,12 @@ def page(fn,title,cur,body,main=False):
     open(OUT+'/'+fn,'w').write(doc)
     if not main: reg(fn)
     else:
-        open(B+'/index.deploy.html','w').write(('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
+        open(AUX+'/index.deploy.html','w').write(('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
           '<meta name="description" content="Luis Gustavo Maia, engenheiro civil. Projeto executivo em steel frame, projetos complementares e INSS de obra. Marília, SP, com atendimento em todo o Brasil.">'
           '<title>%s</title>%s</head><body>%s</body></html>\n')%(title,FONTS,inner))
 
 def call(h2,msg,label='Conversar pelo WhatsApp'):
-    return '<section class="col call"><h2>%s</h2><a class="lnk" href="%s" target="_blank" rel="noopener">%s</a></section>'%(h2,wa(msg),label)
+    return '<section class="col call"><h2>%s</h2><p class="links"><a class="lnk" href="agenda.html">Marcar reunião</a><a class="lnk" href="%s" target="_blank" rel="noopener">%s</a></p></section>'%(h2,wa(msg),label)
 
 # ---------- imagens e cartões ----------
 for p in P:
@@ -151,8 +151,9 @@ page('index.html','L. Engenharia','home',b,main=True)
 
 # ---------- inss e sobre ----------
 page('inss.html','INSS de obra · L. Engenharia','inss',D.INSS_BODY)
+page('agenda.html','Marcar reunião · L. Engenharia','agenda',D.AGENDA_BODY)
 page('sobre.html','Sobre · L. Engenharia','sobre',D.SOBRE_BODY+call('Do terreno. <em>À chave.</em>','Olá Gustavo, vi o site e quero conversar sobre um projeto.'))
 for f in ('styles.css','site.js'): shutil.copy(B+'/'+f,OUT+'/'+f); reg(f)
-import json; json.dump(FILES,open(B+'/files.json','w'),indent=0)
+import json; json.dump(FILES,open(AUX+'/files.json','w'),indent=0)
 tot=sum(os.path.getsize(OUT+'/'+f) for f in FILES)
 print(len(FILES),'files',round(tot/1e6,1),'MB; largest',max((os.path.getsize(OUT+'/'+f),f) for f in FILES))

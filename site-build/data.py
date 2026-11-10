@@ -1,6 +1,6 @@
 import importlib.util,os
 _s=importlib.util.spec_from_file_location('sp',os.path.dirname(__file__)+'/static_pages.py'); _m=importlib.util.module_from_spec(_s); _s.loader.exec_module(_m)
-INSS_BODY=_m.INSS_BODY; SOBRE_BODY=_m.SOBRE_BODY
+INSS_BODY=_m.INSS_BODY; SOBRE_BODY=_m.SOBRE_BODY; AGENDA_BODY=_m.agenda_body()
 OBRAS_META='10 projetos · casas, chalés e estruturas em aço'
 HOME_SELECT=['casa-taquaracu','chale-piedade','patio-escolar']
 CMP_CAPTION='<b><a href="o-chale-acolher.html">Chalé Acolher</a></b><span>arraste para ver a estrutura</span>'

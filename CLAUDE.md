@@ -73,7 +73,10 @@ segue essa linguagem e fica em `site/` (HTML estático, pronto para hospedar).
   pronta, obras em destaque, INSS), `obras.html` (cartões padronizados + filtro),
   uma página por projeto `o-<slug>.html` (texto curto, ficha técnica, galeria por
   seção com ampliação), `inss.html` (exemplo, memória de cálculo, simulador que
-  mostra só a aferição indireta e leva ao WhatsApp), `sobre.html`.
+  mostra só a aferição indireta e leva ao WhatsApp), `sobre.html`, `agenda.html`
+  (escolha de dia e horário; o pedido segue pelo WhatsApp. Quando existir a
+  página de agendamento do Google Agenda, preencher `AGENDA_URL` em
+  `site-build/static_pages.py` para o botão abrir a agenda sincronizada).
 - **Tokens web:** fundo `#fff`, tinta `#2F2E2E`, corpo `#6B6868`, apoio `#A0A09F`,
   linha `#E9E8E6`, acento terra `#9A7350` só em destaque raro. Jost 300/400/500;
   Playfair Display só na marca e em um itálico de acento.

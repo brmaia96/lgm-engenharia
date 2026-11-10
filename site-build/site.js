@@ -20,11 +20,11 @@ v.addEventListener('play',lab);v.addEventListener('pause',lab);lab();}
 
 /* filtro de obras */
 var f=document.getElementById('flt');
-if(f){var cards=[].slice.call(document.querySelectorAll('.card[data-cat]')),st=document.getElementById('flt-st');
+if(f){var cards=[].slice.call(document.querySelectorAll('#grid [data-cat]')),st=document.getElementById('flt-st');
 f.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var k=b.getAttribute('data-k'),n=0;
 [].forEach.call(f.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
 cards.forEach(function(x){var on=k==='*'||x.getAttribute('data-cat')===k;x.hidden=!on;if(on)n++});
-var g=document.getElementById('grid');if(g)g.classList.toggle('on',k!=='*');if(st)st.textContent=n+(n===1?' obra':' obras');});}
+var g=document.getElementById('grid');if(g)g.classList.toggle('on',k!=='*');if(st)st.textContent=n+' '+(n===1?(f.getAttribute('data-one')||'obra'):(f.getAttribute('data-many')||'obras'));});}
 
 /* galeria ampliada */
 var zs=[].slice.call(document.querySelectorAll('.gal .z')),lb=document.getElementById('lb');

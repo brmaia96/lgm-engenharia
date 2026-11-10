@@ -14,3 +14,10 @@
 As imagens de origem (renders limpos por projeto) não estão no repositório: vêm
 do Drive do cliente. Os caminhos em `build.py` apontam para a pasta de trabalho
 usada na geração; ajuste `S` antes de rodar em outra máquina.
+
+## Novembro de 2026: INSS no centro, blog e portfólio enxuto
+
+- `inss_page.py`: página de INSS de obra e fonte única dos números do exemplo.
+- `blog.py`: artigos do blog (lista de seções em HTML e fontes).
+- `data.py`: os projetos completos e, no fim, a camada `LEAN`/`HELD`, que escolhe o que vai ao ar.
+- `video/film.html` e `video/cap2.js`: `node cap2.js 900 1140` regrava só o trecho do INSS do vídeo.

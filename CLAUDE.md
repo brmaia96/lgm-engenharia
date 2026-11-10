@@ -69,8 +69,8 @@ acessível sem conta. Para referência dos posts, pedir print ao cliente.
 O cliente apontou **sys.haus** como o modelo ("é assim que eu quero"). O site
 segue essa linguagem e fica em `site/` (HTML estático, pronto para hospedar).
 
-- **Estrutura:** `index.html` (vídeo de apresentação, comparador estrutura ×
-  pronta, obras em destaque, INSS), `obras.html` (cartões padronizados + filtro),
+- **Estrutura:** `index.html` (vídeo de apresentação, INSS, comparador estrutura ×
+  pronta, obras em destaque, blog), `obras.html` (cartões padronizados + filtro),
   uma página por projeto `o-<slug>.html` (texto curto, ficha técnica, galeria por
   seção com ampliação), `inss.html` (exemplo, memória de cálculo, simulador que
   mostra só a aferição indireta e leva ao WhatsApp), `sobre.html`, `agenda.html`
@@ -86,6 +86,66 @@ segue essa linguagem e fica em `site/` (HTML estático, pronto para hospedar).
   perfil e nos vídeos publicados pelo cliente. (A regra "monocromática" abaixo
   vale para a peça A4 impressa.)
 - **Nunca nome de cliente.** Cidade pode. Nome de projeto pode ser trocado.
+
+### Prioridade do site (instrução do cliente, nov/2026)
+
+**A parte tributária é o centro.** É onde o cliente domina e o que traz o
+cliente: o site tem de soar como especialista total em INSS de obra. O portfólio
+só mostra que há know-how, sem excesso.
+
+- Navegação: `inss · obras · blog · sobre · agenda`. Na home, o bloco de INSS vem
+  logo depois da frase de abertura.
+- `inss.html`: o imposto, o cálculo em quatro passos, os três caminhos para pagar
+  só o devido (tipo misto, pré-fabricado, mão de obra declarada), por que o steel
+  frame entra, passo a passo, exemplo com memória de cálculo, simulador,
+  perguntas frequentes e fontes. Texto e números em `site-build/inss_page.py`.
+- **Números do exemplo saem de um lugar só** (`inss_page.py`): casa de 150 m²,
+  área equivalente de 89% (IN RFB 2.021, art. 25, § 6º), VAU de referência de
+  R$ 2.000/m², 20% (alvenaria) ou 15% (mista), fator social de 40%, alíquota de
+  36,8%. Resultado: R$ 7.860 sem planejamento, R$ 5.895 como mista, R$ 2.358
+  com pré-fabricado. A home e o vídeo repetem esses valores. O exemplo antigo
+  (R$ 8.832 / R$ 2.650) ignorava a área equivalente e não deve voltar.
+- Blog (`blog.html`, artigos `b-<slug>.html`, conteúdo em `site-build/blog.py`):
+  lista editorial sem imagem. Primeiro os artigos tributários; steel frame
+  depois. Só entra afirmação lida na fonte primária, com a fonte no fim.
+- **Portfólio enxuto, sem prancha.** Só fachada, externa, interna e o 3D da
+  estrutura. Nada de planta, corte, isométrica, lista de corte ou detalhe:
+  "detalhe é para obra e para o cliente que comprar". Poucas imagens por
+  projeto e ficha curta. A seleção fica na camada `LEAN` de `site-build/data.py`.
+- Fora do ar, guardados em `data.py` (`HELD`): **Casa Duo**, até as imagens serem
+  corrigidas (árvore na cobertura dos vizinhos, portão sem muro, bancada da
+  cozinha e porta da lavanderia mudando entre vistas); **Chalé Analândia**, até
+  existir imagem renderizada; **Do aço à estrutura**, que não tem fachada nem
+  interior.
+- Conferir toda imagem com acabamento por IA antes de publicar: elementos que
+  mudam de uma vista para outra derrubam a credibilidade.
+- Salas comerciais (Marília): fotos reais de obra concluída. Não citar que a
+  reforma começou sem alvará; elétrica e climatização são de outro responsável.
+
+### INSS de obra: o que foi conferido na fonte (nov/2026)
+
+Fontes lidas: IN RFB 2.021/2021 consolidada, IN RFB 2.061/2021 (CNO), Manual do
+Sero v3.0 (08/2024) e páginas da Receita no gov.br.
+
+- COD = área equivalente × VAU. O VAU oficial só aparece no Sero (e-CAC).
+- Tipo mista: paredes externas ou estrutura de madeira, metal ou pré-fabricado
+  (art. 25, § 17). Mão de obra presumida de 15%, contra 20% na alvenaria.
+- Pré-fabricado: redução de 70% com notas de venda e montagem de pelo menos 40%
+  do COD (art. 26, § 2º). Para usar, a obra é inscrita como **alvenaria**
+  (Manual do Sero, item 19.5). Não contam notas de laje, fundação, piso,
+  cobertura, paredes internas, elétrica e hidráulica.
+- Fator de ajuste (pessoa física): remuneração declarada de 50% da RMT (70%
+  acima de 350 m²) e DCTFWeb em todos os meses: aferição sem débito (art. 33).
+- Nota de prestador não é crédito no Sero; o que abate é a remuneração declarada
+  com vínculo à obra. Retenção não é crédito na aferição.
+- Decadência: cinco anos contados do primeiro dia do exercício seguinte; em
+  aferição de 2024 estava decaído o que ocorreu até 31/12/2018.
+- A norma e o manual **não citam steel frame**. O enquadramento é pelo texto
+  ("estrutura de metal", "pré-fabricado por terceiros"), e isso é dito no site.
+- **A confirmar com o cliente:** (1) VAU real de SP para o exemplo; (2) o
+  Provimento CG nº 17/2026 da Corregedoria de SP, que segundo fontes secundárias
+  dispensou a CND para averbar construção nos cartórios paulistas. Por isso o
+  site não afirma que "sem certidão o cartório não averba".
 
 ### Padrão de imagem (obrigatório em toda peça web)
 

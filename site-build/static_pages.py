@@ -84,10 +84,10 @@ SOBRE_BODY = '''<main>
 
 <section class="band sec"><div class="tag"><b>O que entrego</b></div>
 <div class="list">
+<div><h3>INSS e CNO da obra</h3><p>Cadastro, enquadramento e regularização para a obra não pagar contribuição a mais.</p></div>
 <div><h3>Projeto executivo em steel frame</h3><p>Painéis, tesouras, plano de corte e caderno de montagem. O montador não interpreta, monta.</p></div>
 <div><h3>Projetos complementares</h3><p>Fundação, elétrica e hidráulica compatibilizadas com a estrutura no mesmo modelo.</p></div>
 <div><h3>Acompanhamento de obra</h3><p>Do radier à cobertura, com a mesma responsabilidade técnica do projeto.</p></div>
-<div><h3>INSS e CNO da obra</h3><p>Cadastro, enquadramento e regularização para a obra não pagar contribuição a mais.</p></div>
 </div></section>
 
 <section class="band sec"><div class="tag"><b>Registro</b></div>

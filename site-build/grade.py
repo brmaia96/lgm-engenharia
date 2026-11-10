@@ -30,3 +30,9 @@ def ink(im,paper=PANEL):
 def model(im):
     L=_lum(_arr(im)); lo=np.percentile(L,8); L=np.clip((L-lo)/(1-lo),0,1)**.95
     return _img((NIGHT+(.96-NIGHT)*L)[...,None]*np.array([1.0,.995,.985]))
+def studio(im,sat=.78):
+    """render em cor sobre fundo de estúdio escuro: sem balanço de branco (o fundo preto enganaria a média), saturação contida, preto nivelado no mesmo #0A0A0A"""
+    a=_arr(im); L=_lum(a)[...,None]; a=L+(a-L)*sat
+    a=a*np.array([1.01,1.0,.975])
+    lo=float(np.percentile(_lum(a),3)); a=np.clip((a-lo)/(1-lo),0,1)
+    return _img(NIGHT+(.97-NIGHT)*a)

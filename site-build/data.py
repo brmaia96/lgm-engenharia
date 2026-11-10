@@ -1,8 +1,9 @@
 import importlib.util,os
 _s=importlib.util.spec_from_file_location('sp',os.path.dirname(__file__)+'/static_pages.py'); _m=importlib.util.module_from_spec(_s); _s.loader.exec_module(_m)
-INSS_BODY=_m.INSS_BODY; SOBRE_BODY=_m.SOBRE_BODY; AGENDA_BODY=_m.agenda_body()
+SOBRE_BODY=_m.SOBRE_BODY; AGENDA_BODY=_m.agenda_body()
+_si=importlib.util.spec_from_file_location('inss_page',os.path.dirname(__file__)+'/inss_page.py'); INSS=importlib.util.module_from_spec(_si); _si.loader.exec_module(INSS)
 OBRAS_META='10 projetos · casas, chalés e estruturas em aço'
-HOME_SELECT=['casa-taquaracu','chale-piedade','patio-escolar']
+HOME_SELECT=['casa-taquaracu','le-blanc-lofts','salas-comerciais']
 CMP_CAPTION='<b><a href="o-casa-taquaracu.html">Casa Taquaraçu</a></b><span>arraste para ver a estrutura</span>'
 C='clean/'
 def I(src,cap,alt,lay='half',**k): d=dict(src=C+src,cap=cap,alt=alt,lay=lay); d.update(k); return d
@@ -26,12 +27,10 @@ dict(slug='casa-taquaracu',assets='taquaracu',name='Casa Taquaraçu',cat='casa',
   dict(label='Interiores',items=[
    I('04-estar-e-jantar.jpg',('Estar e jantar','66,55 m² sob o telhado'),'Estar e jantar integrados com forro inclinado'),
    I('05-cozinha.jpg',('Cozinha com ilha','20,35 m² · integrada ao estar'),'Cozinha com ilha e quatro banquetas')]),
-  dict(label='Planta',items=[I('07-planta-baixa.jpg',('Planta baixa','casa acima, edícula abaixo'),'Planta baixa da casa e da edícula, sem cotas','plan')]),
   dict(label='Estrutura',items=[
    I('08-fundacao-e-estrutura.jpg',('Estrutura em light steel frame','radier sobre pilares · modelo 3D completo'),'Modelo 3D da estrutura em steel frame sobre laje apoiada em pilares','full',pos='50% 52%'),
-   I('10-steel-frame-por-dentro.jpg',('Steel frame por dentro','montantes, painéis e treliças de cobertura'),'Vista interna do modelo da estrutura em steel frame','third'),
-   I('11-estrutura-e-instalacoes.jpg',('Estrutura e instalações','11 modelos compatibilizados'),'Painéis de steel frame com as instalações sobrepostas em cores','third'),
-   I('12-telha-sanduiche.jpg',('Telha sanduíche','aço pré-pintado · núcleo de PU'),'Detalhe em corte da telha sanduíche trapezoidal','third')])]),
+   I('10-steel-frame-por-dentro.jpg',('Steel frame por dentro','montantes, painéis e treliças de cobertura'),'Vista interna do modelo da estrutura em steel frame'),
+   I('11-estrutura-e-instalacoes.jpg',('Estrutura e instalações','11 modelos compatibilizados'),'Painéis de steel frame com as instalações sobrepostas em cores')])]),
 
 dict(slug='chale-acolher',name='Chalé Acolher',cat='chalé',cat_label='chalés',cat_plural='chalés',city='Marília · SP',sub='light steel frame · 81 m²',ref='o Chalé Acolher',
  card=dict(src=C+'00-fachada-frontal-pergolado.jpg',focus=(.5,.55),alt='Fachada do Chalé Acolher, em telha metálica creme, com garagem sob pergolado'),
@@ -44,21 +43,17 @@ dict(slug='chale-acolher',name='Chalé Acolher',cat='chalé',cat_label='chalés'
         ('Escopo','Arquitetura, estrutural em steel frame, complementares e caderno de montagem'),('Etapa','Projeto · 2026')],
  sections=[
   dict(label='Fachadas',items=[
-   I('01-fundos-porta-de-correr.jpg',('Fundos','porta de correr de 3,00 m'),'Fundos do chalé, com a porta de correr da sala'),
-   I('04-render-lateral-direita-lavanderia.jpg',('Lateral','volume da lavanderia externa'),'Lateral direita do chalé com o volume da lavanderia',pos='45% 50%')]),
+   I('01-fundos-porta-de-correr.jpg',('Fundos','porta de correr de 3,00 m'),'Fundos do chalé, com a porta de correr da sala','full',pos='50% 36%'),
+   I('03-render-fachada-frontal-lateral.jpg',('Fundos e lateral','porta de entrada e porta de correr da sala'),'Maquete do chalé: a lateral com a porta de entrada e a empena dos fundos com a porta de correr',r='16/9'),
+   I('04-render-lateral-direita-lavanderia.jpg',('Lateral direita','janela em fita e lavanderia externa'),'Maquete do chalé pela lateral direita, com a janela em fita e o volume da lavanderia',r='16/9')]),
   dict(label='Interiores',items=[
    I('14-a3-interna-estar.jpg',('Estar','sala integrada de 33,54 m²'),'Estar visto da cozinha, com a ilha em primeiro plano','full'),
    I('15-a3-interna-cozinha-jantar.jpg',('Cozinha e jantar','ilha com cooktop'),'Cozinha e jantar com mesa de madeira para seis lugares'),
    I('16-a3-interna-suite.jpg',('Suíte','9,15 m² · porta de correr para o gramado'),'Suíte com cama de casal e porta de correr de vidro'),
    I('18-a3-interna-dormitorio-escritorio.jpg',('Dormitório e escritório','7,80 m²'),'Dormitório com bancada de parede a parede'),
    I('24-a3-interna-banho-social.jpg',('Banho social','3,12 m²'),'Banho social com bancada escura e cuba embutida')]),
-  dict(label='Layout',items=[
-   I('05-render-interior-corte-layout.jpg',('Chalé em corte','layout interno com os painéis à vista'),'Chalé cortado mostrando o layout interno','full'),
-   I('26-a3-isometrica-chale-aberto.jpg',('Isométrica','corte a 2,40 m do piso'),'Isométrica do chalé cortado, com a lavanderia externa','plan')]),
   dict(label='Estrutura',items=[
-   I('06-render-estrutura-lsf.jpg',('Estrutura em light steel frame','painéis de parede, tesouras e cobertura'),'Estrutura completa em light steel frame','full'),
-   I('08-lsf-3d-frente.jpg',('Modelo estrutural','paredes em módulo de 0,40 m'),'Vista 3D do modelo estrutural pela frente','plan half'),
-   I('10-lsf-3d-sem-cobertura.jpg',('Tesouras e laje técnica','tesouras Pratt alinhadas aos montantes'),'Vista 3D do modelo estrutural sem os painéis de cobertura','plan half')])]),
+   I('06-render-estrutura-lsf.jpg',('Estrutura em light steel frame','painéis de parede, tesouras e cobertura · um só perfil'),'Estrutura completa em light steel frame, com painéis de parede e tesouras','full')])]),
 
 dict(slug='chale-piedade',name='Chalé Piedade',cat='chalé',cat_label='chalés',cat_plural='chalés',city='Piedade · SP',sub='A-frame · 70 m²',ref='o Chalé Piedade',
  card=dict(src=C+'02-fachada-nordeste-hall.jpg',focus=(.5,.5),alt='Chalé A-frame com cobertura grafite e hall em ripado de madeira'),
@@ -77,10 +72,7 @@ dict(slug='chale-piedade',name='Chalé Piedade',cat='chalé',cat_label='chalés'
    I('05-interna-cozinha-jantar.jpg',('Cozinha e jantar','11,69 m² sob o mezanino'),'Cozinha e mesa de jantar sob o mezanino'),
    I('06-interna-mezanino-para-vidro.jpg',('Mezanino','quarto de 14,61 m² voltado para o vidro'),'Vista do mezanino para a empena triangular de vidro'),
    I('07-interna-lareira.jpg',('Lareira suspensa','no centro da sala'),'Lareira suspensa preta com fogo aceso'),
-   I('08-interna-banheiro.jpg',('Banheiro','3,05 m²'),'Banheiro com paredes em tom cimento e cuba de apoio')]),
-  dict(label='Planta',items=[
-   I('09-planta-p1-terreo.jpg',('Térreo','sala, cozinha, banheiro, hall e deck'),'Planta humanizada do térreo','half',r='4/5'),
-   I('10-planta-p2-mezanino.jpg',('Mezanino','quarto sobre a cozinha'),'Planta humanizada do mezanino','half',r='4/5')])]),
+   I('08-interna-banheiro.jpg',('Banheiro','3,05 m²'),'Banheiro com paredes em tom cimento e cuba de apoio')])]),
 
 dict(slug='casa-duo',name='Casa Duo',cat='casa',cat_label='casas',cat_plural='casas',city='Marília · SP',sub='casa térrea · 120 m²',ref='a Casa Duo',
  card=dict(src=C+'01-fachada.jpg',focus=(.5,.55),alt='Fachada da Casa Duo vista da rua'),
@@ -99,8 +91,7 @@ dict(slug='casa-duo',name='Casa Duo',cat='casa',cat_label='casas',cat_plural='ca
   dict(label='Interiores',items=[
    I('09-estar-jantar.jpg',('Estar e jantar','48,50 m² integrados à cozinha'),'Estar e jantar integrados, com portas de correr para o quintal','third'),
    I('04-cozinha.jpg',('Cozinha','armários sob medida e balcão'),'Cozinha com balcão e banquetas','third'),
-   I('05-suite.jpg',('Suíte','15,75 m²'),'Suíte com painel ripado em madeira','third')]),
-  dict(label='Planta',items=[I('06-planta-baixa.jpg',('Planta baixa','a casa no terreno'),'Planta humanizada da casa no terreno, com piscina e garagem','plan')])]),
+   I('05-suite.jpg',('Suíte','15,75 m²'),'Suíte com painel ripado em madeira','third')])]),
 
 dict(slug='tiny-house',name='Tiny House',cat='chalé',cat_label='chalés',cat_plural='chalés',city='Sorocaba · SP',sub='duas águas · 39 m²',ref='a Tiny House',
  card=dict(src=C+'02-fachada-lateral-monolito.jpg',focus=(.5,.5),alt='Tiny house em telha metálica grafite, com frente de vidro e deck'),
@@ -118,10 +109,7 @@ dict(slug='tiny-house',name='Tiny House',cat='chalé',cat_label='chalés',cat_pl
   dict(label='Interiores',items=[
    I('04-interna-sala-para-vidro.jpg',('Sala','9,73 m² voltados para o vidro'),'Interior voltado para a frente de vidro','full'),
    I('05-interna-loft.jpg',('Loft','14,65 m² · cama sob a claraboia'),'Loft com a cama sob a claraboia'),
-   I('06-interna-cozinha-escada.jpg',('Cozinha e escada','degraus alternados'),'Cozinha em L e escada de degraus alternados')]),
-  dict(label='Planta',items=[
-   I('08-planta-p1-terreo.jpg',('Térreo','sala, cozinha, lavatório, banho e deck'),'Planta humanizada do térreo','half',r='4/5'),
-   I('09-planta-p2-loft.jpg',('Loft','sobre a sala'),'Planta humanizada do loft','half',r='4/5')])]),
+   I('06-interna-cozinha-escada.jpg',('Cozinha e escada','degraus alternados'),'Cozinha em L e escada de degraus alternados')])]),
 
 dict(slug='chale-viver',name='Chalé Viver',cat='chalé',cat_label='chalés',cat_plural='chalés',city='Marília · SP',sub='alvenaria · 88 m²',ref='o Chalé Viver',
  card=dict(src=C+'04-render-fachada-frontal.jpg',focus=(.5,.5),alt='Casa térrea em L com garagem sob pergolado metálico preto'),
@@ -134,16 +122,13 @@ dict(slug='chale-viver',name='Chalé Viver',cat='chalé',cat_label='chalés',cat
         ('Laje','Treliçada, h = 16 cm, concreto C25'),('Cobertura','Telha de concreto, inclinação de 35%'),('Escopo','Arquitetura, estrutural, complementares e projeto legal'),('Etapa','Projeto · 2026')],
  sections=[
   dict(label='Fachadas',items=[
-   I('01b-fundos-deck-ombrelone.jpg',('Fundos','deck sob pergolado e a mangueira no alto do talude'),'Fundos da casa, com o deck e a mangueira existente','full'),
-   I('02-vista-aerea.jpg',('Vista aérea','casa em L de 10,25 × 15,45 m'),'Vista aérea da casa em L com cobertura de telha de concreto'),
-   I('06-render-fundos.jpg',('Deck','porta de correr da sala aberta para o pergolado'),'Fundos com a porta de correr aberta para o deck',pos='55% 50%')]),
+   I('06-render-fundos.jpg',('Fundos','deck sob pergolado e a mangueira no alto do talude'),'Fundos da casa, com o deck sob pergolado e a mangueira existente','full',pos='55% 45%'),
+   I('04-render-fachada-frontal.jpg',('Frente','garagem sob pergolado metálico preto'),'Frente da casa, com a garagem sob o pergolado metálico'),
+   I('02-vista-aerea.jpg',('Vista aérea','casa em L de 10,25 × 15,45 m'),'Vista aérea da casa em L com cobertura de telha de concreto',pos='50% 45%')]),
   dict(label='Interiores',items=[
    I('07-render-estar-jantar.jpg',('Estar e jantar','43,66 m² integrados à cozinha'),'Estar e jantar com a cozinha ao fundo','full'),
    I('09-render-suite.jpg',('Suíte','18,52 m² com closet'),'Suíte com cama de casal e porta de correr'),
-   I('08-render-area-servico.jpg',('Área de serviço','5,73 m²'),'Área de serviço com tanque duplo e armários brancos')]),
-  dict(label='Planta e corte',items=[
-   I('10-planta-humanizada.jpg',('Planta','casa em L, com a garagem no encontro das alas'),'Planta humanizada da casa em L','plan'),
-   I('12a-corte-aa.jpg',('Corte AA','pela suíte e pela sala'),'Corte AA com níveis do piso, da laje e da cumeeira','plan')])]),
+   I('08-render-area-servico.jpg',('Área de serviço','5,73 m²'),'Área de serviço com tanque duplo e armários brancos')])]),
 
 dict(slug='chale-analandia',name='Chalé Analândia',cat='chalé',cat_label='chalés',cat_plural='chalés',city='Analândia · SP',sub='steel framing · 132 m²',ref='o Chalé Analândia',
  card=dict(src=C+'03-fachada-norte.jpg',draw='panel',fam='b',alt='Desenho da fachada norte da cabana A-frame'),
@@ -177,13 +162,9 @@ dict(slug='patio-escolar',assets='escolas',name='Cobertura de pátio escolar',ca
    I('02-aerea.jpg',('Primeira escola','duas águas com faixas translúcidas'),'Vista aérea da cobertura entre os blocos da escola'),
    I('08-segunda-escola.jpg',('Segunda escola','a cobertura mais longa'),'Vista aérea da cobertura da segunda escola')]),
   dict(label='Estrutura',items=[
-   I('04-estrutura.jpg',('Sem as telhas','tesouras, terças e contraventamentos'),'Estrutura metálica vista de cima, sem as telhas'),
-   I('03-tesouras.jpg',('Tesouras','treliçadas, em sequência'),'Tesouras treliçadas vistas de frente sob a cobertura'),
-   I('09-diagonal.jpg',('Pilares','fileira com placas de base'),'Vista em diagonal sob a cobertura, com a fileira de pilares'),
-   I('07-corte.jpg',('Borda em corte','telha, perfil de borda e terças'),'Corte da borda da cobertura com as faces cortadas em laranja')]),
-  dict(label='Ligações',items=[
-   I('05-apoio-zoom.jpg',('Apoio','ligação parafusada no topo do pilar'),'Ligação parafusada entre pilar, tesoura e vigas'),
-   I('06-base-zoom.jpg',('Base','placa de base e chumbadores'),'Placa de base do pilar com chumbadores')])]),
+   I('04-estrutura.jpg',('Sem as telhas','tesouras, terças e contraventamentos'),'Estrutura metálica vista de cima, sem as telhas','third'),
+   I('03-tesouras.jpg',('Tesouras','treliçadas, em sequência'),'Tesouras treliçadas vistas de frente sob a cobertura','third'),
+   I('09-diagonal.jpg',('Pilares','fileira entre os blocos'),'Vista em diagonal sob a cobertura, com a fileira de pilares','third')])]),
 
 dict(slug='le-blanc-lofts',name='Le Blanc Lofts',cat='estrutura',cat_label='estruturas',cat_plural='estruturas',city='Angra dos Reis · RJ',sub='light steel frame · off-site',ref='o projeto dos lofts',
  card=dict(src=C+'06-vista-3d-lsf.jpg',draw='panel',fam='b',alt='Vista 3D da estrutura do loft em light steel frame'),
@@ -213,7 +194,6 @@ dict(slug='do-aco-a-estrutura',assets='estrutura-bh',name='Do aço à estrutura'
  ficha=[('Local','Belo Horizonte · MG'),('Sistema','Light steel frame'),('Peças','430'),('Aço na estrutura','600 kg'),('Barras de corte','77, sendo 32 sem sobra'),('Perda no corte','1,5%'),
         ('Caderno de montagem','22 folhas para 15 painéis e tesouras'),('Escopo','Projeto estrutural, plano de corte e caderno de montagem'),('Etapa','Projeto · 2026')],
  sections=[
-  dict(label='Plano de corte',items=[I('02-plano-de-corte-77-barras.jpg',('77 barras','uma barra por linha, cada cor uma peça'),'Gráfico do plano de corte com as 77 barras divididas em peças','full')]),
   dict(label='Montagem',items=[
    I('03-montagem-etapa-1.jpg',('Primeiros painéis','paredes'),'Primeiros painéis de parede no lugar'),
    I('04-montagem-etapa-2.jpg',('Paredes','painel a painel'),'Mais painéis de parede posicionados'),
@@ -221,12 +201,100 @@ dict(slug='do-aco-a-estrutura',assets='estrutura-bh',name='Do aço à estrutura'
    I('06-montagem-cobertura.jpg',('Cobertura','o último painel'),'Último painel de cobertura descendo sobre a estrutura')])]),
 ]
 
-# família de cada imagem (padrão: 'a' = render em cor graduada; 'b' = desenho em tinta; 'c' = modelo de estrutura em fundo escuro)
+# família de cada imagem (padrão: 'a' = render em cor graduada; 'b' = desenho em tinta; 'c' = modelo de estrutura em fundo escuro;
+# 'd' = render em cor sobre fundo de estúdio escuro)
 FAM={
  'taquaracu':{'07-planta-baixa.jpg':'b','08-fundacao-e-estrutura.jpg':'c','12-telha-sanduiche.jpg':'c'},
- 'chale-acolher':{'04-render-lateral-direita-lavanderia.jpg':'c','05-render-interior-corte-layout.jpg':'c','06-render-estrutura-lsf.jpg':'c','08-lsf-3d-frente.jpg':'b','10-lsf-3d-sem-cobertura.jpg':'b'},
+ 'chale-acolher':{'03-render-fachada-frontal-lateral.jpg':'d','04-render-lateral-direita-lavanderia.jpg':'d','06-render-estrutura-lsf.jpg':'c'},
  'chale-viver':{'12a-corte-aa.jpg':'b'},
  'chale-analandia':{k:'b' for k in ('01-planta-layout-terreo.jpg','02-planta-layout-superior.jpg','04-fachada-sul.jpg','05-fachada-oeste.jpg','07-corte-aa.jpg','08-corte-bb.jpg')},
- 'le-blanc-lofts':{k:'b' for k in ('01-planta-terreo-lsf.jpg','02-planta-mezanino-lsf.jpg','04-corte-transversal-lsf.jpg','05-corte-longitudinal-lsf.jpg','07-detalhe-longarinas-escada.jpg')},
  'estrutura-bh':{k:'c' for k in ('03-montagem-etapa-1.jpg','04-montagem-etapa-2.jpg','05-montagem-etapa-3.jpg','06-montagem-cobertura.jpg')},
 }
+
+
+# ---------------------------------------------------------------------------------------------------------
+# SELEÇÃO ENXUTA (pedido do cliente): o portfólio só mostra que há know-how. Poucas imagens por projeto,
+# só fachada, externa, interna e o 3D da estrutura; ficha curta; no máximo dois parágrafos.
+# Os dados completos ficam acima; esta camada escolhe o que vai ao ar.
+#  - casa-duo: fora do site até as imagens serem corrigidas (árvore na cobertura dos vizinhos, portão sem muro,
+#    bancada da cozinha e porta da lavanderia que mudam de uma vista para outra).
+#  - do-aco-a-estrutura: fora do site, não tem fachada nem interior (é história de plano de corte).
+HELD=['casa-duo','do-aco-a-estrutura']
+LEAN={
+ 'casa-taquaracu':[('Fachadas',[('03-','full'),('06-','half'),('13-','half')]),('Interiores',[('04-','half'),('05-','half')]),('Estrutura',[('08-','full'),('10-','half'),('11-','half')])],
+ 'chale-acolher':[('Fachadas',[('01-','full'),('03-','half'),('04-','half')]),('Interiores',[('14-','full'),('15-','half'),('16-','half')]),('Estrutura',[('06-','full')])],
+ 'chale-piedade':[('Fachadas',[('01-','full'),('03-','full')]),('Interiores',[('04-','full'),('05-','half'),('06-','half')])],
+ 'tiny-house':[('Fachadas',[('01-','full'),('03-','half'),('07-','half')]),('Interiores',[('04-','full'),('05-','half'),('06-','half')])],
+ 'chale-viver':[('Fachadas',[('06-','full'),('04-','half'),('02-','half')]),('Interiores',[('07-','half'),('09-','half')])],
+ 'patio-escolar':[('Coberturas',[('02-','half'),('08-','half')]),('Estrutura',[('04-','third'),('03-','third'),('09-','third')])],
+}
+FICHA_KEEP={
+ 'casa-taquaracu':['Local','Área construída','Casa e edícula','Sistema','Fundação','Escopo','Etapa'],
+ 'chale-acolher':['Local','Área construída','Sistema','Fechamento','Escopo','Etapa'],
+ 'chale-piedade':['Local','Área','Forma','Cobertura','Escopo','Etapa'],
+ 'tiny-house':['Local','Área','Forma','Fechamento','Escopo','Etapa'],
+ 'chale-viver':['Local','Área construída','Sistema','Cobertura','Escopo','Etapa'],
+ 'chale-analandia':['Local','Área total','Casa','Sistema','Escopo','Etapa'],
+ 'patio-escolar':['Local','Área coberta','Sistema','Aço','Escopo','Etapa'],
+ 'le-blanc-lofts':['Local','Sistema','Níveis','Altura','Aço','Escopo','Etapa'],
+}
+TEXT_KEEP={'casa-taquaracu':[0,2],'chale-viver':[0,1]}
+def _lean(P):
+    out=[]
+    for p in P:
+        if p['slug'] in HELD: continue
+        if p['slug'] in LEAN:
+            pool={it['src'].split('/')[-1]:it for sec in p['sections'] for it in sec['items']}
+            secs=[]
+            for label,items in LEAN[p['slug']]:
+                sel=[]
+                for pre,lay in items:
+                    k=[n for n in pool if n.startswith(pre)]; assert len(k)==1,(p['slug'],pre,k)
+                    it=dict(pool[k[0]]); it['lay']=lay
+                    if lay!='half' or not it.get('r'): pass
+                    sel.append(it)
+                secs.append(dict(label=label,items=sel))
+            p=dict(p); p['sections']=secs
+        if p['slug'] in FICHA_KEEP:
+            keep=FICHA_KEEP[p['slug']]; p=dict(p); p['ficha']=[kv for kv in p['ficha'] if kv[0] in keep]
+        if p['slug'] in TEXT_KEEP:
+            p=dict(p); p['text']=[p['text'][i] for i in TEXT_KEEP[p['slug']]]
+        out.append(p)
+    return out
+# Le Blanc Lofts: renders do projeto (fachada, aéreas, interior acabado × estrutura aparente, estrutura em LSF); sem pranchas.
+for _p in PROJECTS:
+    if _p['slug']=='le-blanc-lofts':
+        _p.update(card=dict(src=C+'31-fachada-tres-lofts-dia.jpg',focus=(.5,.5),alt='Três lofts brancos de dois níveis, vistos da rua'),
+          hero=dict(src=C+'31-fachada-tres-lofts-dia.jpg',pos='50% 48%',alt='Fachada dos três lofts, volumes brancos de dois níveis com porta de madeira e jardim na frente'),
+          lead='Lofts com mezanino em light steel frame, <b>projetados para fabricação fora do canteiro.</b>',
+          text=['Cada loft tem térreo, mezanino e 6,00 m de altura. A escada interna também é em steel frame.',
+                'São 1.393,54 kg de aço. Cada painel sai da fábrica com a sua folha e a sua lista de corte, pronto para montar.'],
+          sections=[
+           dict(label='Fachadas',items=[
+            I('33-exterior-aerea-tres-lofts.jpg',('Os três lofts','volumes iguais, jardim entre eles'),'Vista aérea dos três lofts ao anoitecer',r='12/5'),
+            I('34-exterior-aerea-acesso.jpg',('Acesso','muro, portão e vagas na frente'),'Vista aérea do acesso aos lofts, com muro e portão',r='12/5')]),
+           dict(label='Interiores',items=[
+            I('39-interior-acabado.jpg',('Loft pronto','cozinha, estar e mezanino'),'Interior do loft acabado, com cozinha linear, estar, escada e mezanino'),
+            I('40-interior-estrutura-aparente.jpg',('O mesmo loft, com a estrutura à vista','painéis e escada em steel frame'),'O mesmo interior com os painéis e a escada em steel frame aparentes')]),
+           dict(label='Estrutura',items=[
+            I('41-estrutura-lsf-render.jpg',('Estrutura em light steel frame','painéis, lajes e escada · 1.393,54 kg de aço'),'Estrutura completa do loft em light steel frame sobre o radier','full')])])
+PROJECTS.insert(next(i for i,_p in enumerate(PROJECTS) if _p['slug']=='patio-escolar'),
+ dict(slug='salas-comerciais',assets='comercial-marilia',name='Salas comerciais',cat='comercial',cat_label='comerciais',cat_plural='comerciais',city='Marília · SP',sub='reforma e regularização · 169 m²',ref='o projeto das salas comerciais',
+  card=dict(src=C+'02-patio-frontal-cobogo.jpg',focus=(.5,.5),alt='Pátio de entrada das salas comerciais, com muro de cobogó e fachada verde'),
+  hero=dict(src=C+'02-patio-frontal-cobogo.jpg',pos='50% 55%',alt='Pátio de entrada com piso amadeirado, muro de cobogó branco e fachada verde'),
+  lead='Uma casa virou salas comerciais, <b>com projeto, regularização e habite-se.</b>',
+  text=['Residência térrea convertida em seis salas para locação, com recepção, sala de espera, quatro sanitários, um deles acessível, e estacionamento para seis carros.',
+        'O trabalho foi a regularização com reforma, ampliação e mudança de uso: projeto legal, prevenção a incêndio, as built e laudo para o habite-se.'],
+  ficha=[('Local','Marília · SP'),('Área construída','169,14 m²'),('Terreno','484 m²'),('Sistema','Alvenaria de blocos de concreto'),
+         ('Escopo','Projeto legal, prevenção a incêndio, as built e laudo de habite-se'),('Etapa','Obra concluída · 2026')],
+  sections=[
+   dict(label='Fachada',items=[I('01-fachada-rua.jpg',('Fachada','muro com cobogó e portão branco'),'Fachada das salas comerciais vista da rua, com muro verde e painéis de cobogó','full',pos='50% 92%')]),
+   dict(label='Externas e circulação',items=[
+    I('03-patio-frontal-platibanda.jpg',('Pátio frontal','platibanda e moldura da janela'),'Pátio frontal com piso amadeirado e fachada verde','third'),
+    I('04-fundos-estacionamento.jpg',('Estacionamento','seis vagas nos fundos'),'Fundos do imóvel com o estacionamento em piso intertravado','third'),
+    I('06-circulacao-coberta.jpg',('Circulação coberta','cobertura de vidro e cobogó'),'Circulação lateral com cobertura de vidro e parede de cobogó','third')])]))
+# chale-analandia: fora do site até existir imagem renderizada (o cliente pediu para tirar as fachadas com cotas).
+HELD.append('chale-analandia')
+PROJECTS_FULL=PROJECTS
+PROJECTS=_lean(PROJECTS)
+OBRAS_META='%d projetos · casas, chalés e estruturas em aço'%len(PROJECTS)

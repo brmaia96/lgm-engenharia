@@ -16,15 +16,15 @@
 <div class="out" id="ag-out" hidden aria-live="polite">
 <p class="meta">Seu pedido</p>
 <div class="num" id="ag-res" style="font-size:clamp(26px,3vw,40px);line-height:1.25"></div>
-<p>Envie o pedido pelo WhatsApp. <b>Eu confirmo o horário e mando o link do Google Meet.</b></p>
-<p style="margin-top:30px"><a class="lnk" id="ag-wa" href="https://wa.me/5514991850799" target="_blank" rel="noopener">Enviar pedido pelo WhatsApp</a></p>
+<p>Adicione ao seu Google Agenda: <b>o convite chega na minha agenda e eu confirmo com o link do Google Meet.</b> Se preferir, envie o pedido pelo WhatsApp.</p>
+<p class="links" style="display:flex;flex-wrap:wrap;gap:10px 44px;margin-top:30px;max-width:none"><a class="lnk" id="ag-gc" href="https://calendar.google.com/" target="_blank" rel="noopener">Adicionar ao Google Agenda</a><a class="lnk" id="ag-wa" href="https://wa.me/5514991850799" target="_blank" rel="noopener">Enviar pedido pelo WhatsApp</a></p>
 </div>
 </div></section>
 
 <section class="band sec"><div class="tag"><b>Como funciona</b></div>
 <dl class="tl">
-<div><dt>1</dt><dd>Você escolhe o dia e o horário e envia o pedido.</dd></div>
-<div><dt>2</dt><dd>Eu confirmo e a reunião entra na agenda, com link do Google Meet.</dd></div>
+<div><dt>1</dt><dd>Você escolhe o dia e o horário e adiciona a reunião ao seu Google Agenda.</dd></div>
+<div><dt>2</dt><dd>O convite entra na minha agenda. Eu confirmo e envio o link do Google Meet.</dd></div>
 <div><dt>3</dt><dd>Na conversa, vemos o terreno, o projeto e o INSS da obra. Depois você recebe a proposta.</dd></div>
 </dl></section>
 
@@ -38,11 +38,13 @@
 <script>(function(){var f=document.getElementById('ag');if(!f)return;var dia=document.getElementById('ag-dia'),nome=document.getElementById('ag-nome'),h=document.getElementById('ag-h'),out=document.getElementById('ag-out');
 var DS=['domingo','segunda','terça','quarta','quinta','sexta','sábado'],d=new Date();d.setHours(12,0,0,0);var n=0;
 while(n<10){d.setDate(d.getDate()+1);var w=d.getDay();if(w===0||w===6)continue;var o=document.createElement('option');
-o.textContent=DS[w]+', '+('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2);dia.appendChild(o);n++}
+var dm=('0'+d.getDate()).slice(-2),mm=('0'+(d.getMonth()+1)).slice(-2);o.textContent=DS[w]+', '+dm+'/'+mm;o.value=''+d.getFullYear()+mm+dm;dia.appendChild(o);n++}
 nome.addEventListener('input',function(){nome.classList.remove('err');h.textContent=''});
 f.addEventListener('submit',function(ev){ev.preventDefault();var nm=nome.value.trim();
 if(nm.length<2){nome.classList.add('err');h.textContent='Informe seu nome.';nome.focus();out.hidden=true;return}
-var a=document.getElementById('ag-ass').value,dd=dia.value,hh=document.getElementById('ag-hora').value;
+var a=document.getElementById('ag-ass').value,dd=dia.options[dia.selectedIndex].textContent,iso=dia.value,hh=document.getElementById('ag-hora').value;
+var h1=hh.replace(':','')+'00',h2=hh.slice(0,2)+'3000';
+document.getElementById('ag-gc').href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Reunião com Luis Gustavo Maia: '+a)+'&dates='+iso+'T'+h1+'/'+iso+'T'+h2+'&ctz=America/Sao_Paulo&details='+encodeURIComponent('Reunião por vídeo, 30 minutos.\nNome: '+nm+'\nAssunto: '+a+'\nMarcada pelo site.')+'&location='+encodeURIComponent('Google Meet')+'&add='+encodeURIComponent('engmaia1996@gmail.com');
 document.getElementById('ag-res').textContent=dd+', às '+hh;
 var m=['Olá Gustavo, quero marcar uma reunião.','','Nome: '+nm,'Assunto: '+a,'Dia: '+dd,'Horário: '+hh+' (Brasília)','','Pode confirmar?'];
 document.getElementById('ag-wa').href='https://wa.me/5514991850799?text='+encodeURIComponent(m.join('\n'));

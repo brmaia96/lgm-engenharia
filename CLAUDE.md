@@ -149,10 +149,22 @@ Sero v3.0 (08/2024) e páginas da Receita no gov.br.
   aferição de 2024 estava decaído o que ocorreu até 31/12/2018.
 - A norma e o manual **não citam steel frame**. O enquadramento é pelo texto
   ("estrutura de metal", "pré-fabricado por terceiros"), e isso é dito no site.
+- **Obras regularizadas (mapa em `inss.html`, dados em `inss_page.py`):** 13 obras
+  com aferição concluída ou certidão emitida, de 2021 a 2026: Marília (8), Sinop
+  MT, Franca, Itupeva, Vargem Grande Paulista e Pedrinhas Paulista. Economia
+  documentada em três delas, pela memória de cálculo do Sero: R$ 28.152,69
+  (Marília, 2021, pré-fabricado), R$ 19.117,00 (Sinop, 2026, pré-fabricado) e
+  R$ 7.624,20 (Marília, 2026, fator de ajuste). Total: R$ 54.893,89. Não somar
+  obras sem simulação anterior nem reduções por mão de obra declarada. Só cidade,
+  área, ano e valores: nunca nome, CNO ou endereço.
+- O "R$ 28.000 por obra" dos carrosséis antigos é conta ilustrativa, não caso real.
+- Revisão independente (nov/2026): três revisores conferiram 225 afirmações contra
+  as normas; nenhum erro de número, 40 ajustes de redação aplicados.
 - **A confirmar com o cliente:** (1) VAU real de SP para o exemplo; (2) o
   Provimento CG nº 17/2026 da Corregedoria de SP, que segundo fontes secundárias
   dispensou a CND para averbar construção nos cartórios paulistas. Por isso o
-  site não afirma que "sem certidão o cartório não averba".
+  site não afirma que "sem certidão o cartório não averba"; (3) se a obra de
+  Marília de 2021 (576 m², arquivo de caso no Drive) pode ser citada como dele.
 
 ### Padrão de imagem (obrigatório em toda peça web)
 

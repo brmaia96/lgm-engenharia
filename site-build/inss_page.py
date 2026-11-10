@@ -41,7 +41,7 @@ URL_CTN = 'https://www.planalto.gov.br/ccivil_03/leis/l5172compilado.htm'
 # perguntas frequentes: (pergunta, resposta em html)
 FAQ = [
  ('Toda obra paga INSS?',
-  '<p>Paga quando há mão de obra remunerada. A exceção é a casa própria de até 70 m², residencial e unifamiliar, de tipo econômico ou popular, erguida sem mão de obra remunerada por pessoa física que não tenha outro imóvel. As condições valem juntas.</p>'),
+  '<p>Em regra, sim: na obra de pessoa física a Receita presume a mão de obra pela área. A exceção mais comum é a casa própria de até 70 m², residencial e unifamiliar, de tipo econômico ou popular, erguida sem mão de obra remunerada por pessoa física que não tenha outro imóvel. As condições valem juntas. Há ainda casos de mutirão e de trabalho voluntário.</p>'),
  ('Quem responde pelo INSS da obra: eu ou a construtora?',
   '<p>O proprietário do imóvel ou o dono da obra. Quando uma construtora é contratada por empreitada total, a responsabilidade pela obra é dela, e ela responde solidariamente com o proprietário. Em contrato por administração, a responsabilidade continua com quem contratou.</p>'),
  ('O que é o CNO e qual é o prazo?',
@@ -49,15 +49,15 @@ FAQ = [
  ('O que é a aferição e quando ela é feita?',
   '<p>É o fechamento da conta no Sero, o serviço eletrônico da Receita, quando a obra termina. O sistema calcula a remuneração da mão de obra, abate o que foi declarado e recolhido durante a obra e gera a DCTFWeb Aferição de Obras. O DARF vence no dia 20 do mês seguinte ao envio.</p>'),
  ('E se eu não regularizar a obra?',
-  '<p>A Receita Federal monitora as obras com base nos alvarás e habite-se emitidos pelas prefeituras e envia aviso ao responsável. Quem não regulariza no prazo do aviso pode ser fiscalizado e ter as contribuições lançadas com multa de 75% a 225% do valor devido.</p><p>Pela lei federal, a averbação da construção no registro de imóveis pede a certidão negativa da obra. Há estados em que a corregedoria dos cartórios dispensou a exigência. A contribuição continua devida do mesmo jeito.</p>'),
+  '<p>A Receita Federal monitora as obras com base nos alvarás e habite-se emitidos pelas prefeituras e envia aviso ao responsável. Quem não regulariza no prazo do aviso pode ser fiscalizado e ter as contribuições lançadas com multa de 75% a 225% do valor devido.</p><p>Pela norma federal, a averbação da construção no registro de imóveis pede a certidão negativa da obra. Com ou sem essa exigência no cartório, a contribuição continua devida.</p>'),
  ('Steel frame paga menos INSS que alvenaria?',
-  '<p>Pode pagar. Com a estrutura de metal comprovada por nota fiscal, a obra é do tipo mista e a mão de obra presumida cai de 20% para 15% do custo. Com estrutura e paredes externas feitas em fábrica e notas que somem 40% do custo apurado, a remuneração cai 70%.</p><p>Sem nota e sem enquadramento, a casa em steel frame é calculada como alvenaria.</p>'),
+  '<p>Pode pagar. Com a estrutura de metal comprovada por nota fiscal, a obra é do tipo mista e a mão de obra presumida cai de 20% para 15% do custo. Com estrutura ou paredes externas feitas em fábrica de terceiros e notas que somem pelo menos 40% do custo apurado, a remuneração pode cair 70%.</p><p>Sem nota e sem enquadramento, a casa em steel frame é calculada como alvenaria.</p>'),
  ('Que notas fiscais contam para a redução de pré-fabricado?',
   '<p>As de venda da estrutura e das paredes externas pré-fabricadas e as de instalação ou montagem, emitidas pelo fabricante ou por quem montou.</p><p>Não contam notas de laje, fundação, piso, cobertura e paredes internas, nem as de elétrica, hidráulica e outros serviços complementares.</p>'),
  ('Contratei pedreiro sem registro. E agora?',
   '<p>Sem remuneração declarada não há o que abater: a contribuição incide sobre toda a mão de obra presumida pela área. Continuam valendo o fator social, o enquadramento correto do tipo de obra e, se for o caso, a decadência.</p>'),
  ('Paguei autônomo ou MEI. Isso abate?',
-  '<p>Abate quando a remuneração foi declarada e tem vínculo com a obra. As contribuições recolhidas sobre o que foi pago a autônomo ou a MEI contratado para a obra são aproveitadas para deduzir a contribuição patronal apurada na aferição.</p>'),
+  '<p>Abate quando a remuneração foi declarada com vínculo à obra. As contribuições sobre a remuneração declarada do autônomo, ou do MEI contratado para hidráulica, elétrica, pintura, alvenaria ou carpintaria, deduzem a contribuição patronal de 20% apurada na aferição.</p>'),
  ('Construí há mais de cinco anos. Ainda devo?',
   '<p>A Receita tem cinco anos para lançar a contribuição, contados do primeiro dia do ano seguinte. Em aferição feita em 2024, por exemplo, estava decaído o que ocorreu até 31 de dezembro de 2018. Cabe ao responsável provar quando a obra terminou: habite-se, IPTU com a área construída, certidão da prefeitura, escritura ou contrato de financiamento da época.</p><p>Se só uma parte da obra é antiga, a contribuição incide apenas sobre o período recente.</p>'),
  ('Reforma e ampliação pagam?',
@@ -67,7 +67,7 @@ FAQ = [
  ('O valor do simulador é o que eu vou pagar?',
   '<p>É uma estimativa. O cálculo oficial usa o VAU do mês da aferição, por estado e por destinação da obra, consultado no próprio Sero. O simulador usa R$ %s por m² como referência e considera casa unifamiliar de pessoa física, obra nova.</p>' % format(VAU, ',d').replace(',', '.')),
  ('E o ISS da obra?',
-  '<p>É outro imposto. O ISS é municipal, cobrado pela prefeitura, e cada cidade tem a sua regra. O INSS da obra é federal e segue a mesma norma no país inteiro.</p>'),
+  '<p>É outro imposto, municipal. O INSS da obra é federal e segue a mesma norma no país inteiro.</p>'),
  ('Quando contratar a engenharia tributária?',
   '<p>Antes de comprar o aço. O enquadramento depende de como a obra é inscrita no CNO e de como as notas são emitidas. Com a obra pronta, resta conferir o cálculo e aproveitar o que já está documentado.</p>'),
 ]
@@ -103,7 +103,7 @@ _BODY = '''<main>
 <h2>Sem comprovação, vale a área construída</h2>
 <p>É a aferição indireta. O Sero, serviço eletrônico da Receita Federal, parte da área do projeto e chega à contribuição em quatro passos.</p>
 <ol class="steps" style="margin-top:48px">
-<li><h3>Custo da obra</h3><p>Área equivalente vezes o VAU. Na casa unifamiliar, a área equivalente é 89% da área principal. O VAU é o valor por m² que a Receita atualiza todo mês, por estado e por destinação.</p><span class="k">[[AREA]] m² × 89% × [[VAU]] = [[COD]]</span></li>
+<li><h3>Custo da obra</h3><p>Área equivalente vezes o VAU. Na casa unifamiliar de até 1.000 m², a área equivalente é 89% da área principal. O VAU é o valor por m² que a Receita atualiza todo mês, por estado e por destinação.</p><span class="k">[[AREA]] m² × 89% × [[VAU]] = [[COD]]</span></li>
 <li><h3>Mão de obra presumida</h3><p>Um percentual do custo, conforme o tipo da obra: 20% na alvenaria, 15% na madeira ou mista.</p><span class="k">20% = [[MO_ALV]]</span></li>
 <li><h3>Fator social</h3><p>Só para pessoa física. Reduz a base conforme a área total: quanto menor a obra, maior a redução.</p><span class="k">de 100 a 200 m², 40% = [[RMT_ALV]]</span></li>
 <li><h3>Alíquota</h3><p>36,8% sobre a remuneração apurada, depois de abatido o que foi declarado e recolhido durante a obra.</p><span class="k">36,8% = [[INSS_ALV]]</span></li>
@@ -125,7 +125,7 @@ _BODY = '''<main>
 <h2>Três caminhos previstos na norma</h2>
 <div class="sys" style="margin-top:40px">
 <div><h3>Enquadrar o tipo da obra</h3><p>Estrutura ou paredes externas de metal, de madeira ou pré-fabricadas: a obra é do tipo mista. <b>A mão de obra presumida cai de 20% para 15% do custo.</b> A prova é a nota fiscal da estrutura.</p><span class="k">base 25% menor</span></div>
-<div><h3>Comprovar o pré-fabricado</h3><p>Estrutura e paredes externas feitas em fábrica e montadas na obra: <b>a remuneração apurada cai 70%</b> quando as notas de venda e de montagem somam 40% do custo calculado pela Receita.</p><span class="k">base 70% menor</span></div>
+<div><h3>Comprovar o pré-fabricado</h3><p>Estrutura ou paredes externas feitas em fábrica de terceiros e montadas na obra: <b>a remuneração apurada cai 70%</b> quando as notas de venda e de montagem somam pelo menos 40% do custo calculado pela Receita.</p><span class="k">base 70% menor</span></div>
 <div><h3>Declarar a mão de obra</h3><p>Para pessoa física: se a remuneração declarada durante a obra chega a 50% da mão de obra apurada, com declaração entregue em todos os meses, <b>não há saldo a pagar na aferição.</b> Acima de 350 m², o mínimo é 70%.</p><span class="k">saldo zero na aferição</span></div>
 </div>
 <figure class="fig" style="margin-top:72px"><div class="bars" role="img" aria-label="A mesma casa em três enquadramentos: alvenaria sem planejamento, [[INSS_ALV]]; tipo mista, [[INSS_MIS]]; pré-fabricado comprovado, [[INSS_PRE]].">
@@ -140,7 +140,7 @@ _BODY = '''<main>
 <h3>Estrutura de metal</h3>
 <p>A obra é do tipo mista quando “as paredes externas ou a estrutura da edificação forem de madeira, metal ou de material pré-fabricado ou pré-moldado”. No steel frame, a estrutura são os perfis de aço galvanizado. Para sustentar o enquadramento, a Receita pode pedir o projeto aprovado e a nota fiscal da estrutura.</p>
 <h3>Componente pré-fabricado</h3>
-<p>Para a Receita, pré-fabricado é “o componente ou a parte de uma edificação adquiridos prontos em estabelecimento comercial ou fabricados por antecipação em estabelecimento industrial de terceiros, para posterior instalação ou montagem na obra”. Painel de parede produzido em fábrica e montado no canteiro cabe na definição.</p>
+<p>Para a Receita, pré-fabricado é “o componente ou a parte de uma edificação adquiridos prontos em estabelecimento comercial ou fabricados por antecipação em estabelecimento industrial de terceiros, para posterior instalação ou montagem na obra”. Painel de parede produzido em fábrica de terceiros e montado no canteiro pode caber na definição, desde que substitua a estrutura e a alvenaria das paredes externas. O Manual do Sero só dá exemplo em concreto, e perfil cortado e montado na própria obra não é pré-fabricado. A Receita não tem ato que cite o steel frame: o enquadramento é conferido obra a obra.</p>
 <h3>O que derruba a redução</h3>
 <ul>
 <li>Notas que somam menos de 40% do custo apurado. A área passa a ser tratada como mista.</li>
@@ -148,7 +148,7 @@ _BODY = '''<main>
 <li>Nota de laje, fundação, piso, cobertura ou parede interna. Não entra na soma. Elétrica e hidráulica também não.</li>
 <li>Montagem cuja mão de obra já foi declarada e usada como dedução. A mesma remuneração não conta duas vezes.</li>
 </ul>
-<p>Os dois critérios não se somam. Para usar a redução de pré-fabricado, a obra é inscrita como alvenaria e o cálculo parte dos 20%. <b>Por isso a escolha é feita antes da compra do aço, não com a obra pronta.</b></p>
+<p>Os dois critérios não se somam. Para usar a redução de pré-fabricado, a obra consta no CNO como alvenaria e o cálculo parte dos 20%. O tipo pode ser alterado no CNO antes da aferição. As notas, não. <b>Por isso o planejamento é feito antes da compra do aço.</b></p>
 </div></section>
 <img class="wide obra" src="[[IMG]]" width="[[IMGW]]" height="[[IMGH]]" alt="Modelo da estrutura em light steel frame da Casa Taquaraçu visto por dentro: montantes, guias e treliças de aço galvanizado" loading="lazy" decoding="async" style="object-position:50% 50%">
 <div class="col"><div class="cap"><b><a href="o-casa-taquaracu.html">Casa Taquaraçu</a></b><span>montantes, guias e treliças em aço galvanizado</span></div></div>
@@ -156,13 +156,14 @@ _BODY = '''<main>
 <section class="band sec" id="passo-a-passo"><div class="tag"><b>Como conseguir</b></div><div class="prose">
 <h2>O enquadramento começa antes da obra</h2>
 <ol class="steps" style="margin-top:48px">
-<li><h3>Antes de começar</h3><p>Inscrição no CNO em até 30 dias do início, com área, destinação e tipo corretos. É aqui que se escolhe o caminho: mista, pré-fabricado ou mão de obra declarada.</p><span class="k">IN RFB 2.061, art. 18</span></li>
+<li><h3>Antes de começar</h3><p>Inscrição no CNO em até 30 dias do início, com área, destinação e tipo corretos. É aqui que o caminho começa a ser definido: mista, pré-fabricado ou mão de obra declarada.</p><span class="k">IN RFB 2.061, art. 18</span></li>
 <li><h3>Na compra</h3><p>O fabricante emite a nota de venda dos painéis e a de montagem, ou uma só, de venda com montagem. Estrutura e paredes externas ficam separadas do resto.</p><span class="k">IN RFB 2.021, art. 26, § 2º</span></li>
 <li><h3>Durante a obra</h3><p>Mão de obra declarada mês a mês, com vínculo à inscrição da obra. Notas e comprovantes guardados: o que não tem vínculo com a obra não abate.</p><span class="k">IN RFB 2.021, arts. 31 a 33</span></li>
 <li><h3>Ao terminar</h3><p>Aferição no Sero, DCTFWeb Aferição de Obras, DARF e certidão emitida pela internet. Com a certidão, a averbação no cartório.</p><span class="k">IN RFB 2.021, arts. 6º, 43 e 44</span></li>
 </ol>
 </div></section>
 
+[[MAPA]]
 <section class="band sec" id="exemplo"><div class="tag"><b>Exemplo de obra</b></div><div>
 <h2>Casa de [[AREA]] m² em steel frame</h2>
 <div class="nums" style="margin-top:34px">
@@ -197,7 +198,7 @@ _BODY = '''<main>
 <div class="out" id="out" hidden aria-live="polite">
 <p class="meta">Aferição indireta estimada</p>
 <div class="num" id="val"></div>
-<p>É o que a Receita cobra quando a obra não tem planejamento tributário. <b>Com o enquadramento certo e as notas em ordem, esse valor cai.</b></p>
+<p>É o que a Receita cobra quando a obra não tem planejamento tributário: sem nota e sem enquadramento, qualquer sistema é calculado como alvenaria. <b>Com o enquadramento certo e as notas em ordem, esse valor cai.</b></p>
 <p style="margin-top:30px"><a class="lnk" id="wa" href="https://wa.me/5514991850799" target="_blank" rel="noopener">Simular a redução com o especialista</a></p>
 </div>
 </div></section>
@@ -214,15 +215,15 @@ _BODY = '''<main>
 <li><span>Instrução Normativa RFB nº 2.021, de 16 de abril de 2021, texto consolidado. Contribuições sobre a mão de obra de obra de construção civil, Sero, aferição e certidão. <a href="[[URL_IN2021]]" target="_blank" rel="noopener">normas.receita.fazenda.gov.br</a></span></li>
 <li><span>Instrução Normativa RFB nº 2.061, de 20 de dezembro de 2021. Cadastro Nacional de Obras (CNO). <a href="[[URL_IN2061]]" target="_blank" rel="noopener">normas.receita.fazenda.gov.br</a></span></li>
 <li><span>Receita Federal. Manual do Sero, versão 3.0, agosto de 2024. <a href="[[URL_MANUAL]]" target="_blank" rel="noopener">gov.br/receitafederal</a></span></li>
-<li><span>Lei nº 8.212, de 24 de julho de 1991, arts. 33, 47 e 49. <a href="[[URL_LEI8212]]" target="_blank" rel="noopener">planalto.gov.br</a></span></li>
-<li><span>Código Tributário Nacional, Lei nº 5.172, de 1966, art. 173. <a href="[[URL_CTN]]" target="_blank" rel="noopener">planalto.gov.br</a></span></li>
+<li><span>Lei nº 8.212, de 24 de julho de 1991, arts. 33, 47 e 49, conforme citados nas instruções normativas acima. <a href="[[URL_LEI8212]]" target="_blank" rel="noopener">planalto.gov.br</a></span></li>
+<li><span>Código Tributário Nacional, Lei nº 5.172, de 1966, art. 173, conforme transcrito no Manual do Sero. <a href="[[URL_CTN]]" target="_blank" rel="noopener">planalto.gov.br</a></span></li>
 <li><span>Receita Federal. Recebi um aviso ou intimação. <a href="https://www.gov.br/receitafederal/pt-br/assuntos/construcao-civil/cobranca" target="_blank" rel="noopener">gov.br/receitafederal</a></span></li>
 <li><span>Caixa. Cartilha de construção, conclusão, reforma e ampliação de unidades habitacionais isoladas, versão 12, dezembro de 2025. <a href="https://www.caixa.gov.br/Downloads/habitacao-documentos-gerais/cartilha-habitacao-PF-construcao-conclusao-reforma-ampliacao-de-unidades-habitacionais.pdf" target="_blank" rel="noopener">caixa.gov.br</a></span></li>
 </ol>
-<p class="src" style="margin-top:28px">Conteúdo informativo, conferido nas normas acima em novembro de 2026. Os valores são estimativas para pessoa física, obra nova residencial unifamiliar, sem decadência, com VAU de referência de [[VAU]] por m². O VAU oficial é consultado no Sero. O enquadramento de cada obra é confirmado caso a caso, com o projeto e as notas em mãos.</p>
+<p class="src" style="margin-top:28px">Conteúdo informativo, conferido em novembro de 2026 no texto das duas instruções normativas e no Manual do Sero. Os valores são estimativas para pessoa física, obra nova residencial unifamiliar, sem decadência, com VAU de referência de [[VAU]] por m². O VAU oficial é consultado no Sero. O enquadramento de cada obra é confirmado caso a caso, com o projeto e as notas em mãos.</p>
 </div></section>
 </main>
-<script>(function(){var VAU=[[VAUN]],ALIQ=0.368,PCT={alv:.20,sf:.15,wf:.15,mod:.15},NOME={alv:'Alvenaria',sf:'Steel frame',wf:'Wood frame',mod:'Modular ou pré-fabricado'};
+<script>(function(){var VAU=[[VAUN]],ALIQ=0.368,PCT={alv:.20,sf:.20,wf:.20,mod:.20},NOME={alv:'Alvenaria',sf:'Steel frame',wf:'Wood frame',mod:'Modular ou pré-fabricado'};
 function fs(a){return a<=100?.20:a<=200?.40:a<=300?.55:a<=400?.70:.90}
 function eq(a){return a<=1000?.89:.85}
 var f=document.getElementById('f'),ar=document.getElementById('area'),h=document.getElementById('area-h'),out=document.getElementById('out');
@@ -237,6 +238,48 @@ m.push('Aferição indireta estimada: '+brl(v),'','Quero simular a redução com
 document.getElementById('wa').href='https://wa.me/5514991850799?text='+encodeURIComponent(m.join('\\n'));
 out.hidden=false;out.scrollIntoView({behavior:'smooth',block:'nearest'})});})();</script>'''
 
+
+# ---- obras regularizadas (levantadas nas memórias de cálculo do Sero e nas certidões; só cidade, área, ano e valores) ----
+import os as _os
+_BR = json.load(open(_os.path.dirname(_os.path.abspath(__file__)) + '/brasil.json'))
+OBRAS_CIDADES = [('Marília', 'SP', 8, '2021 a 2026'), ('Sinop', 'MT', 1, '2026'), ('Franca', 'SP', 1, '2026'), ('Itupeva', 'SP', 1, '2026'),
+                 ('Vargem Grande Paulista', 'SP', 1, '2023'), ('Pedrinhas Paulista', 'SP', 1, '2026')]
+# (obra, caminho, sem planejamento, apurado na aferição)
+CASOS = [('Marília · 576 m² · 2021', 'pré-fabricado', 46802.38, 18649.69), ('Sinop · 205 m² · 2026', 'pré-fabricado', 27026.57, 7909.57),
+         ('Marília · 371 m² · 2026', 'fator de ajuste', 7624.20, 0.0)]
+N_OBRAS = sum(c[2] for c in OBRAS_CIDADES); ECON_REAL = sum(a - b for _, _, a, b in CASOS)
+def mapa_obras():
+    dots = ''
+    for nome, uf, n, anos in sorted(OBRAS_CIDADES, key=lambda c: -c[2]):
+        x, y = _BR['pts'][nome]; r = 10 if n > 1 else 5
+        dots += '<circle cx="%s" cy="%s" r="%s" fill="#9A7350" stroke="#fff" stroke-width="2"><title>%s, %s: %d %s</title></circle>' % (x, y, r, nome, uf, n, 'obras' if n > 1 else 'obra')
+    mx, my = _BR['pts']['Marília']; sx_, sy_ = _BR['pts']['Sinop']
+    labels = ('<text x="%s" y="%s" text-anchor="end" font-size="15" fill="#2F2E2E">Marília · 8 obras</text>' % (mx - 18, my + 5)
+              + '<text x="%s" y="%s" text-anchor="end" font-size="15" fill="#2F2E2E">Sinop · MT</text>' % (sx_ - 12, sy_ + 5))
+    svg = ('<svg viewBox="0 0 %d %d" role="img" aria-label="Mapa do Brasil com as cidades das obras regularizadas: %s." font-family="inherit">'
+           '<path d="%s" fill="#F7F6F4" stroke="#A0A09F" stroke-width="1" stroke-linejoin="round"/>%s%s</svg>') % (
+           _BR['w'], _BR['h'], '; '.join('%s, %s, %d' % (c[0], c[1], c[2]) for c in OBRAS_CIDADES), _BR['path'], dots, labels)
+    rows = ''.join('<tr><th scope="row">%s · %s</th><td>%d</td><td>%s</td></tr>' % c for c in OBRAS_CIDADES)
+    casos = ''.join('<tr><th scope="row">%s</th><td>%s</td><td>%s</td><td>%s</td><td class="hl">%s</td></tr>' % (o, c, brl(a), brl(b), brl(a - b)) for o, c, a, b in CASOS)
+    return ('''<section class="band sec" id="obras-regularizadas"><div class="tag"><b>Obras regularizadas</b></div><div>
+<h2>%s obras com a aferição concluída. <b>%s de economia documentada em três delas.</b></h2>
+<div class="nums" style="margin-top:36px">
+<div><div class="num">%d</div><div class="nl">obras aferidas no Sero, de 2021 a 2026</div></div>
+<div><div class="num">6</div><div class="nl">cidades, em São Paulo e Mato Grosso</div></div>
+<div><div class="num sv">%s</div><div class="nl">a menos de INSS em três obras, pela memória de cálculo</div></div>
+</div>
+<div class="mapa" style="margin-top:64px">
+<figure class="fig">%s<figcaption class="cap"><b>Onde estão</b><span>cada ponto é uma cidade</span></figcaption></figure>
+<div>
+<table class="tb"><thead><tr><th scope="col">Cidade</th><th scope="col">Obras</th><th scope="col">Ano da aferição</th></tr></thead><tbody>%s</tbody></table>
+</div>
+</div>
+<h3 style="margin-top:64px">O que mudou em três delas</h3>
+<div class="scroll"><table class="tb wide5" style="margin-top:16px"><thead><tr><th scope="col">Obra</th><th scope="col">Caminho</th><th scope="col">Sem planejamento</th><th scope="col">Na aferição</th><th scope="col">Economia</th></tr></thead><tbody>%s</tbody></table></div>
+<p class="src" style="margin-top:22px">Valores das memórias de cálculo do Sero. Sem planejamento: simulação anterior, ou o débito antes do fator de ajuste. Na aferição: débito apurado na aferição concluída. Nas duas primeiras obras, a simulação e a aferição têm datas diferentes. As outras dez obras não têm simulação anterior guardada para comparar e por isso ficam fora da soma.</p>
+</div></section>
+''') % ('Treze' if N_OBRAS == 13 else str(N_OBRAS), brl(ECON_REAL), N_OBRAS, brl(ECON_REAL), svg, rows, casos)
+
 def inss_body(img=('img/inss/estrutura.jpg', 2000, 1125)):
     rep = {
         'AREA': str(AREA), 'VAU': brl(VAU), 'VAUN': str(VAU), 'AEQ': dec(AEQ), 'COD': brl(COD), 'MO_ALV': brl(MO_ALV), 'RMT_ALV': brl(RMT_ALV),
@@ -246,6 +289,7 @@ def inss_body(img=('img/inss/estrutura.jpg', 2000, 1125)):
         'BARS2': '\n'.join([bar('Alvenaria, sem planejamento', INSS_ALV, INSS_ALV, 'mute'), bar('Tipo mista', INSS_MIS, INSS_ALV, small='estrutura de metal comprovada por nota'),
                             bar('Pré-fabricado', INSS_PRE, INSS_ALV, 'hl', 'notas de 40% do custo da obra')]),
         'FAQ': '\n'.join('<details><summary>%s</summary><div class="a">%s</div></details>' % (q, a) for q, a in FAQ),
+        'MAPA': mapa_obras(),
         'IMG': img[0], 'IMGW': str(img[1]), 'IMGH': str(img[2]),
         'URL_IN2021': html.escape(URL_IN2021), 'URL_IN2061': html.escape(URL_IN2061), 'URL_MANUAL': URL_MANUAL, 'URL_SERO': URL_SERO, 'URL_LEI8212': URL_LEI8212, 'URL_CTN': URL_CTN,
     }

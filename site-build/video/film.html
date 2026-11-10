@@ -49,10 +49,10 @@ em{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;color:
  <div class="rows"><div id="B2"><span>2018</span>Estágio em construtora de steel frame</div><div id="B3"><span>2020</span>Formado, em administradora de obras</div><div id="B4"><span>2022</span>Engenheiro em construtora de steel frame</div><div id="B5"><span>2023</span>Operação própria</div><div id="B6"><span>2026</span>Dedicação integral ao escritório</div></div></div>
 <div class="sc" id="C"><div class="lb" id="C0">o que eu faço</div>
  <div class="rows big" style="margin-top:0"><div id="C1">Projeto executivo em steel frame</div><div id="C2">Projetos complementares</div><div id="C3">Acompanhamento de obra</div><div id="C4">INSS e CNO da obra</div></div></div>
-<div class="pl" id="D"><img class="bg" src="../site/img/casa-taquaracu/hero.jpg" style="object-position:50% 62%"><div class="shade"></div><div class="shadet"></div><div class="sig"><div class="mk">L<i>.</i></div><span>meus projetos</span></div><div class="cap"><b>Casa Taquaraçu</b><span>Taquaraçu de Minas · MG · 296 m² em steel frame</span></div></div>
+<div class="pl" id="D"><img class="bg" src="../site/img/chale-piedade/hero.jpg" style="object-position:50% 55%"><div class="shade"></div><div class="shadet"></div><div class="sig"><div class="mk">L<i>.</i></div><span>meus projetos</span></div><div class="cap"><b>Chalé Piedade</b><span>Piedade · SP · A-frame de 70 m²</span></div></div>
 <div class="pl" id="E"><img class="bg" id="E0" src="../site/img/cmp/pronta.jpg"><img class="cmpst" id="E1" src="../site/img/cmp/estrutura.jpg"><span class="bar" id="E2"></span>
  <span class="tg" id="E3" style="left:154px">estrutura</span><span class="tg" id="E4" style="right:154px">pronta</span>
- <div class="sig"><div class="mk">L<i>.</i></div><span>meus projetos</span></div><div class="cap"><b>Chalé Acolher</b><span>Marília · SP · light steel frame painelizado</span></div></div>
+ <div class="sig"><div class="mk">L<i>.</i></div><span>meus projetos</span></div><div class="shade"></div><div class="cap"><b>Casa Taquaraçu</b><span>Taquaraçu de Minas · MG · 296 m² em light steel frame</span></div></div>
 <div class="pl" id="F"><img class="bg" src="../site/img/patio-escolar/hero.jpg" style="object-position:50% 40%"><div class="shade"></div><div class="shadet"></div><div class="sig"><div class="mk">L<i>.</i></div><span>meus projetos</span></div><div class="cap"><b>Cobertura de pátio escolar</b><span>Papanduva · SC · 20,2 t de estrutura metálica</span></div></div>
 <div class="sc" id="G"><div class="lb" id="G0">engenharia tributária</div><div class="h" id="G1">E cuido do <b>INSS da obra.</b></div>
  <div class="n2"><div id="G2"><div class="num off">R$ 8.832</div><div class="nl">sem planejamento</div></div><div id="G3"><div class="num">R$ 2.650</div><div class="nl">com enquadramento<br>e notas corretas</div></div></div>
@@ -76,13 +76,13 @@ window.setT=function(t){
  $('A').style.opacity=fade(t,.4,.9,4.3,4.9); rise($('A1'),t,.8,1.0); rise($('A2'),t,1.4,.9); rise($('A3'),t,1.8,.9);
  $('B').style.opacity=fade(t,4.8,5.3,11.0,11.6); rise($('B0'),t,5.1,.7); rise($('B1'),t,5.2,.9); for(var i=2;i<=6;i++)rise($('B'+i),t,5.9+(i-2)*.55,.8);
  $('C').style.opacity=fade(t,11.5,12.0,16.8,17.4); rise($('C0'),t,11.8,.7); for(var j=1;j<=4;j++)rise($('C'+j),t,12.0+(j-1)*.6,.8);
- [['D',17.2,21.9],['F',26.3,30.9]].forEach(function(s){var e=$(s[0]);e.style.opacity=fade(t,s[1],s[1]+.7,s[2]-.7,s[2]);
+ [['D',22.5,26.9],['F',26.4,30.9]].forEach(function(s){var e=$(s[0]);e.style.opacity=fade(t,s[1],s[1]+.7,s[2]-.7,s[2]);
    var k=cl((t-s[1])/(s[2]-s[1]));e.querySelector('.bg').style.transform='scale('+(1.03+.07*k)+')';
    var c=e.querySelector('.cap'),q=ez((t-s[1]-.6)/.9);c.style.opacity=q;c.style.transform='translateY('+(1-q)*20+'px)'});
- var E=$('E');E.style.opacity=fade(t,21.5,22.2,26.0,26.7);var p=100*(1-ez((t-22.8)/2.6));
+ var E=$('E');E.style.opacity=fade(t,17.2,17.9,22.3,23.0);var p=100*(1-ez((t-19.3)/2.6));
  $('E1').style.clipPath='inset(0 '+(100-p)+'% 0 0)';$('E2').style.left=p+'%';$('E2').style.opacity=(p>0.3&&p<99.7)?1:0;
  $('E3').style.opacity=p>14?1:0;$('E4').style.opacity=p<88?1:0;
- var ec=E.querySelector('.cap'),q2=ez((t-22.1)/.9);ec.style.opacity=q2;ec.style.transform='translateY('+(1-q2)*20+'px)';
+ var ec=E.querySelector('.cap'),q2=ez((t-17.9)/.9);ec.style.opacity=q2;ec.style.transform='translateY('+(1-q2)*20+'px)';
  $('G').style.opacity=fade(t,30.8,31.3,36.3,36.9); rise($('G0'),t,31.1,.7); rise($('G1'),t,31.2,.9); rise($('G2'),t,32.2,.8); rise($('G3'),t,33.1,.8); rise($('G4'),t,33.9,.8);
  $('H').style.opacity=fade(t,36.8,37.3,41.4,42.0); rise($('H1'),t,37.1,1.0); rise($('H2'),t,38.3,.8); rise($('H3'),t,38.7,.8);
  $('Z').style.opacity=fade(t,41.9,42.6,45.5,46.0); rise($('Z1'),t,42.5,1.0); rise($('Z2'),t,43.3,.9);

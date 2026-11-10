@@ -3,7 +3,7 @@ _s=importlib.util.spec_from_file_location('sp',os.path.dirname(__file__)+'/stati
 INSS_BODY=_m.INSS_BODY; SOBRE_BODY=_m.SOBRE_BODY; AGENDA_BODY=_m.agenda_body()
 OBRAS_META='10 projetos · casas, chalés e estruturas em aço'
 HOME_SELECT=['casa-taquaracu','chale-piedade','patio-escolar']
-CMP_CAPTION='<b><a href="o-chale-acolher.html">Chalé Acolher</a></b><span>arraste para ver a estrutura</span>'
+CMP_CAPTION='<b><a href="o-casa-taquaracu.html">Casa Taquaraçu</a></b><span>arraste para ver a estrutura</span>'
 C='clean/'
 def I(src,cap,alt,lay='half',**k): d=dict(src=C+src,cap=cap,alt=alt,lay=lay); d.update(k); return d
 
@@ -28,10 +28,10 @@ dict(slug='casa-taquaracu',assets='taquaracu',name='Casa Taquaraçu',cat='casa',
    I('05-cozinha.jpg',('Cozinha com ilha','20,35 m² · integrada ao estar'),'Cozinha com ilha e quatro banquetas')]),
   dict(label='Planta',items=[I('07-planta-baixa.jpg',('Planta baixa','casa acima, edícula abaixo'),'Planta baixa da casa e da edícula, sem cotas','plan')]),
   dict(label='Estrutura',items=[
-   I('08-fundacao-e-estrutura.jpg',('Fundação e estrutura','radier sobre pilares · light steel frame'),'Modelo 3D da estrutura em steel frame sobre laje apoiada em pilares'),
-   I('10-steel-frame-por-dentro.jpg',('Steel frame por dentro','montantes, painéis e treliças de cobertura'),'Vista interna do modelo da estrutura em steel frame'),
-   I('11-estrutura-e-instalacoes.jpg',('Estrutura e instalações','11 modelos compatibilizados'),'Painéis de steel frame com as instalações sobrepostas em cores'),
-   I('12-telha-sanduiche.jpg',('Telha sanduíche','aço pré-pintado · núcleo de PU'),'Detalhe em corte da telha sanduíche trapezoidal')])]),
+   I('08-fundacao-e-estrutura.jpg',('Estrutura em light steel frame','radier sobre pilares · modelo 3D completo'),'Modelo 3D da estrutura em steel frame sobre laje apoiada em pilares','full',pos='50% 52%'),
+   I('10-steel-frame-por-dentro.jpg',('Steel frame por dentro','montantes, painéis e treliças de cobertura'),'Vista interna do modelo da estrutura em steel frame','third'),
+   I('11-estrutura-e-instalacoes.jpg',('Estrutura e instalações','11 modelos compatibilizados'),'Painéis de steel frame com as instalações sobrepostas em cores','third'),
+   I('12-telha-sanduiche.jpg',('Telha sanduíche','aço pré-pintado · núcleo de PU'),'Detalhe em corte da telha sanduíche trapezoidal','third')])]),
 
 dict(slug='chale-acolher',name='Chalé Acolher',cat='chalé',cat_label='chalés',cat_plural='chalés',city='Marília · SP',sub='light steel frame · 81 m²',ref='o Chalé Acolher',
  card=dict(src=C+'00-fachada-frontal-pergolado.jpg',focus=(.5,.55),alt='Fachada do Chalé Acolher, em telha metálica creme, com garagem sob pergolado'),

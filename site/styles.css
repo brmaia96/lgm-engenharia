@@ -247,3 +247,7 @@ footer{border-top:1px solid var(--line);margin-top:var(--sp2);padding-block:44px
 @media (max-width:640px){.calc.four{grid-template-columns:1fr}}
 .tl a{background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat}
 .tl a:hover{color:var(--terra)}
+
+/* foto de obra em sangria */
+.obra{display:block;aspect-ratio:16/9;max-height:84vh;object-fit:cover;object-position:50% 35%;background:var(--tone);margin-top:clamp(36px,4vw,56px)}
+@media (max-width:820px){.obra{aspect-ratio:4/3}}

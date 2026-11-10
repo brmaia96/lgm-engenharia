@@ -123,8 +123,12 @@ b=('<main><section class="col phead"><h1>Obras</h1><p class="meta">%s</p><div cl
 page('obras.html','Obras · L. Engenharia','obras',b)
 
 # ---------- home ----------
-put(S+'/work/steel-full.png','img/cmp/estrutura.jpg',maxw=2000,q=84,expo=False)
-put(S+'/raw2/chale-fachada.png','img/cmp/pronta.jpg',maxw=2000,q=84,expo=False)
+put(S+'/work/minas-estrutura.png','img/cmp/estrutura.jpg',maxw=2000,q=84,fam='c')
+put(S+'/work/minas-pronta.png','img/cmp/pronta.jpg',maxw=2000,q=84)
+M=A+'/marca/clean/'
+OBRA=put(M+'obra-real.jpg','img/marca/obra-real.jpg',maxw=2000,q=82)
+put(M+'estrutura-render.jpg','img/marca/estrutura.jpg',maxw=1400,q=84,fam='c')
+put(M+'detalhe-ligacao.jpg','img/marca/detalhe.jpg',maxw=1400,q=84,fam='c')
 sel=[p for p in P if p['slug'] in D.HOME_SELECT]; sel.sort(key=lambda p:D.HOME_SELECT.index(p['slug']))
 os.makedirs(OUT+'/media',exist_ok=True); shutil.copy(S+'/video3/apresentacao.mp4',OUT+'/media/apresentacao.mp4'); reg('media/apresentacao.mp4')
 put(S+'/video3/frames/f00105.jpg','img/video-poster.jpg',maxw=1920,q=84,fam=None)
@@ -134,13 +138,16 @@ b=('<main><div class="wide vid"><video id="vid" src="media/apresentacao.mp4" pos
  '<div class="col"><div class="cap"><b>Luis Gustavo Maia</b><span>engenheiro civil · CREA-SP 5071068977</span></div></div>'
  '<section class="col sec-s"><h1>Projeto, execução e engenharia tributária, <b>com uma única responsabilidade técnica.</b></h1></section>'
  '<section class="band sec"><div class="tag"><b>Estrutura × pronta</b></div><div>'
- '<figure class="cmp" id="cmp" style="--p:50%%"><img src="img/cmp/pronta.jpg" width="2000" height="1125" alt="Chalé pronto, com fechamento e cobertura" draggable="false">'
- '<img class="st" src="img/cmp/estrutura.jpg" width="2000" height="1125" alt="O mesmo chalé só com a estrutura em light steel frame" draggable="false">'
+ '<figure class="cmp" id="cmp" style="--p:50%%"><img src="img/cmp/pronta.jpg" width="2000" height="1125" alt="Casa Taquaraçu pronta, vista aérea com piscina" draggable="false">'
+ '<img class="st" src="img/cmp/estrutura.jpg" width="2000" height="1125" alt="Estrutura em light steel frame da Casa Taquaraçu, sobre radier em pilares" draggable="false">'
  '<span class="tg l">estrutura</span><span class="tg r">pronta</span>'
  '<span class="bar" aria-hidden="true"><svg viewBox="0 0 44 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 2L3 8l6 6M35 2l6 6-6 6"/></svg></span>'
- '<input id="cmp-r" type="range" min="0" max="100" step="1" value="50" aria-label="Comparar estrutura em steel frame e casa pronta"></figure>'
+ '<input id="cmp-r" type="range" min="0" max="100" step="1" value="50" aria-label="Comparar a estrutura em steel frame e a casa pronta"></figure>'
  '<div class="cap">%s</div></div></section>'%D.CMP_CAPTION)
 b+='<section class="band sec"><div class="tag"><b>Obras</b></div><div><div class="grid three">%s</div><p style="margin-top:44px"><a class="lnk" href="obras.html">Todas as obras</a></p></div></section>'%''.join(card(p) for p in sel)
+b+=('<section class="col sec"><h2 style="font-size:clamp(26px,3vw,40px);line-height:1.22;letter-spacing:-.012em">Steel frame não é moda. <b>É engenharia.</b></h2></section>'
+ '<img class="wide obra" src="%s" width="%d" height="%d" alt="Steel frame em obra: painéis de parede e treliças de entrepiso montados sobre a laje" loading="lazy" decoding="async">'
+ '<div class="col"><div class="cap"><b>Steel frame em obra</b><span>painéis de parede e treliças de entrepiso</span></div></div>')%OBRA
 b+=('<section class="band sec"><div class="tag"><b>Engenharia tributária</b></div><div><h2 style="max-width:20em">O INSS de uma casa de 150 m² em steel frame, <b>com e sem planejamento.</b></h2>'
  '<div class="nums" style="margin-top:36px"><div><div class="num off">R$ 8.832</div><div class="nl">aferição indireta, sem planejamento</div></div>'
  '<div><div class="num">R$ 2.650</div><div class="nl">com enquadramento e notas corretas</div></div>'
@@ -150,7 +157,7 @@ b+=call('Do terreno. <em>À chave.</em>','Olá Gustavo, vi o site e quero conver
 page('index.html','L. Engenharia','home',b,main=True)
 
 # ---------- inss e sobre ----------
-page('inss.html','INSS de obra · L. Engenharia','inss',D.INSS_BODY)
+page('inss.html','INSS de obra · L. Engenharia','inss',D.INSS_BODY+LB)
 page('agenda.html','Marcar reunião · L. Engenharia','agenda',D.AGENDA_BODY)
 page('sobre.html','Sobre · L. Engenharia','sobre',D.SOBRE_BODY+call('Do terreno. <em>À chave.</em>','Olá Gustavo, vi o site e quero conversar sobre um projeto.'))
 for f in ('styles.css','site.js'): shutil.copy(B+'/'+f,OUT+'/'+f); reg(f)

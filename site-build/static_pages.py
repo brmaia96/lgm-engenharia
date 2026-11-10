@@ -41,6 +41,10 @@ INSS_BODY = '''<main>
 </div></section>
 
 <section class="band sec"><div class="tag"><b>Sistemas industrializados</b></div><div>
+<div class="gal" style="margin-bottom:var(--sp1)">
+<figure class="half night"><a class="z" href="img/marca/estrutura.jpg" data-b="Light steel frame" data-s="perfis de aço galvanizado"><img src="img/marca/estrutura.jpg" width="1024" height="1087" alt="Estrutura de uma casa de dois pavimentos em light steel frame" loading="lazy" decoding="async" style="object-position:50% 40%"></a><figcaption class="cap"><b>Light steel frame</b><span>perfis de aço galvanizado</span></figcaption></figure>
+<figure class="half night"><a class="z" href="img/marca/detalhe.jpg" data-b="Ligação" data-s="montante, guia e parafusos"><img src="img/marca/detalhe.jpg" width="1122" height="1402" alt="Detalhe da ligação entre montante e guia de aço galvanizado" loading="lazy" decoding="async"></a><figcaption class="cap"><b>Ligação</b><span>montante, guia e parafusos</span></figcaption></figure>
+</div>
 <div class="sys">
 <div><h2>Steel framing</h2><p>Painéis de aço galvanizado. <b>Feitos em fábrica e montados na obra</b>, podem entrar como pré-fabricado.</p><span class="k">15% como obra mista, ou pré-fabricado com redução de 70%</span></div>
 <div><h2>Wood framing</h2><p>Estrutura em madeira tratada, painelizada. A regra trata como obra de madeira ou mista.</p><span class="k">mão de obra presumida de 15%, em vez de 20%</span></div>

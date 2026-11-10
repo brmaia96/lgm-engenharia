@@ -3,7 +3,7 @@ _s=importlib.util.spec_from_file_location('sp',os.path.dirname(__file__)+'/stati
 INSS_BODY=_m.INSS_BODY; SOBRE_BODY=_m.SOBRE_BODY; AGENDA_BODY=_m.agenda_body()
 OBRAS_META='11 projetos · casas, chalés e estruturas em aço'
 HOME_SELECT=['casa-taquaracu','chale-piedade','patio-escolar']
-CMP_CAPTION='<b><a href="o-chale-acolher.html">Chalé Acolher</a></b><span>arraste para ver a estrutura</span>'
+CMP_CAPTION='<b><a href="o-casa-taquaracu.html">Casa Taquaraçu</a></b><span>arraste para ver a estrutura</span>'
 C='clean/'
 def I(src,cap,alt,lay='half',**k): d=dict(src=C+src,cap=cap,alt=alt,lay=lay); d.update(k); return d
 

@@ -1,0 +1,20 @@
+dict(slug='cobertura-recife',assets='bcb-recife',name='Cobertura de estacionamento',cat='estrutura',cat_label='estruturas',cat_plural='estruturas',city='Recife · PE',sub='estrutura metálica · 1.437 m²',ref='a cobertura de estacionamento',
+ card=dict(src=C+'06-descida.jpg',focus=(.5,.45),alt='Vista por baixo da cobertura metálica, com pilar e mãos-francesas'),
+ hero=dict(src=C+'06-descida.jpg',pos='50% 42%',alt='Vista por baixo da cobertura, com pilar, mãos-francesas e a descida pluvial'),
+ lead='Nove coberturas metálicas de estacionamento: <b>1.437 m² cobertos com 34 t de aço.</b>',
+ text=['As coberturas contornam um edifício existente. A estrutura foi calculada em um modelo global com 1.330 barras.',
+       'A drenagem pluvial entrou no mesmo projeto: calhas de PVC entre os perfis da estrutura e descidas presas aos pilares.'],
+ ficha=[('Local','Recife · PE'),('Área coberta','1.437 m²'),('Sistema','Estrutura metálica'),('Aço','34 t'),('Coberturas','9'),('Modelo de cálculo','1.330 barras'),
+        ('Projeto executivo','32 pranchas'),('Escopo','Estrutura metálica e drenagem pluvial'),('Etapa','Projeto · 2026')],
+ sections=[
+  dict(label='Coberturas',items=[
+   I('03-corredor.jpg',('Corredor','circulação entre duas coberturas'),'Corredor de circulação entre duas coberturas',pos='50% 70%'),
+   I('05-agua-furtada.jpg',('Água furtada','encontro de duas águas'),'Telha metálica no encontro de duas águas'),
+   I('02-planta-estrutura.jpg',('Planta de cobertura','a malha da estrutura sobre as nove coberturas'),'Planta de cobertura com a malha da estrutura metálica','plan')]),
+  dict(label='Drenagem',items=[
+   I('04-corte-calha.jpg',('Calha em corte','PVC entre os perfis da estrutura'),'Corte do beiral mostrando a calha de PVC'),
+   I('07-descida-abracadeira.jpg',('Descida','tubo preso ao pilar por abraçadeira'),'Abraçadeira que prende o tubo de descida ao pilar')]),
+  dict(label='Fixação',items=[
+   I('08-lado-alto.jpg',('Lado alto','telha trapezoidal'),'Lado alto da cobertura com a telha trapezoidal'),
+   I('09-lado-alto-parafuso.jpg',('Parafuso','fixação da telha'),'Parafuso de fixação da telha')])]),
+

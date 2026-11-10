@@ -64,7 +64,57 @@ Implementação de referência: o site publicado (`site-lgm.html`), tokens
 Instagram (`@eng.gustavomaia`) passa pela rede, mas exige login — não é
 acessível sem conta. Para referência dos posts, pedir print ao cliente.
 
-## Tokens (exatos, de portfolio.html)
+## Site (web) — direção aprovada
+
+O cliente apontou **sys.haus** como o modelo ("é assim que eu quero"). O site
+segue essa linguagem e fica em `site/` (HTML estático, pronto para hospedar).
+
+- **Estrutura:** `index.html` (vídeo de apresentação, comparador estrutura ×
+  pronta, obras em destaque, INSS), `obras.html` (cartões padronizados + filtro),
+  uma página por projeto `o-<slug>.html` (texto curto, ficha técnica, galeria por
+  seção com ampliação), `inss.html` (exemplo, memória de cálculo, simulador que
+  mostra só a aferição indireta e leva ao WhatsApp), `sobre.html`.
+- **Tokens web:** fundo `#fff`, tinta `#2F2E2E`, corpo `#6B6868`, apoio `#A0A09F`,
+  linha `#E9E8E6`, acento terra `#9A7350` só em destaque raro. Jost 300/400/500;
+  Playfair Display só na marca e em um itálico de acento.
+- **Marca na web:** `L` em serifa didone com o ponto cobre `#C89A71`, como no
+  perfil e nos vídeos publicados pelo cliente. (A regra "monocromática" abaixo
+  vale para a peça A4 impressa.)
+- **Nunca nome de cliente.** Cidade pode. Nome de projeto pode ser trocado.
+
+### Padrão de imagem (obrigatório em toda peça web)
+
+Toda imagem pertence a uma de três famílias, cada uma com um só tratamento:
+
+1. **Render ou foto** — cor graduada única: branco neutro-quente, saturação
+   contida (~60%), exposição nivelada. Nada de pôr do sol laranja ao lado de céu
+   azul saturado.
+2. **Desenho técnico** — uma tinta só (`#2F2D2B`) sobre o mesmo papel
+   (`#F7F6F4`). Cotas e hachuras coloridas viram cinza.
+3. **Modelo de estrutura em fundo escuro** — monocromático sobre o mesmo preto
+   (`#0A0A0A`).
+
+Capas (Obras e home) em duotone tinta × papel; a cor aparece só no hover.
+Proporções fixas: 3:2 imagem inteira, 4:3 pares, 1:1 trios, 4:5 planta vertical.
+Ordem fixa por projeto: capa, fachadas, interiores, planta, estrutura.
+Retrato do engenheiro: preto e branco, fundo de estúdio liso, sem logos.
+
+Para render novo sair já no padrão: mesma hora do dia, câmera na altura do olho
+em três quartos para a capa, e o conjunto capa + 2 fachadas + 3 internas +
+planta sem cotas + estrutura.
+
+### Fatos conferidos no Drive (nov/2026)
+
+- Papanduva é **cobertura metálica de pátio escolar** (784 m², 20,2 t), não
+  steel frame.
+- Chalé Viver é **alvenaria com concreto armado**; Chalé Acolher é steel frame.
+- Todas as imagens de projeto são renders; nenhuma obra executada documentada.
+  Ficha usa "Etapa: Projeto".
+- A cobertura de estacionamento de Recife ficou **fora** do site até o cliente
+  confirmar que pode ser publicada.
+- VAU do simulador de INSS: referência de R$ 2.000/m² (o oficial só no e-CAC).
+
+## Tokens da peça A4 (exatos, de portfolio.html)
 
 ```css
 --ink:   #0D0D0D;   /* texto principal */

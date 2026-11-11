@@ -260,20 +260,15 @@ Sero v3.0 (08/2024) e páginas da Receita no gov.br.
 - A norma e o manual **não citam steel frame**. O enquadramento é pelo texto
   ("estrutura de metal", "pré-fabricado por terceiros"), e isso é dito no site.
 - **Obras aferidas (mapa e contadores de `inss.html`, dados em `inss_page.py`):**
-  o Drive tem 70 memórias de cálculo do Sero, de 38 obras, de 2021 a 2026. Com
-  aferição concluída são 28; a de Marília de 2021 (576 m²) **saiu do ar** até o
-  cliente confirmar que é dele (vem de um arquivo de caso de terceiro). No ar,
-  com Franca (certidão): **28 obras, 13 cidades** (Marília 16; Sinop e Água Boa,
-  MT; Assis, Botucatu, Franca, Itupeva, Mirassol, Pedrinhas Paulista, Piraju,
-  São Roque, Tupã e Vargem Grande Paulista, SP), **6.139,61 m² de área
-  aferida** (433,55 m² são demolição: por isso "aferida", não "regularizada").
-  Confirmada a de 2021, voltam 29 obras, 6.715,79 m² e R$ 101.997,80 em nove
-  (instrução no comentário de `inss_page.py`). Ficam fora as dez em rascunho, entre elas as
-  salas comerciais de Marília (rascunho de 09/11/2026). O cliente ainda precisa
-  confirmar que todas são dele; a de Marília de 2021 (576 m²) está num arquivo
-  de caso.
-- **Desconto documentado no ar: R$ 73.845,11 em oito obras** (R$ 101.997,80 em
-  nove com a de 2021), com um critério só. Na tabela, antes e depois são o saldo
+  o Drive tem 70 memórias de cálculo do Sero, de 38 obras, de 2021 a 2026. Contam
+  as **28 com aferição concluída** (a de Marília de 2021, 576 m², confirmada pelo
+  cliente em nov/2026) e Franca, que tem certidão: **29 obras, 13 cidades**
+  (Marília 17; Sinop e Água Boa, MT; Assis, Botucatu, Franca, Itupeva, Mirassol,
+  Pedrinhas Paulista, Piraju, São Roque, Tupã e Vargem Grande Paulista, SP),
+  **6.715,79 m² de área aferida** (433,55 m² são demolição: por isso "aferida",
+  não "regularizada"). Ficam fora as dez em rascunho, entre elas as
+  salas comerciais de Marília (rascunho de 09/11/2026). 
+- **Desconto documentado: R$ 101.997,80 em nove obras**, com um critério só. Na tabela, antes e depois são o saldo
   na aferição final, sem o INSS recolhido ao longo da obra, e a página diz isso.
   Enquadramento, pela simulação anterior contra a aferição concluída: Marília
   2021, 576 m² (46.802,38 → 18.649,69) e Sinop 2026, 205 m² (27.026,57 →
@@ -291,8 +286,7 @@ Sero v3.0 (08/2024) e páginas da Receita no gov.br.
 - **A confirmar com o cliente:** (1) o Provimento CG nº 17/2026 da Corregedoria
   de SP, que segundo fontes secundárias dispensou a CND para averbar construção
   nos cartórios paulistas. Por isso o site não afirma que "sem certidão o
-  cartório não averba"; (2) se a obra de Marília de 2021 (576 m², arquivo de
-  caso no Drive) pode ser citada como dele; (3) o Formulário Google para a base
+  cartório não averba"; (2) o Formulário Google para a base
   de contatos e o link da comunidade no WhatsApp.
 
 ### Padrão de imagem (obrigatório em toda peça web)

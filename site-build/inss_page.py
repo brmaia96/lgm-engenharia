@@ -61,20 +61,20 @@ COMUNIDADE_URL = ''   # link do grupo/comunidade do WhatsApp, quando o cliente c
 # ---- obras aferidas (mapa e contadores) ----
 _BR = json.load(open(HERE + '/brasil.json'))
 # Fonte: memórias de cálculo do Sero guardadas no Drive do cliente (70 memórias, 38 obras, de 2021 a 2026).
-# Entram 27 das 28 obras com aferição "Concluída" (fica fora a de Marília de 2021, a confirmar) e Franca, que tem a certidão. Ficam fora as dez com aferição
+# Entram as 28 obras com aferição "Concluída" (a de Marília de 2021 confirmada pelo cliente em nov/2026) e Franca, que tem a certidão. Ficam fora as dez com aferição
 # ainda em rascunho (entre elas as salas comerciais de Marília, rascunho de 09/11/2026).
 # Só cidade, área, ano e valores: nunca nome, CNO ou endereço.
-OBRAS_CIDADES = [('Marília', 'SP', 16), ('Sinop', 'MT', 1), ('Água Boa', 'MT', 1), ('Assis', 'SP', 1), ('Botucatu', 'SP', 1), ('Franca', 'SP', 1),
+OBRAS_CIDADES = [('Marília', 'SP', 17), ('Sinop', 'MT', 1), ('Água Boa', 'MT', 1), ('Assis', 'SP', 1), ('Botucatu', 'SP', 1), ('Franca', 'SP', 1),
                  ('Itupeva', 'SP', 1), ('Mirassol', 'SP', 1), ('Pedrinhas Paulista', 'SP', 1), ('Piraju', 'SP', 1), ('São Roque', 'SP', 1),
                  ('Tupã', 'SP', 1), ('Vargem Grande Paulista', 'SP', 1)]
 # m² aferidos em cada obra (área principal + complementar da memória concluída); o último é Franca
-AREAS_AFERIDAS = [141.93, 280.73, 275.77, 272.37, 174.16, 235.04, 60.60, 308.58, 28.87, 59.00, 55.00, 302.20, 409.11, 175.82, 204.96, 30.22,
+AREAS_AFERIDAS = [576.18, 141.93, 280.73, 275.77, 272.37, 174.16, 235.04, 60.60, 308.58, 28.87, 59.00, 55.00, 302.20, 409.11, 175.82, 204.96, 30.22,
                   399.96, 260.46, 106.41, 211.66, 340.92, 370.63, 266.85, 115.10, 445.71, 150.00, 318.18, 139.37]
 # Desconto documentado, com um critério só:
 #  - enquadramento (duas primeiras): simulação anterior x aferição concluída;
 #  - fator de ajuste (as demais): débito que a própria memória concluída apura antes do fator de ajuste, zerado por ele.
 # Não entram reduções por remuneração declarada (o INSS dessa folha foi pago mês a mês) nem obra sem valor anterior na memória.
-DESCONTOS = [('Marília', '400 m²', '2026', 29668.63, 0.0), ('Sinop', '205 m²', '2026', 27026.57, 7909.57),
+DESCONTOS = [('Marília', '400 m²', '2026', 29668.63, 0.0), ('Marília', '576 m²', '2021', 46802.38, 18649.69), ('Sinop', '205 m²', '2026', 27026.57, 7909.57),
              ('Assis', '446 m²', '2026', 10378.47, 0.0), ('Marília', '371 m²', '2026', 7624.20, 0.0), ('Marília', '212 m²', '2025', 4513.47, 0.0),
              ('Piraju', '106 m²', '2025', 1114.39, 0.0), ('Tupã', '142 m²', '2021', 1098.34, 0.0), ('Marília', '61 m²', '2022', 330.61, 0.0)]
 CASOS = DESCONTOS[:4]     # a tabela da página mostra só os quatro maiores
@@ -85,7 +85,7 @@ EXT = {3: 'três', 4: 'quatro', 5: 'cinco', 6: 'seis', 7: 'sete', 8: 'oito', 9: 
 N_DESC_EXT = EXT.get(N_DESC, str(N_DESC))
 # Com a obra de Marília de 2021 (576,18 m²; 46.802,38 -> 18.649,69) os totais voltam a 29 obras, 6.715,79 m² e R$ 101.997,80 em nove.
 # Para repor: 576.18 em AREAS_AFERIDAS, Marília com 17 e a tupla ('Marília', '576 m²', '2021', 46802.38, 18649.69) em DESCONTOS.
-assert N_OBRAS == len(AREAS_AFERIDAS) == 28 and abs(ECON_REAL - 73845.11) < .01 and abs(M2_TOTAL - 6139.61) < .01
+assert N_OBRAS == len(AREAS_AFERIDAS) == 29 and abs(ECON_REAL - 101997.80) < .01 and abs(M2_TOTAL - 6715.79) < .01
 
 FAQ = [
  ('Toda obra paga INSS?', 'Quase toda. Quem constrói, reforma ou amplia responde pela contribuição da mão de obra. As exceções são poucas.'),

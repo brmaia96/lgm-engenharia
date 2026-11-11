@@ -165,6 +165,9 @@ só mostra que há know-how, sem excesso.
   lista com imagem ("imagens chamam atenção"), um minuto de leitura por artigo:
   resposta curta, o que muda, o ponto de atenção. Primeiro os tributários;
   steel frame depois.
+- **Planta (instrução do cliente, nov/2026):** "sempre que colocar planta tem que
+  ser humanizada e sem medidas, no máximo medida do terreno". Nunca planta técnica,
+  cotada ou com carimbo; nunca cota de ambiente. Hoje nenhuma planta está no ar.
 - **Portfólio no mínimo, sem prancha.** Só fachada, externa, interna e o 3D da
   estrutura. Nada de planta, corte, isométrica, lista de corte ou detalhe:
   "detalhe é para obra e para o cliente que comprar". A seleção fica na camada

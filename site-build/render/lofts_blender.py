@@ -41,7 +41,8 @@ def box(n, x0, x1, y0, y1, z0, z1, M):
     bpy.ops.mesh.primitive_cube_add(size=1, location=((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2)); o = bpy.context.object
     o.scale = (x1 - x0, y1 - y0, z1 - z0); o.name = n; o.data.materials.append(M); return o
 W, D, H = 4.55, 5.65, 6.03
-YF = 4.20 + .70          # projeção da laje (0,70) começa na faixa de jardim; fachada a 4,90 da divisa norte
+YF = 4.15 + .70          # locação: 0,25 + 2,85 + 0,15 + 0,70 + 0,20 = 4,15 até a borda da laje; fachada a 4,85
+ZB = .10                 # base das paredes (+0,10); as cotas de altura da P02 contam a partir dela
 def janela(face, a, b, z0, z1):   # face: 'O' (oeste, x0), 'L' (leste, x1), 'S' (fundos, y1); a-b ao longo da face
     if face in 'OL':
         x = X0 if face == 'O' else X1; s = -1 if face == 'O' else 1
@@ -53,31 +54,32 @@ def janela(face, a, b, z0, z1):   # face: 'O' (oeste, x0), 'L' (leste, x1), 'S' 
 for k, X0 in enumerate((3.55, 11.10, 18.65)):
     X1 = X0 + W
     box('calcada', X0 - .70, X1 + .70, YF - .70, YF + D + .70, -.02, .10, calc)
-    box('loft', X0, X1, YF, YF + D, 0, H, gelo)
-    box('rufo', X0 - .03, X1 + .03, YF - .03, YF + D + .03, H, H + .03, mat('rufo%d' % k, (220, 219, 216), .4, .4))
-    box('marquise', X0, X1, YF - .70, YF, 3.05, 3.15, gelo)                 # laje projetada 0,70, i 3%
-    box('ala', X1 - .15, X1 - .001, YF - .699, YF, 0, 3.05, gelo)            # parede de ala do lado da rua (sob a marquise: total 3,15)
+    box('loft', X0, X1, YF, YF + D, 0, ZB + H, gelo)
+    box('rufo', X0 - .03, X1 + .03, YF - .03, YF + D + .03, ZB + H, ZB + H + .03, mat('rufo%d' % k, (220, 219, 216), .4, .4))
+    box('marquise', X0, X1, YF - .70, YF, ZB + 3.05, ZB + 3.15, gelo)                 # laje projetada 0,70, i 3%
+    box('ala', X1 - .15, X1 - .001, YF - .699, YF, 0, ZB + 3.05, gelo)            # parede de ala do lado da rua (sob a marquise: total 3,15)
     # porta pivotante P01 1,20 x 2,20, a 1,18 m da face leste (fachada frontal), sobre o piso +0,15
     box('batente', X1 - 2.42, X1 - 1.14, YF - .02, YF + .01, .13, 2.39, alu)
     box('porta', X1 - 2.38, X1 - 1.18, YF - .04, YF + .02, .15, 2.35, madeira)
     box('puxador', X1 - 2.20, X1 - 2.17, YF - .10, YF - .06, .55, 1.95, inox)
     janela('L', YF + 1.17, YF + 2.67, 1.50, 1.90)                              # J03 cozinha
-    janela('O', YF + .40, YF + .70, .85, 5.25)                                 # J04 faixa vertical
-    janela('O', YF + 4.15, YF + 4.75, 1.65, 2.25)                              # J02 banho
-    janela('S', X0 + 2.65, X0 + 3.65, 1.55, 1.95)                              # J01
-    janela('S', X0 + 1.25, X0 + 3.25, 4.40, 5.00)                              # J05 mezanino
+    janela('O', YF + .40, YF + .70, .90, 5.30)                                 # J04 faixa vertical
+    janela('O', YF + 4.55, YF + 5.15, 1.70, 2.30)                              # J02 banho
+    janela('S', X0 + 2.80, X0 + 3.80, 1.55, 1.95)                              # J01
+    janela('S', X0 + 1.35, X0 + 3.35, 4.40, 5.00)                              # J05 mezanino
 # lote 30 x 12: corredor de piso drenante junto à divisa norte, jardim, muros de divisa, muro da fachada e reservatório
 box('gramado', .25, 24.55, .25, 11.75, -.03, 0, grama)
-box('corredor', .25 + 2.85, 24.55, .25, 3.35, -.02, .012, drenante)
-for xa in (4.75, 12.30, 19.85):
-    box('pisada', xa, xa + 1.80, 3.35, YF - .70, -.02, .012, drenante)
+box('corredor', .25 + 2.85, 24.55, .25, 3.10, -.02, .012, drenante)
+box('guia', .25 + 2.85, 24.55, 3.10, 3.25, -.02, .05, calc)
+for X0 in (3.55, 11.10, 18.65):
+    box('pisada', X0 + 2.02, X0 + 4.55, 3.25, 3.95, -.02, .012, drenante)
 box('divisa-n', 0, 30, 0, .25, 0, 2.20, muro); box('divisa-s', 0, 30, 11.75, 12, 0, 2.20, muro); box('fundo', 0, .25, 0, 12, 0, 2.20, muro)
 box('muro-fachada', 24.55, 24.75, 3.35, 12, 0, 2.20, muro)
-box('reservatorio', .25, 2.60, 8.60, 11.75, 0, 2.30, muro)
+box('reservatorio', .25, 2.35, 8.85, 11.75, 0, 2.20, muro)
 box('chao', -40, 70, -40, 60, -.06, -.05, mat('terreno', (150, 146, 136), .95))
 # paisagismo: palmeiras e agaves nas posições da locação
-folha = mat('folha', (66, 92, 48), .6, 0, .2); tronco = mat('tronco', (150, 146, 138), .8); ruido(tronco, 40, (138, 134, 126), (160, 156, 148), .3)
-palmito = mat('palmito', (96, 120, 70), .6); agave_m = mat('agave', (84, 108, 92), .5, 0, .1)
+folha = mat('folha', (66, 92, 48), .6); tronco = mat('tronco', (150, 146, 138), .8); ruido(tronco, 40, (138, 134, 126), (160, 156, 148), .3)
+palmito = mat('palmito', (96, 120, 70), .85); agave_m = mat('agave', (84, 108, 92), .5, 0, .1)
 def fronde(bm, base, ang, inc, L, rnd):
     # ráquis arqueada e folíolos estreitos (3 cm) e caídos, como a palmeira-imperial desenhada nas fachadas
     N = 40; pts = []
@@ -99,7 +101,7 @@ def palmeira(x, y, h=6.5, seed=0):
     rnd = random.Random(seed)
     bpy.ops.mesh.primitive_cone_add(vertices=24, radius1=.24, radius2=.16, depth=h - 3.0, location=(x, y, (h - 3.0) / 2)); t = bpy.context.object; t.data.materials.append(tronco)
     bpy.ops.mesh.primitive_cylinder_add(vertices=24, radius=.17, depth=1.1, location=(x, y, h - 3.0 + .55)); c = bpy.context.object; c.data.materials.append(palmito)
-    bpy.ops.mesh.primitive_uv_sphere_add(radius=.17, location=(x, y, h - 3.0 + 1.1)); e = bpy.context.object; e.scale.z = .8; e.data.materials.append(palmito)
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=.17, location=(x, y, h - 3.0 + 1.0)); e = bpy.context.object; e.scale.z = .6; e.data.materials.append(palmito)
     me = bpy.data.meshes.new('copa'); bm = bmesh.new(); base = mathutils.Vector((x, y, h - 1.85))
     for i in range(16):
         ang = i * 2.4 + rnd.uniform(-.2, .2); inc = math.radians(rnd.uniform(15, 60)); fronde(bm, base, ang, inc, rnd.uniform(2.4, 3.0), rnd)
@@ -114,7 +116,7 @@ def agave(x, y, r=.75, seed=0):
         vs = [bm.verts.new(b0 - sd), bm.verts.new(b0 + sd), bm.verts.new(b0 + d * L * .5 + sd * 1.3 + mathutils.Vector((0, 0, .04))), bm.verts.new(tip), bm.verts.new(b0 + d * L * .5 - sd * 1.3 + mathutils.Vector((0, 0, .04)))]
         bm.faces.new(vs)
     bm.to_mesh(me); bm.free(); o = bpy.data.objects.new('agave', me); bpy.context.collection.objects.link(o); o.data.materials.append(agave_m)
-for i, px in enumerate((1.5, 9.1, 16.7, 24.0)): palmeira(px, -3.85, 6.5, i)
+for i, px in enumerate((1.55, 9.21, 16.79, 24.18)): palmeira(px, -3.55, 6.5, i)
 for i, ax in enumerate((4.1, 11.8, 19.3)): agave(ax, -3.95, .7, 10 + i); agave(ax + .7, -3.80, .6, 20 + i)
 w = bpy.data.worlds.new('ceu'); sc.world = w; w.use_nodes = True; nw = w.node_tree
 sky = nw.nodes.new('ShaderNodeTexSky'); sky.sky_type = 'NISHITA'; sky.sun_elevation = math.radians(40); sky.sun_rotation = math.radians(float(A[9]) if len(A) > 9 else 120)

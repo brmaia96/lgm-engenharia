@@ -35,9 +35,9 @@ def box(n, x0, x1, y0, y1, z0, z1, M):
     bpy.ops.mesh.primitive_cube_add(size=1, location=((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2)); o = bpy.context.object
     o.scale = (x1 - x0, y1 - y0, z1 - z0); o.name = n; o.data.materials.append(M); return o
 # muro frontal (y 0-0,15) com os vãos dos portões
-box('muro-f-esq', .15, 2.00, 0, .15, 0, 2.80, reboco)
+box('muro-f-esq', 0, 2.00, 0, .15, 0, 2.80, reboco)
 box('pilar', 7.00, 7.40, 0, .15, 0, 2.80, reboco)
-box('muro-f-dir', 8.60, 9.85, 0, .15, 0, 2.80, reboco)
+box('muro-f-dir', 8.60, 10.0, 0, .15, 0, 2.80, reboco)
 box('verga-1', 2.00, 7.00, 0, .15, 2.40, 2.80, reboco); box('verga-2', 7.40, 8.60, 0, .15, 2.40, 2.80, reboco)
 # portões em lâminas horizontais de alumínio (basculante 5,00 x 2,40 e social 1,20 x 2,40)
 for x0, x1 in ((2.00, 7.00), (7.40, 8.60)):
@@ -46,18 +46,21 @@ for x0, x1 in ((2.00, 7.00), (7.40, 8.60)):
     while z < 2.34: box('lamina', x0 + .04, x1 - .04, .02, .12, z, z + .07, lamina); z += .12
 box('puxador', 8.45, 8.48, -.02, .02, 1.0, 1.3, grafite)
 # tabeira metálica da garagem (8,70 x 0,50) e cobertura de telha sanduíche
-box('tabeira', .15, 8.85, -.05, .10, 2.80, 3.30, grafite)
-box('cob-garagem', .15, 8.85, .10, 5.15, 3.05, 3.15, mat('sanduiche', (190, 192, 194), .45, .6))
+box('tabeira', 0, 8.70, -.05, .10, 2.80, 3.30, grafite)
+box('cob-garagem', 0, 8.70, .10, 5.15, 3.05, 3.15, mat('sanduiche', (190, 192, 194), .45, .6))
 box('piso-gar', .15, 8.70, .15, 5.15, -.01, .01, piso)
 # casa: volumes com platibanda (fachada norte: 1,90 | 4,64 | 3,46), recuo de 5,15 da rua
-box('volume-central', 1.90, 6.54, 5.15, 14.85, 0, 4.50, reboco)
-box('volume-direito', 6.54, 9.85, 5.15, 14.85, 0, 4.50, reboco)
+# Fachadas Leste/Oeste: platibanda frontal de 0,15 ate 4,50; corpo da casa a 4,00 ate o fundo (5,00 + 12,25 = 17,25)
+box('plat-central', 1.90, 6.54, 5.15, 5.30, 0, 4.50, reboco)
+box('plat-direita', 6.54, 9.85, 5.15, 5.30, 0, 4.50, reboco)
+box('volume-central', 1.90, 6.54, 5.15, 17.25, 0, 4.00, reboco)
+box('volume-direito', 6.54, 9.85, 5.15, 17.25, 0, 4.00, reboco)
 box('moldura-recuo', 6.70, 9.70, 5.10, 5.16, 3.30, 4.30, mat('rebaixo', (226, 224, 219), .85))   # requadro da fachada do volume direito
-box('caixa-dagua', 2.61, 5.56, 7.0, 10.0, 4.50, 5.30, reboco)
-box('pingadeira', 1.88, 6.56, 5.12, 14.87, 4.50, 4.53, mat('rufo', (205, 205, 203), .4, .5))
-box('pingadeira2', 6.52, 9.87, 5.12, 14.87, 4.50, 4.53, mat('rufo2', (205, 205, 203), .4, .5))
+box('caixa-dagua', 2.61, 5.56, 11.05, 14.30, 4.00, 5.30, reboco)
+box('pingadeira', 1.88, 9.87, 5.12, 5.33, 4.50, 4.53, mat('rufo', (205, 205, 203), .4, .5))
+box('pingadeira2', 1.88, 9.87, 5.30, 17.27, 4.00, 4.03, mat('rufo2', (205, 205, 203), .4, .5))
 # muros de divisa (2,00) e lote
-box('divisa-e', 0, .15, 0, 20, 0, 2.00, muro); box('divisa-d', 9.85, 10.0, 0, 20, 0, 2.00, muro)
+box('divisa-e', 0, .15, .15, 20, 0, 2.00, muro); box('divisa-d', 9.85, 10.0, .15, 20, 0, 2.00, muro)
 box('calcada', -30, 40, -2.5, 0, -.15, 0, calc); box('guia', -30, 40, -2.65, -2.5, -.16, 0, guia)
 box('rua', -30, 40, -14, -2.65, -.32, -.30, asf)
 # vizinhos: só os muros de divisa, sem casas inventadas

@@ -116,7 +116,7 @@ def mapa_obras():
     cid = '<div><dt>São Paulo</dt><dd>%s</dd></div><div><dt>Mato Grosso</dt><dd>%s</dd></div>' % (lista('SP'), lista('MT'))
     assert all(c[1] in ('SP', 'MT') for c in OBRAS_CIDADES)
     casos = ''.join('<tr><th scope="row">%s<span class="ar">, %s</span></th><td class="c-ar">%s</td><td class="c-an">%s</td><td class="off">%s</td><td>%s</td><td class="hl">%s</td></tr>' % (
-        c, ar, ar, an, brl(x), brl(y), brl(round(x) - round(y))) for c, ar, an, x, y in CASOS)
+        c, ar, ar, an, brl(x), brl(y), brl(x - y)) for c, ar, an, x, y in CASOS)
     m2 = format(round(M2_TOTAL), ',d').replace(',', '.')
     return ('''<section class="band sec" id="obras-aferidas"><div class="tag"><b>Obras aferidas</b></div><div>
 <h2>Não é teoria. <b>É obra aferida.</b></h2>
@@ -198,8 +198,8 @@ _BODY = '''<main>
 </div>
 <p class="note" style="margin-top:44px"><b>Nada é automático.</b> O enquadramento depende do projeto e das notas fiscais. É o que eu analiso com você.</p>
 </div></section>
-<img class="wide obra" src="[[IMG]]" width="[[IMGW]]" height="[[IMGH]]" alt="Estrutura em light steel frame vista por dentro: montantes, guias e treliças de aço galvanizado" loading="lazy" decoding="async" style="object-position:50% 50%;aspect-ratio:21/9">
-<div class="col"><div class="cap"><b><a href="o-casa-taquaracu.html">Casa Taquaraçu</a></b><span>estrutura em light steel frame</span></div></div>
+<img class="wide obra" src="[[IMG]]" width="[[IMGW]]" height="[[IMGH]]" alt="Estrutura em steel frame vista por dentro: montantes, guias e treliças de aço galvanizado" loading="lazy" decoding="async" style="object-position:50% 50%;aspect-ratio:21/9">
+<div class="col"><div class="cap"><b><a href="o-casa-taquaracu.html">Casa Taquaraçu</a></b><span>estrutura em steel frame</span></div></div>
 
 <section class="band sec" id="perguntas"><h2 class="tag">Perguntas frequentes</h2><div>
 <div class="faq">
@@ -232,7 +232,7 @@ m.push('','Quero saber como pagar menos.');return 'https://wa.me/'+WA+'?text='+e
 function pick(v){S.sis=v;[].forEach.call(seg.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x.getAttribute('data-v')===v?'true':'false')})}
 /* mesma sequência do Sero: área equivalente com duas casas, custo da obra, 20% de mão de obra, fator social, alíquota */
 function calc(){var a=parseFloat(String(ar.value).replace(',','.'));
-if(!(a>0)){ar.classList.add('err');ar.setAttribute('aria-invalid','true');h.textContent='Informe a área construída em m².';$('v-sem').textContent='—';$('v-eco').textContent='—';return false}
+if(!(a>0)){ar.classList.add('err');ar.setAttribute('aria-invalid','true');h.textContent='Informe a área construída em m².';$('v-sem').textContent='—';$('v-eco').textContent='—';var wb=$('wa');if(wb)wb.href='https://wa.me/'+WA;return false}
 ar.classList.remove('err');ar.removeAttribute('aria-invalid');h.textContent='';
 var u=uf.value,aeq=Math.round(a*eq(a)*100)/100,cod=Math.round(aeq*VAU[u]*100)/100,v=cod*[[P_ALV]]*fs(a)*ALIQ,e=v*RED[S.sis];S.v=v;S.e=e;S.a=a;
 $('uf-h').textContent='Valor por m² em '+UFN[u]+': '+brl(VAU[u]);

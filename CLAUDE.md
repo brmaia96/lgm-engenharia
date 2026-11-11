@@ -161,6 +161,8 @@ só mostra que há know-how, sem excesso.
   e-mail no código da página e depende de ativação por e-mail: só com aprovação
   dele). Com a base ligada, o botão só mostra o resultado e o WhatsApp vira o
   segundo passo.
+  Contadores e filme mostram os números arredondados (6.716 m², R$ 101.998); a
+  tabela arredonda a diferença exata (Marília 2021: R$ 28.153).
   **Escolhido em nov/2026 (cliente: "pode criar"):** planilha "Base de contatos -
   site (calculadora de INSS)" criada no Drive dele, com cabeçalho; script em
   `site-build/leads_apps_script.gs` (grava a linha, corta em 200 caracteres e
@@ -212,8 +214,8 @@ só mostra que há know-how, sem excesso.
   isométrico, apenas renderizada". A obra abre com UMA fachada renderizada (capa
   única, sem par com interior); internas e estrutura ficam dentro da página.
   Fora do ar por não terem render de fachada fiel ao projeto atual (`HELD` em
-  `data.py`, dados prontos): **Casa Duo** e **Le Blanc Lofts** (o render da v30
-  foi reprovado). A Casa da Raia voltou na v29 com render fiel (abaixo). Os renders realistas que existem no Drive são de IA e mudam
+  `data.py`, dados prontos): só a **Casa Duo**. A Casa da Raia voltou na v29 e
+  o Le Blanc Lofts na v33, com render fiel conferido (abaixo). Os renders realistas que existem no Drive são de IA e mudam
   o projeto; os modelos (IFC 92 MB, RVT 100–330 MB) passam do limite do conector
   (10 MB). Voltam quando o cliente mandar render do modelo atual.
 - **Pedidas e ainda sem capa possível (nov/2026):** obra residencial em concreto
@@ -249,29 +251,32 @@ só mostra que há know-how, sem excesso.
   Detalhe da Fachada, da Planta de Cobertura e do Corte A-A; conferido em vista
   ortogonal. Cores neutras, porque as pranchas não as definem. O modelo Revit
   "padrão template" ainda não foi feito: o Revit não roda aqui.
-- **Le Blanc Lofts** (v30 → fora na v32): o render montado no Blender a partir
-  das vistas do modelo foi **reprovado pelo cliente: "projeto do loft está
-  totalmente errado, mal feito".** Saiu do ar e o script foi apagado. Não
-  remontar fachada de projeto a partir de vistas ou medidas tiradas de imagem:
-  o Lofts só volta com vista exportada do próprio modelo dele ou com aprovação
-  dele de um render feito pelas cotas. Erros do render da v30: medidas tiradas
-  de imagem, eixo espelhado (porta e ala do lado errado), janela alta e
-  marquise parcial que não existem, sem ala, sem J04, sem paisagismo.
-  **Refeito (nov/2026, aguarda o ok do cliente, fora do ar):**
-  `site-build/render/lofts_blender.py`, só com as cotas das pranchas P01 e P02
-  de arquitetura: loft 4,55 × 5,65 × 6,03, marquise de 0,10 a +3,05 com 0,70
-  de projeção na largura toda, ala do lado da rua até 3,15, P01 pivotante de
-  madeira a 1,18 m da quina, J01 a J05 do quadro de esquadrias, palmeiras e
-  agaves da locação. Conferido em vista ortogonal contra a Fachada Frontal e a
-  Fachada Lateral Esquerda. Imagem em
-  `scratchpad/assets/le-blanc-lofts/render/02-fachada-render.png`. Para pôr no
-  ar: tirar de `HELD` e apontar card/hero para esse arquivo.
+- **Le Blanc Lofts** (v33, no ar de novo): o render da v30 foi reprovado pelo
+  cliente ("totalmente errado, mal feito"): medidas tiradas de imagem, eixo
+  espelhado, janela e marquise que não existem. Refeito em
+  `site-build/render/lofts_blender.py` só com as cotas das pranchas P01 e P02
+  de arquitetura (loft 4,55 × 5,65 × 6,03 sobre base de +0,10, marquise de 0,70
+  na largura toda, ala do lado da rua, P01 pivotante de madeira, J01 a J05 do
+  quadro de esquadrias, piso drenante, palmeiras e agaves da locação) e
+  conferido por revisor independente contra as quatro fachadas e a locação; os
+  desvios que ele apontou foram corrigidos antes de publicar. **Lição: em
+  Blender o eixo Y tem de apontar para o norte (Y para o sul espelha a
+  fachada).** Não remontar fachada a partir de medidas tiradas de imagem.
+- **Conferência independente dos renders montados (nov/2026):** Casa da Raia
+  fiel. Casa Garça corrigida na v33 (casa até y 17,25, corpo a 4,00 com
+  platibanda de 4,50 só na frente, caixa-d'água em y 11,05–14,30, tabeira de 0
+  a 8,70, muro frontal de 2,80 de ponta a ponta). Prédio comercial corrigido na
+  v33 (três vãos iguais com montantes grossos a 33,2% e 67,4%, oito módulos de
+  1,20 por vão, porta dupla de 2,60, vidro sobre base de +0,40, painel liso,
+  muros de divisa fora da calçada). Versões antigas guardadas como
+  `*.v28.png` / `*.v29.png` em `scratchpad/assets`.
 - **Acabamento por IA sobre render fiel:** testado na Raia (nov/2026) e
   reprovado: não mudou o projeto, mas borrou a borda do telhado, pôs manchas no
   muro e névoa no céu. Não repetir nas outras. só com modelo aberto local (SD 1.5 +
   ControlNet com as linhas do render travadas) e só publica se não mudar nada do
   projeto, conferido contra a prancha. Na dúvida, fica o render fiel.
-- Salas comerciais: capa = foto real da fachada (recortada, sem o céu).
+- Salas comerciais: capa = foto real da fachada, recortada a partir de 56% da
+  altura (acima do muro: sem céu, prédios nem cerca).
 - Foto "Steel frame não é moda" na home: só a parte de cima (treliças e painéis);
   o chão da obra tinha poça, sacos e ferramentas. No filme, essa cena usa o render
   da estrutura do Chalé Acolher.
@@ -279,7 +284,8 @@ só mostra que há know-how, sem excesso.
   página (os navegadores não permitem som antes disso). Trilha nova
   (`video/musica2.py`): piano, cordas, baixo e percussão leve, -16 LUFS.
 - Blog: capa no topo do artigo, fachada renderizada de uma obra, 16:9 na coluna.
-- Ficha sempre com Local, Área, Sistema, Escopo, Etapa (com ano); cidade com
+- Ficha sempre com Local, Área, Sistema, Escopo, Etapa (com ano, quando o
+  arquivo do projeto tem o ano; Taquaraçu não tem e fica só "Projeto"); cidade com
   vírgula ("Marília, SP"); "steel frame" no texto e "Light steel frame" só na
   linha Sistema; nunca "steel framing", "LSF" ou "off-site".
 - **Chalé Analândia** usa os renders do projeto que estão no Drive (A-frame com
@@ -311,6 +317,14 @@ só mostra que há know-how, sem excesso.
   - **Casa do Bosque**: suíte e banho mostravam sacada e vista por cima das
     copas, e a fachada é térrea. Fica só o par da capa.
   - Qualquer imagem nova passa pela mesma conferência antes de ir ao ar.
+- **Hospedagem pública (nov/2026):** projeto `lgm-site` criado na Vercel do
+  cliente (plano gratuito), publicando a pasta `site/` deste repositório. O
+  projeto `lgmengenharia` da Vercel é outro sistema dele ("Administrativo
+  INSS"): não mexer. A primeira publicação falhou com `git_info_fail`, porque a
+  Vercel ainda não tem acesso ao repositório no GitHub: o cliente precisa
+  liberar o repositório no app da Vercel (Vercel > Settings > Git > GitHub).
+  Domínio próprio (.com.br) é o único custo: cerca de R$ 40 por ano no
+  Registro.br.
 - **Vídeo da home** (`site-build/video/`): não é resumo do site. É um filme de
   78 s com todos os serviços e os dizeres da casa, retrato pequeno e trilha
   original (`musica.py`), em dois cortes do mesmo roteiro: 16:9 para o

@@ -25,7 +25,7 @@ def box(name, sx, sy, sz, x, y, z, m):
     o.scale = (sx, sy, sz); o.name = name; o.data.materials.append(m); return o
 def lin(c): return tuple(((v / 255) / 12.92) if v / 255 <= .04045 else (((v / 255 + .055) / 1.055) ** 2.4) for v in c)
 
-GW, GH, PH = 29.25, 5.0, 2.0; X0 = -GW / 2; DEP = 24
+GW, GH, PH = 29.25, 5.0, 2.0; X0 = -GW / 2; DEP = 24; ZB = .40   # Fachada 04: vidro de +0,40 a +5,40 sobre faixa de base
 alu = mat('alu', lin((196, 198, 200)), .28, .85)
 alu2 = mat('junta', lin((120, 124, 128)), .4, .8)
 caix = mat('caixilho', lin((168, 171, 173)), .3, .8)
@@ -46,30 +46,34 @@ ruido(asf, 180, lin((40, 41, 43)), lin((70, 71, 73)))
 preto = mat('puxador', lin((30, 30, 30)), .3, .9)
 
 # fachada
-box('painel', GW + .3, .12, PH, 0, -.06, GH, alu)
-x = X0 + 1.22
-while x < GW / 2 - .2:
-    box('junta', .012, .02, PH, x, -.125, GH, alu2); x += 1.22
-box('rufo', GW + .3, .30, .06, 0, .05, GH + PH, alu2)
-box('caixa', 2.0, 2.4, 1.5, X0 + 1.0, 1.3, GH + PH, branco)
-box('lat-e', .2, DEP, GH + PH, X0 - .05, DEP / 2, 0, branco); box('lat-d', .2, DEP, GH + PH, -X0 + .05, DEP / 2, 0, branco)
-box('cobertura', GW, DEP, .2, 0, DEP / 2, GH + PH - .2, branco)
+box('base', GW + .3, .30, ZB, 0, .05, 0, mat('base', lin((176, 172, 166)), .85))
+box('painel', GW + .3, .12, PH, 0, -.06, ZB + GH, alu)   # painel liso (sem modulacao na prancha)
+box('rufo', GW + .3, .30, .06, 0, .05, ZB + GH + PH, alu2)
+box('caixa', 2.0, 2.4, 1.5, X0 + 1.0, 1.3, ZB + GH + PH, branco)
+box('lat-e', .2, DEP, ZB + GH + PH, X0 - .05, DEP / 2, 0, branco); box('lat-d', .2, DEP, ZB + GH + PH, -X0 + .05, DEP / 2, 0, branco)
+box('cobertura', GW, DEP, .2, 0, DEP / 2, ZB + GH + PH - .2, branco)
 # interior simples (sem objetos): piso, teto, parede do fundo, e luz difusa de teto
-box('piso-int', GW, DEP - .4, .02, 0, DEP / 2, 0, piso); box('teto-int', GW, DEP - .4, .05, 0, DEP / 2, GH - .03, teto)
-box('fundo', GW, .1, GH, 0, DEP - .3, 0, branco)
-bpy.ops.object.light_add(type='AREA', location=(0, 8, GH - .1)); L = bpy.context.object; L.data.shape = 'RECTANGLE'
+box('piso-int', GW, DEP - .4, .02, 0, DEP / 2, ZB, piso); box('teto-int', GW, DEP - .4, .05, 0, DEP / 2, ZB + GH - .03, teto)
+box('fundo', GW, .1, GH, 0, DEP - .3, ZB, branco)
+bpy.ops.object.light_add(type='AREA', location=(0, 8, ZB + GH - .1)); L = bpy.context.object; L.data.shape = 'RECTANGLE'
 L.data.size, L.data.size_y = GW - 2, 12; L.data.energy = 2200; L.data.color = (1, .96, .9); L.rotation_euler = (math.pi, 0, 0)
 # vidro e caixilhos
-box('vidro', GW, .02, GH, 0, .01, 0, vidro)
-def fr(w, h, x, z): box('caix', w, .09, h, x, 0, z, caix)
-fr(GW, .07, 0, 0); fr(GW, .07, 0, GH - .07); fr(GW, .05, 0, 3.08)
-x = X0 + 1.05
-while x < GW / 2 - .3: fr(.045, GH, x, 0); x += 1.05
-for f in (.321, .62): fr(.16, GH, X0 + f * GW, 0)
+box('vidro', GW, .02, GH, 0, .01, ZB, vidro)
+def fr(w, h, x, z): box('caix', w, .09, h, x, 0, ZB + z, caix)
+fr(GW, .07, 0, 0); fr(GW, .07, 0, GH - .07); fr(GW, .05, 0, 3.10)
+# Fachada 04: tres vaos praticamente iguais, montantes grossos de 0,21 a 33,2% e 67,4%; oito modulos de 1,20 por vao
+B1, B2 = X0 + .332 * GW, X0 + .674 * GW
+for a, b in ((X0, B1), (B1, B2), (B2, -X0)):
+    for i in range(1, 8): fr(.045, GH, a + (b - a) * i / 8, 0)
+for xb in (B1, B2): fr(.21, GH, xb, 0)
 fr(.07, GH, X0 + .035, 0); fr(.07, GH, -X0 - .035, 0)
-box('pux1', .03, .05, 1.2, -.12, -.07, .9, preto); box('pux2', .03, .05, 1.2, .12, -.07, .9, preto)
+# porta dupla de 2,60 (13,41 a 16,01 a partir da esquerda do vidro)
+PX = X0 + 14.71
+fr(.07, GH, X0 + 13.41, 0); fr(.07, GH, X0 + 16.01, 0)
+box('pux1', .03, .05, 1.2, PX - .12, -.07, ZB + .9, preto); box('pux2', .03, .05, 1.2, PX + .12, -.07, ZB + .9, preto)
 # muros de divisa, calçada, guia, rua
-box('muro-e', .15, 6, 2.2, X0 - .6, -3, 0, muro); box('muro-d', .15, 6, 2.2, -X0 + .6, -3, 0, muro)
+# muros de divisa ficam no lote, atras do alinhamento (nao sobre a calcada)
+box('muro-e', .15, DEP, 2.2, X0 - .6, DEP / 2, 0, muro); box('muro-d', .15, DEP, 2.2, -X0 + .6, DEP / 2, 0, muro)
 box('calcada', 90, 6, .15, 0, -3, -.15, calc)
 ruido(calc, 60, lin((168, 164, 156)), lin((190, 186, 178)))
 xj = -44.0
@@ -86,6 +90,6 @@ nt.links.new(sky.outputs['Color'], bg.inputs['Color'])
 bpy.ops.object.camera_add(location=(CX, -CY, 1.65)); cam = bpy.context.object; sc.camera = cam
 cam.data.lens = FOC; cam.data.sensor_width = 36
 import mathutils
-d = mathutils.Vector((0.0, 0, 3.3)) - cam.location; cam.rotation_euler = d.to_track_quat('-Z', 'Y').to_euler()
+d = mathutils.Vector((0.0, 0, 3.6)) - cam.location; cam.rotation_euler = d.to_track_quat('-Z', 'Y').to_euler()
 cam.data.shift_y = .07
 sc.render.filepath = OUT; bpy.ops.render.render(write_still=True); print('ok', OUT)

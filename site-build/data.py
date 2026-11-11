@@ -28,7 +28,7 @@ dict(slug='casa-taquaracu',assets='taquaracu',ref='a Casa Taquaraçu',name='Casa
    I('04-estar-e-jantar.jpg',('Estar e jantar','66,55 m² sob o telhado'),'Estar e jantar integrados com forro inclinado'),
    I('05-cozinha.jpg',('Cozinha com ilha','20,35 m² · integrada ao estar'),'Cozinha com ilha e quatro banquetas')]),
   dict(label='Estrutura',items=[
-   I('08-fundacao-e-estrutura.jpg',('Estrutura em light steel frame','radier sobre pilares · modelo 3D completo'),'Modelo 3D da estrutura em steel frame sobre laje apoiada em pilares','full',pos='50% 52%'),
+   I('08-fundacao-e-estrutura.jpg',('Estrutura em steel frame','radier sobre pilares · modelo 3D completo'),'Modelo 3D da estrutura em steel frame sobre laje apoiada em pilares','full',pos='50% 52%'),
    I('10-steel-frame-por-dentro.jpg',('Steel frame por dentro','montantes, painéis e treliças de cobertura'),'Vista interna do modelo da estrutura em steel frame'),
    I('11-estrutura-e-instalacoes.jpg',('Estrutura e instalações','11 modelos compatibilizados'),'Painéis de steel frame com as instalações sobrepostas em cores')])]),
 
@@ -53,7 +53,7 @@ dict(slug='chale-acolher',name='Chalé Acolher',cat='chalé',cat_label='chalés'
    I('18-a3-interna-dormitorio-escritorio.jpg',('Dormitório e escritório','7,80 m²'),'Dormitório com bancada de parede a parede'),
    I('24-a3-interna-banho-social.jpg',('Banho social','3,12 m²'),'Banho social com bancada escura e cuba embutida')]),
   dict(label='Estrutura',items=[
-   I('06-render-estrutura-lsf.jpg',('Estrutura em light steel frame','painéis de parede, tesouras e cobertura · um só perfil'),'Estrutura completa em light steel frame, com painéis de parede e tesouras','full')])]),
+   I('06-render-estrutura-lsf.jpg',('Estrutura em steel frame','painéis de parede, tesouras e cobertura · um só perfil'),'Estrutura completa em steel frame, com painéis de parede e tesouras','full')])]),
 
 dict(slug='chale-piedade',name='Chalé Piedade',cat='chalé',cat_label='chalés',cat_plural='chalés',city='Piedade, SP',sub='A-frame · 70 m²',ref='o Chalé Piedade',
  card=dict(src=C+'02-fachada-nordeste-hall.jpg',focus=(.5,.5),alt='Chalé A-frame com cobertura grafite e hall em ripado de madeira'),
@@ -215,7 +215,7 @@ FAM={
 # Regra do cliente (nov/2026): toda obra abre com fachada RENDERIZADA, em alta, nada de isométrico.
 # Casa Duo e Casa da Raia não têm render de fachada fiel ao projeto atual (só vistas isométricas do modelo e imagens de IA
 # que mudam o projeto): ficam fora do ar até o cliente mandar renders do modelo atual. Dados prontos abaixo.
-HELD=['casa-duo','le-blanc-lofts']   # lofts: o render montado na v30 foi reprovado pelo cliente ("totalmente errado, mal feito"); só volta com vista exportada do modelo
+HELD=['casa-duo']   # lofts: render refeito só com as cotas de P01 e P02 e conferido por revisor independente (nov/2026)
 # MÍNIMO (instrução do cliente, nov/2026): "fotos obras, só o mínimo e informações básicas, não precisa de tanto detalhe".
 # Capa + no máximo quatro imagens por projeto; ficha de cinco linhas; só a frase de abertura, sem parágrafos; legenda só com o nome.
 LEAN={
@@ -273,8 +273,8 @@ for _p in PROJECTS:
         # v30: capa = render no Cycles (render/lofts_blender.py) montado com as medidas da implantação, da elevação de acesso e da
         # elevação frontal do modelo Revit e com as cotas do projeto em LSF; conferido em vista ortogonal contra a elevação de acesso.
         # Palmeiras e agaves do paisagismo ficaram fora (não modeladas). Dentro da página, só o 3D da estrutura.
-        _p.update(card=dict(src='render/01-fachada-render.png',focus=(.5,.62),alt='Lofts em Angra dos Reis: dois dos três volumes brancos, com marquise e porta pivotante'),
-          hero=dict(src='render/01-fachada-render.png',pos='50% 62%',alt='Fachada de acesso dos lofts: volumes brancos de 6 m de altura com platibanda, marquise sobre a porta pivotante e janela alta na lateral'),
+        _p.update(card=dict(src='render/02-fachada-render.png',focus=(.45,.6),alt='Lofts em Angra dos Reis: volume branco com marquise, porta pivotante de madeira e palmeira-imperial no jardim de acesso'),
+          hero=dict(src='render/02-fachada-render.png',pos='50% 58%',alt='Acesso dos lofts: volumes brancos de 6 m com platibanda, marquise na largura da fachada, parede de ala, porta pivotante, palmeiras e agaves'),
           lead='Três lofts com mezanino em light steel frame, <b>projetados para fabricação fora do canteiro.</b>',
           text=[],
           sections=[
@@ -399,8 +399,8 @@ PROJECTS.append(
 for _p in PROJECTS:
     _s=_p['slug']
     if _s=='salas-comerciais':
-        _p.update(card=dict(src=C+'01-fachada-rua.jpg',crop=(0,.30,1,1),focus=(.5,.5),alt='Fachada das salas comerciais vista da rua, com muro verde e painéis de cobogó'),
-                  hero=dict(src=C+'01-fachada-rua.jpg',crop=(0,.30,1,1),pos='50% 60%',alt='Fachada das salas comerciais vista da rua, com muro verde, cobogó e portão branco'))
+        _p.update(card=dict(src=C+'01-fachada-rua.jpg',crop=(0,.56,1,1),focus=(.42,.5),alt='Fachada das salas comerciais vista da rua, com muro verde e painéis de cobogó'),
+                  hero=dict(src=C+'01-fachada-rua.jpg',crop=(0,.56,1,1),pos='50% 50%',alt='Fachada das salas comerciais vista da rua, com muro verde, cobogó e portão branco'))
     elif _s=='casa-taquaracu':
         _h=_p['hero']; _p['hero']=dict(src=_h['src'],crop=_h.get('crop'),pos='50% 40%',alt=_h['alt'])
     elif _s=='casa-do-bosque':
@@ -409,6 +409,16 @@ for _p in PROJECTS:
 PROJECTS_FULL=PROJECTS
 PROJECTS=_lean(PROJECTS)
 # ordem das obras (grade 2 · 3 · 3 · 3 · 2): steel frame de alto padrão e obra concluída primeiro; desenhos e estruturas no fim
+# ---- Fichas no padrão de cinco linhas (conferência de nov/2026). Ano só onde está no arquivo do projeto. ----
+for _p in PROJECTS:
+    if _p['slug']=='chale-piedade':
+        _p['ficha']=[('Local','Piedade, SP'),('Área','70,35 m²'),('Sistema','A-frame com mezanino em light steel frame'),('Escopo','Projeto de arquitetura'),('Etapa','Projeto · 2024')]
+    if _p['slug']=='tiny-house':
+        _p['ficha']=[('Local','Sorocaba, SP'),('Área','38,57 m²'),('Sistema','Fechamento em telha metálica de junta elevada'),('Escopo','Projeto de arquitetura'),('Etapa','Projeto · 2024')]
+    if _p['slug']=='casa-do-bosque':
+        _p['ficha']=[('Local','Modelo, sem terreno definido'),('Área','450 m²'),('Sistema','A definir no projeto'),('Escopo','Modelo de casa de alto padrão'),('Etapa','Modelo · 2026')]
+FICHA_KEEP['chale-piedade']=FICHA_KEEP['tiny-house']=['Local','Área','Sistema','Escopo','Etapa']
+FICHA_KEEP.pop('casa-do-bosque',None)
 ORDEM=['casa-taquaracu','salas-comerciais','comercial-garca','casa-garca','chale-piedade','chale-viver','tiny-house','chale-acolher','chale-analandia','casa-do-bosque',
        'casa-da-raia','casa-duo','patio-escolar','ampliacao-steel-frame','le-blanc-lofts']
 ORDEM=[k for k in ORDEM if k not in HELD]

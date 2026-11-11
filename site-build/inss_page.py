@@ -11,6 +11,7 @@
 # Regras conferidas no texto consolidado da IN RFB 2.021/2021, na IN RFB 2.061/2021 e no Manual do Sero v3.0.
 # A versão longa e conferida da página está em inss_page.py.bak-v19.
 import json, os
+from urllib.parse import quote
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -51,7 +52,10 @@ WHATS = '5514991850799'
 # Base de contatos. Deixar url vazio = o cadastro segue só pelo WhatsApp. Com um Formulário Google do cliente,
 # preencher url (https://docs.google.com/forms/d/e/<id>/formResponse) e o código entry.N de cada campo:
 # cada envio vira uma linha na planilha dele.
-LEADS = dict(url='', campos=dict(nome='', whatsapp='', email='', cidade='', uf='', area='', sistema='', fase='', estimativa='', avisos=''))
+# Dois formatos aceitos: tipo='google' (Formulário Google: url .../formResponse + código entry.N de cada campo)
+# ou tipo='json' (serviço que recebe JSON por POST). Com a base ligada, o botão só mostra o resultado e o
+# WhatsApp vira o segundo passo, como no protótipo do cliente (pasta site-calculadora do Drive).
+LEADS = dict(tipo='google', url='', campos=dict(nome='', whatsapp='', email='', cidade='', uf='', area='', sistema='', fase='', estimativa='', avisos=''))
 COMUNIDADE_URL = ''   # link do grupo/comunidade do WhatsApp, quando o cliente criar
 
 # ---- obras aferidas (mapa e contadores) ----
@@ -123,40 +127,38 @@ _BODY = '''<main>
 
 <section class="band sec" id="simulador"><div class="tag"><b>Calculadora</b></div><div>
 <h2>Quanto a Receita cobraria da sua obra?</h2>
-<form id="f" novalidate style="margin-top:34px" onsubmit="return false">
+<form id="f" novalidate style="margin-top:34px">
 <div class="calc">
 <div><label for="uf">Estado</label><select id="uf">[[UF_OPTS]]</select><p class="hint info" id="uf-h"></p></div>
 <div><label for="area">Área construída (m²)</label><input id="area" type="number" inputmode="decimal" min="1" step="1" value="[[AREA]]" aria-describedby="area-h"><input id="area-r" class="rg" type="range" min="40" max="600" step="5" value="[[AREA]]" aria-label="Área construída"><p class="hint" id="area-h" role="alert"></p></div>
 <div><span class="lab" id="sis-l">Sistema construtivo</span><div class="seg" id="sis" role="group" aria-labelledby="sis-l">
 <button type="button" data-v="alv" aria-pressed="false">alvenaria</button><button type="button" data-v="sf" aria-pressed="true">steel frame</button><button type="button" data-v="wf" aria-pressed="false">wood frame</button><button type="button" data-v="mod" aria-pressed="false">modular</button></div></div>
 </div>
-</form>
-<div class="out" id="out" aria-live="polite" style="margin-top:44px">
-<div class="nums two">
-<div><div class="num" id="v-sem">[[INSS_ALV]]</div><div class="nl">de INSS, sem planejamento</div></div>
-<div><div class="num sv" id="v-eco">até [[ECON]]</div><div class="nl" id="l-eco">a menos, com o enquadramento certo</div></div>
-</div>
-<p class="src" style="margin-top:26px">Estimativa para pessoa física, obra nova residencial, com o valor por metro quadrado de [[VAU_MES]]. O valor oficial sai do sistema da Receita, no dia da aferição.</p>
-</div>
-
-<div class="capt" id="contato">
-<h3 id="capt-h">Sua obra pode pagar até <b>[[ECON]]</b> a menos. <b>Quer saber como?</b></h3>
-<p class="capt-s">Deixe os seus dados. Eu analiso a sua obra e respondo pelo WhatsApp.</p>
-<form id="lead" novalidate>
-<div class="calc four">
+<div class="capt" id="gate">
+<h3>O resultado sai na hora. <b>Diga para quem é.</b></h3>
+<div class="calc four" style="margin-top:30px">
 <div><label for="l-nome">Nome</label><input id="l-nome" name="nome" type="text" autocomplete="name" required></div>
 <div><label for="l-fone">WhatsApp, com DDD</label><input id="l-fone" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(14) 90000-0000" required></div>
 <div><label for="l-mail">E-mail</label><input id="l-mail" name="email" type="email" autocomplete="email" required></div>
 <div><label for="l-cid">Cidade da obra</label><input id="l-cid" name="cidade" type="text" autocomplete="address-level2" required></div>
-<div><label for="l-fase">Em que fase está</label><select id="l-fase" name="fase"><option value="ainda no projeto">Ainda no projeto</option><option value="obra em andamento">Obra em andamento</option><option value="obra pronta, falta regularizar">Obra pronta, falta regularizar</option></select></div>
+<div><label for="l-fase">Em que fase está</label><select id="l-fase" name="fase"><option value="ainda vou construir">Ainda vou construir</option><option value="obra em andamento">Obra em andamento</option><option value="obra concluída, falta regularizar">Obra concluída, falta regularizar</option></select></div>
 </div>
-<label class="chk"><input type="checkbox" id="l-av" name="avisos"><span>Quero receber avisos sobre INSS de obra e steel frame.</span></label>
+<label class="chk"><input type="checkbox" id="l-ok" name="aceite" required><span>Autorizo o contato sobre esta simulação. Meus dados não são passados a terceiros.</span></label>
+<label class="chk" style="margin-top:12px"><input type="checkbox" id="l-av" name="avisos"><span>Quero receber avisos sobre INSS de obra e steel frame.</span></label>
 <p class="hint" id="lead-h" role="alert"></p>
-<button class="btn" type="submit">Receber a análise no WhatsApp</button>
-<p class="ok" id="lead-ok" hidden><span id="lead-t"></span> <a id="lead-a" href="https://wa.me/[[WHATS]]" target="_blank" rel="noopener">Abrir o WhatsApp</a></p>
-<p class="src" style="margin-top:18px">Seus dados são usados só para este contato.</p>
-</form>
+<button class="btn" type="submit" id="lead-b">[[BTN]]</button>
 </div>
+</form>
+<div class="out" id="out" aria-live="polite" style="margin-top:44px" hidden>
+<div class="nums two">
+<div><div class="num" id="v-sem">[[INSS_ALV]]</div><div class="nl">de INSS, sem planejamento</div></div>
+<div><div class="num sv" id="v-eco">até [[ECON]]</div><div class="nl" id="l-eco">a menos, com o enquadramento certo</div></div>
+</div>
+<p class="ok" id="lead-ok" hidden><span id="lead-t"></span></p>
+<p style="margin-top:30px"><a class="btn" id="wa" href="https://wa.me/[[WHATS]]" target="_blank" rel="noopener" style="margin-top:0">Quero pagar menos: falar com o engenheiro</a></p>
+<p class="src" style="margin-top:26px">Estimativa para pessoa física, obra nova residencial, com o valor por metro quadrado de [[VAU_MES]]. O valor oficial sai do sistema da Receita, no dia da aferição.</p>
+</div>
+<p class="note" style="margin-top:44px"><b>Obra comercial, multifamiliar ou reforma?</b> A conta é outra. <a href="https://wa.me/[[WHATS]]?text=[[MSG_OUTRA]]" target="_blank" rel="noopener">Peça a simulação pelo WhatsApp</a></p>
 </div></section>
 
 [[MAPA]]
@@ -194,47 +196,57 @@ function fs(a){return a<=100?.20:a<=200?.40:a<=300?.55:a<=400?.70:.90}
 function eq(a){return a<=1000?[[EQ1]]:[[EQ2]]}
 function $(i){return document.getElementById(i)}
 function brl(v){return 'R$\\u00a0'+Math.round(v).toLocaleString('pt-BR')}
-var ar=$('area'),rg=$('area-r'),uf=$('uf'),seg=$('sis'),h=$('area-h'),S={sis:'sf',v:0,e:0,a:0};
+var ar=$('area'),rg=$('area-r'),uf=$('uf'),seg=$('sis'),h=$('area-h'),S={sis:'sf',v:0,e:0,a:0,d:null};
+function msg(){var d=S.d,m=['Olá Gustavo, fiz a simulação do INSS da minha obra no site.',''];
+if(d){m.push('Nome: '+d.nome,'WhatsApp: '+d.whatsapp,'E-mail: '+d.email,'Cidade: '+d.cidade+' · '+uf.value)}else{m.push('Estado: '+UFN[uf.value])}
+m.push('Obra: '+S.a.toLocaleString('pt-BR')+' m² · '+NOME[S.sis]+(d?' · '+d.fase:''),'Estimativa do site: '+brl(S.v)+' sem planejamento');
+if(d&&d.avisos==='sim')m.push('Quero receber os avisos sobre INSS de obra e steel frame.');
+m.push('','Quero saber como pagar menos.');return 'https://wa.me/'+WA+'?text='+encodeURIComponent(m.join('\\n'))}
+/* mesma sequência do Sero: área equivalente com duas casas, custo da obra, 20% de mão de obra, fator social, alíquota */
 function calc(){var a=parseFloat(String(ar.value).replace(',','.'));
-if(!(a>0)){ar.classList.add('err');h.textContent='Informe a área construída em m².';return}
+if(!(a>0)){ar.classList.add('err');h.textContent='Informe a área construída em m².';return false}
 ar.classList.remove('err');h.textContent='';
 var u=uf.value,aeq=Math.round(a*eq(a)*100)/100,cod=Math.round(aeq*VAU[u]*100)/100,v=cod*[[P_ALV]]*fs(a)*ALIQ,e=v*RED[S.sis];S.v=v;S.e=e;S.a=a;
 $('uf-h').textContent='Valor por m² em '+UFN[u]+': '+brl(VAU[u]);
 $('v-sem').textContent=brl(v);
-if(e>0){$('v-eco').textContent='até '+brl(e);$('l-eco').textContent='a menos, com o enquadramento certo';
-$('capt-h').innerHTML='Sua obra pode pagar até <b>'+brl(e)+'</b> a menos. <b>Quer saber como?</b>'}
-else{$('v-eco').textContent='depende';$('l-eco').textContent='na alvenaria, a redução vem de outro caminho';
-$('capt-h').innerHTML='Na alvenaria também há caminho para pagar menos. <b>Quer saber qual?</b>'}}
+if(e>0){$('v-eco').textContent='até '+brl(e);$('l-eco').textContent='a menos, com o enquadramento certo'}
+else{$('v-eco').textContent='depende';$('l-eco').textContent='na alvenaria, a redução vem de outro caminho'}
+$('wa').href=msg();return true}
 ar.addEventListener('input',function(){var a=parseFloat(ar.value);if(a>=40&&a<=600)rg.value=a;calc()});
 rg.addEventListener('input',function(){ar.value=rg.value;calc()});
 uf.addEventListener('change',calc);
 seg.addEventListener('click',function(ev){var b=ev.target.closest('button');if(!b)return;S.sis=b.getAttribute('data-v');
 [].forEach.call(seg.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});calc()});
+function abre(){$('gate').hidden=true;$('out').hidden=false}
+/* quem já se identificou neste navegador vê o resultado direto (guarda só a marca, nenhum dado pessoal) */
+try{if(localStorage.getItem('l-inss-ok')==='1')abre()}catch(e){}
 calc();
-/* contato: abre a conversa no WhatsApp com os dados e, se houver base configurada, grava o cadastro */
-var lf=$('lead'),lh=$('lead-h');
+/* contato: os dados vêm antes do resultado. Sem base configurada, a conversa no WhatsApp abre com tudo preenchido */
+var lf=$('f'),lh=$('lead-h');
 lf.addEventListener('submit',function(ev){ev.preventDefault();
-var d={nome:$('l-nome').value.trim(),whatsapp:$('l-fone').value.trim(),email:$('l-mail').value.trim(),cidade:$('l-cid').value.trim(),uf:uf.value,
-area:String(S.a||''),sistema:NOME[S.sis],fase:$('l-fase').value,estimativa:brl(S.v),avisos:$('l-av').checked?'sim':'não'};
-var bad=null;
-if(d.nome.length<2)bad=['l-nome','Informe o seu nome.'];
+if(!$('out').hidden)return;
+var d={nome:$('l-nome').value.trim(),whatsapp:$('l-fone').value.trim(),email:$('l-mail').value.trim(),cidade:$('l-cid').value.trim(),
+fase:$('l-fase').value,avisos:$('l-av').checked?'sim':'não'},bad=null;
+if(!calc())bad=['area','Informe a área construída em m².'];
+else if(d.nome.length<2)bad=['l-nome','Informe o seu nome.'];
 else if(d.whatsapp.replace(/\\D/g,'').length<10)bad=['l-fone','Informe o WhatsApp com DDD.'];
 else if(!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(d.email))bad=['l-mail','Informe um e-mail válido.'];
 else if(d.cidade.length<2)bad=['l-cid','Informe a cidade da obra.'];
+else if(!$('l-ok').checked)bad=['l-ok','Marque a autorização de contato.'];
 [].forEach.call(lf.querySelectorAll('.err'),function(x){x.classList.remove('err')});
 if(bad){$(bad[0]).classList.add('err');$(bad[0]).focus();lh.textContent=bad[1];return}
-lh.textContent='';
-var m=['Olá Gustavo, quero a análise do INSS da minha obra.','','Nome: '+d.nome,'WhatsApp: '+d.whatsapp,'E-mail: '+d.email,'Cidade: '+d.cidade+' · '+d.uf,
-'Obra: '+d.area+' m² · '+d.sistema+' · '+d.fase,'Estimativa do site: '+d.estimativa+' sem planejamento'];
-if(d.avisos==='sim')m.push('Quero receber os avisos sobre INSS de obra e steel frame.');
-var url='https://wa.me/'+WA+'?text='+encodeURIComponent(m.join('\\n'));
-var w=null;try{w=window.open(url,'_blank')}catch(e){}
+lh.textContent='';S.d=d;var url=msg();$('wa').href=url;
+abre();try{localStorage.setItem('l-inss-ok','1')}catch(e){}
+var t=$('lead-t');
+if(LD&&LD.url){
+var reg={nome:d.nome,whatsapp:d.whatsapp,email:d.email,cidade:d.cidade,uf:uf.value,area:String(S.a),sistema:NOME[S.sis],fase:d.fase,estimativa:brl(S.v),avisos:d.avisos};
+try{if(LD.tipo==='json'){fetch(LD.url,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(reg)}).catch(function(){})}
+else{var fd=new FormData();for(var k in LD.campos){if(LD.campos[k])fd.append(LD.campos[k],reg[k]||'')}fetch(LD.url,{method:'POST',mode:'no-cors',body:fd}).catch(function(){})}}catch(e){}
+t.innerHTML='<b>Simulação registrada.</b> Retorno pelo seu WhatsApp.'}
+else{var w=null;try{w=window.open(url,'_blank')}catch(e){}
 if(w){try{w.opener=null}catch(e){}}
-$('lead-a').href=url;$('lead-a').textContent=w?'Abrir de novo':'Abrir o WhatsApp';
-$('lead-t').innerHTML=w?'O WhatsApp abriu com os seus dados. <b>É só enviar a mensagem.</b>':'<b>Falta um toque:</b> abra o WhatsApp para enviar os seus dados.';
-$('lead-ok').hidden=false;
-if(LD&&LD.url){try{var fd=new FormData();for(var k in LD.campos){if(LD.campos[k])fd.append(LD.campos[k],d[k]||'')}
-fetch(LD.url,{method:'POST',mode:'no-cors',body:fd}).catch(function(){})}catch(e){}}
+t.innerHTML=w?'O WhatsApp abriu com a sua simulação. <b>É só enviar a mensagem.</b>':'<b>Falta um toque:</b> envie a simulação pelo botão abaixo.'}
+$('lead-ok').hidden=false;$('out').scrollIntoView({block:'nearest'});
 });
 /* contadores */
 var cs=[].slice.call(document.querySelectorAll('[data-count]'));
@@ -251,6 +263,8 @@ def inss_body(img=('img/inss/estrutura.jpg', 2000, 1125)):
         'VAU_JSON': json.dumps({k: round(v, 2) for k, v in VAU_UF.items()}), 'UFN_JSON': json.dumps({k: n for k, n in UFS if k in VAU_UF}, ensure_ascii=False),
         'ALIQ': repr(ALIQ), 'P_ALV': repr(P_ALV), 'RED_PRE': repr(RED_PRE), 'RED_MISTA': repr(round(1 - P_MISTA / P_ALV, 4)), 'EQ1': repr(EQ_ATE_1000), 'EQ2': repr(EQ_ACIMA),
         'WHATS': WHATS, 'LEADS_JSON': json.dumps(LEADS if LEADS['url'] else None),
+        'BTN': 'Ver o INSS da minha obra' if LEADS['url'] else 'Ver o resultado e receber no WhatsApp',
+        'MSG_OUTRA': quote('Olá Gustavo, quero uma simulação do INSS de uma obra comercial, multifamiliar ou reforma.'),
         'FAQ': '\n'.join('<details><summary>%s</summary><div class="a">%s</div></details>' % (q, a) for q, a in FAQ),
         'MAPA': mapa_obras(), 'IMG': img[0], 'IMGW': str(img[1]), 'IMGH': str(img[2]),
     }

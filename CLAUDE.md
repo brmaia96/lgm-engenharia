@@ -128,13 +128,17 @@ só mostra que há know-how, sem excesso.
   perguntas frequentes"): frase de abertura, cálculo em quatro linhas,
   calculadora, formulário de contato, mapa com contadores, três sistemas,
   perguntas curtas e fontes só pelo título. Tudo em `site-build/inss_page.py`.
-- **Calculadora por estado.** "O que vale é o estado, cada estado tem seu VAU":
-  o visitante escolhe a UF e o VAU entra sozinho. Mostra só o que a Receita
-  cobraria sem planejamento e o teto de redução ("até R$ X a menos"); o como
-  fica para a conversa. Sequência igual à do Sero, conferida nas memórias reais
-  do cliente: área equivalente (89%, duas casas decimais) × VAU = custo da obra;
-  20% de mão de obra; fator social da faixa de área; 36,8%. Uma memória real
-  (235,04 m², SP, 07/2022) fecha centavo a centavo com a fórmula.
+- **Calculadora por estado, com os dados antes do resultado.** "O que vale é o
+  estado, cada estado tem seu VAU": o visitante escolhe a UF e o VAU entra
+  sozinho. Como na calculadora que o cliente já tinha (pasta `site-calculadora`
+  do Drive, feita com o estudo de 351 simulações), ele se identifica e só então
+  vê o valor: o que a Receita cobraria sem planejamento e o teto de redução
+  ("até R$ X a menos"). O como fica para a conversa. Sequência igual à do Sero,
+  conferida nas memórias reais do cliente: área equivalente (89%, duas casas
+  decimais) × VAU = custo da obra; 20% de mão de obra; fator social da faixa de
+  área real; 36,8%. Uma memória real (235,04 m², SP, 07/2022) fecha centavo a
+  centavo com a fórmula. Só residencial unifamiliar, obra nova, pessoa física:
+  comercial, multifamiliar e reforma vão para o WhatsApp.
 - **VAU: `site-build/vau_uf.json`**, residencial unifamiliar, 27 UFs, novembro
   de 2026 (SP R$ 2.725,32). A tabela oficial só abre dentro do Sero (e-CAC); os
   valores vêm de consultorias que a reproduzem, e 13 valores de memórias reais
@@ -143,12 +147,16 @@ só mostra que há know-how, sem excesso.
   janeiro. O exemplo da home sai daí: casa de 150 m² em São Paulo, R$ 10.711
   sem planejamento, até 70% a menos. Os exemplos antigos (R$ 8.832, R$ 7.860,
   R$ 2.358) usavam VAU hipotético e não devem voltar.
-- **Contato (base de clientes).** Depois da calculadora, o formulário pede nome,
-  WhatsApp, e-mail, cidade e fase da obra e abre a conversa no WhatsApp com
-  tudo preenchido, mais a estimativa. Caixa de aceite para avisos (a comunidade
-  que ele quer formar). Para virar planilha automática falta um Formulário
-  Google dele: preencher `LEADS` em `inss_page.py` com a URL de resposta e os
-  códigos `entry.N`. O link da comunidade vai em `COMUNIDADE_URL` quando existir.
+- **Contato (base de clientes).** O cadastro pede nome, WhatsApp, e-mail, cidade
+  e fase da obra, com aceite de contato e caixa opcional de avisos (a comunidade
+  que ele quer formar). Hoje, ao enviar, a conversa no WhatsApp abre com tudo
+  preenchido e a estimativa. Para a base gravar sozinha falta decidir com ele o
+  destino e preencher `LEADS` em `inss_page.py`: Formulário Google ligado a uma
+  planilha dele (`tipo='google'`) ou serviço que recebe JSON (`tipo='json'`; o
+  protótipo dele usava o FormSubmit com o e-mail no endereço, o que expõe o
+  e-mail no código da página e depende de ativação por e-mail: só com aprovação
+  dele). Com a base ligada, o botão só mostra o resultado e o WhatsApp vira o
+  segundo passo. O link da comunidade vai em `COMUNIDADE_URL` quando existir.
 - Blog (`blog.html`, artigos `b-<slug>.html`, conteúdo em `site-build/blog.py`):
   lista com imagem ("imagens chamam atenção"), um minuto de leitura por artigo:
   resposta curta, o que muda, o ponto de atenção. Primeiro os tributários;

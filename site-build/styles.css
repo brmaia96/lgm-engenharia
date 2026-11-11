@@ -421,3 +421,9 @@ p,.prose li,.faq .a,.tl dd{text-align:justify;text-justify:inter-word;-webkit-hy
 .row .ph .m{padding:0}
 .calc .hint.info{color:var(--mute)}
 @media (max-width:560px){.capt .btn{width:100%;justify-content:center;padding-inline:16px;font-size:14px;white-space:nowrap}}
+/* calculadora: os dados vêm antes do resultado */
+#gate{margin-top:44px}
+#out .ok{margin-top:26px}
+a.btn{text-decoration:none}
+.note a{color:var(--ink);background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;transition:color .25s}
+.note a:hover{color:var(--terra)}

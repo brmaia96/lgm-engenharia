@@ -148,9 +148,12 @@ abre();try{localStorage.setItem('l-inss-ok','1')}catch(e){}
 var t=$('lead-t');
 if(LD&&LD.url){
 var reg={nome:d.nome,whatsapp:d.whatsapp,email:d.email,cidade:d.cidade,uf:uf.value,area:String(S.a),sistema:NOME[S.sis],fase:d.fase,estimativa:brl(S.v),avisos:d.avisos};
-try{if(LD.tipo==='json'){fetch(LD.url,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(reg)}).catch(function(){})}
-else{var fd=new FormData();for(var k in LD.campos){if(LD.campos[k])fd.append(LD.campos[k],reg[k]||'')}fetch(LD.url,{method:'POST',mode:'no-cors',body:fd}).catch(function(){})}}catch(e){}
-t.innerHTML='<b>Simulação registrada.</b> Retorno pelo seu WhatsApp.'}
+/* se a base não responder (rede, bloqueio do navegador), o contato não se perde: pede o envio pelo WhatsApp */
+function falhou(){t.innerHTML='<b>Falta um toque:</b> envie a simulação pelo botão abaixo.'}
+t.innerHTML='<b>Simulação registrada.</b> Retorno pelo seu WhatsApp.';
+try{var pr;if(LD.tipo==='json'){pr=fetch(LD.url,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(reg)}).then(function(r){if(!r.ok)throw 0})}
+else{var fd=new FormData();for(var k in LD.campos){if(LD.campos[k])fd.append(LD.campos[k],reg[k]||'')}pr=fetch(LD.url,{method:'POST',mode:'no-cors',body:fd})}
+pr.catch(falhou)}catch(e){falhou()}}
 else{var w=null;try{w=window.open(url,'_blank')}catch(e){}
 if(w){try{w.opener=null}catch(e){}}
 t.innerHTML=w?'O WhatsApp abriu com a sua simulação. <b>É só enviar a mensagem.</b>':'<b>Falta um toque:</b> envie a simulação pelo botão abaixo.'}

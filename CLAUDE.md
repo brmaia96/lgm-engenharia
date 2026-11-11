@@ -160,7 +160,14 @@ só mostra que há know-how, sem excesso.
   protótipo dele usava o FormSubmit com o e-mail no endereço, o que expõe o
   e-mail no código da página e depende de ativação por e-mail: só com aprovação
   dele). Com a base ligada, o botão só mostra o resultado e o WhatsApp vira o
-  segundo passo. O link da comunidade vai em `COMUNIDADE_URL` quando existir.
+  segundo passo.
+  **Escolhido em nov/2026 (cliente: "pode criar"):** planilha "Base de contatos -
+  site (calculadora de INSS)" criada no Drive dele, com cabeçalho; script em
+  `site-build/leads_apps_script.gs` (grava a linha, corta em 200 caracteres e
+  impede fórmula). O site ganhou `tipo='script'` (JSON em text/plain, sem
+  checagem de CORS), testado de ponta a ponta. Falta só ele colar o script
+  (Extensões > Apps Script), implantar como App da Web (executar como eu,
+  acesso: qualquer pessoa) e mandar a URL /exec, que vai em `LEADS`. O link da comunidade vai em `COMUNIDADE_URL` quando existir.
 - Blog (`blog.html`, artigos `b-<slug>.html`, conteúdo em `site-build/blog.py`):
   lista com imagem ("imagens chamam atenção"), um minuto de leitura por artigo:
   resposta curta, o que muda, o ponto de atenção. Primeiro os tributários;
@@ -354,8 +361,8 @@ Sero v3.0 (08/2024) e páginas da Receita no gov.br.
 - **A confirmar com o cliente:** (1) o Provimento CG nº 17/2026 da Corregedoria
   de SP, que segundo fontes secundárias dispensou a CND para averbar construção
   nos cartórios paulistas. Por isso o site não afirma que "sem certidão o
-  cartório não averba"; (2) o Formulário Google para a base
-  de contatos e o link da comunidade no WhatsApp.
+  cartório não averba"; (2) a URL /exec do script da base de contatos e o
+  link da comunidade no WhatsApp.
 
 ### Padrão de imagem (obrigatório em toda peça web)
 

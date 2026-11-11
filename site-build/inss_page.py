@@ -52,7 +52,8 @@ WHATS = '5514991850799'
 # Base de contatos. Deixar url vazio = o cadastro segue só pelo WhatsApp. Com um Formulário Google do cliente,
 # preencher url (https://docs.google.com/forms/d/e/<id>/formResponse) e o código entry.N de cada campo:
 # cada envio vira uma linha na planilha dele.
-# Dois formatos aceitos: tipo='google' (Formulário Google: url .../formResponse + código entry.N de cada campo)
+# tipo='script': Apps Script da planilha do cliente (site-build/leads_apps_script.gs), URL /exec; envia JSON em text/plain
+# (sem checagem prévia de CORS, que o Apps Script não responde). Outros formatos: tipo='google' (Formulário Google: url .../formResponse + código entry.N de cada campo)
 # ou tipo='json' (serviço que recebe JSON por POST). Com a base ligada, o botão só mostra o resultado e o
 # WhatsApp vira o segundo passo, como no protótipo do cliente (pasta site-calculadora do Drive).
 LEADS = dict(tipo='google', url='', campos=dict(nome='', whatsapp='', email='', cidade='', uf='', area='', sistema='', fase='', estimativa='', avisos=''))
@@ -282,7 +283,8 @@ var reg={nome:d.nome,whatsapp:d.whatsapp,email:d.email,cidade:d.cidade,uf:uf.val
 /* se a base não responder (rede, bloqueio do navegador), o contato não se perde: pede o envio pelo WhatsApp */
 function falhou(){t.innerHTML='<b>Falta um toque:</b> envie a simulação pelo botão abaixo.'}
 t.innerHTML='<b>Simulação registrada.</b> Retorno pelo seu WhatsApp.';
-try{var pr;if(LD.tipo==='json'){pr=fetch(LD.url,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(reg)}).then(function(r){if(!r.ok)throw 0})}
+try{var pr;if(LD.tipo==='script'){pr=fetch(LD.url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(reg)})}
+else if(LD.tipo==='json'){pr=fetch(LD.url,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(reg)}).then(function(r){if(!r.ok)throw 0})}
 else{var fd=new FormData();for(var k in LD.campos){if(LD.campos[k])fd.append(LD.campos[k],reg[k]||'')}pr=fetch(LD.url,{method:'POST',mode:'no-cors',body:fd})}
 pr.catch(falhou)}catch(x){falhou()}}
 else{var w=null;try{w=window.open(url,'_blank')}catch(x){}

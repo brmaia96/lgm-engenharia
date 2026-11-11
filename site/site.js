@@ -1,6 +1,6 @@
 (function(){
 /* filme de apresentação: começa sozinho, mudo (regra dos navegadores). O som entra no primeiro toque, clique ou tecla
-   na página, com volume subindo devagar, a menos que a pessoa tenha escolhido "tirar som". Para quando sai da tela. */
+   na página, com volume subindo devagar, a menos que a pessoa tenha escolhido "tirar som". Continua tocando ao rolar a página. */
 var v=document.getElementById('vid'),vb=document.getElementById('vbtn');
 if(v&&vb){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,quer=!rm,escolheu=false,vs=document.getElementById('vsnd');
 function lab(){vb.textContent=v.paused?'reproduzir':'pausar';if(vs)vs.textContent=v.muted?'ativar som':'tirar som'}
@@ -12,9 +12,9 @@ vb.addEventListener('click',function(){if(v.paused){quer=true;toca()}else{quer=f
 v.addEventListener('play',lab);v.addEventListener('pause',lab);v.addEventListener('volumechange',lab);lab();
 if(vs)vs.addEventListener('click',function(ev){ev.stopPropagation();escolheu=true;som(v.muted)});
 function primeiro(ev){if(ev.target===vs||ev.target===vb)return;document.removeEventListener('pointerdown',primeiro,true);document.removeEventListener('keydown',primeiro,true);
-if(!escolheu&&!rm&&v.muted){var r=v.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight)som(true);else{v.muted=false;v.volume=0;v.addEventListener('play',sobe,{once:true})}}}
+if(!escolheu&&!rm&&v.muted){var r=v.getBoundingClientRect();som(true)}}
 document.addEventListener('pointerdown',primeiro,true);document.addEventListener('keydown',primeiro,true);
-if('IntersectionObserver' in window){new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){if(quer&&v.paused)toca()}else if(!v.paused)v.pause()})},{threshold:[0]}).observe(v)}
+if('IntersectionObserver' in window){new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting&&quer&&v.paused)toca()})},{threshold:[0]}).observe(v)}   /* não pausa ao rolar a página (pedido do cliente) */
 /* se o navegador segurou o play (modo econômico do celular), o primeiro toque em qualquer lugar da página dá o play */
 v.addEventListener('loadeddata',function(){if(quer&&v.paused)toca()});}
 

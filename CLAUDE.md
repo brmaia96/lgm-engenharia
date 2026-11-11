@@ -75,7 +75,7 @@ acessível sem conta. Para referência dos posts, pedir print ao cliente.
 - **Fotos das obras com acabamento realista por IA** ("falei mil vezes para
   renderizar na IA"), sobre o render fiel ao projeto, conferido depois contra
   as pranchas. Até o faturamento do Gemini estar ativo, ficam os renders.
-- **Filme abre a home e começa sozinho** (mudo; o primeiro toque liga o som).
+- **Filme abre a home e começa sozinho** (mudo; o primeiro toque liga o som) e **não pausa ao rolar a página**.
   Ele reclamou de ter de apertar reproduzir.
 - **Cards coloridos** também no celular (a versão em cinza saiu).
 - **Blog: imagem tem de fazer sentido com o texto.** Artigos de imposto usam

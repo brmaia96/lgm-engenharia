@@ -215,7 +215,7 @@ FAM={
 # Regra do cliente (nov/2026): toda obra abre com fachada RENDERIZADA, em alta, nada de isométrico.
 # Casa Duo e Casa da Raia não têm render de fachada fiel ao projeto atual (só vistas isométricas do modelo e imagens de IA
 # que mudam o projeto): ficam fora do ar até o cliente mandar renders do modelo atual. Dados prontos abaixo.
-HELD=['casa-duo','le-blanc-lofts']   # lofts: a capa era vista isométrica e não existe render de fachada fiel
+HELD=['casa-duo']   # lofts voltaram na v30 com render da fachada montado pelas vistas do modelo
 # MÍNIMO (instrução do cliente, nov/2026): "fotos obras, só o mínimo e informações básicas, não precisa de tanto detalhe".
 # Capa + no máximo quatro imagens por projeto; ficha de cinco linhas; só a frase de abertura, sem parágrafos; legenda só com o nome.
 LEAN={
@@ -270,18 +270,16 @@ def _lean(P):
 # layout interno diferente a cada vista). Reclamação direta do cliente: "tem que seguir o projeto, tem que ser real". Não usar.
 for _p in PROJECTS:
     if _p['slug']=='le-blanc-lofts':
-        _p.update(card=dict(src=C+'42-perspectiva-modelo-frente.jpg',draw='panel',fam='b',alt='Perspectiva do modelo: três lofts iguais, com muro e vagas na frente do lote'),
-          hero=dict(src=C+'42-perspectiva-modelo-frente.jpg',draw='panel',fam='b',alt='Perspectiva do modelo de arquitetura: três lofts iguais de dois níveis, com muro, portão e três vagas na frente do lote'),
+        # v30: capa = render no Cycles (render/lofts_blender.py) montado com as medidas da implantação, da elevação de acesso e da
+        # elevação frontal do modelo Revit e com as cotas do projeto em LSF; conferido em vista ortogonal contra a elevação de acesso.
+        # Palmeiras e agaves do paisagismo ficaram fora (não modeladas). Dentro da página, só o 3D da estrutura.
+        _p.update(card=dict(src='render/01-fachada-render.png',focus=(.5,.62),alt='Lofts em Angra dos Reis: dois dos três volumes brancos, com marquise e porta pivotante'),
+          hero=dict(src='render/01-fachada-render.png',pos='50% 62%',alt='Fachada de acesso dos lofts: volumes brancos de 6 m de altura com platibanda, marquise sobre a porta pivotante e janela alta na lateral'),
           lead='Três lofts com mezanino em light steel frame, <b>projetados para fabricação fora do canteiro.</b>',
-          text=['São três unidades iguais de 28,90 m², com térreo, mezanino e 6,00 m de altura. A escada interna também é em steel frame.',
-                'A estrutura soma 1.393,54 kg de aço. Cada painel sai da fábrica com a sua folha e a sua lista de corte, pronto para montar.'],
+          text=[],
           sections=[
-           dict(label='Fachadas',items=[
-            I('44-elevacao-modelo-tres-lofts-acesso.jpg',('Fachada de acesso','três lofts iguais, uma porta pivotante em cada'),'Elevação dos três lofts pelo lado do acesso, com palmeiras entre os volumes','plan'),
-            I('46-elevacao-modelo-loft-frontal.jpg',('Fachada frontal','um loft, dois níveis'),'Elevação frontal de um loft, com a porta pivotante','plan half'),
-            I('43-perspectiva-modelo-fundos.jpg',('Vista dos fundos','muro de divisa e reservatório'),'Perspectiva do modelo pelos fundos do lote','plan half')]),
            dict(label='Estrutura',items=[
-            I('25-vista-3d-lsf.jpg',('Estrutura em light steel frame','painéis, lajes, treliças e escada · 1.393,54 kg de aço'),'Vista 3D da estrutura completa do loft em light steel frame','plan')])])
+            I('25-vista-3d-lsf.jpg',('Estrutura em light steel frame',''),'Vista 3D da estrutura completa do loft em light steel frame','plan')])])
         _p['ficha']=[kv for kv in _p['ficha'] if kv[0]!='Níveis']; _p['ficha'].insert(1,('Unidades','3 lofts de 28,90 m², com térreo e mezanino'))
 PROJECTS.insert(next(i for i,_p in enumerate(PROJECTS) if _p['slug']=='patio-escolar'),
  dict(slug='salas-comerciais',assets='comercial-marilia',name='Salas comerciais',cat='comercial',cat_label='comerciais',cat_plural='comerciais',city='Marília, SP',sub='reforma e regularização · 169 m²',ref='o projeto das salas comerciais',

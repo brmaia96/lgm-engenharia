@@ -205,8 +205,8 @@ só mostra que há know-how, sem excesso.
   isométrico, apenas renderizada". A obra abre com UMA fachada renderizada (capa
   única, sem par com interior); internas e estrutura ficam dentro da página.
   Fora do ar por não terem render de fachada fiel ao projeto atual (`HELD` em
-  `data.py`, dados prontos): **Casa Duo** e **Le Blanc Lofts** (capa
-  isométrica). A Casa da Raia voltou na v29 com render fiel (abaixo). Os renders realistas que existem no Drive são de IA e mudam
+  `data.py`, dados prontos): só a **Casa Duo**. A Casa da Raia voltou na
+  v29 e o Le Blanc Lofts na v30, os dois com render fiel (abaixo). Os renders realistas que existem no Drive são de IA e mudam
   o projeto; os modelos (IFC 92 MB, RVT 100–330 MB) passam do limite do conector
   (10 MB). Voltam quando o cliente mandar render do modelo atual.
 - **Pedidas e ainda sem capa possível (nov/2026):** obra residencial em concreto
@@ -235,7 +235,18 @@ só mostra que há know-how, sem excesso.
   Detalhe da Fachada, da Planta de Cobertura e do Corte A-A; conferido em vista
   ortogonal. Cores neutras, porque as pranchas não as definem. O modelo Revit
   "padrão template" ainda não foi feito: o Revit não roda aqui.
-- **Acabamento por IA sobre render fiel:** só com modelo aberto local (SD 1.5 +
+- **Le Blanc Lofts** (v30): o IFC local (`LOFTS - IFC.ifc`, 3,4 MB) só tem a
+  estrutura (846 perfis), sem paredes nem esquadrias. A capa é render no Cycles
+  (`site-build/render/lofts_blender.py`) montado com as medidas da implantação
+  do modelo (lote 12 × 30 m), da elevação de acesso, da elevação frontal e das
+  cotas do LSF (4,478 m de largura, 6,00 m de altura): porta pivotante, marquise
+  de 3,6 × 0,65 m que passa da lateral, janela alta na lateral, platibanda.
+  Conferido em vista ortogonal contra a elevação de acesso. Palmeiras e agaves
+  do paisagismo ficaram fora (não modelados). Dentro da página, só o 3D da
+  estrutura; elevações e perspectiva isométrica saíram.
+- **Acabamento por IA sobre render fiel:** testado na Raia (nov/2026) e
+  reprovado: não mudou o projeto, mas borrou a borda do telhado, pôs manchas no
+  muro e névoa no céu. Não repetir nas outras. só com modelo aberto local (SD 1.5 +
   ControlNet com as linhas do render travadas) e só publica se não mudar nada do
   projeto, conferido contra a prancha. Na dúvida, fica o render fiel.
 - Salas comerciais: capa = foto real da fachada (recortada, sem o céu).

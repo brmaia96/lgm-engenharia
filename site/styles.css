@@ -565,7 +565,7 @@ h1 b,h2 b{display:inline-block}
 .cover .art{aspect-ratio:16/9}
 .row:not(.pic){grid-template-columns:minmax(0,1fr)}
 /* grade de obras: as duas primeiras (e as duas últimas, quando sobram duas) em meia largura; o resto em terços */
-.grid.obras>.card:nth-child(-n+2),.grid.obras>.card:nth-last-child(-n+2){grid-column:span 2}
+@media (min-width:1001px){.grid.obras>.card:nth-child(-n+2),.grid.obras>.card:nth-last-child(-n+2){grid-column:span 2}}
 .grid.obras>.card.s3{grid-column:span 3}
 @media (max-width:1000px){.grid.obras>.card.s3{grid-column:auto}}
 .grid.obras.on>.card.s3{grid-column:span 2}

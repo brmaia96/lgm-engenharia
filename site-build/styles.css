@@ -384,8 +384,7 @@ p,.prose li,.faq .a,.tl dd{text-align:justify;text-justify:inter-word;-webkit-hy
 .nums.two{grid-template-columns:repeat(2,minmax(0,1fr));max-width:760px}
 @media (max-width:700px){.nums.two{grid-template-columns:1fr}}
 .steps.mini{gap:28px var(--gap)}
-.steps.mini p{text-align:left;-webkit-hyphens:manual;hyphens:manual}
-@media (max-width:560px){.steps.mini{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 20px}.steps.mini li{padding-top:10px}.steps.mini li::before{margin-bottom:6px}.steps.mini h3{font-size:16px}.steps.mini p{font-size:14px;line-height:1.5}}
+@media (max-width:560px){.steps.mini{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 20px}.steps.mini li{padding-top:10px}.steps.mini li::before{margin-bottom:6px}.steps.mini h3{font-size:16px}.steps.mini p{font-size:14px;line-height:1.5;text-align:left;-webkit-hyphens:manual;hyphens:manual}}
 .calc .lab{display:block;font-size:14px;color:var(--mute);margin-bottom:4px}
 .seg{display:flex;flex-wrap:wrap;gap:4px 20px;padding:8px 0 9px;border-bottom:1px solid var(--mute)}
 .seg button{padding:2px 0;font-size:16px;font-weight:300;color:var(--mute);transition:color .25s}
@@ -415,7 +414,6 @@ p,.prose li,.faq .a,.tl dd{text-align:justify;text-justify:inter-word;-webkit-hy
 .tb.casos td.off{color:var(--mute);text-decoration:line-through;text-decoration-thickness:1px}
 .tb.casos th[scope=row]{font-weight:400}
 @media (max-width:560px){.tb.casos{font-size:13px}.tb.casos th,.tb.casos td{padding-right:10px}}
-.sys p{text-align:left;-webkit-hyphens:manual;hyphens:manual}
 .fontes li span{text-align:left}
 .wide.hero{width:calc(100% + var(--gut) + var(--gutr))}
 .row .ph .m{padding:0}

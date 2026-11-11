@@ -330,8 +330,9 @@ abaixo de ~28 caracteres, justificar piora.
 **Vale para todo meio, a web incluída.** O cliente repetiu em nov/2026: "todo
 texto que tiver no site sempre justificado e alinhado, sempre". Na web, o
 parágrafo corrido vai justificado com hifenização ativa e coluna de largura
-controlada. Ficam à esquerda só o que não é texto corrido: rótulo, legenda,
-frase curta em coluna estreita (cartões de três colunas), botão e link.
+controlada, inclusive nos cartões de três e quatro colunas. Ficam à esquerda
+só o que não é texto corrido (rótulo, legenda, botão, link) e, no celular, as
+frases dos blocos de duas colunas, onde a linha tem menos de 28 caracteres.
 
 ### Alinhamento
 

@@ -560,3 +560,7 @@ h1 b,h2 b{display:inline-block}
 @media (max-width:640px){.cap{display:block}.cap span{display:block;text-align:left}.card .cap,.cap.vctl{display:flex}.who figure{max-width:none}}
 @media (max-width:480px){.flt{flex-wrap:nowrap;gap:0 18px;overflow-x:auto;scrollbar-width:none}.flt button{white-space:nowrap}}
 .who{align-items:start}
+/* capa do artigo: fachada renderizada no topo, dentro da coluna, 16:9 */
+.cover{margin-top:clamp(36px,4vw,56px)}
+.cover .art{aspect-ratio:16/9}
+.row:not(.pic){grid-template-columns:minmax(0,1fr)}

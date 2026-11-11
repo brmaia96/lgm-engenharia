@@ -1,15 +1,20 @@
 (function(){
-/* filme de apresentação: mudo, toca sozinho quando entra na tela e para quando sai; pausa e som ficam na linha da legenda */
+/* filme de apresentação: começa sozinho, mudo (regra dos navegadores). O som entra no primeiro toque, clique ou tecla
+   na página, com volume subindo devagar, a menos que a pessoa tenha escolhido "tirar som". Para quando sai da tela. */
 var v=document.getElementById('vid'),vb=document.getElementById('vbtn');
-if(v&&vb){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,quer=!rm;
-function lab(){vb.textContent=v.paused?'reproduzir':'pausar'}
+if(v&&vb){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,quer=!rm,escolheu=false,vs=document.getElementById('vsnd');
+function lab(){vb.textContent=v.paused?'reproduzir':'pausar';if(vs)vs.textContent=v.muted?'ativar som':'tirar som'}
 function toca(){var q=v.play();if(q&&q.catch)q.catch(function(){lab()})}
+function sobe(){v.volume=0;var t0=null;function st(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/1400);v.volume=.85*p;if(p<1)requestAnimationFrame(st)}requestAnimationFrame(st)}
+function som(on){v.muted=!on;if(on){sobe();quer=true;if(v.paused)toca()}lab()}
+if(rm){v.removeAttribute('autoplay');v.pause()}else toca();
 vb.addEventListener('click',function(){if(v.paused){quer=true;toca()}else{quer=false;v.pause()}});
-v.addEventListener('play',lab);v.addEventListener('pause',lab);lab();
-var vs=document.getElementById('vsnd');
-if(vs)vs.addEventListener('click',function(){v.muted=!v.muted;vs.textContent=v.muted?'ativar som':'tirar som';if(!v.muted&&v.paused){quer=true;toca()}});
-if('IntersectionObserver' in window){new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting&&x.intersectionRatio>=.4){if(quer&&v.paused)toca()}else if(!v.paused)v.pause()})},{threshold:[0,.4]}).observe(v)}
-else if(quer)toca()}
+v.addEventListener('play',lab);v.addEventListener('pause',lab);v.addEventListener('volumechange',lab);lab();
+if(vs)vs.addEventListener('click',function(ev){ev.stopPropagation();escolheu=true;som(v.muted)});
+function primeiro(ev){if(ev.target===vs||ev.target===vb)return;document.removeEventListener('pointerdown',primeiro,true);document.removeEventListener('keydown',primeiro,true);
+if(!escolheu&&!rm&&v.muted){var r=v.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight)som(true);else{v.muted=false;v.volume=0;v.addEventListener('play',sobe,{once:true})}}}
+document.addEventListener('pointerdown',primeiro,true);document.addEventListener('keydown',primeiro,true);
+if('IntersectionObserver' in window){new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting&&x.intersectionRatio>=.4){if(quer&&v.paused)toca()}else if(!v.paused)v.pause()})},{threshold:[0,.4]}).observe(v)}}
 
 /* filtro de obras e de artigos */
 var f=document.getElementById('flt');

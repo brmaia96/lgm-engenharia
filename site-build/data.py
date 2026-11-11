@@ -212,20 +212,22 @@ FAM={
 # SELEÇÃO ENXUTA (pedido do cliente): o portfólio só mostra que há know-how. Poucas imagens por projeto,
 # só fachada, externa, interna e o 3D da estrutura; ficha curta; no máximo dois parágrafos.
 # Os dados completos ficam acima; esta camada escolhe o que vai ao ar.
-# Nenhuma obra fora do ar: Casa Duo e a ampliação em steel frame voltaram em nov/2026, a pedido do cliente, só com imagens conferidas.
-HELD=[]
+# Regra do cliente (nov/2026): toda obra abre com fachada RENDERIZADA, em alta, nada de isométrico.
+# Casa Duo e Casa da Raia não têm render de fachada fiel ao projeto atual (só vistas isométricas do modelo e imagens de IA
+# que mudam o projeto): ficam fora do ar até o cliente mandar renders do modelo atual. Dados prontos abaixo.
+HELD=['casa-duo','casa-da-raia','le-blanc-lofts']   # lofts: a capa era vista isométrica e não existe render de fachada fiel
 # MÍNIMO (instrução do cliente, nov/2026): "fotos obras, só o mínimo e informações básicas, não precisa de tanto detalhe".
 # Capa + no máximo quatro imagens por projeto; ficha de cinco linhas; só a frase de abertura, sem parágrafos; legenda só com o nome.
 LEAN={
  # Conferência independente (nov/2026): cada imagem no ar foi comparada com planta, cortes e fachadas do projeto.
  # Só entram as aprovadas; o que a IA redesenhou (edícula da Taquaraçu, externas do Acolher) saiu ou foi recortado.
- 'casa-taquaracu':[('Interiores',[('05-','full')]),('Estrutura',[('10-','full')])],
+ 'casa-taquaracu':[('Interiores',[('04-','half'),('05-','half')]),('Estrutura',[('10-','full')])],
  'chale-acolher':[('Fachada',[('04-','full')]),('Interiores',[('15-','full')]),('Estrutura',[('06-','full')])],
  'chale-piedade':[('Interiores',[('04-','half'),('06-','half')])],
  'tiny-house':[('Interiores',[('05-','half'),('04-','half')])],
  'chale-viver':[('Fachada',[('06-','full')]),('Interiores',[('07-','half'),('09-','half')])],
  'chale-analandia':[('Fachada',[('20-','full')]),('Interiores',[('24-','full')])],
- 'salas-comerciais':[('Fachada',[('01-','full')]),('Externas',[('03-','half'),('04-','half')])],
+ 'salas-comerciais':[('Externas',[('03-','half'),('04-','half')])],
  'patio-escolar':[('Coberturas',[('02-','half'),('08-','half')]),('Estrutura',[('04-','full')])],
 }
 FICHA_KEEP={
@@ -375,11 +377,23 @@ for _p in PROJECTS:
     elif _s=='casa-do-bosque':
         # Suíte e banho mostravam sacada e vista por cima das copas; a fachada é térrea. Fica só o par da capa, que fecha entre si.
         _p['sections']=[]
+# ---- Regra de capa (nov/2026): a obra abre com UMA fachada renderizada; internas e estrutura vêm dentro da página. ----
+for _p in PROJECTS:
+    _s=_p['slug']
+    if _s=='salas-comerciais':
+        _p.update(card=dict(src=C+'01-fachada-rua.jpg',crop=(0,.30,1,1),focus=(.5,.5),alt='Fachada das salas comerciais vista da rua, com muro verde e painéis de cobogó'),
+                  hero=dict(src=C+'01-fachada-rua.jpg',crop=(0,.30,1,1),pos='50% 60%',alt='Fachada das salas comerciais vista da rua, com muro verde, cobogó e portão branco'))
+    elif _s=='casa-taquaracu':
+        _h=_p['hero']; _p['hero']=dict(src=_h['src'],crop=_h['crop'],pos='50% 40%',alt=_h['alt'])
+    elif _s=='casa-do-bosque':
+        _h=_p['hero']; _p['hero']=dict(src=_h['src'],pos='50% 40%',alt=_h['alt'])
+        _p['sections']=[dict(label='Interiores',items=[I('03-living.jpg',('Living',''),'Living com forro de madeira e vidro do piso ao teto, aberto para a piscina e o jardim','full')])]
 PROJECTS_FULL=PROJECTS
 PROJECTS=_lean(PROJECTS)
 # ordem das obras (grade 2 · 3 · 3 · 3 · 2): steel frame de alto padrão e obra concluída primeiro; desenhos e estruturas no fim
 ORDEM=['casa-taquaracu','salas-comerciais','chale-piedade','chale-viver','tiny-house','chale-acolher','chale-analandia','casa-do-bosque',
        'casa-da-raia','casa-duo','patio-escolar','ampliacao-steel-frame','le-blanc-lofts']
+ORDEM=[k for k in ORDEM if k not in HELD]
 assert sorted(ORDEM)==sorted(p['slug'] for p in PROJECTS),sorted(set(ORDEM)^set(p['slug'] for p in PROJECTS))
 PROJECTS.sort(key=lambda p: ORDEM.index(p['slug']))
 OBRAS_META='casas, chalés, salas comerciais e estruturas em aço'

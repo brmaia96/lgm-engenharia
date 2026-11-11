@@ -143,7 +143,7 @@ page('obras.html','Obras · L. Engenharia','obras',b,desc='Projetos de Luis Gust
 for a in ART:
     c=a.get('cover')
     if c:
-        a['_hero']=put(A+'/'+c['src'],'img/blog/%s.jpg'%a['slug'],maxw=2110,crop=c.get('crop'),ratio=2/1,focus=c.get('focus',(.5,.5)),q=80,fam=c.get('fam','a'))
+        a['_hero']=put(A+'/'+c['src'],'img/blog/%s.jpg'%a['slug'],maxw=2110,crop=c.get('crop'),ratio=16/9,focus=c.get('focus',(.5,.5)),q=84,fam=c.get('fam','a'))
         tk=dict(maxw=720,crop=c.get('crop'),ratio=4/3,focus=c.get('focus',(.5,.5)),q=78,fam=c.get('fam','a'))
         a['_th']=put(A+'/'+c['src'],'img/blog/%s-t.jpg'%a['slug'],**tk); a['_thm']=put(A+'/'+c['src'],'img/blog/%s-tm.jpg'%a['slug'],mono=True,**tk)
 def post(a,lazy=True,pic=True):
@@ -157,11 +157,11 @@ for i,a in enumerate(ART):
     c=a.get('cover')
     b=('<main><article><section class="col phead"><p class="crumb"><a href="blog.html">blog</a> / %s</p><h1>%s</h1><p class="lead" style="margin-top:26px">%s</p>'
        '<p class="meta">leitura de %d min · %s</p></section>')%(e(a['tema']),a['h1'],a['lead'],a['mins'],e(BL.DATA))
+    if c:
+        hs,hw,hh=a['_hero']; b+='<section class="col cover"><figure><img class="art%s" src="%s" width="%d" height="%d" alt="%s" fetchpriority="high">'%(' night' if c.get('fam') in ('c','d') else '',hs,hw,hh,e(c['alt']))
+        b+=('<figcaption class="cap"><b>%s</b><span>%s</span></figcaption>'%c['cap'] if c.get('cap') else '')+'</figure></section>'
     for k,(lab,htm) in enumerate(a['body']):
         b+='<section class="band %s">%s<div class="prose">%s</div></section>'%('sec-s' if k==0 else 'sec-n',tag(lab),htm)
-    if c:
-        hs,hw,hh=a['_hero']; b+='<section class="col sec-s"><figure><img class="art%s" src="%s" width="%d" height="%d" alt="%s" loading="lazy" decoding="async">'%(' night' if c.get('fam') in ('c','d') else '',hs,hw,hh,e(c['alt']))
-        b+=('<figcaption class="cap"><b>%s</b><span>%s</span></figcaption>'%c['cap'] if c.get('cap') else '')+'</figure></section>'
     if a.get('fontes'):
         # fonte: só o título, sem link e sem PDF (instrução do cliente)
         b+='<section class="band sec-s">%s<ol class="fontes">%s</ol></section>'%(tag('Fontes'),''.join('<li><span>%s</span></li>'%e(t) for t in a['fontes']))
@@ -206,14 +206,15 @@ b=('<main><section class="col phead home"><p class="crumb">engenharia tributári
  '<div class="nums" style="margin-top:48px"><div><div class="num">%(sem)s</div><div class="nl">de INSS em uma casa de %(area)s em %(uf)s, sem planejamento</div></div>'
  '<div><div class="num sv">até %(pct)s</div><div class="nl">a menos, com o enquadramento certo</div></div>'
  '<div class="act"><a class="btn" href="inss.html#simulador">Calcular o INSS da minha obra</a></div></div></section>')%D.INSS.NUM
-b+=('<section class="col sec-s"><figure class="film"><div class="vid"><video id="vid" width="1920" height="1080" muted loop playsinline preload="none" aria-label="Filme de apresentação dos serviços de Luis Gustavo Maia, engenheiro civil" aria-describedby="vid-d">'
+b+=('<section class="col sec-s"><figure class="film"><div class="vid"><video id="vid" width="1920" height="1080" muted loop playsinline autoplay preload="auto" aria-label="Filme de apresentação dos serviços de Luis Gustavo Maia, engenheiro civil" aria-describedby="vid-d">'
  '<source media="(max-width:640px)" src="media/apresentacao-celular.mp4" type="video/mp4"><source src="media/apresentacao.mp4" type="video/mp4"></video></div>'
- '<figcaption class="cap vctl"><b>Apresentação</b><span class="vb"><span>1 min 18 s</span><button id="vsnd" type="button">ativar som</button><button id="vbtn" type="button">reproduzir</button></span></figcaption></figure>'
+ '<figcaption class="cap vctl"><b>Apresentação</b><span class="vb"><span>1 min 18 s</span><button id="vsnd" type="button">ativar som</button><button id="vbtn" type="button">pausar</button></span></figcaption></figure>'
  '<p class="sr" id="vid-d">%s</p></section>')%FILME
 b+='<section class="band sec">%s<div><div class="grid three">%s</div><p style="margin-top:44px"><a class="lnk" href="obras.html">Todas as obras</a></p></div></section>'%(tag('Obras'),''.join(card(p) for p in sel))
-OBRA=put(M+'obra-real.jpg','img/marca/obra-real.jpg',maxw=1600,ratio=2/1,focus=(.5,.35),q=82)
+# só a parte de cima da foto (treliças e painéis): o chão da obra tinha poça, sacos, ferramentas e uma pessoa
+OBRA=put(M+'obra-real.jpg','img/marca/obra-real.jpg',maxw=1600,crop=(0,0,1,.53),q=86)
 b+=('<section class="col sec"><h2 class="hx">Steel frame não é moda. <b>É engenharia.</b></h2>'
- '<figure style="margin-top:clamp(36px,4vw,56px)"><img class="art" src="%s" width="%d" height="%d" alt="Steel frame em obra: painéis de parede e treliças de entrepiso montados sobre a laje" loading="lazy" decoding="async">'
+ '<figure style="margin-top:clamp(36px,4vw,56px)"><img class="art" src="%s" width="%d" height="%d" alt="Steel frame em obra: treliças de entrepiso e painéis de parede em aço galvanizado" loading="lazy" decoding="async" style="aspect-ratio:auto">'
  '<figcaption class="cap"><b>Steel frame em obra</b><span>painéis de parede e treliças de entrepiso</span></figcaption></figure></section>')%OBRA
 hb=[a for a in ART if a['slug'] in BL.HOME] or ART[:3]
 hb.sort(key=lambda a:(BL.HOME.index(a['slug']) if a['slug'] in BL.HOME else 99))

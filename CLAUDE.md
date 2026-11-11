@@ -196,6 +196,31 @@ só mostra que há know-how, sem excesso.
     **alvenaria com telhado sobre treliças em steel frame**, nunca "casa em steel
     frame". Arquitetura de arquiteto parceiro; o escritório fez o executivo. Não
     usar o bairro no nome nem as imagens de IA nem o kit da revisão anterior.
+- **Regra de capa (instrução do cliente, nov/2026):** "as imagens de obras devem
+  sempre ser renderizadas em alta resolução e todas começar com a fachada; quando
+  clicar aparecem internas e modelos 3D de estrutura quando tiver; nada de
+  isométrico, apenas renderizada". A obra abre com UMA fachada renderizada (capa
+  única, sem par com interior); internas e estrutura ficam dentro da página.
+  Fora do ar por não terem render de fachada fiel ao projeto atual (`HELD` em
+  `data.py`, dados prontos): **Casa Duo**, **Casa da Raia** e **Le Blanc Lofts**
+  (capa isométrica). Os renders realistas que existem no Drive são de IA e mudam
+  o projeto; os modelos (IFC 92 MB, RVT 100–330 MB) passam do limite do conector
+  (10 MB). Voltam quando o cliente mandar render do modelo atual.
+- **Pedidas e ainda sem capa possível (nov/2026):** obra residencial em concreto
+  armado em Marília (97,19 m², projeto estrutural no TQS, obra em andamento;
+  material em `scratchpad/assets/obra-concreto/`, só estrutura e fotos de obra) e
+  obra comercial em Garça (741,69 m², LSF, projeto aprovado em 2026; só a fachada
+  desenhada da prancha; as fachadas "realistas" do Drive são de IA e redesenham o
+  prédio; o modelo SKP tem 31 MB). Nome público nunca com nome de cliente ou
+  empresa. Entram quando houver render de fachada ou foto da obra.
+- Salas comerciais: capa = foto real da fachada (recortada, sem o céu).
+- Foto "Steel frame não é moda" na home: só a parte de cima (treliças e painéis);
+  o chão da obra tinha poça, sacos e ferramentas. No filme, essa cena usa o render
+  da estrutura do Chalé Acolher.
+- Filme: começa sozinho e mudo; o som entra no primeiro toque, clique ou tecla na
+  página (os navegadores não permitem som antes disso). Trilha nova
+  (`video/musica2.py`): piano, cordas, baixo e percussão leve, -16 LUFS.
+- Blog: capa no topo do artigo, fachada renderizada de uma obra, 16:9 na coluna.
 - Ficha sempre com Local, Área, Sistema, Escopo, Etapa (com ano); cidade com
   vírgula ("Marília, SP"); "steel frame" no texto e "Light steel frame" só na
   linha Sistema; nunca "steel framing", "LSF" ou "off-site".

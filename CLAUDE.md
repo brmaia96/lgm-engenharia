@@ -253,7 +253,19 @@ só mostra que há know-how, sem excesso.
   das vistas do modelo foi **reprovado pelo cliente: "projeto do loft está
   totalmente errado, mal feito".** Saiu do ar e o script foi apagado. Não
   remontar fachada de projeto a partir de vistas ou medidas tiradas de imagem:
-  o Lofts só volta com vista exportada do próprio modelo dele.
+  o Lofts só volta com vista exportada do próprio modelo dele ou com aprovação
+  dele de um render feito pelas cotas. Erros do render da v30: medidas tiradas
+  de imagem, eixo espelhado (porta e ala do lado errado), janela alta e
+  marquise parcial que não existem, sem ala, sem J04, sem paisagismo.
+  **Refeito (nov/2026, aguarda o ok do cliente, fora do ar):**
+  `site-build/render/lofts_blender.py`, só com as cotas das pranchas P01 e P02
+  de arquitetura: loft 4,55 × 5,65 × 6,03, marquise de 0,10 a +3,05 com 0,70
+  de projeção na largura toda, ala do lado da rua até 3,15, P01 pivotante de
+  madeira a 1,18 m da quina, J01 a J05 do quadro de esquadrias, palmeiras e
+  agaves da locação. Conferido em vista ortogonal contra a Fachada Frontal e a
+  Fachada Lateral Esquerda. Imagem em
+  `scratchpad/assets/le-blanc-lofts/render/02-fachada-render.png`. Para pôr no
+  ar: tirar de `HELD` e apontar card/hero para esse arquivo.
 - **Acabamento por IA sobre render fiel:** testado na Raia (nov/2026) e
   reprovado: não mudou o projeto, mas borrou a borda do telhado, pôs manchas no
   muro e névoa no céu. Não repetir nas outras. só com modelo aberto local (SD 1.5 +

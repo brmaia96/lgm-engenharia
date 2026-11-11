@@ -409,6 +409,17 @@ for _p in PROJECTS:
 PROJECTS_FULL=PROJECTS
 PROJECTS=_lean(PROJECTS)
 # ordem das obras (grade 2 · 3 · 3 · 3 · 2): steel frame de alto padrão e obra concluída primeiro; desenhos e estruturas no fim
+# Residência em concreto armado (Marília): pedido do cliente (nov/2026) "mostre apenas projeto estrutural e complementares, o
+# arquitetônico não é do nosso escritório". Capa = 3D da estrutura do modelo TQS (sem IA, sem arquitetura). Nome público neutro.
+PROJECTS.append(
+ dict(slug='residencia-concreto',assets='obra-concreto',name='Residência em concreto armado',cat='estrutura',cat_label='estruturas',cat_plural='estruturas',city='Marília, SP',sub='concreto armado · 97 m²',ref='a residência em concreto armado',
+  card=dict(src=C+'estrutura-01-tres-quartos.jpg',focus=(.5,.5),fam='c',alt='Estrutura em concreto armado de uma residência térrea: pilares, vigas e lajes do modelo estrutural'),
+  hero=dict(src=C+'estrutura-01-tres-quartos.jpg',draw='night',fam='c',alt='Modelo estrutural em concreto armado de uma residência térrea, com pilares, vigas e lajes técnicas da caixa-d\'água'),
+  lead='Estrutura e complementares de uma casa térrea, <b>com a obra em andamento.</b>',
+  text=[],
+  ficha=[('Local','Marília, SP'),('Área','97,19 m²'),('Sistema','Concreto armado com laje treliçada'),('Escopo','Projeto estrutural e projetos complementares'),('Etapa','Obra em andamento · 2026')],
+  sections=[dict(label='Estrutura',items=[I('estrutura-02-fundos.jpg',('Estrutura vista pelos fundos',''),'Modelo estrutural em concreto armado visto pelos fundos, com pilares, vigas e lajes','full')])]))
+FAM['obra-concreto']={'estrutura-01-tres-quartos.jpg':'c','estrutura-02-fundos.jpg':'c'}
 # ---- Fichas no padrão de cinco linhas (conferência de nov/2026). Ano só onde está no arquivo do projeto. ----
 for _p in PROJECTS:
     if _p['slug']=='chale-piedade':
@@ -420,7 +431,7 @@ for _p in PROJECTS:
 FICHA_KEEP['chale-piedade']=FICHA_KEEP['tiny-house']=['Local','Área','Sistema','Escopo','Etapa']
 FICHA_KEEP.pop('casa-do-bosque',None)
 ORDEM=['casa-taquaracu','salas-comerciais','comercial-garca','casa-garca','chale-piedade','chale-viver','tiny-house','chale-acolher','chale-analandia','casa-do-bosque',
-       'casa-da-raia','casa-duo','patio-escolar','ampliacao-steel-frame','le-blanc-lofts']
+       'casa-da-raia','casa-duo','residencia-concreto','patio-escolar','ampliacao-steel-frame','le-blanc-lofts']
 ORDEM=[k for k in ORDEM if k not in HELD]
 assert sorted(ORDEM)==sorted(p['slug'] for p in PROJECTS),sorted(set(ORDEM)^set(p['slug'] for p in PROJECTS))
 PROJECTS.sort(key=lambda p: ORDEM.index(p['slug']))

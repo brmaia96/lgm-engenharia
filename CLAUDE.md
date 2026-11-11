@@ -251,6 +251,13 @@ só mostra que há know-how, sem excesso.
   o Le Blanc Lofts na v33, com render fiel conferido (abaixo). Os renders realistas que existem no Drive são de IA e mudam
   o projeto; os modelos (IFC 92 MB, RVT 100–330 MB) passam do limite do conector
   (10 MB). Voltam quando o cliente mandar render do modelo atual.
+- **Residência em concreto armado** (v36, no ar): pedido do cliente "mostre
+  apenas projeto estrutural e complementares, o arquitetônico não é do nosso
+  escritório". Capa = 3D da estrutura do modelo TQS, sem arquitetura e sem IA;
+  ficha Marília, SP · 97,19 m² · concreto armado com laje treliçada · projeto
+  estrutural e projetos complementares · obra em andamento, 2026. A geometria
+  do 3D é de antes das revisões de 28–30/10/2026: trocar quando houver nova
+  exportação do TQS. O texto abaixo é histórico.
 - **Pedidas e ainda sem capa possível (nov/2026):** obra residencial em concreto
   armado em Marília (97,19 m², projeto estrutural no TQS, obra em andamento;
   material em `scratchpad/assets/obra-concreto/`: só estrutura e fotos de alvenaria

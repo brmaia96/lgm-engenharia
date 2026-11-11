@@ -56,7 +56,7 @@ WHATS = '5514991850799'
 # (sem checagem prévia de CORS, que o Apps Script não responde). Outros formatos: tipo='google' (Formulário Google: url .../formResponse + código entry.N de cada campo)
 # ou tipo='json' (serviço que recebe JSON por POST). Com a base ligada, o botão só mostra o resultado e o
 # WhatsApp vira o segundo passo, como no protótipo do cliente (pasta site-calculadora do Drive).
-LEADS = dict(tipo='google', url='', campos=dict(nome='', whatsapp='', email='', cidade='', uf='', area='', sistema='', fase='', estimativa='', avisos=''))
+LEADS = dict(tipo='script', url='https://script.google.com/macros/s/AKfycbxCemvodiKym5DiNjBKAl37a2wpKjPKB-FCDTlqHz478TnZfHLXi4B61t0dlT95EKrSzw/exec', campos=dict(nome='', whatsapp='', email='', cidade='', uf='', area='', sistema='', fase='', estimativa='', avisos=''))
 COMUNIDADE_URL = ''   # link do grupo/comunidade do WhatsApp, quando o cliente criar
 
 # ---- obras aferidas (mapa e contadores) ----

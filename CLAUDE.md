@@ -72,6 +72,13 @@ acessível sem conta. Para referência dos posts, pedir print ao cliente.
   modelos de imagem (gemini-3-pro-image, 2.5/3.1-flash-image) dão 429 com
   limite 0 no plano gratuito: falta ele ativar o faturamento do projeto da
   chave no AI Studio. A assinatura do app não cobre a API.
+- **Caminho combinado (nov/2026): o cliente faz o acabamento no Gemini/ChatGPT
+  que já paga.** Pasta no Drive "IA - acabamento realista das obras (site)"
+  (id 1-KQfoC4OM8EJHUQcoa4KkbAQOaYT654Z) com o render fiel de Lofts, Casa
+  Garça, prédio comercial e Casa da Raia e o texto para colar ("LEIA"). Ele
+  devolve na subpasta "Renderizadas pela IA (colocar aqui)" (id
+  1xcv2yeRy9ifo6Psmo1U-dvg8KY7Bo7oj). Cada imagem é conferida contra as
+  pranchas antes de entrar no site; a que mudar o projeto não entra.
 - **Fotos das obras com acabamento realista por IA** ("falei mil vezes para
   renderizar na IA"), sobre o render fiel ao projeto, conferido depois contra
   as pranchas. Até o faturamento do Gemini estar ativo, ficam os renders.

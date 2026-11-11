@@ -216,16 +216,26 @@ Sero v3.0 (08/2024) e páginas da Receita no gov.br.
   aferição de 2024 estava decaído o que ocorreu até 31/12/2018.
 - A norma e o manual **não citam steel frame**. O enquadramento é pelo texto
   ("estrutura de metal", "pré-fabricado por terceiros"), e isso é dito no site.
-- **Obras regularizadas (mapa em `inss.html`, dados em `inss_page.py`):** 13 obras
-  com aferição concluída ou certidão emitida, de 2021 a 2026: Marília (8), Sinop
-  MT, Franca, Itupeva, Vargem Grande Paulista e Pedrinhas Paulista. Economia
-  documentada em três delas, pela memória de cálculo do Sero: R$ 28.152,69
-  (Marília, 2021, pré-fabricado), R$ 19.117,00 (Sinop, 2026, pré-fabricado) e
-  R$ 7.624,20 (Marília, 2026, fator de ajuste). Total: R$ 54.893,89. Área
-  aferida nas 13 obras: 3.393,54 m² (contador da página). No site aparecem só
-  antes, depois e desconto, sem o nome do caminho usado. Não somar
-  obras sem simulação anterior nem reduções por mão de obra declarada. Só cidade,
-  área, ano e valores: nunca nome, CNO ou endereço.
+- **Obras aferidas (mapa e contadores de `inss.html`, dados em `inss_page.py`):**
+  o Drive tem 70 memórias de cálculo do Sero, de 38 obras, de 2021 a 2026. Contam
+  as **28 com aferição concluída** e Franca, que tem certidão: **29 obras, 13
+  cidades** (Marília 17; Sinop e Água Boa, MT; Assis, Botucatu, Franca, Itupeva,
+  Mirassol, Pedrinhas Paulista, Piraju, São Roque, Tupã e Vargem Grande
+  Paulista, SP), **6.715,79 m²**. Ficam fora as dez em rascunho, entre elas as
+  salas comerciais de Marília (rascunho de 09/11/2026). O cliente ainda precisa
+  confirmar que todas são dele; a de Marília de 2021 (576 m²) está num arquivo
+  de caso.
+- **Desconto documentado: R$ 101.997,80 em nove obras**, com um critério só.
+  Enquadramento, pela simulação anterior contra a aferição concluída: Marília
+  2021, 576 m² (46.802,38 → 18.649,69) e Sinop 2026, 205 m² (27.026,57 →
+  7.909,57). Fator de ajuste, pelo débito que a própria memória concluída apura
+  antes do fator e ele zera: Marília 400 m² (29.668,63), Assis 446 m²
+  (10.378,47), Marília 371 m² (7.624,20), Marília 212 m² (4.513,47), Piraju
+  (1.114,39), Tupã (1.098,34) e Marília 61 m² (330,61). Não entram reduções por
+  remuneração declarada (o INSS dessa folha foi pago mês a mês) nem obra sem
+  valor anterior na memória. No site aparecem só antes, depois e desconto dos
+  quatro maiores, sem dizer o caminho. Só cidade, área, ano e valores: nunca
+  nome, CNO ou endereço.
 - O "R$ 28.000 por obra" dos carrosséis antigos é conta ilustrativa, não caso real.
 - Revisão independente (nov/2026): três revisores conferiram 225 afirmações contra
   as normas; nenhum erro de número, 40 ajustes de redação aplicados.

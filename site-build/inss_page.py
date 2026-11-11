@@ -60,13 +60,28 @@ COMUNIDADE_URL = ''   # link do grupo/comunidade do WhatsApp, quando o cliente c
 
 # ---- obras aferidas (mapa e contadores) ----
 _BR = json.load(open(HERE + '/brasil.json'))
-OBRAS_CIDADES = [('Marília', 'SP', 8), ('Sinop', 'MT', 1), ('Franca', 'SP', 1), ('Itupeva', 'SP', 1), ('Vargem Grande Paulista', 'SP', 1), ('Pedrinhas Paulista', 'SP', 1)]
-# só cidade, área, ano e valores das memórias de cálculo do Sero: nunca nome, CNO ou endereço
-CASOS = [('Marília · 576 m² · 2021', 46802.38, 18649.69), ('Sinop · 205 m² · 2026', 27026.57, 7909.57), ('Marília · 371 m² · 2026', 7624.20, 0.0)]
-AREAS_AFERIDAS = [576.18, 204.96, 370.63, 115.10, 302.20, 175.82, 174.16, 272.37, 308.58, 266.85, 169.14, 139.37, 318.18]   # m² de cada obra aferida
+# Fonte: memórias de cálculo do Sero guardadas no Drive do cliente (70 memórias, 38 obras, de 2021 a 2026).
+# Entram as 28 obras com aferição "Concluída" e Franca, que tem a certidão. Ficam fora as dez com aferição
+# ainda em rascunho (entre elas as salas comerciais de Marília, rascunho de 09/11/2026).
+# Só cidade, área, ano e valores: nunca nome, CNO ou endereço.
+OBRAS_CIDADES = [('Marília', 'SP', 17), ('Sinop', 'MT', 1), ('Água Boa', 'MT', 1), ('Assis', 'SP', 1), ('Botucatu', 'SP', 1), ('Franca', 'SP', 1),
+                 ('Itupeva', 'SP', 1), ('Mirassol', 'SP', 1), ('Pedrinhas Paulista', 'SP', 1), ('Piraju', 'SP', 1), ('São Roque', 'SP', 1),
+                 ('Tupã', 'SP', 1), ('Vargem Grande Paulista', 'SP', 1)]
+# m² aferidos em cada obra (área principal + complementar da memória concluída); o último é Franca
+AREAS_AFERIDAS = [576.18, 141.93, 280.73, 275.77, 272.37, 174.16, 235.04, 60.60, 308.58, 28.87, 59.00, 55.00, 302.20, 409.11, 175.82, 204.96, 30.22,
+                  399.96, 260.46, 106.41, 211.66, 340.92, 370.63, 266.85, 115.10, 445.71, 150.00, 318.18, 139.37]
+# Desconto documentado, com um critério só:
+#  - enquadramento (duas primeiras): simulação anterior x aferição concluída;
+#  - fator de ajuste (as demais): débito que a própria memória concluída apura antes do fator de ajuste, zerado por ele.
+# Não entram reduções por remuneração declarada (o INSS dessa folha foi pago mês a mês) nem obra sem valor anterior na memória.
+DESCONTOS = [('Marília · 400 m² · 2026', 29668.63, 0.0), ('Marília · 576 m² · 2021', 46802.38, 18649.69), ('Sinop · 205 m² · 2026', 27026.57, 7909.57),
+             ('Assis · 446 m² · 2026', 10378.47, 0.0), ('Marília · 371 m² · 2026', 7624.20, 0.0), ('Marília · 212 m² · 2025', 4513.47, 0.0),
+             ('Piraju · 106 m² · 2025', 1114.39, 0.0), ('Tupã · 142 m² · 2021', 1098.34, 0.0), ('Marília · 61 m² · 2022', 330.61, 0.0)]
+CASOS = DESCONTOS[:4]     # a tabela da página mostra só os quatro maiores
 M2_TOTAL = sum(AREAS_AFERIDAS)
-N_OBRAS = sum(c[2] for c in OBRAS_CIDADES); ECON_REAL = sum(a - b for _, a, b in CASOS)
-assert N_OBRAS == len(AREAS_AFERIDAS) == 13 and abs(ECON_REAL - 54893.89) < .01
+N_OBRAS = sum(c[2] for c in OBRAS_CIDADES); ECON_REAL = sum(a - b for _, a, b in DESCONTOS)
+N_DESC = len(DESCONTOS); N_CID = len(OBRAS_CIDADES)
+assert N_OBRAS == len(AREAS_AFERIDAS) == 29 and abs(ECON_REAL - 101997.80) < .01 and abs(M2_TOTAL - 6715.79) < .01
 
 FAQ = [
  ('Toda obra paga INSS?', 'Quase toda. Quem constrói, reforma ou amplia responde pela contribuição da mão de obra. As exceções são poucas.'),
@@ -83,32 +98,33 @@ FAQ_LD = '<script type="application/ld+json">' + json.dumps({'@context': 'https:
 def mapa_obras():
     dots = ''
     for nome, uf, n in sorted(OBRAS_CIDADES, key=lambda c: -c[2]):
-        x, y = _BR['pts'][nome]; r = 10 if n > 1 else 5
+        x, y = _BR['pts'][nome]; r = 11 if n > 1 else 5
         dots += '<circle cx="%s" cy="%s" r="%s" fill="#9A7350" stroke="#fff" stroke-width="2"><title>%s, %s: %d %s</title></circle>' % (x, y, r, nome, uf, n, 'obras' if n > 1 else 'obra')
-    mx, my = _BR['pts']['Marília']; sx_, sy_ = _BR['pts']['Sinop']
-    labels = ('<text x="%s" y="%s" text-anchor="end" font-size="15" fill="#2F2E2E">Marília · 8 obras</text>' % (mx - 18, my + 5)
-              + '<text x="%s" y="%s" text-anchor="end" font-size="15" fill="#2F2E2E">Sinop · MT</text>' % (sx_ - 12, sy_ + 5))
+    def lab(nome, txt, dx): x, y = _BR['pts'][nome]; return '<text x="%s" y="%s" text-anchor="end" font-size="15" fill="#2F2E2E">%s</text>' % (x - dx, y + 5, txt)
+    labels = lab('Marília', 'Marília · %d obras' % OBRAS_CIDADES[0][2], 36) + lab('Sinop', 'Sinop · MT', 12) + lab('Água Boa', 'Água Boa · MT', 12)
     svg = ('<svg viewBox="0 0 %d %d" role="img" aria-label="Mapa do Brasil com as cidades das obras aferidas: %s." font-family="inherit">'
            '<path d="%s" fill="#F7F6F4" stroke="#A0A09F" stroke-width="1" stroke-linejoin="round"/>%s%s</svg>') % (
            _BR['w'], _BR['h'], '; '.join('%s, %s, %d' % c for c in OBRAS_CIDADES), _BR['path'], dots, labels)
-    cid = ''.join('<li><b>%s</b><span>%s · %s</span></li>' % (c[0], c[1], ('%d obras' % c[2]) if c[2] > 1 else '1 obra') for c in OBRAS_CIDADES)
+    cid = '<li class="top"><b>%s</b><span>%s · %d obras</span></li>' % (OBRAS_CIDADES[0][0], OBRAS_CIDADES[0][1], OBRAS_CIDADES[0][2])
+    cid += ''.join('<li><b>%s</b><span>%s</span></li>' % (c[0], c[1]) for c in OBRAS_CIDADES[1:])
     casos = ''.join('<tr><th scope="row">%s</th><td class="off">%s</td><td>%s</td><td class="hl">%s</td></tr>' % (o, brl(a), brl(b), brl(a - b)) for o, a, b in CASOS)
     m2 = format(round(M2_TOTAL), ',d').replace(',', '.')
+    por_extenso = {3: 'três', 4: 'quatro', 5: 'cinco', 6: 'seis', 7: 'sete', 8: 'oito', 9: 'nove', 10: 'dez'}.get(N_DESC, str(N_DESC))
     return ('''<section class="band sec" id="obras-aferidas"><div class="tag"><b>Obras aferidas</b></div><div>
 <h2>Não é teoria. <b>É obra aferida.</b></h2>
 <div class="nums" style="margin-top:36px">
-<div><div class="num" data-count="%d">%d</div><div class="nl">obras aferidas na Receita</div></div>
+<div><div class="num" data-count="%d">%d</div><div class="nl">obras aferidas na Receita, em %d cidades</div></div>
 <div><div class="num" data-count="%d" data-suf=" m²">%s m²</div><div class="nl">de área regularizada</div></div>
-<div><div class="num sv" data-count="%d" data-pre="R$ ">%s</div><div class="nl">de desconto obtido em três delas</div></div>
+<div><div class="num sv" data-count="%d" data-pre="R$ ">%s</div><div class="nl">de desconto obtido em %s delas</div></div>
 </div>
 <div class="mapa" style="margin-top:64px">
 <figure class="fig">%s</figure>
 <ul class="cid">%s</ul>
 </div>
 <table class="tb casos" style="margin-top:56px"><thead><tr><th scope="col">Obra</th><th scope="col">Antes</th><th scope="col">Depois</th><th scope="col">Desconto</th></tr></thead><tbody>%s</tbody></table>
-<p class="src" style="margin-top:18px">Valores das memórias de cálculo da Receita Federal.</p>
+<p class="src" style="margin-top:18px">Os quatro maiores. Valores das memórias de cálculo da Receita Federal.</p>
 </div></section>
-''') % (N_OBRAS, N_OBRAS, round(M2_TOTAL), m2, round(ECON_REAL), brl(ECON_REAL), svg, cid, casos)
+''') % (N_OBRAS, N_OBRAS, N_CID, round(M2_TOTAL), m2, round(ECON_REAL), brl(ECON_REAL), por_extenso, svg, cid, casos)
 
 _BODY = '''<main>
 <section class="col phead"><p class="crumb">engenharia tributária</p>

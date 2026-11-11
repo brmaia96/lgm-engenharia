@@ -425,3 +425,9 @@ p,.prose li,.faq .a,.tl dd{text-align:justify;text-justify:inter-word;-webkit-hy
 a.btn{text-decoration:none}
 .note a{color:var(--ink);background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;transition:color .25s}
 .note a:hover{color:var(--terra)}
+/* lista de cidades em duas colunas, com Marília em destaque */
+.cid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
+.cid li.top{grid-column:1/-1}
+.cid li:last-child{border-bottom:0}
+.cid li:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
+@media (max-width:480px){.cid{column-gap:16px}.cid li{font-size:14px;gap:8px}}

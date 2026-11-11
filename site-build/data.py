@@ -215,7 +215,7 @@ FAM={
 # Regra do cliente (nov/2026): toda obra abre com fachada RENDERIZADA, em alta, nada de isométrico.
 # Casa Duo e Casa da Raia não têm render de fachada fiel ao projeto atual (só vistas isométricas do modelo e imagens de IA
 # que mudam o projeto): ficam fora do ar até o cliente mandar renders do modelo atual. Dados prontos abaixo.
-HELD=['casa-duo','casa-da-raia','le-blanc-lofts']   # lofts: a capa era vista isométrica e não existe render de fachada fiel
+HELD=['casa-duo','le-blanc-lofts']   # lofts: a capa era vista isométrica e não existe render de fachada fiel
 # MÍNIMO (instrução do cliente, nov/2026): "fotos obras, só o mínimo e informações básicas, não precisa de tanto detalhe".
 # Capa + no máximo quatro imagens por projeto; ficha de cinco linhas; só a frase de abertura, sem parágrafos; legenda só com o nome.
 LEAN={
@@ -333,18 +333,14 @@ PROJECTS.append(
  dict(slug='casa-da-raia',assets='residencia-ym',name='Casa da Raia',cat='casa',cat_label='casas',cat_plural='casas',city='Marília, SP',sub='casa térrea · 185 m²',ref='a Casa da Raia',
   # Conferência (nov/2026): 14 das 15 vistas seguem plantas, cortes e fachadas. Recortes tiram a casca da piscina que aparece por baixo do muro
   # (o modelo não tem terreno). A casa é de alvenaria; em steel frame, só as treliças do telhado. A arquitetura é de arquiteto parceiro.
-  card=dict(src=C+'01-perspectiva-geral.jpg',crop=(0,0,.905,1),draw='panel',fam='b',alt='Perspectiva do modelo: casa térrea de duas águas, com garagem e piscina em raia'),
-  hero=dict(src=C+'01-perspectiva-geral.jpg',crop=(0,0,.905,1),draw='panel',fam='b',alt='Perspectiva do modelo: casa térrea com telhado de duas águas, garagem, muro frontal e piscina em raia nos fundos'),
+  # capa: render no Cycles do modelo montado com as cotas do executivo, conferido em vista ortogonal contra a Fachada Posterior
+  card=dict(src='render/01-fachada-fundos-render.png',focus=(.55,.55),alt='Casa da Raia: fachada dos fundos com a porta de correr do estar, a piscina em raia e a cerca viva'),
+  hero=dict(src='render/01-fachada-fundos-render.png',pos='50% 55%',alt='Fachada dos fundos da Casa da Raia: telhado cerâmico de duas águas, torre da caixa-d\'água, porta de correr de quatro folhas e a piscina em raia de 18 m'),
   lead='Casa térrea de duas águas, <b>com uma raia de 18 m ao longo do lote.</b>',
   text=[],
   ficha=[('Local','Marília, SP'),('Área','184,60 m²'),('Sistema','Alvenaria, com telhado sobre treliças em steel frame'),('Escopo','Projeto executivo em BIM, sobre arquitetura de arquiteto parceiro'),('Etapa','Projeto · 2026')],
-  sections=[
-   dict(label='Fachadas',items=[
-    I('02-perspectiva-fachada-frontal.jpg',('Frente',''),'Frente da casa vista da rua: muro com os dois portões, garagem e telhado de duas águas','plan half'),
-    I('06-vista-aerea-nordeste.jpg',('Raia',''),'Vista aérea do lote, com a piscina em raia junto ao muro dos fundos','plan half',crop=(0,0,1,.915))]),
-   dict(label='Interior e cobertura',items=[
-    I('10-interior-cozinha.jpg',('Cozinha',''),'Cozinha com ilha, torre quente e churrasqueira','plan half'),
-    I('09-estrutura-trelicas-cobertura.jpg',('Treliças do telhado',''),'Modelo sem a cobertura, com as treliças em steel frame do telhado sobre as paredes','plan half',crop=(0,0,.915,1))])]))
+  sections=[]))
+
 # ---- Ajustes da conferência de imagens (nov/2026). Regra do cliente: a imagem tem de ser real e seguir o projeto. ----
 def _item(p,prefixo):
     return next(it for sec in p['sections'] for it in sec['items'] if it['src'].split('/')[-1].startswith(prefixo))
@@ -389,6 +385,18 @@ PROJECTS.append(
   text=[],
   ficha=[('Local','Garça, SP'),('Área','741,69 m²'),('Sistema','Light steel frame'),('Escopo','Projeto arquitetônico e legal, estrutura em steel frame e CNO'),('Etapa','Projeto aprovado · 2026')],
   sections=[]))
+# Casa Garça (pedido do cliente, nov/2026; nome público sem nome de cliente). A única fachada "renderizada" do Drive é de IA (GPT-4o)
+# e junta os portões, apaga os muros e inventa serra e vizinho: não usar. A capa é render no Cycles de um modelo montado só com as
+# cotas da Fachada Norte, do Detalhe da Fachada, da Planta de Cobertura e do Corte A-A (site-build/render/casagarca_blender.py),
+# conferido em vista ortogonal contra a Fachada Norte. Cores neutras: as pranchas não definem acabamento.
+PROJECTS.append(
+ dict(slug='casa-garca',assets='casa-garca',name='Casa Garça',cat='casa',cat_label='casas',cat_plural='casas',city='Garça, SP',sub='casa térrea · 135 m²',ref='a Casa Garça',
+  card=dict(src='render/01-fachada-render.png',focus=(.5,.6),alt='Casa Garça: fachada com portão basculante, portão social, tabeira metálica e volumes com platibanda'),
+  hero=dict(src='render/01-fachada-render.png',pos='50% 60%',alt='Fachada da Casa Garça vista da rua: muro com portão basculante e portão social, tabeira metálica sobre a garagem e os volumes da casa com platibanda'),
+  lead='Casa térrea em terreno de 10 m de frente, <b>com garagem para dois carros sob a tabeira.</b>',
+  text=[],
+  ficha=[('Local','Garça, SP'),('Área','135,26 m², em terreno de 200 m²'),('Sistema','Alvenaria, cobertura metálica com telha sanduíche'),('Escopo','Projeto executivo e projeto legal'),('Etapa','Projeto · 2025')],
+  sections=[]))
 # ---- Regra de capa (nov/2026): a obra abre com UMA fachada renderizada; internas e estrutura vêm dentro da página. ----
 for _p in PROJECTS:
     _s=_p['slug']
@@ -396,14 +404,14 @@ for _p in PROJECTS:
         _p.update(card=dict(src=C+'01-fachada-rua.jpg',crop=(0,.30,1,1),focus=(.5,.5),alt='Fachada das salas comerciais vista da rua, com muro verde e painéis de cobogó'),
                   hero=dict(src=C+'01-fachada-rua.jpg',crop=(0,.30,1,1),pos='50% 60%',alt='Fachada das salas comerciais vista da rua, com muro verde, cobogó e portão branco'))
     elif _s=='casa-taquaracu':
-        _h=_p['hero']; _p['hero']=dict(src=_h['src'],crop=_h['crop'],pos='50% 40%',alt=_h['alt'])
+        _h=_p['hero']; _p['hero']=dict(src=_h['src'],crop=_h.get('crop'),pos='50% 40%',alt=_h['alt'])
     elif _s=='casa-do-bosque':
         _h=_p['hero']; _p['hero']=dict(src=_h['src'],pos='50% 40%',alt=_h['alt'])
         _p['sections']=[dict(label='Interiores',items=[I('03-living.jpg',('Living',''),'Living com forro de madeira e vidro do piso ao teto, aberto para a piscina e o jardim','full')])]
 PROJECTS_FULL=PROJECTS
 PROJECTS=_lean(PROJECTS)
 # ordem das obras (grade 2 · 3 · 3 · 3 · 2): steel frame de alto padrão e obra concluída primeiro; desenhos e estruturas no fim
-ORDEM=['casa-taquaracu','salas-comerciais','comercial-garca','chale-piedade','chale-viver','tiny-house','chale-acolher','chale-analandia','casa-do-bosque',
+ORDEM=['casa-taquaracu','salas-comerciais','comercial-garca','casa-garca','chale-piedade','chale-viver','tiny-house','chale-acolher','chale-analandia','casa-do-bosque',
        'casa-da-raia','casa-duo','patio-escolar','ampliacao-steel-frame','le-blanc-lofts']
 ORDEM=[k for k in ORDEM if k not in HELD]
 assert sorted(ORDEM)==sorted(p['slug'] for p in PROJECTS),sorted(set(ORDEM)^set(p['slug'] for p in PROJECTS))

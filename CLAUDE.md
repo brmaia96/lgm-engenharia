@@ -205,8 +205,8 @@ só mostra que há know-how, sem excesso.
   isométrico, apenas renderizada". A obra abre com UMA fachada renderizada (capa
   única, sem par com interior); internas e estrutura ficam dentro da página.
   Fora do ar por não terem render de fachada fiel ao projeto atual (`HELD` em
-  `data.py`, dados prontos): **Casa Duo**, **Casa da Raia** e **Le Blanc Lofts**
-  (capa isométrica). Os renders realistas que existem no Drive são de IA e mudam
+  `data.py`, dados prontos): **Casa Duo** e **Le Blanc Lofts** (capa
+  isométrica). A Casa da Raia voltou na v29 com render fiel (abaixo). Os renders realistas que existem no Drive são de IA e mudam
   o projeto; os modelos (IFC 92 MB, RVT 100–330 MB) passam do limite do conector
   (10 MB). Voltam quando o cliente mandar render do modelo atual.
 - **Pedidas e ainda sem capa possível (nov/2026):** obra residencial em concreto
@@ -221,6 +221,23 @@ só mostra que há know-how, sem excesso.
   aprovada (`site-build/render/garca_blender.py`): vidro 29,25 × 5 m em três vãos,
   painel de alumínio de 2 m, caixa-d'água, muros de divisa; sem logotipo, carros
   nem vizinhos. O mesmo caminho serve para outra obra com fachada cotada.
+- **Casa da Raia** (v29): capa = render no Cycles da fachada dos fundos
+  (`site-build/render/raia_blender.py`), montado com as cotas da Fachada
+  Posterior e conferido em vista ortogonal contra a prancha: porta de correr
+  4,39–8,96 até 2,50, porta do lavabo 10,02–10,82, janela do banho 11,93–12,73
+  (1,60–2,10), janela da suíte 13,87–15,37 (1,10–2,10), cumeeira a 5,15 com 30%,
+  torre da caixa-d'água até 5,85.
+- **Casa Garça** (v29; é a casa que o cliente chamou pelo nome da proprietária:
+  nunca usar esse nome; 135,26 m² em terreno de 200 m², alvenaria com cobertura
+  metálica e telha sanduíche, projeto executivo e legal, 2025): a única imagem
+  realista do Drive é de IA e foi recusada. Capa = render no Cycles
+  (`site-build/render/casagarca_blender.py`) com as cotas da Fachada Norte, do
+  Detalhe da Fachada, da Planta de Cobertura e do Corte A-A; conferido em vista
+  ortogonal. Cores neutras, porque as pranchas não as definem. O modelo Revit
+  "padrão template" ainda não foi feito: o Revit não roda aqui.
+- **Acabamento por IA sobre render fiel:** só com modelo aberto local (SD 1.5 +
+  ControlNet com as linhas do render travadas) e só publica se não mudar nada do
+  projeto, conferido contra a prancha. Na dúvida, fica o render fiel.
 - Salas comerciais: capa = foto real da fachada (recortada, sem o céu).
 - Foto "Steel frame não é moda" na home: só a parte de cima (treliças e painéis);
   o chão da obra tinha poça, sacos e ferramentas. No filme, essa cena usa o render

@@ -135,7 +135,7 @@ flt='<button type="button" data-k="*" aria-pressed="true">todas<sup>%d</sup></bu
     '<button type="button" data-k="%s" aria-pressed="false">%s<sup>%d</sup></button>'%(e(k),e(l),sum(1 for p in P if p['cat']==k)) for k,l in cats)
 b=('<main><section class="col phead"><h1>Obras</h1><p class="meta">%s</p><div class="flt" id="flt" role="group" aria-label="Filtrar por tipo">%s</div>'
    '<p class="sr" id="flt-st" aria-live="polite"></p></section><section class="col"><div class="grid obras" id="grid">%s</div></section>%s</main>')%(
-   e(D.OBRAS_META),flt,''.join(card(p,lazy=(k>1)).replace('<a class="card','<a class="card s3' if (k<2 or ((len(P)-2)%3==2 and k>=len(P)-2)) else '<a class="card',1) for k,p in enumerate(P)),
+   e(D.OBRAS_META),flt,''.join(card(p,lazy=(k>1)).replace('<a class="card','<a class="card s3' if (k<2 or ((len(P)-2)%3==2 and k>=len(P)-2) or ((len(P)-2)%3==1 and k>=len(P)-4)) else '<a class="card',1) for k,p in enumerate(P)),
    call('Tem um terreno ou um projeto em andamento?','Olá Gustavo, vi as obras no site e quero conversar sobre um projeto.'))
 page('obras.html','Obras · L. Engenharia','obras',b,desc='Projetos de Luis Gustavo Maia, engenheiro civil: casas, chalés, salas comerciais e estruturas em aço.')
 

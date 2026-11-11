@@ -215,7 +215,7 @@ FAM={
 # Regra do cliente (nov/2026): toda obra abre com fachada RENDERIZADA, em alta, nada de isométrico.
 # Casa Duo e Casa da Raia não têm render de fachada fiel ao projeto atual (só vistas isométricas do modelo e imagens de IA
 # que mudam o projeto): ficam fora do ar até o cliente mandar renders do modelo atual. Dados prontos abaixo.
-HELD=['casa-duo']   # lofts voltaram na v30 com render da fachada montado pelas vistas do modelo
+HELD=['casa-duo','le-blanc-lofts']   # lofts: o render montado na v30 foi reprovado pelo cliente ("totalmente errado, mal feito"); só volta com vista exportada do modelo
 # MÍNIMO (instrução do cliente, nov/2026): "fotos obras, só o mínimo e informações básicas, não precisa de tanto detalhe".
 # Capa + no máximo quatro imagens por projeto; ficha de cinco linhas; só a frase de abertura, sem parágrafos; legenda só com o nome.
 LEAN={

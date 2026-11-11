@@ -215,7 +215,7 @@ FAM={
 # Regra do cliente (nov/2026): toda obra abre com fachada RENDERIZADA, em alta, nada de isométrico.
 # Casa Duo e Casa da Raia não têm render de fachada fiel ao projeto atual (só vistas isométricas do modelo e imagens de IA
 # que mudam o projeto): ficam fora do ar até o cliente mandar renders do modelo atual. Dados prontos abaixo.
-HELD=['casa-duo']   # lofts: render refeito só com as cotas de P01 e P02 e conferido por revisor independente (nov/2026)
+HELD=[]   # Casa Duo voltou na v37 com as imagens renderizadas da própria prancha do projeto
 # MÍNIMO (instrução do cliente, nov/2026): "fotos obras, só o mínimo e informações básicas, não precisa de tanto detalhe".
 # Capa + no máximo quatro imagens por projeto; ficha de cinco linhas; só a frase de abertura, sem parágrafos; legenda só com o nome.
 LEAN={
@@ -420,6 +420,19 @@ PROJECTS.append(
   ficha=[('Local','Marília, SP'),('Área','97,19 m²'),('Sistema','Concreto armado com laje treliçada'),('Escopo','Projeto estrutural e projetos complementares'),('Etapa','Obra em andamento · 2026')],
   sections=[dict(label='Estrutura',items=[I('estrutura-02-fundos.jpg',('Estrutura vista pelos fundos',''),'Modelo estrutural em concreto armado visto pelos fundos, com pilares, vigas e lajes','full')])]))
 FAM['obra-concreto']={'estrutura-01-tres-quartos.jpg':'c','estrutura-02-fundos.jpg':'c'}
+# Casa Duo (v37): imagens renderizadas que o escritório entregou na prancha do projeto simplificado (fachada, entrada, área
+# externa, sala), no padrão de produto pronto da Casa do Bosque. Número da casa apagado da fachada (endereço). Planta e
+# carimbo da prancha não entram.
+for _p in PROJECTS:
+    if _p['slug']=='casa-duo':
+        _p.update(card=dict(src='render/01-fachada.png',focus=(.5,.45),alt='Casa Duo ao anoitecer: muro em pedra com iluminação de jardim, porta de vidro e portão da garagem sob a laje'),
+          hero=dict(src='render/01-fachada.png',pos='50% 40%',alt='Fachada da Casa Duo ao anoitecer, com muro revestido, porta de vidro, portão da garagem e a laje da casa ao fundo'),
+          lead='Casa térrea em dois lotes unidos, <b>com piscina e garagem para dois carros.</b>',
+          text=[],
+          sections=[dict(label='Externas',items=[
+             I('../render/02-entrada.png',('Entrada',''),'Entrada coberta com forro de madeira, porta pivotante preta e janela com cortina','half'),
+             I('../render/03-area-externa.png',('Área externa',''),'Piscina com deck de madeira, jardim vertical e espreguiçadeiras','half')]),
+           dict(label='Interiores',items=[I('../render/04-sala.png',('Sala',''),'Sala com painel ripado, rack de madeira e sofá em L','full')])])
 # ---- Fichas no padrão de cinco linhas (conferência de nov/2026). Ano só onde está no arquivo do projeto. ----
 for _p in PROJECTS:
     if _p['slug']=='chale-piedade':

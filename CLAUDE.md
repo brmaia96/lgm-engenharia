@@ -251,6 +251,12 @@ só mostra que há know-how, sem excesso.
   o Le Blanc Lofts na v33, com render fiel conferido (abaixo). Os renders realistas que existem no Drive são de IA e mudam
   o projeto; os modelos (IFC 92 MB, RVT 100–330 MB) passam do limite do conector
   (10 MB). Voltam quando o cliente mandar render do modelo atual.
+- **Casa Duo** (v37, no ar; cliente: "faça você"): capa e internas são as
+  imagens renderizadas que o escritório entregou na prancha do projeto
+  simplificado da prefeitura (fachada, entrada, área externa, sala), no padrão
+  de produto pronto da Casa do Bosque. O número da casa foi apagado da fachada
+  (endereço). Planta, carimbo e nome da cliente não entram. O RVT (102,6 MB)
+  não abre aqui; um IFC permitiria internas extras tiradas do modelo.
 - **Residência em concreto armado** (v36, no ar): pedido do cliente "mostre
   apenas projeto estrutural e complementares, o arquitetônico não é do nosso
   escritório". Capa = 3D da estrutura do modelo TQS, sem arquitetura e sem IA;

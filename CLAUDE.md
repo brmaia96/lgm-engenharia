@@ -72,6 +72,13 @@ acessível sem conta. Para referência dos posts, pedir print ao cliente.
   modelos de imagem (gemini-3-pro-image, 2.5/3.1-flash-image) dão 429 com
   limite 0 no plano gratuito: falta ele ativar o faturamento do projeto da
   chave no AI Studio. A assinatura do app não cobre a API.
+- **Produto pronto, padrão Casa do Bosque (cliente, nov/2026):** "estamos
+  mostrando produto pronto ao meu cliente; não posso jamais mostrar uma foto".
+  Toda obra abre com a fachada em imagem acabada e tem, dentro da página, 3 ou 4
+  internas em ângulos que mostram detalhes. Foto crua (inclusive das Salas) sai
+  quando a versão acabada chegar. Na pasta do Drive foram também as bases das
+  internas (Raia: vistas do modelo; Lofts e Casa Garça: planta e corte; Salas:
+  fotos) e o "LEIA 2" com o texto das internas.
 - **Caminho combinado (nov/2026): o cliente faz o acabamento no Gemini/ChatGPT
   que já paga.** Pasta no Drive "IA - acabamento realista das obras (site)"
   (id 1-KQfoC4OM8EJHUQcoa4KkbAQOaYT654Z) com o render fiel de Lofts, Casa

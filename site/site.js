@@ -16,7 +16,8 @@ if(v&&vb){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)
 function lab(){vb.textContent=v.paused?'reproduzir':'pausar'}
 if(rm){v.removeAttribute('autoplay');v.pause()}else{var pr=v.play();if(pr&&pr.catch)pr.catch(function(){lab()})}
 vb.addEventListener('click',function(){if(v.paused){var q=v.play();if(q&&q.catch)q.catch(function(){})}else v.pause()});
-v.addEventListener('play',lab);v.addEventListener('pause',lab);lab();}
+v.addEventListener('play',lab);v.addEventListener('pause',lab);lab();
+var vs=document.getElementById('vsnd');if(vs){vs.addEventListener('click',function(){v.muted=!v.muted;vs.textContent=v.muted?'ativar som':'tirar som';vs.setAttribute('aria-pressed',v.muted?'false':'true');if(!v.muted&&v.paused){var q2=v.play();if(q2&&q2.catch)q2.catch(function(){})}})}}
 
 /* filtro de obras */
 var f=document.getElementById('flt');

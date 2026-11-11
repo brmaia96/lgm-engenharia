@@ -76,7 +76,10 @@ for p in P:
     s=p['slug']; base=A+'/'+p.get('assets',s)+'/'
     c=p['card']; ck=dict(maxw=1200,crop=c.get('crop'),ratio=4/3,focus=c.get('focus',(.5,.5)),q=78,pad=c.get('draw'),fam=c.get('fam','a'))
     p['_card']=put(base+c['src'],'img/%s/card.jpg'%s,**ck); p['_cardm']=put(base+c['src'],'img/%s/card-m.jpg'%s,mono=True,**ck)
-    h=p['hero']; p['_hero']=put(base+h['src'],'img/%s/hero.jpg'%s,maxw=2200,crop=h.get('crop'),q=80,fam=h.get('fam','a'))
+    h=p['hero']
+    if h.get('pair'):   # capa em par: duas imagens verticais lado a lado (fontes de 1122 px não aguentam a largura inteira)
+        p['_hero']=put(base+h['src'],'img/%s/hero.jpg'%s,maxw=1200,ratio=4/5,q=84,fam=h.get('fam','a')); p['_hero2']=put(base+h['pair'],'img/%s/hero2.jpg'%s,maxw=1200,ratio=4/5,q=84,fam=h.get('fam','a'))
+    else: p['_hero']=put(base+h['src'],'img/%s/hero.jpg'%s,maxw=2200,crop=h.get('crop'),q=80,fam=h.get('fam','a'))
     if p is P[0]: p['_herom']=put(base+h['src'],'img/%s/hero-m.jpg'%s,maxw=2200,crop=h.get('crop'),q=80,fam=h.get('fam','a'),mono=True)
     n=0
     for sec in p['sections']:
@@ -97,7 +100,8 @@ LB=('<dialog class="lb" id="lb" aria-label="Imagens do projeto"><header><span cl
 for i,p in enumerate(P):
     hs,hw,hh=p['_hero']; H=p['hero']
     b='<main><section class="col phead"><p class="crumb"><a href="obras.html">obras</a> / %s</p><h1>%s</h1><p class="meta">%s</p></section>'%(e(p['cat_label']),e(p['name']),e(p['city']))
-    if H.get('draw'): b+='<div class="wide herod %s"><img src="%s" width="%d" height="%d" alt="%s"></div>'%(H['draw'],hs,hw,hh,e(H['alt']))
+    if H.get('pair'): b+='<div class="wide heropair"><img src="%s" width="%d" height="%d" alt="%s"><img src="%s" width="%d" height="%d" alt="%s"></div>'%(hs,hw,hh,e(H['alt']),p['_hero2'][0],p['_hero2'][1],p['_hero2'][2],e(H['alt2']))
+    elif H.get('draw'): b+='<div class="wide herod %s"><img src="%s" width="%d" height="%d" alt="%s"></div>'%(H['draw'],hs,hw,hh,e(H['alt']))
     else: b+='<img class="wide hero" src="%s" width="%d" height="%d" alt="%s" style="object-position:%s">'%(hs,hw,hh,e(H['alt']),H.get('pos','50% 50%'))
     b+='<section class="col sec-s intro"><div class="txt"><p class="lead">%s</p>%s</div><dl class="ficha">%s</dl></section>'%(
         p['lead'],''.join('<p>%s</p>'%t for t in p.get('text',[])),''.join('<div><dt>%s</dt><dd>%s</dd></div>'%(e(k),v) for k,v in p['ficha']))
@@ -106,8 +110,8 @@ for i,p in enumerate(P):
         for it in sec['items']:
             src,w,h=it['_img']; cb,cs=it['cap']
             g+=('<figure class="%s%s"><a class="z"%s href="%s" data-b="%s" data-s="%s"><img src="%s" width="%d" height="%d" alt="%s" loading="lazy" decoding="async"%s></a>'
-                '<figcaption class="cap"><b>%s</b><span>%s</span></figcaption></figure>')%(it.get('lay','full'),' night' if it['fam'] in ('c','d') else '',' style="aspect-ratio:%s"'%it['r'] if it.get('r') else '',src,e(cb),e(cs),src,w,h,e(it['alt']),
-                ' style="object-position:%s"'%it['pos'] if it.get('pos') else '',e(cb),e(cs))
+                '<figcaption class="cap"><b>%s</b>%s</figcaption></figure>')%(it.get('lay','full'),' night' if it['fam'] in ('c','d') else '',' style="aspect-ratio:%s"'%it['r'] if it.get('r') else '',src,e(cb),e(cs),src,w,h,e(it['alt']),
+                ' style="object-position:%s"'%it['pos'] if it.get('pos') else '',e(cb),('<span>%s</span>'%e(cs)) if cs else '')
         b+='<section class="band sec"><div class="tag"><b>%s</b></div><div class="gal">%s</div></section>'%(e(sec['label']),g)
     pv=P[i-1]; nx=P[(i+1)%len(P)]
     b+='<nav class="col" aria-label="Outros projetos"><div class="pn"><a href="o-%s.html"><span>anterior</span><b>%s</b></a><a href="o-%s.html"><span>próximo</span><b>%s</b></a></div></nav>'%(pv['slug'],e(pv['name']),nx['slug'],e(nx['name']))
@@ -130,10 +134,17 @@ page('obras.html','Obras · L. Engenharia','obras',b,desc='Projetos de Luis Gust
 # ---------- blog ----------
 for a in ART:
     c=a.get('cover')
-    if c: a['_hero']=put(A+'/'+c['src'],'img/blog/%s.jpg'%a['slug'],maxw=2200,crop=c.get('crop'),q=80,fam=c.get('fam','a'))
+    if c:
+        a['_hero']=put(A+'/'+c['src'],'img/blog/%s.jpg'%a['slug'],maxw=2200,crop=c.get('crop'),q=80,fam=c.get('fam','a'))
+        tk=dict(maxw=720,crop=c.get('crop'),ratio=4/3,focus=c.get('focus',(.5,.5)),q=78,fam=c.get('fam','a'))
+        a['_th']=put(A+'/'+c['src'],'img/blog/%s-t.jpg'%a['slug'],**tk); a['_thm']=put(A+'/'+c['src'],'img/blog/%s-tm.jpg'%a['slug'],mono=True,**tk)
 def post(a,lazy=True):
-    return ('<a class="row" href="b-%s.html" data-cat="%s"><span class="t">%s</span><span class="h"><b>%s</b><span class="s">%s</span></span><span class="m">%d min</span></a>')%(
-            a['slug'],e(a['tema']),e(a['tema']),a['title'],a['resumo'],a['mins'])
+    th=''
+    if a.get('_th'):
+        src,w,h=a['_th']; at=' loading="lazy" decoding="async"' if lazy else ''
+        th='<span class="ph"><img src="%s" width="%d" height="%d" alt="%s"%s><img class="m" src="%s" width="%d" height="%d" alt="" aria-hidden="true"%s></span>'%(src,w,h,e(a['cover']['alt']),at,a['_thm'][0],w,h,at)
+    return ('<a class="row%s" href="b-%s.html" data-cat="%s">%s<span class="h"><span class="t">%s · %d min</span><b>%s</b><span class="s">%s</span></span></a>')%(
+            ' pic' if th else '',a['slug'],e(a['tema']),th,e(a['tema']),a['mins'],a['title'],a['resumo'])
 for i,a in enumerate(ART):
     c=a.get('cover')
     b=('<main><article><section class="col phead"><p class="crumb"><a href="blog.html">blog</a> / %s</p><h1>%s</h1><p class="lead" style="margin-top:26px">%s</p>'
@@ -142,10 +153,10 @@ for i,a in enumerate(ART):
         hs,hw,hh=a['_hero']; b+='<img class="wide hero" src="%s" width="%d" height="%d" alt="%s" style="object-position:%s">'%(hs,hw,hh,e(c['alt']),c.get('pos','50% 50%'))
         if c.get('cap'): b+='<div class="col"><div class="cap"><b>%s</b><span>%s</span></div></div>'%c['cap']
     for k,(lab,htm) in enumerate(a['body']):
-        b+='<section class="band %s"><div class="tag"><b>%s</b></div><div class="prose">%s</div></section>'%('sec-s' if k==0 else 'sec',e(lab),htm)
+        b+='<section class="band sec-s"><div class="tag"><b>%s</b></div><div class="prose">%s</div></section>'%(e(lab),htm)
     if a.get('fontes'):
-        b+='<section class="band sec"><div class="tag"><b>Fontes</b></div><ol class="fontes">%s</ol></section>'%''.join(
-            '<li><span>%s</span></li>'%(('%s <a href="%s" target="_blank" rel="noopener">%s</a>'%(t,u,e(u.split('//')[-1].split('/')[0]))) if u else t) for t,u in a['fontes'])
+        # fonte: só o título, sem link e sem PDF (instrução do cliente)
+        b+='<section class="band sec"><div class="tag"><b>Fontes</b></div><ol class="fontes">%s</ol></section>'%''.join('<li><span>%s</span></li>'%e(t) for t in a['fontes'])
     b+='</article>'
     others=[x for x in ART if x is not a]; rl=[x for x in others if x['slug'] in a.get('rel',[])] or others[:2]
     if rl: b+='<section class="band sec"><div class="tag"><b>Continue lendo</b></div><div class="rel">%s</div></section>'%''.join('<a href="b-%s.html"><span>%s · %d min</span><b>%s</b></a>'%(x['slug'],e(x['tema']),x['mins'],x['title']) for x in rl[:2])
@@ -160,7 +171,7 @@ b=('<main><section class="col phead"><h1>%s</h1><p class="lead" style="margin-to
    '<p class="sr" id="flt-st" aria-live="polite"></p></section><section class="col"><div class="rows" id="grid">%s</div></section>%s</main>')%(
    BL.INDEX_H1,BL.INDEX_LEAD,flt,''.join(post(a,lazy=(k>2)) for k,a in enumerate(ART)),
    call('Ficou com uma dúvida que não está aqui?','Olá Gustavo, li o blog no site e tenho uma dúvida sobre construção.','Perguntar pelo WhatsApp'))
-if ART: page('blog.html','Blog · L. Engenharia','blog',b,desc='Perguntas de quem vai construir, respondidas com norma, número e fonte: custo, conforto, prazo, durabilidade e financiamento do steel frame.')
+if ART: page('blog.html','Blog · L. Engenharia','blog',b,desc='Perguntas de quem vai construir, respondidas direto ao ponto: o INSS da obra, o CNO e o steel frame.')
 
 # ---------- home ----------
 put(S+'/work/minas-estrutura.png','img/cmp/estrutura.jpg',maxw=2000,q=84,fam='c')
@@ -168,11 +179,11 @@ put(S+'/work/minas-pronta.png','img/cmp/pronta.jpg',maxw=2000,q=84)
 M=A+'/marca/clean/'
 OBRA=put(M+'obra-real.jpg','img/marca/obra-real.jpg',maxw=2000,q=82)
 sel=[p for p in P if p['slug'] in D.HOME_SELECT]; sel.sort(key=lambda p:D.HOME_SELECT.index(p['slug']))
-os.makedirs(OUT+'/media',exist_ok=True); shutil.copy(S+'/video3/apresentacao.mp4',OUT+'/media/apresentacao.mp4'); reg('media/apresentacao.mp4')
-put(S+'/video3/frames/f00105.jpg','img/video-poster.jpg',maxw=1920,q=84,fam=None)
+os.makedirs(OUT+'/media',exist_ok=True); shutil.copy(S+'/video4/apresentacao.mp4',OUT+'/media/apresentacao.mp4'); reg('media/apresentacao.mp4')
+put(S+'/video4/frames/f00090.jpg','img/video-poster.jpg',maxw=1920,q=84,fam=None)
 put(S+'/portrait/retrato.jpg','img/retrato.jpg',maxw=1100,q=86,fam=None)
-b=('<main><div class="wide vid"><video id="vid" src="media/apresentacao.mp4" poster="img/video-poster.jpg" width="1920" height="1080" muted loop playsinline autoplay preload="metadata" aria-label="Vídeo de apresentação de Luis Gustavo Maia, engenheiro civil: trajetória, o que faz, projetos e INSS de obra"></video>'
- '<button class="vbtn" id="vbtn" type="button">pausar</button></div>'
+b=('<main><div class="wide vid"><video id="vid" src="media/apresentacao.mp4" poster="img/video-poster.jpg" width="1920" height="1080" muted loop playsinline autoplay preload="metadata" aria-label="Vídeo dos serviços de Luis Gustavo Maia, engenheiro civil: engenharia tributária da obra, projeto em steel frame, acompanhamento e regularização"></video>'
+ '<button class="vbtn snd" id="vsnd" type="button" aria-pressed="false">ativar som</button><button class="vbtn" id="vbtn" type="button">pausar</button></div>'
  '<div class="col"><div class="cap"><b>Luis Gustavo Maia</b><span>engenheiro civil · CREA-SP 5071068977</span></div></div>'
  '<section class="col sec-s"><h1>Projeto, execução e engenharia tributária, <b>com uma única responsabilidade técnica.</b></h1></section>')
 CMP=('<section class="band sec"><div class="tag"><b>Estrutura × pronta</b></div><div>'
@@ -182,11 +193,10 @@ CMP=('<section class="band sec"><div class="tag"><b>Estrutura × pronta</b></div
  '<span class="bar" aria-hidden="true"><svg viewBox="0 0 44 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 2L3 8l6 6M35 2l6 6-6 6"/></svg></span>'
  '<input id="cmp-r" type="range" min="0" max="100" step="1" value="50" aria-label="Comparar a estrutura em steel frame e a casa pronta"></figure>'
  '<div class="cap">%s</div></div></section>'%D.CMP_CAPTION)
-b+=('<section class="band sec-s"><div class="tag"><b>Engenharia tributária</b></div><div><h2 style="max-width:20em">O INSS de uma casa de %(area)s em steel frame, <b>com e sem planejamento.</b></h2>'
- '<div class="nums" style="margin-top:36px"><div><div class="num off">%(sem)s</div><div class="nl">aferição indireta, sem planejamento</div></div>'
- '<div><div class="num">%(com)s</div><div class="nl">com pré-fabricado comprovado por nota</div></div>'
- '<div><div class="num sv">%(econ)s</div><div class="nl">de volta ao orçamento da obra</div></div></div>'
- '<p class="links" style="display:flex;flex-wrap:wrap;gap:10px 44px;margin-top:44px;max-width:none"><a class="lnk" href="inss.html">Entender o INSS da obra</a><a class="lnk" href="inss.html#simulador">Simular o INSS da minha obra</a></p></div></section>')%D.INSS.NUM
+b+=('<section class="band sec-s"><div class="tag"><b>Engenharia tributária</b></div><div><h2 style="max-width:20em">A obra paga INSS. <b>Quase sempre a mais.</b></h2>'
+ '<div class="nums two" style="margin-top:36px"><div><div class="num">%(sem)s</div><div class="nl">de INSS em uma casa de %(area)s em %(uf)s, sem planejamento</div></div>'
+ '<div><div class="num sv">até %(pct)s</div><div class="nl">a menos, com o enquadramento certo</div></div></div>'
+ '<p class="links" style="display:flex;flex-wrap:wrap;gap:10px 44px;margin-top:44px;max-width:none"><a class="lnk" href="inss.html#simulador">Calcular o INSS da minha obra</a></p></div></section>')%D.INSS.NUM
 b+=CMP
 b+='<section class="band sec"><div class="tag"><b>Obras</b></div><div><div class="grid three">%s</div><p style="margin-top:44px"><a class="lnk" href="obras.html">Todas as obras</a></p></div></section>'%''.join(card(p) for p in sel)
 b+=('<section class="col sec"><h2 style="font-size:clamp(26px,3vw,40px);line-height:1.22;letter-spacing:-.012em">Steel frame não é moda. <b>É engenharia.</b></h2></section>'
@@ -200,7 +210,7 @@ page('index.html','L. Engenharia','home',b,main=True)
 
 # ---------- inss e sobre ----------
 INSS_IMG=put(A+'/taquaracu/clean/10-steel-frame-por-dentro.jpg','img/inss/estrutura.jpg',maxw=2000,ratio=16/9,focus=(.5,.42),q=82)
-page('inss.html','INSS de obra · L. Engenharia','inss',D.INSS.inss_body(INSS_IMG),desc='INSS de obra: como a Receita calcula, como pagar só o devido, por que o steel frame pode reduzir a base de cálculo e o passo a passo do CNO à certidão. Com simulador.')
+page('inss.html','INSS de obra · L. Engenharia','inss',D.INSS.inss_body(INSS_IMG),desc='INSS de obra: quanto a Receita Federal cobraria da sua construção e por que steel frame, wood frame e modular podem pagar menos. Calculadora por estado.')
 page('agenda.html','Marcar reunião · L. Engenharia','agenda',D.AGENDA_BODY,desc='Marque uma reunião de 30 minutos por vídeo com Luis Gustavo Maia, engenheiro civil, sobre o terreno, o projeto ou o INSS da obra.')
 page('sobre.html','Sobre · L. Engenharia','sobre',D.SOBRE_BODY+call('Do terreno. <em>À chave.</em>','Olá Gustavo, vi o site e quero conversar sobre um projeto.'),desc='Luis Gustavo Maia, engenheiro civil, CREA-SP 5071068977. Steel frame desde 2018: projeto executivo, complementares, acompanhamento de obra e INSS.')
 for f in ('styles.css','site.js'): shutil.copy(B+'/'+f,OUT+'/'+f); reg(f)

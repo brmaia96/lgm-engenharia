@@ -71,9 +71,10 @@ segue essa linguagem e fica em `site/` (HTML estático, pronto para hospedar).
 
 - **Estrutura:** `index.html` (vídeo de apresentação, INSS, comparador estrutura ×
   pronta, obras em destaque, blog), `obras.html` (cartões padronizados + filtro),
-  uma página por projeto `o-<slug>.html` (texto curto, ficha técnica, galeria por
-  seção com ampliação), `inss.html` (exemplo, memória de cálculo, simulador que
-  mostra só a aferição indireta e leva ao WhatsApp), `sobre.html`, `agenda.html`
+  uma página por projeto `o-<slug>.html` (frase de abertura, ficha de cinco linhas
+  e poucas imagens), `inss.html` (cálculo em quatro linhas, calculadora por estado
+  que mostra o que a Receita cobraria e leva ao formulário de contato, mapa das
+  obras aferidas, sistemas e perguntas), `sobre.html`, `agenda.html`
   (escolha de dia e horário; o botão principal cria o evento no Google Agenda
   do visitante com o engenheiro como convidado, uso do e-mail autorizado pelo
   cliente; o WhatsApp é a segunda opção. Quando existir a página de
@@ -87,6 +88,32 @@ segue essa linguagem e fica em `site/` (HTML estático, pronto para hospedar).
   vale para a peça A4 impressa.)
 - **Nunca nome de cliente.** Cidade pode. Nome de projeto pode ser trocado.
 
+### Regra editorial: básico, direto, sem entregar o caminho (instrução do cliente, nov/2026)
+
+Palavras dele: "você tá colocando muita coisa mastigada e não é assim. Eu quero
+ser referência. Quem é referência segura conhecimento e fala o básico, pois assim
+as pessoas vão querer vir. Não posso dar de mão beijada, tem que lutar para falar
+comigo."
+
+- **Texto sempre básico, direto e reto.** A página mostra que o problema existe,
+  que há caminho e que ele domina o assunto. O "como" fica para a conversa. Nada
+  de passo a passo, lista de documentos, lista de notas fiscais, percentuais de
+  enquadramento, tabela de regras ou memória de cálculo.
+- **Fonte: só o título.** Sem link e sem PDF ("isso não existe").
+- **Obras: o mínimo.** Capa e no máximo quatro imagens, ficha de cinco linhas, só
+  a frase de abertura, legenda só com o nome. "Não precisa de tanto detalhe."
+- **Imagem de projeto tem de ser real e seguir o projeto.** O cliente reclamou do
+  Le Blanc Lofts: as imagens geradas por IA que estavam na pasta dele mudavam o
+  projeto (janela na fachada que não existe, interior diferente a cada vista).
+  Só entra o que vem do projeto: vistas do modelo, prancha, 3D da estrutura,
+  render do próprio modelo ou foto. Não gerar nem "melhorar" imagem de projeto
+  por IA. Exceção declarada: Casa do Bosque, que é modelo e vai rotulada assim.
+- **Todo texto corrido justificado, sempre, também na web**, com hifenização.
+- A afirmação continua tendo de estar conferida na fonte primária, mesmo que a
+  página só cite o título. As versões longas e conferidas ficaram guardadas em
+  `site-build/arquivo/` (`blog-versao-longa.py` e `inss_page-versao-longa.py`),
+  só para consulta: não voltam ao ar.
+
 ### Prioridade do site (instrução do cliente, nov/2026)
 
 **A parte tributária é o centro.** É onde o cliente domina e o que traz o
@@ -95,37 +122,69 @@ só mostra que há know-how, sem excesso.
 
 - Navegação: `inss · obras · blog · sobre · agenda`. Na home, o bloco de INSS vem
   logo depois da frase de abertura.
-- `inss.html`: o imposto, o cálculo em quatro passos, os três caminhos para pagar
-  só o devido (tipo misto, pré-fabricado, mão de obra declarada), por que o steel
-  frame entra, passo a passo, exemplo com memória de cálculo, simulador,
-  perguntas frequentes e fontes. Texto e números em `site-build/inss_page.py`.
-- **Números do exemplo saem de um lugar só** (`inss_page.py`): casa de 150 m²,
-  área equivalente de 89% (IN RFB 2.021, art. 25, § 6º), VAU de referência de
-  R$ 2.000/m², 20% (alvenaria) ou 15% (mista), fator social de 40%, alíquota de
-  36,8%. Resultado: R$ 7.860 sem planejamento, R$ 5.895 como mista, R$ 2.358
-  com pré-fabricado. A home e o vídeo repetem esses valores. O exemplo antigo
-  (R$ 8.832 / R$ 2.650) ignorava a área equivalente e não deve voltar.
+- `inss.html`, na ordem que o cliente pediu ("ficou muito maçante, muito texto;
+  breve cálculo e já a calculadora; daí o mapa com as obras aferidas e um
+  contador de m² e desconto; no final INSS steel frame, wood, modular; depois
+  perguntas frequentes"): frase de abertura, cálculo em quatro linhas,
+  calculadora, formulário de contato, mapa com contadores, três sistemas,
+  perguntas curtas e fontes só pelo título. Tudo em `site-build/inss_page.py`.
+- **Calculadora por estado.** "O que vale é o estado, cada estado tem seu VAU":
+  o visitante escolhe a UF e o VAU entra sozinho. Mostra só o que a Receita
+  cobraria sem planejamento e o teto de redução ("até R$ X a menos"); o como
+  fica para a conversa. Sequência igual à do Sero, conferida nas memórias reais
+  do cliente: área equivalente (89%, duas casas decimais) × VAU = custo da obra;
+  20% de mão de obra; fator social da faixa de área; 36,8%. Uma memória real
+  (235,04 m², SP, 07/2022) fecha centavo a centavo com a fórmula.
+- **VAU: `site-build/vau_uf.json`**, residencial unifamiliar, 27 UFs, novembro
+  de 2026 (SP R$ 2.725,32). A tabela oficial só abre dentro do Sero (e-CAC); os
+  valores vêm de consultorias que a reproduzem, e 13 valores de memórias reais
+  do cliente (SP, MT e PR, de dez/2025 a nov/2026) batem com elas centavo a
+  centavo. **Atualizar todo mês**: sobe pela variação do Sinapi e é revisto em
+  janeiro. O exemplo da home sai daí: casa de 150 m² em São Paulo, R$ 10.711
+  sem planejamento, até 70% a menos. Os exemplos antigos (R$ 8.832, R$ 7.860,
+  R$ 2.358) usavam VAU hipotético e não devem voltar.
+- **Contato (base de clientes).** Depois da calculadora, o formulário pede nome,
+  WhatsApp, e-mail, cidade e fase da obra e abre a conversa no WhatsApp com
+  tudo preenchido, mais a estimativa. Caixa de aceite para avisos (a comunidade
+  que ele quer formar). Para virar planilha automática falta um Formulário
+  Google dele: preencher `LEADS` em `inss_page.py` com a URL de resposta e os
+  códigos `entry.N`. O link da comunidade vai em `COMUNIDADE_URL` quando existir.
 - Blog (`blog.html`, artigos `b-<slug>.html`, conteúdo em `site-build/blog.py`):
-  lista editorial sem imagem. Primeiro os artigos tributários; steel frame
-  depois. Só entra afirmação lida na fonte primária, com a fonte no fim.
-- **Portfólio enxuto, sem prancha.** Só fachada, externa, interna e o 3D da
+  lista com imagem ("imagens chamam atenção"), um minuto de leitura por artigo:
+  resposta curta, o que muda, o ponto de atenção. Primeiro os tributários;
+  steel frame depois.
+- **Portfólio no mínimo, sem prancha.** Só fachada, externa, interna e o 3D da
   estrutura. Nada de planta, corte, isométrica, lista de corte ou detalhe:
-  "detalhe é para obra e para o cliente que comprar". Poucas imagens por
-  projeto e ficha curta. A seleção fica na camada `LEAN` de `site-build/data.py`.
+  "detalhe é para obra e para o cliente que comprar". A seleção fica na camada
+  `LEAN` de `site-build/data.py`.
+- **Le Blanc Lofts**: só as vistas do modelo de arquitetura (perspectivas e
+  fachadas da prancha 02) e o 3D da estrutura em steel frame. As imagens
+  "ChatGPT Image" da pasta dele mostram janela na fachada que o projeto não tem
+  e um interior diferente a cada vista: não usar.
+- **Casa do Bosque** é modelo de casa de alto padrão (450 m²), um dos posts de
+  maior resultado dele; uso autorizado. As oito imagens são geradas por IA e
+  não há projeto técnico: vai rotulada como **modelo**, nunca como obra entregue
+  nem "Etapa: Projeto". Só a fachada de dia (a de noite muda pedra, porta e
+  piso); o cinema fica fora (a TV imita logotipo de estúdio).
 - Fora do ar, guardados em `data.py` (`HELD`): **Casa Duo**, até as imagens serem
   corrigidas (árvore na cobertura dos vizinhos, portão sem muro, bancada da
   cozinha e porta da lavanderia mudando entre vistas); **Do aço à estrutura**,
   que não tem fachada nem interior.
-- **Chalé Analândia** usa os seis renders do projeto que estão no Drive (A-frame
-  com volume revestido em pedra, piscina e churrasqueira). As duas imagens da
-  casa branca com pergolado que estão na mesma pasta são de outro cliente e não
-  entram. O cliente quer versão ultra realista por IA: usar esses renders como
-  base (`site-build/render-analandia/gen.py`, OpenRouter) e conferir cada
-  detalhe de obra antes de publicar. O modelo de teste em Blender
-  (`chale.py`) tinha o guarda-corpo da sacada atravessando o telhado e o anexo
-  em branco; não usar sem corrigir.
-- Conferir toda imagem com acabamento por IA antes de publicar: elementos que
-  mudam de uma vista para outra derrubam a credibilidade.
+- **Chalé Analândia** usa os renders do projeto que estão no Drive (A-frame com
+  volume revestido em pedra, piscina e churrasqueira). As duas imagens da casa
+  branca com pergolado que estão na mesma pasta são de outro cliente e não
+  entram. A versão "ultra realista por IA" foi testada com modelo aberto local
+  em duas forças e **reprovada**: a IA some com a escada atrás do vidro, troca a
+  esquadria e muda a churrasqueira e a cobertura do anexo. Não refazer; o
+  cliente proibiu ferramenta paga e exige que a imagem siga o projeto.
+- Projetos com base de modelo e acabamento por IA feito pelo próprio cliente
+  (Chalé Piedade, Tiny House, Chalé Viver, Chalé Acolher): conferir com ele se
+  alguma também foge do projeto. Elementos que mudam de uma vista para outra
+  derrubam a credibilidade.
+- **Vídeo da home** (`site-build/video/`): não é resumo do site. É um filme de
+  78 s que passa sozinho, com todos os serviços e os dizeres da casa, retrato
+  pequeno e trilha original (`musica.py`). Começa mudo, como o navegador exige,
+  e tem botão "ativar som".
 - Salas comerciais (Marília): fotos reais de obra concluída. Não citar que a
   reforma começou sem alvará; elétrica e climatização são de outro responsável.
 
@@ -154,17 +213,20 @@ Sero v3.0 (08/2024) e páginas da Receita no gov.br.
   MT, Franca, Itupeva, Vargem Grande Paulista e Pedrinhas Paulista. Economia
   documentada em três delas, pela memória de cálculo do Sero: R$ 28.152,69
   (Marília, 2021, pré-fabricado), R$ 19.117,00 (Sinop, 2026, pré-fabricado) e
-  R$ 7.624,20 (Marília, 2026, fator de ajuste). Total: R$ 54.893,89. Não somar
+  R$ 7.624,20 (Marília, 2026, fator de ajuste). Total: R$ 54.893,89. Área
+  aferida nas 13 obras: 3.393,54 m² (contador da página). No site aparecem só
+  antes, depois e desconto, sem o nome do caminho usado. Não somar
   obras sem simulação anterior nem reduções por mão de obra declarada. Só cidade,
   área, ano e valores: nunca nome, CNO ou endereço.
 - O "R$ 28.000 por obra" dos carrosséis antigos é conta ilustrativa, não caso real.
 - Revisão independente (nov/2026): três revisores conferiram 225 afirmações contra
   as normas; nenhum erro de número, 40 ajustes de redação aplicados.
-- **A confirmar com o cliente:** (1) VAU real de SP para o exemplo; (2) o
-  Provimento CG nº 17/2026 da Corregedoria de SP, que segundo fontes secundárias
-  dispensou a CND para averbar construção nos cartórios paulistas. Por isso o
-  site não afirma que "sem certidão o cartório não averba"; (3) se a obra de
-  Marília de 2021 (576 m², arquivo de caso no Drive) pode ser citada como dele.
+- **A confirmar com o cliente:** (1) o Provimento CG nº 17/2026 da Corregedoria
+  de SP, que segundo fontes secundárias dispensou a CND para averbar construção
+  nos cartórios paulistas. Por isso o site não afirma que "sem certidão o
+  cartório não averba"; (2) se a obra de Marília de 2021 (576 m², arquivo de
+  caso no Drive) pode ser citada como dele; (3) o Formulário Google para a base
+  de contatos e o link da comunidade no WhatsApp.
 
 ### Padrão de imagem (obrigatório em toda peça web)
 
@@ -196,7 +258,9 @@ planta sem cotas + estrutura.
   Ficha usa "Etapa: Projeto".
 - A cobertura de estacionamento de Recife ficou **fora** do site até o cliente
   confirmar que pode ser publicada.
-- VAU do simulador de INSS: referência de R$ 2.000/m² (o oficial só no e-CAC).
+- VAU da calculadora de INSS: tabela por estado em `site-build/vau_uf.json`
+  (novembro de 2026), conferida contra 13 memórias reais do Sero. No Drive há
+  76 memórias e simulações do Sero, de 2021 a 2026, que servem de conferência.
 
 ## Tokens da peça A4 (exatos, de portfolio.html)
 
@@ -255,11 +319,11 @@ título continuam alinhados à esquerda (ou à direita, quando em coluna de
 valores). Coluna de texto justificado precisa de largura mínima razoável —
 abaixo de ~28 caracteres, justificar piora.
 
-**Distinguir o meio.** Em peça A4 impressa — proposta, portfólio, apresentação —
-justificar é a convenção de monografia e está certo. Em web, o padrão de site de
-estúdio de arquitetura é coluna estreita alinhada à esquerda, porque o navegador
-hifeniza pior e a largura varia com a janela. Justificar na tela só com coluna
-de largura controlada e hifenização ativa; em dúvida na web, esquerda.
+**Vale para todo meio, a web incluída.** O cliente repetiu em nov/2026: "todo
+texto que tiver no site sempre justificado e alinhado, sempre". Na web, o
+parágrafo corrido vai justificado com hifenização ativa e coluna de largura
+controlada. Ficam à esquerda só o que não é texto corrido: rótulo, legenda,
+frase curta em coluna estreita (cartões de três colunas), botão e link.
 
 ### Alinhamento
 

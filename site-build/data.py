@@ -2,8 +2,8 @@ import importlib.util,os
 _s=importlib.util.spec_from_file_location('sp',os.path.dirname(__file__)+'/static_pages.py'); _m=importlib.util.module_from_spec(_s); _s.loader.exec_module(_m)
 SOBRE_BODY=_m.SOBRE_BODY; AGENDA_BODY=_m.agenda_body()
 _si=importlib.util.spec_from_file_location('inss_page',os.path.dirname(__file__)+'/inss_page.py'); INSS=importlib.util.module_from_spec(_si); _si.loader.exec_module(INSS)
-OBRAS_META='10 projetos · casas, chalés e estruturas em aço'
-HOME_SELECT=['casa-taquaracu','le-blanc-lofts','salas-comerciais']
+OBRAS_META='casas, chalés, salas comerciais e estruturas em aço'
+HOME_SELECT=['casa-do-bosque','casa-taquaracu','salas-comerciais']
 CMP_CAPTION='<b><a href="o-casa-taquaracu.html">Casa Taquaraçu</a></b><span>arraste para ver a estrutura</span>'
 C='clean/'
 def I(src,cap,alt,lay='half',**k): d=dict(src=C+src,cap=cap,alt=alt,lay=lay); d.update(k); return d
@@ -207,6 +207,7 @@ FAM={
  'taquaracu':{'07-planta-baixa.jpg':'b','08-fundacao-e-estrutura.jpg':'c','12-telha-sanduiche.jpg':'c'},
  'chale-acolher':{'03-render-fachada-frontal-lateral.jpg':'d','04-render-lateral-direita-lavanderia.jpg':'d','06-render-estrutura-lsf.jpg':'c'},
  'chale-viver':{'12a-corte-aa.jpg':'b'},
+ 'le-blanc-lofts':{k:'b' for k in ('42-perspectiva-modelo-frente.jpg','43-perspectiva-modelo-fundos.jpg','44-elevacao-modelo-tres-lofts-acesso.jpg','46-elevacao-modelo-loft-frontal.jpg','25-vista-3d-lsf.jpg')},
  'estrutura-bh':{k:'c' for k in ('03-montagem-etapa-1.jpg','04-montagem-etapa-2.jpg','05-montagem-etapa-3.jpg','06-montagem-cobertura.jpg')},
 }
 
@@ -219,25 +220,30 @@ FAM={
 #    bancada da cozinha e porta da lavanderia que mudam de uma vista para outra).
 #  - do-aco-a-estrutura: fora do site, não tem fachada nem interior (é história de plano de corte).
 HELD=['casa-duo','do-aco-a-estrutura']
+# MÍNIMO (instrução do cliente, nov/2026): "fotos obras, só o mínimo e informações básicas, não precisa de tanto detalhe".
+# Capa + no máximo quatro imagens por projeto; ficha de cinco linhas; só a frase de abertura, sem parágrafos; legenda só com o nome.
 LEAN={
- 'casa-taquaracu':[('Fachadas',[('03-','full'),('06-','half'),('13-','half')]),('Interiores',[('04-','half'),('05-','half')]),('Estrutura',[('08-','full'),('10-','half'),('11-','half')])],
- 'chale-acolher':[('Fachadas',[('01-','full'),('03-','half'),('04-','half')]),('Interiores',[('14-','full'),('15-','half'),('16-','half')]),('Estrutura',[('06-','full')])],
- 'chale-piedade':[('Fachadas',[('01-','full'),('03-','full')]),('Interiores',[('04-','full'),('05-','half'),('06-','half')])],
- 'tiny-house':[('Fachadas',[('01-','full'),('03-','half'),('07-','half')]),('Interiores',[('04-','full'),('05-','half'),('06-','half')])],
- 'chale-viver':[('Fachadas',[('06-','full'),('04-','half'),('02-','half')]),('Interiores',[('07-','half'),('09-','half')])],
- 'patio-escolar':[('Coberturas',[('02-','half'),('08-','half')]),('Estrutura',[('04-','third'),('03-','third'),('09-','third')])],
+ 'casa-taquaracu':[('Fachada',[('03-','full')]),('Interiores',[('04-','half'),('05-','half')]),('Estrutura',[('10-','full')])],
+ 'chale-acolher':[('Fachada',[('01-','full')]),('Interiores',[('14-','half'),('15-','half')]),('Estrutura',[('06-','full')])],
+ 'chale-piedade':[('Fachada',[('01-','full')]),('Interiores',[('04-','half'),('06-','half')])],
+ 'tiny-house':[('Fachada',[('01-','full')]),('Interiores',[('04-','half'),('05-','half')])],
+ 'chale-viver':[('Fachada',[('06-','full')]),('Interiores',[('07-','half'),('09-','half')])],
+ 'chale-analandia':[('Fachada',[('20-','full')]),('Interiores',[('24-','half'),('25-','half')])],
+ 'salas-comerciais':[('Fachada',[('01-','full')]),('Externas',[('03-','half'),('04-','half')])],
+ 'patio-escolar':[('Coberturas',[('02-','half'),('08-','half')]),('Estrutura',[('04-','full')])],
 }
 FICHA_KEEP={
- 'casa-taquaracu':['Local','Área construída','Casa e edícula','Sistema','Fundação','Escopo','Etapa'],
- 'chale-acolher':['Local','Área construída','Sistema','Fechamento','Escopo','Etapa'],
- 'chale-piedade':['Local','Área','Forma','Cobertura','Escopo','Etapa'],
- 'tiny-house':['Local','Área','Forma','Fechamento','Escopo','Etapa'],
- 'chale-viver':['Local','Área construída','Sistema','Cobertura','Escopo','Etapa'],
- 'chale-analandia':['Local','Área total','Casa','Sistema','Escopo','Etapa'],
- 'patio-escolar':['Local','Área coberta','Sistema','Aço','Escopo','Etapa'],
- 'le-blanc-lofts':['Local','Sistema','Níveis','Altura','Aço','Escopo','Etapa'],
+ 'casa-taquaracu':['Local','Área construída','Sistema','Escopo','Etapa'],
+ 'chale-acolher':['Local','Área construída','Sistema','Escopo','Etapa'],
+ 'chale-piedade':['Local','Área','Cobertura','Escopo','Etapa'],
+ 'tiny-house':['Local','Área','Fechamento','Escopo','Etapa'],
+ 'chale-viver':['Local','Área construída','Sistema','Escopo','Etapa'],
+ 'chale-analandia':['Local','Área total','Sistema','Escopo','Etapa'],
+ 'salas-comerciais':['Local','Área construída','Sistema','Escopo','Etapa'],
+ 'patio-escolar':['Local','Área coberta','Sistema','Escopo','Etapa'],
+ 'le-blanc-lofts':['Local','Unidades','Sistema','Escopo','Etapa'],
 }
-TEXT_KEEP={'casa-taquaracu':[0,2],'chale-viver':[0,1]}
+TEXT_KEEP={}   # nenhum parágrafo além da frase de abertura
 def _lean(P):
     out=[]
     for p in P:
@@ -256,27 +262,28 @@ def _lean(P):
             p=dict(p); p['sections']=secs
         if p['slug'] in FICHA_KEEP:
             keep=FICHA_KEEP[p['slug']]; p=dict(p); p['ficha']=[kv for kv in p['ficha'] if kv[0] in keep]
-        if p['slug'] in TEXT_KEEP:
-            p=dict(p); p['text']=[p['text'][i] for i in TEXT_KEEP[p['slug']]]
+        p=dict(p); p['text']=[p['text'][i] for i in TEXT_KEEP.get(p['slug'],[])]
+        p['sections']=[dict(sec,items=[dict(it,cap=(it['cap'][0],'')) for it in sec['items']]) for sec in p['sections']]
         out.append(p)
     return out
-# Le Blanc Lofts: renders do projeto (fachada, aéreas, interior acabado × estrutura aparente, estrutura em LSF); sem pranchas.
+# Le Blanc Lofts: só o que é do projeto. Vistas do modelo de arquitetura (prancha 02) e o 3D da estrutura (projeto de LSF).
+# As imagens 30 a 41 e a 08 da pasta eram geradas por IA e mudavam o projeto (janela na fachada que não existe,
+# layout interno diferente a cada vista). Reclamação direta do cliente: "tem que seguir o projeto, tem que ser real". Não usar.
 for _p in PROJECTS:
     if _p['slug']=='le-blanc-lofts':
-        _p.update(card=dict(src=C+'31-fachada-tres-lofts-dia.jpg',focus=(.5,.5),alt='Três lofts brancos de dois níveis, vistos da rua'),
-          hero=dict(src=C+'31-fachada-tres-lofts-dia.jpg',pos='50% 48%',alt='Fachada dos três lofts, volumes brancos de dois níveis com porta de madeira e jardim na frente'),
-          lead='Lofts com mezanino em light steel frame, <b>projetados para fabricação fora do canteiro.</b>',
-          text=['Cada loft tem térreo, mezanino e 6,00 m de altura. A escada interna também é em steel frame.',
-                'São 1.393,54 kg de aço. Cada painel sai da fábrica com a sua folha e a sua lista de corte, pronto para montar.'],
+        _p.update(card=dict(src=C+'42-perspectiva-modelo-frente.jpg',draw='panel',fam='b',alt='Perspectiva do modelo: três lofts iguais, com muro e vagas na frente do lote'),
+          hero=dict(src=C+'42-perspectiva-modelo-frente.jpg',draw='panel',fam='b',alt='Perspectiva do modelo de arquitetura: três lofts iguais de dois níveis, com muro, portão e três vagas na frente do lote'),
+          lead='Três lofts com mezanino em light steel frame, <b>projetados para fabricação fora do canteiro.</b>',
+          text=['São três unidades iguais de 28,90 m², com térreo, mezanino e 6,00 m de altura. A escada interna também é em steel frame.',
+                'A estrutura soma 1.393,54 kg de aço. Cada painel sai da fábrica com a sua folha e a sua lista de corte, pronto para montar.'],
           sections=[
            dict(label='Fachadas',items=[
-            I('33-exterior-aerea-tres-lofts.jpg',('Os três lofts','volumes iguais, jardim entre eles'),'Vista aérea dos três lofts ao anoitecer',r='12/5'),
-            I('34-exterior-aerea-acesso.jpg',('Acesso','muro, portão e vagas na frente'),'Vista aérea do acesso aos lofts, com muro e portão',r='12/5')]),
-           dict(label='Interiores',items=[
-            I('39-interior-acabado.jpg',('Loft pronto','cozinha, estar e mezanino'),'Interior do loft acabado, com cozinha linear, estar, escada e mezanino'),
-            I('40-interior-estrutura-aparente.jpg',('O mesmo loft, com a estrutura à vista','painéis e escada em steel frame'),'O mesmo interior com os painéis e a escada em steel frame aparentes')]),
+            I('44-elevacao-modelo-tres-lofts-acesso.jpg',('Fachada de acesso','três lofts iguais, uma porta pivotante em cada'),'Elevação dos três lofts pelo lado do acesso, com palmeiras entre os volumes','plan'),
+            I('46-elevacao-modelo-loft-frontal.jpg',('Fachada frontal','um loft, dois níveis'),'Elevação frontal de um loft, com a porta pivotante','plan half'),
+            I('43-perspectiva-modelo-fundos.jpg',('Vista dos fundos','muro de divisa e reservatório'),'Perspectiva do modelo pelos fundos do lote','plan half')]),
            dict(label='Estrutura',items=[
-            I('41-estrutura-lsf-render.jpg',('Estrutura em light steel frame','painéis, lajes e escada · 1.393,54 kg de aço'),'Estrutura completa do loft em light steel frame sobre o radier','full')])])
+            I('25-vista-3d-lsf.jpg',('Estrutura em light steel frame','painéis, lajes, treliças e escada · 1.393,54 kg de aço'),'Vista 3D da estrutura completa do loft em light steel frame','plan')])])
+        _p['ficha']=[kv for kv in _p['ficha'] if kv[0]!='Níveis']; _p['ficha'].insert(1,('Unidades','3 lofts de 28,90 m², com térreo e mezanino'))
 PROJECTS.insert(next(i for i,_p in enumerate(PROJECTS) if _p['slug']=='patio-escolar'),
  dict(slug='salas-comerciais',assets='comercial-marilia',name='Salas comerciais',cat='comercial',cat_label='comerciais',cat_plural='comerciais',city='Marília · SP',sub='reforma e regularização · 169 m²',ref='o projeto das salas comerciais',
   card=dict(src=C+'02-patio-frontal-cobogo.jpg',focus=(.5,.5),alt='Pátio de entrada das salas comerciais, com muro de cobogó e fachada verde'),
@@ -308,6 +315,20 @@ for _p in PROJECTS:
            dict(label='Interiores',items=[
             I('24-render.jpg',('Sala','escada e vista para a piscina'),'Sala com a escada de madeira e a frente de vidro aberta para a piscina',r='16/9'),
             I('25-render.jpg',('Frente de vidro','estar sob o mezanino'),'Interior visto da varanda da frente, com estar, escada e mezanino',r='16/9')])])
+# Casa do Bosque: modelo de casa de alto padrão (imagens do post do cliente, uso autorizado por ele em nov/2026).
+# É MODELO, não obra: as imagens foram geradas por IA e não há projeto técnico por trás. Nunca rotular como obra entregue
+# nem como "Etapa: Projeto". Só a fachada de dia entra (a de noite muda pedra, porta e piso); a TV do cinema imita logotipo de estúdio: não usar.
+PROJECTS.insert(1,
+ dict(slug='casa-do-bosque',name='Casa do Bosque',cat='casa',cat_label='casas',cat_plural='casas',city='modelo',sub='casa de alto padrão · 450 m²',ref='a Casa do Bosque',
+  card=dict(src=C+'02-fachada-dia.jpg',focus=(.5,.38),alt='Fachada da Casa do Bosque: laje em balanço, pedra clara e madeira, com espelho d\'água e jardim'),
+  hero=dict(src=C+'02-fachada-dia.jpg',pair=C+'03-living.jpg',alt='Fachada da Casa do Bosque: laje em balanço, pedra clara e madeira, com degraus sobre o espelho d\'água',
+            alt2='Living com forro de madeira e vidro do piso ao teto, aberto para a piscina e o jardim'),
+  lead='Pé-direito amplo, integração com o jardim e <b>pedra, madeira e concreto.</b>',
+  text=[],
+  ficha=[('Tipo','Casa de alto padrão'),('Área','450 m²'),('Sistema','Construção convencional'),('Etapa','Modelo · 2026')],
+  sections=[dict(label='Interiores',items=[
+    I('04-suite.jpg',('Suíte',''),'Suíte com forro e painel de madeira, aberta para o terraço',r='4/5'),
+    I('05-banho.jpg',('Banho',''),'Banho com banheira de imersão, bancada em pedra e vista para as árvores',r='4/5')])]))
 PROJECTS_FULL=PROJECTS
 PROJECTS=_lean(PROJECTS)
 OBRAS_META='%d projetos · casas, chalés e estruturas em aço'%len(PROJECTS)

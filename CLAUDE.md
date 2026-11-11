@@ -208,11 +208,16 @@ só mostra que há know-how, sem excesso.
   (10 MB). Voltam quando o cliente mandar render do modelo atual.
 - **Pedidas e ainda sem capa possível (nov/2026):** obra residencial em concreto
   armado em Marília (97,19 m², projeto estrutural no TQS, obra em andamento;
-  material em `scratchpad/assets/obra-concreto/`, só estrutura e fotos de obra) e
-  obra comercial em Garça (741,69 m², LSF, projeto aprovado em 2026; só a fachada
-  desenhada da prancha; as fachadas "realistas" do Drive são de IA e redesenham o
-  prédio; o modelo SKP tem 31 MB). Nome público nunca com nome de cliente ou
-  empresa. Entram quando houver render de fachada ou foto da obra.
+  material em `scratchpad/assets/obra-concreto/`: só estrutura e fotos de alvenaria
+  crua, abaixo do padrão). Entra quando houver render de fachada ou foto da obra
+  pronta. Nome público nunca com nome de cliente ou empresa.
+- **Prédio comercial em Garça** (no ar desde a v28; 741,69 m², steel frame,
+  projeto aprovado em 2026): as fachadas "realistas" do Drive são de IA e
+  redesenham o prédio. A capa é render no Cycles (Blender, `pip install bpy` em
+  Python 3.11) de um modelo montado só com as medidas da Fachada 04 da prancha
+  aprovada (`site-build/render/garca_blender.py`): vidro 29,25 × 5 m em três vãos,
+  painel de alumínio de 2 m, caixa-d'água, muros de divisa; sem logotipo, carros
+  nem vizinhos. O mesmo caminho serve para outra obra com fachada cotada.
 - Salas comerciais: capa = foto real da fachada (recortada, sem o céu).
 - Foto "Steel frame não é moda" na home: só a parte de cima (treliças e painéis);
   o chão da obra tinha poça, sacos e ferramentas. No filme, essa cena usa o render

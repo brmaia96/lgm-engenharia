@@ -377,6 +377,18 @@ for _p in PROJECTS:
     elif _s=='casa-do-bosque':
         # Suíte e banho mostravam sacada e vista por cima das copas; a fachada é térrea. Fica só o par da capa, que fecha entre si.
         _p['sections']=[]
+# Prédio comercial em Garça (pedido do cliente, nov/2026). Nome público sem o nome da empresa.
+# A capa é render feito no Cycles (Blender) a partir de um modelo montado só com as medidas da Fachada 04 da prancha aprovada:
+# vidro 29,25 x 5,00 m em três vãos, painel de alumínio de 2,00 m, caixa-d'água, muros de divisa. Sem logotipo, sem carros,
+# sem vizinhos inventados. As fachadas "realistas" do Drive (Gemini e ChatGPT) redesenham o prédio: não usar.
+PROJECTS.append(
+ dict(slug='comercial-garca',name='Prédio comercial em Garça',cat='comercial',cat_label='comerciais',cat_plural='comerciais',city='Garça, SP',sub='steel frame · 742 m²',ref='o prédio comercial de Garça',
+  card=dict(src=C+'02-fachada-render.png',crop=(0,.04,1,.96),focus=(.5,.62),alt='Fachada do prédio comercial: salão com frente de vidro de 29 m e painel de alumínio, render do projeto'),
+  hero=dict(src=C+'02-fachada-render.png',pos='50% 60%',alt='Fachada do prédio comercial em Garça vista da rua: frente de vidro em três vãos com porta dupla central e painel de alumínio, render do projeto aprovado'),
+  lead='Salão com 29 m de frente em vidro, <b>estrutura em steel frame.</b>',
+  text=[],
+  ficha=[('Local','Garça, SP'),('Área','741,69 m²'),('Sistema','Light steel frame'),('Escopo','Projeto arquitetônico e legal, estrutura em steel frame e CNO'),('Etapa','Projeto aprovado · 2026')],
+  sections=[]))
 # ---- Regra de capa (nov/2026): a obra abre com UMA fachada renderizada; internas e estrutura vêm dentro da página. ----
 for _p in PROJECTS:
     _s=_p['slug']
@@ -391,7 +403,7 @@ for _p in PROJECTS:
 PROJECTS_FULL=PROJECTS
 PROJECTS=_lean(PROJECTS)
 # ordem das obras (grade 2 · 3 · 3 · 3 · 2): steel frame de alto padrão e obra concluída primeiro; desenhos e estruturas no fim
-ORDEM=['casa-taquaracu','salas-comerciais','chale-piedade','chale-viver','tiny-house','chale-acolher','chale-analandia','casa-do-bosque',
+ORDEM=['casa-taquaracu','salas-comerciais','comercial-garca','chale-piedade','chale-viver','tiny-house','chale-acolher','chale-analandia','casa-do-bosque',
        'casa-da-raia','casa-duo','patio-escolar','ampliacao-steel-frame','le-blanc-lofts']
 ORDEM=[k for k in ORDEM if k not in HELD]
 assert sorted(ORDEM)==sorted(p['slug'] for p in PROJECTS),sorted(set(ORDEM)^set(p['slug'] for p in PROJECTS))

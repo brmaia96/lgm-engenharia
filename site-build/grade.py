@@ -25,7 +25,7 @@ def duotone(im,invert=False):
     mean=float(L.mean()); L=L**float(np.clip(np.log(.56)/np.log(max(mean,1e-3)),.6,1.6))
     return _img(INK+(PAPER-INK)*L[...,None])
 def ink(im,paper=PANEL):
-    L=_lum(_arr(im)); L=np.clip((L-.04)/.92,0,1)
+    L=_lum(_arr(im)); L=np.clip((L-.04)/.86,0,1)   # o fundo claro do desenho (inclusive o degradê do Revit) fecha no papel
     return _img(INK+(paper-INK)*L[...,None])
 def model(im):
     L=_lum(_arr(im)); lo=np.percentile(L,8); L=np.clip((L-lo)/(1-lo),0,1)**.95

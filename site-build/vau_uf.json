@@ -2,7 +2,7 @@
  "mes": "2026-11",
  "rotulo": "novembro de 2026",
  "destinacao": "residencial unifamiliar",
- "origem": "Tabela VAU do Sero (Receita Federal) de novembro de 2026, como reproduzida por consultorias (RSM Consultoria; ReguLAR em 160 de 162 células; outubro conferido em duas fontes, 189 de 189 células). A tabela oficial só abre dentro do Sero, no e-CAC. Conferência: 13 valores de memórias de cálculo reais do cliente (SP, MT e PR, de dez/2025 a nov/2026) batem com essas tabelas centavo a centavo. Atualizar todo mês: o VAU sobe pela variação do Sinapi e é revisto em janeiro.",
+ "origem": "Tabela VAU do Sero (Receita Federal) de novembro de 2026, como reproduzida por consultorias (RSM Consultoria; ReguLAR em 160 de 162 células; outubro conferido em duas fontes, 189 de 189 células). A tabela oficial só abre dentro do Sero, no e-CAC. Conferência: 19 pontos de memórias de cálculo reais do Sero (SP, MT e PR, de mar/2025 a nov/2026) batem com essas tabelas centavo a centavo. O valor de SP residencial de novembro vem da tabela de terceiros e confere com outubro × 1,0029. Atualizar todo mês: o VAU sobe pela variação do Sinapi e é revisto em janeiro.",
  "ufs": {
   "AC": 4273.55,
   "AL": 2577.17,

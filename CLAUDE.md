@@ -120,8 +120,11 @@ comigo."
 cliente: o site tem de soar como especialista total em INSS de obra. O portfólio
 só mostra que há know-how, sem excesso.
 
-- Navegação: `inss · obras · blog · sobre · agenda`. Na home, o bloco de INSS vem
-  logo depois da frase de abertura.
+- Navegação: `inss · obras · blog · sobre · agenda`. Desde a v25 a home **abre**
+  com o INSS (h1 "A obra paga INSS. Quase sempre a mais.", a frase da casa, os
+  dois números e o botão da calculadora na primeira tela); o filme vem logo
+  depois, dentro da coluna. Se o cliente preferir o filme no topo, é só inverter
+  os dois blocos em `build.py`.
 - `inss.html`, na ordem que o cliente pediu ("ficou muito maçante, muito texto;
   breve cálculo e já a calculadora; daí o mapa com as obras aferidas e um
   contador de m² e desconto; no final INSS steel frame, wood, modular; depois
@@ -141,11 +144,12 @@ só mostra que há know-how, sem excesso.
   comercial, multifamiliar e reforma vão para o WhatsApp.
 - **VAU: `site-build/vau_uf.json`**, residencial unifamiliar, 27 UFs, novembro
   de 2026 (SP R$ 2.725,32). A tabela oficial só abre dentro do Sero (e-CAC); os
-  valores vêm de consultorias que a reproduzem, e 13 valores de memórias reais
-  do cliente (SP, MT e PR, de dez/2025 a nov/2026) batem com elas centavo a
-  centavo. **Atualizar todo mês**: sobe pela variação do Sinapi e é revisto em
+  valores vêm de consultorias que a reproduzem, e 19 pontos de memórias reais
+  do Sero (SP, MT e PR, de mar/2025 a nov/2026) batem com elas centavo a
+  centavo; SP residencial de novembro vem da tabela (outubro × 1,0029). **Atualizar todo mês**: sobe pela variação do Sinapi e é revisto em
   janeiro. O exemplo da home sai daí: casa de 150 m² em São Paulo, R$ 10.711
-  sem planejamento, até 70% a menos. Os exemplos antigos (R$ 8.832, R$ 7.860,
+  sem planejamento (sempre calculado como alvenaria, e a página diz isso), até
+  70% a menos. Os exemplos antigos (R$ 8.832, R$ 7.860,
   R$ 2.358) usavam VAU hipotético e não devem voltar.
 - **Contato (base de clientes).** O cadastro pede nome, WhatsApp, e-mail, cidade
   e fase da obra, com aceite de contato e caixa opcional de avisos (a comunidade
@@ -174,10 +178,27 @@ só mostra que há know-how, sem excesso.
   não há projeto técnico: vai rotulada como **modelo**, nunca como obra entregue
   nem "Etapa: Projeto". Só a fachada de dia (a de noite muda pedra, porta e
   piso); o cinema fica fora (a TV imita logotipo de estúdio).
-- Fora do ar, guardados em `data.py` (`HELD`): **Casa Duo**, até as imagens serem
-  corrigidas (árvore na cobertura dos vizinhos, portão sem muro, bancada da
-  cozinha e porta da lavanderia mudando entre vistas); **Do aço à estrutura**,
-  que não tem fachada nem interior.
+- **Obras novas (nov/2026, pedido do cliente), cada imagem conferida contra o
+  projeto.** Nenhuma obra fica em `HELD`. Ordem de Obras em `ORDEM` (grade
+  2 · 3 · 3 · 3 · 2; destaque na home: Taquaraçu, Salas, Casa do Bosque).
+  - **Casa Duo** (Marília, 119,82 m², alvenaria, projeto e processo na
+    prefeitura): capa = maquete do próprio modelo; só quintal e suíte do kit, com
+    recorte. A fachada do kit caiu: tem faixa de vidro no muro que o modelo não
+    tem. Brise de correr não confirmado. Nunca escrever "aprovado". Pedir as
+    vistas exportadas do Revit para trocar as imagens.
+  - **Ampliação em steel frame** (Belo Horizonte, 11 m² de projeção, 600 kg,
+    430 peças; é o antigo "Do aço à estrutura"): só renders da estrutura, que
+    conferem com o modelo. Fora: a explodida (objetos soltos), o detalhe e a
+    isométrica repetida. A arquitetura é de terceiros.
+  - **Casa da Raia** (nome público da residência térrea de Marília, 184,60 m²,
+    piscina em raia de 18 m): vistas diretas do modelo BIM, tratadas como
+    desenho; recortes tiram a casca da piscina que aparece sob o muro. Sistema:
+    **alvenaria com telhado sobre treliças em steel frame**, nunca "casa em steel
+    frame". Arquitetura de arquiteto parceiro; o escritório fez o executivo. Não
+    usar o bairro no nome nem as imagens de IA nem o kit da revisão anterior.
+- Ficha sempre com Local, Área, Sistema, Escopo, Etapa (com ano); cidade com
+  vírgula ("Marília, SP"); "steel frame" no texto e "Light steel frame" só na
+  linha Sistema; nunca "steel framing", "LSF" ou "off-site".
 - **Chalé Analândia** usa os renders do projeto que estão no Drive (A-frame com
   volume revestido em pedra, piscina e churrasqueira). As duas imagens da casa
   branca com pergolado que estão na mesma pasta são de outro cliente e não
@@ -208,9 +229,13 @@ só mostra que há know-how, sem excesso.
     copas, e a fachada é térrea. Fica só o par da capa.
   - Qualquer imagem nova passa pela mesma conferência antes de ir ao ar.
 - **Vídeo da home** (`site-build/video/`): não é resumo do site. É um filme de
-  78 s que passa sozinho, com todos os serviços e os dizeres da casa, retrato
-  pequeno e trilha original (`musica.py`). Começa mudo, como o navegador exige,
-  e tem botão "ativar som".
+  78 s com todos os serviços e os dizeres da casa, retrato pequeno e trilha
+  original (`musica.py`), em dois cortes do mesmo roteiro: 16:9 para o
+  computador e 4:5 para o celular (`film.html?m`), fundo no tom do painel.
+  Toca mudo quando entra na tela e para quando sai; "ativar som" e
+  "reproduzir/pausar" ficam na linha da legenda. Os números do filme acompanham
+  os de `inss_page.py`: se mudarem, regravar (`node cap.js w` e `node cap.js m`,
+  com `fontes.css` local).
 - Salas comerciais (Marília): fotos reais de obra concluída. Não citar que a
   reforma começou sem alvará; elétrica e climatização são de outro responsável.
 
@@ -235,15 +260,21 @@ Sero v3.0 (08/2024) e páginas da Receita no gov.br.
 - A norma e o manual **não citam steel frame**. O enquadramento é pelo texto
   ("estrutura de metal", "pré-fabricado por terceiros"), e isso é dito no site.
 - **Obras aferidas (mapa e contadores de `inss.html`, dados em `inss_page.py`):**
-  o Drive tem 70 memórias de cálculo do Sero, de 38 obras, de 2021 a 2026. Contam
-  as **28 com aferição concluída** e Franca, que tem certidão: **29 obras, 13
-  cidades** (Marília 17; Sinop e Água Boa, MT; Assis, Botucatu, Franca, Itupeva,
-  Mirassol, Pedrinhas Paulista, Piraju, São Roque, Tupã e Vargem Grande
-  Paulista, SP), **6.715,79 m²**. Ficam fora as dez em rascunho, entre elas as
+  o Drive tem 70 memórias de cálculo do Sero, de 38 obras, de 2021 a 2026. Com
+  aferição concluída são 28; a de Marília de 2021 (576 m²) **saiu do ar** até o
+  cliente confirmar que é dele (vem de um arquivo de caso de terceiro). No ar,
+  com Franca (certidão): **28 obras, 13 cidades** (Marília 16; Sinop e Água Boa,
+  MT; Assis, Botucatu, Franca, Itupeva, Mirassol, Pedrinhas Paulista, Piraju,
+  São Roque, Tupã e Vargem Grande Paulista, SP), **6.139,61 m² de área
+  aferida** (433,55 m² são demolição: por isso "aferida", não "regularizada").
+  Confirmada a de 2021, voltam 29 obras, 6.715,79 m² e R$ 101.997,80 em nove
+  (instrução no comentário de `inss_page.py`). Ficam fora as dez em rascunho, entre elas as
   salas comerciais de Marília (rascunho de 09/11/2026). O cliente ainda precisa
   confirmar que todas são dele; a de Marília de 2021 (576 m²) está num arquivo
   de caso.
-- **Desconto documentado: R$ 101.997,80 em nove obras**, com um critério só.
+- **Desconto documentado no ar: R$ 73.845,11 em oito obras** (R$ 101.997,80 em
+  nove com a de 2021), com um critério só. Na tabela, antes e depois são o saldo
+  na aferição final, sem o INSS recolhido ao longo da obra, e a página diz isso.
   Enquadramento, pela simulação anterior contra a aferição concluída: Marília
   2021, 576 m² (46.802,38 → 18.649,69) e Sinop 2026, 205 m² (27.026,57 →
   7.909,57). Fator de ajuste, pelo débito que a própria memória concluída apura

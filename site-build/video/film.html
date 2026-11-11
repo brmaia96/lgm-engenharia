@@ -1,78 +1,108 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:ital@0;1&display=swap">
+<!-- Filme da home, dois cortes do mesmo roteiro: film.html (16:9, 1920x1080, entra na coluna do site) e film.html?m (4:5, 1080x1350, celular).
+     Fundo no tom do painel do site (#F7F6F4), para o quadro ter moldura sobre a página branca. Nenhum texto abaixo de 14 px na tela do celular. -->
+<link rel="stylesheet" href="fontes.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:1920px;height:1080px;overflow:hidden;background:#fff}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#F7F6F4}
 body{font-family:'Jost',sans-serif;font-weight:300;color:#6B6868;-webkit-font-smoothing:antialiased}
 b{font-weight:500;color:#2F2E2E}
 em{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;color:#9A7350}
 .mk{font-family:'Playfair Display',serif;font-weight:400;color:#2F2E2E;letter-spacing:-.02em;line-height:1}
 .mk i{font-style:normal;color:#C89A71}
 .sc{position:absolute;inset:0;opacity:0}
-.in{position:absolute;left:154px;right:154px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}
-.lb{font-size:28px;color:#A0A09F;margin-bottom:24px}
-.h{font-size:92px;line-height:1.14;color:#2F2E2E;letter-spacing:-.016em;max-width:1400px}
-.h2{font-size:64px;line-height:1.18;color:#2F2E2E;letter-spacing:-.012em;max-width:1300px}
-.s{font-size:36px;color:#6B6868;margin-top:22px;line-height:1.4}
-.rows{margin-top:40px;max-width:1280px}
-.rows>div{padding:22px 0;border-top:1px solid #E9E8E6;font-size:46px;line-height:1.25;color:#2F2E2E;display:flex;justify-content:space-between;align-items:baseline;gap:40px}
-.rows>div:last-child{border-bottom:1px solid #E9E8E6}
-.rows span{font-size:26px;color:#A0A09F;white-space:nowrap}
-.nums{display:grid;grid-template-columns:1fr 1fr 1.9fr;gap:60px;margin-top:56px}
-.num{font-size:124px;line-height:1;color:#2F2E2E;letter-spacing:-.03em;white-space:nowrap}
+.in{position:absolute;left:150px;right:150px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}
+.lb{font-size:32px;color:#6B6868;margin-bottom:26px}
+.h{font-size:96px;line-height:1.14;color:#2F2E2E;letter-spacing:-.016em;max-width:1400px}
+.h2{font-size:68px;line-height:1.18;color:#2F2E2E;letter-spacing:-.012em;max-width:1340px}
+.s{font-size:38px;color:#6B6868;margin-top:22px;line-height:1.4}
+.rows{margin-top:36px;max-width:1340px}
+.rows>div{padding:22px 0;border-top:1px solid #DDDBD7;font-size:48px;line-height:1.25;color:#2F2E2E;display:flex;justify-content:space-between;align-items:baseline;gap:40px}
+.rows>div:last-child{border-bottom:1px solid #DDDBD7}
+.rows span{font-size:30px;color:#6B6868;white-space:nowrap}
+.nums{display:grid;grid-template-columns:1fr 1fr 1.9fr;gap:60px;margin-top:52px}
+.num{font-size:128px;line-height:1;color:#2F2E2E;letter-spacing:-.03em;white-space:nowrap}
 .num.t{color:#9A7350}
-.nl{font-size:30px;color:#A0A09F;margin-top:18px;line-height:1.35;max-width:420px}
+.nl{font-size:32px;color:#6B6868;margin-top:18px;line-height:1.35;max-width:440px}
 .pl{background:#0A0A0A}
 .pl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 55%}
-.shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.72),rgba(10,10,10,.05) 55%,rgba(10,10,10,.28))}
-.cap{position:absolute;left:154px;right:154px;bottom:88px;display:flex;justify-content:space-between;align-items:baseline;color:#fff}
-.cap b{font-weight:500;font-size:44px;color:#fff}
-.cap span{font-size:28px;color:rgba(255,255,255,.88)}
-.big{position:absolute;left:154px;right:154px;bottom:150px;color:#fff;font-size:104px;line-height:1.1;letter-spacing:-.016em}
+.shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.74),rgba(10,10,10,.05) 55%,rgba(10,10,10,.28))}
+.cap{position:absolute;left:150px;right:150px;bottom:88px;display:flex;justify-content:space-between;align-items:baseline;gap:40px;color:#fff}
+.cap b{font-weight:500;font-size:46px;color:#fff}
+.cap span{font-size:32px;color:rgba(255,255,255,.9)}
+.big{position:absolute;left:150px;right:150px;bottom:140px;color:#fff;font-size:104px;line-height:1.1;letter-spacing:-.016em}
 .big b{color:#fff}
-.pmk{position:absolute;left:154px;top:92px;font-size:84px;color:#fff}
-.pt{position:absolute;right:154px;top:50%;width:400px;height:500px;margin-top:-250px;overflow:hidden;background:#111}
+.pmk{position:absolute;left:150px;top:88px;font-size:80px;color:#fff}
+.pt{position:absolute;right:150px;top:50%;width:400px;height:500px;margin-top:-250px;overflow:hidden;background:#111}
 .pt img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
-.ct{display:grid;grid-template-columns:repeat(3,auto);gap:70px;justify-content:start;margin-top:60px;font-size:30px;color:#6B6868;line-height:1.5}
-.ct b{display:block;font-size:26px;color:#A0A09F;font-weight:400}
-#M{position:absolute;left:154px;top:92px;font-size:84px}
+.ps .in{right:640px}
+.ct{display:grid;grid-template-columns:repeat(3,auto);gap:70px;justify-content:start;margin-top:60px;font-size:32px;color:#2F2E2E;line-height:1.5}
+.ct b{display:block;font-size:28px;color:#6B6868;font-weight:400}
+#M{position:absolute;left:150px;top:88px;font-size:80px}
+
+/* corte vertical para o celular: 1080 x 1350. Na tela de 390 px o quadro tem 350 px: 43 px aqui = 14 px lá. */
+html.m,html.m body{width:1080px;height:1350px}
+.m .in{left:84px;right:84px}
+.m .lb{font-size:44px;margin-bottom:30px}
+.m .h{font-size:108px;line-height:1.1}
+.m .h2{font-size:82px;line-height:1.16}
+.m .s{font-size:52px;line-height:1.32;margin-top:30px}
+.m .rows{margin-top:30px}
+.m .rows>div{display:block;padding:24px 0;font-size:58px;line-height:1.2}
+.m .rows span{display:block;font-size:43px;white-space:normal;margin-top:8px}
+.m .nums{grid-template-columns:1fr;gap:54px;margin-top:40px}
+.m .num{font-size:150px}
+.m .nl{font-size:44px;max-width:none;margin-top:14px}
+.m .cap{left:84px;right:84px;bottom:110px;display:block}
+.m .cap b{display:block;font-size:64px;line-height:1.15}
+.m .cap span{display:block;font-size:43px;margin-top:12px;line-height:1.3}
+.m .big{left:84px;right:84px;bottom:150px;font-size:112px}
+.m .pmk,.m #M{left:84px;top:84px;font-size:92px}
+.m .pt{left:84px;right:auto;top:240px;margin-top:0;width:420px;height:525px}
+.m .ps .in{right:84px;top:800px;bottom:auto;justify-content:flex-start}
+.m .ps .h{font-size:100px}
+.m .ct{grid-template-columns:1fr 1fr;gap:26px 40px;margin-top:40px;font-size:43px;line-height:1.3}
+.m .ct b{font-size:43px}
+.m .ct div:last-child{grid-column:1/-1}
 </style></head><body>
+<script>if(location.search.indexOf('m')>=0)document.documentElement.className='m'</script>
 <div class="mk" id="M">L<i>.</i></div>
 
-<div class="sc" data-t="0,5.4"><div class="in" style="right:640px"><div class="lb a">engenheiro civil · CREA-SP 5071068977</div><div class="h a">Luis Gustavo Maia</div><div class="s a">Engenharia tributária da obra, <b>projeto e steel frame.</b></div></div><div class="pt a"><img src="retrato-p.jpg"></div></div>
+<div class="sc ps" data-t="0,5.4"><div class="in"><div class="lb a">engenheiro civil · CREA-SP 5071068977</div><div class="h a">Luis Gustavo Maia</div><div class="s a">Engenharia tributária da obra, <b>projeto e steel frame.</b></div></div><div class="pt a"><img src="retrato-p.jpg"></div></div>
 
 <div class="sc" data-t="5.2,10.6"><div class="in"><div class="lb a">engenharia tributária</div><div class="h a">A obra paga INSS. <b>Quase sempre a mais.</b></div></div></div>
 
 <div class="sc" data-t="10.4,19.2"><div class="in"><div class="lb a">o que eu faço pelo INSS da sua obra</div><div class="rows"><div class="a">Planejamento tributário da obra<span>antes de comprar o aço</span></div><div class="a">Inscrição no CNO<span>em até 30 dias do início</span></div><div class="a">Enquadramento do tipo de obra<span>o que define o imposto</span></div><div class="a">Aferição no Sero<span>com a memória de cálculo</span></div><div class="a">Certidão da obra<span>a obra regular na Receita</span></div></div></div></div>
 
-<div class="sc" data-t="19.0,26.2"><div class="in"><div class="lb a">resultado, pelas memórias de cálculo</div><div class="nums"><div class="a"><div class="num">29</div><div class="nl">obras com a aferição concluída</div></div><div class="a"><div class="num">13</div><div class="nl">cidades, em São Paulo e Mato Grosso</div></div><div class="a"><div class="num t">R$ 101.998</div><div class="nl">de desconto documentado em nove obras</div></div></div></div></div>
+<div class="sc" data-t="19.0,26.2"><div class="in"><div class="lb a">resultado, pelos documentos da Receita</div><div class="nums"><div class="a"><div class="num">28</div><div class="nl">obras aferidas na Receita</div></div><div class="a"><div class="num">13</div><div class="nl">cidades, em São Paulo e Mato Grosso</div></div><div class="a"><div class="num t">R$ 73.845</div><div class="nl">de desconto documentado em oito obras</div></div></div></div></div>
 
-<div class="sc pl" data-t="26.0,32.2"><img class="k" src="../site/img/marca/obra-real.jpg"><div class="shade"></div><div class="mk pmk">L<i>.</i></div><div class="big a">Steel frame não é moda. <b>É engenharia.</b></div></div>
+<div class="sc pl" data-t="26.0,32.2"><img class="k" src="img/obra-real.jpg"><div class="shade"></div><div class="mk pmk">L<i>.</i></div><div class="big a">Steel frame não é moda. <b>É engenharia.</b></div></div>
 
 <div class="sc" data-t="32.0,40.2"><div class="in"><div class="lb a">projeto</div><div class="rows"><div class="a">Projeto executivo em steel frame<span>painéis, tesouras e lajes</span></div><div class="a">Projetos complementares<span>compatibilizados no mesmo modelo</span></div><div class="a">Plano de corte e caderno de montagem<span>nenhuma medida decidida na obra</span></div><div class="a">Estrutura metálica<span>coberturas e galpões</span></div></div></div></div>
 
-<div class="sc pl" data-t="40.0,44.6"><img class="k" src="../site/img/cmp/estrutura.jpg"><div class="shade"></div><div class="mk pmk">L<i>.</i></div><div class="cap a"><b>Casa Taquaraçu</b><span>estrutura em light steel frame · 296 m²</span></div></div>
-<div class="sc pl" data-t="44.4,49.0"><img class="k" src="../site/img/chale-analandia/hero.jpg"><div class="shade"></div><div class="mk pmk">L<i>.</i></div><div class="cap a"><b>Chalé Analândia</b><span>cabana em steel frame, com piscina</span></div></div>
+<div class="sc pl" data-t="40.0,44.6"><img class="k" src="img/taquaracu-estrutura.jpg"><div class="shade"></div><div class="mk pmk">L<i>.</i></div><div class="cap a"><b>Casa Taquaraçu</b><span>estrutura em light steel frame · 296 m²</span></div></div>
+<div class="sc pl" data-t="44.4,49.0"><img class="k" src="img/analandia.jpg"><div class="shade"></div><div class="mk pmk">L<i>.</i></div><div class="cap a"><b>Chalé Analândia</b><span>cabana em steel frame, com piscina</span></div></div>
 
 <div class="sc" data-t="48.8,56.2"><div class="in"><div class="lb a">obra e regularização</div><div class="rows"><div class="a">Acompanhamento de obra<span>do radier à cobertura</span></div><div class="a">Projeto legal e aprovação<span>prefeitura e bombeiros</span></div><div class="a">As built e laudo de habite-se<span>a obra como foi feita</span></div><div class="a">Regularização de construção<span>reforma, ampliação e mudança de uso</span></div></div></div></div>
 
-<div class="sc pl" data-t="56.0,60.6"><img class="k" src="../site/img/salas-comerciais/hero.jpg"><div class="shade"></div><div class="mk pmk">L<i>.</i></div><div class="cap a"><b>Salas comerciais</b><span>Marília · obra concluída em 2026</span></div></div>
+<div class="sc pl" data-t="56.0,60.6"><img class="k" src="img/salas.jpg"><div class="shade"></div><div class="mk pmk">L<i>.</i></div><div class="cap a"><b>Salas comerciais</b><span>Marília · obra concluída em 2026</span></div></div>
 
 <div class="sc" data-t="60.4,65.2"><div class="in"><div class="h a">Sem terceirizar, <b>sem delegar o que importa.</b></div></div></div>
 <div class="sc" data-t="65.0,70.6"><div class="in"><div class="h2 a">Projeto, execução e engenharia tributária, <b>com uma única responsabilidade técnica.</b></div></div></div>
 
-<div class="sc" data-t="70.4,78"><div class="in" style="right:640px"><div class="h a">Do terreno. <em>À chave.</em></div><div class="ct a"><div><b>WhatsApp</b>(14) 99185-0799</div><div><b>Instagram</b>@eng.gustavomaia</div><div><b>Atendimento</b>Marília, SP · todo o Brasil</div></div></div><div class="pt a"><img src="retrato-p.jpg"></div></div>
+<div class="sc ps" data-t="70.4,78"><div class="in"><div class="h a">Do terreno. <em>À chave.</em></div><div class="ct a"><div><b>WhatsApp</b>(14) 99185-0799</div><div><b>Instagram</b>@eng.gustavomaia</div><div><b>Atendimento</b>Marília, SP · todo o Brasil</div></div></div><div class="pt a"><img src="retrato-p.jpg"></div></div>
 
 <script>
-var SC=[].slice.call(document.querySelectorAll('.sc')).map(function(el){var t=el.getAttribute('data-t').split(',').map(Number);return{el:el,a:t[0],b:t[1],it:[].slice.call(el.querySelectorAll('.a')),k:el.querySelector('.k'),pl:el.classList.contains('pl')}});
+var SC=[].slice.call(document.querySelectorAll('.sc')).map(function(el){var t=el.getAttribute('data-t').split(',').map(Number);return{el:el,a:t[0],b:t[1],it:[].slice.call(el.querySelectorAll('.a')),k:el.querySelector('.k'),pl:el.classList.contains('pl'),ps:el.classList.contains('ps')}});
 function cl(x){return x<0?0:x>1?1:x} function ez(x){x=cl(x);return 1-Math.pow(1-x,3)}
 var M=document.getElementById('M'),D=78;
 window.DUR=D;
-window.setT=function(t){var dark=false;
+/* a marca assina só a abertura e o fecho; nas fotos ela vai em branco, dentro do próprio quadro */
+window.setT=function(t){var mo=0;
  SC.forEach(function(s,i){var fi=ez((t-s.a)/.6),fo=1-ez((t-(s.b-.6))/.6);if(i===SC.length-1)fo=1-ez((t-(D-.9))/.9);var o=t<s.a||t>s.b?0:Math.min(fi,fo);s.el.style.opacity=o;
-  if(o>.5&&s.pl)dark=true;
+  if(s.ps&&o>mo)mo=o;
   s.it.forEach(function(e,j){var p=ez((t-s.a-.25-j*.32)/.8);e.style.opacity=p;e.style.transform='translateY('+((1-p)*26)+'px)'});
   if(s.k){var q=cl((t-s.a)/(s.b-s.a));s.k.style.transform='scale('+(1.03+q*.05)+')'}});
- M.style.opacity=dark?0:1;};
+ M.style.opacity=mo;};
 setT(0);
 </script></body></html>

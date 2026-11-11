@@ -214,6 +214,13 @@ só mostra que há know-how, sem excesso.
   material em `scratchpad/assets/obra-concreto/`: só estrutura e fotos de alvenaria
   crua, abaixo do padrão). Entra quando houver render de fachada ou foto da obra
   pronta. Nome público nunca com nome de cliente ou empresa.
+  Conferido em nov/2026 se dava para montar a fachada pelas pranchas, como em
+  Garça: não dá sem interpretar. A elevação põe o portão seccional no
+  alinhamento, num muro de 2,60 m; o corte AA põe o portão cerca de 1 m para
+  dentro, sob cobertura de 2,70 + 0,70 m; o detalhe 3D do modelo mostra
+  pergolado metálico e janela alta que a elevação não tem. Precisa da vista
+  exportada do modelo. A Casa Duo, idem: a única saída do modelo é a
+  volumetria aérea (não serve como capa na altura do olho).
 - **Prédio comercial em Garça** (no ar desde a v28; 741,69 m², steel frame,
   projeto aprovado em 2026): as fachadas "realistas" do Drive são de IA e
   redesenham o prédio. A capa é render no Cycles (Blender, `pip install bpy` em

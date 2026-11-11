@@ -185,10 +185,28 @@ só mostra que há know-how, sem excesso.
   em duas forças e **reprovada**: a IA some com a escada atrás do vidro, troca a
   esquadria e muda a churrasqueira e a cobertura do anexo. Não refazer; o
   cliente proibiu ferramenta paga e exige que a imagem siga o projeto.
-- Projetos com base de modelo e acabamento por IA feito pelo próprio cliente
-  (Chalé Piedade, Tiny House, Chalé Viver, Chalé Acolher): conferir com ele se
-  alguma também foge do projeto. Elementos que mudam de uma vista para outra
-  derrubam a credibilidade.
+- **Conferência independente das imagens (nov/2026).** Dois revisores compararam
+  cada imagem no ar com planta, cortes e fachadas. O padrão: saída direta do
+  modelo confere (Analândia, estruturas, renders do Acolher em fundo escuro) e
+  acabamento por IA que só deu textura confere (Viver, Piedade, Tiny House);
+  onde a IA redesenhou, erra. Decisões em `data.py`:
+  - **Casa Taquaraçu**: a aérea e a vista com a edícula saíram (a IA mudou a
+    edícula de lugar e embaralhou corrimãos). Capa em par: lado esquerdo da
+    imagem 13 (casa, varanda e piscina) e o estar. A cozinha vai sem a faixa da
+    porta. O comparador "estrutura × pronta" da home saiu: as duas metades não
+    vinham da mesma câmera nem do mesmo modelo.
+  - **Chalé Acolher**: as duas externas com IA contradiziam o projeto (vãos da
+    lateral, lavanderia, caixa-d'água, cor do telhado). Entram os renders
+    diretos do modelo.
+  - **Chalé Piedade**: a capa antiga tinha o deck com o dobro da largura do
+    quadro de áreas e plantas saindo das tábuas (erro do modelo, a refazer).
+    Fica a frontal.
+  - **Tiny House**: capa trocada pela frontal (na outra, a janela do banho saía
+    com caixilho branco; o projeto pede preto). O loft fica sobre a cozinha e o
+    banho, não sobre a sala.
+  - **Casa do Bosque**: suíte e banho mostravam sacada e vista por cima das
+    copas, e a fachada é térrea. Fica só o par da capa.
+  - Qualquer imagem nova passa pela mesma conferência antes de ir ao ar.
 - **Vídeo da home** (`site-build/video/`): não é resumo do site. É um filme de
   78 s que passa sozinho, com todos os serviços e os dizeres da casa, retrato
   pequeno e trilha original (`musica.py`). Começa mudo, como o navegador exige,

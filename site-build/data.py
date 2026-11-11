@@ -3,7 +3,7 @@ _s=importlib.util.spec_from_file_location('sp',os.path.dirname(__file__)+'/stati
 SOBRE_BODY=_m.SOBRE_BODY; AGENDA_BODY=_m.agenda_body()
 _si=importlib.util.spec_from_file_location('inss_page',os.path.dirname(__file__)+'/inss_page.py'); INSS=importlib.util.module_from_spec(_si); _si.loader.exec_module(INSS)
 OBRAS_META='casas, chalés, salas comerciais e estruturas em aço'
-HOME_SELECT=['casa-do-bosque','casa-taquaracu','salas-comerciais']
+HOME_SELECT=['casa-do-bosque','chale-analandia','salas-comerciais']
 CMP_CAPTION='<b><a href="o-casa-taquaracu.html">Casa Taquaraçu</a></b><span>arraste para ver a estrutura</span>'
 C='clean/'
 def I(src,cap,alt,lay='half',**k): d=dict(src=C+src,cap=cap,alt=alt,lay=lay); d.update(k); return d
@@ -66,7 +66,7 @@ dict(slug='chale-piedade',name='Chalé Piedade',cat='chalé',cat_label='chalés'
  sections=[
   dict(label='Fachadas',items=[
    I('01-fachada-norte-hora-azul.jpg',('Empena norte','vidro de ponta a ponta, voltado para o deck'),'Empena de vidro na hora azul, com o interior aceso','full'),
-   I('03-aerea.jpg',('Implantação','deck de 22,89 m² com ofurô'),'Vista aérea do chalé com o deck e o ofurô','full')]),
+   I('03-aerea.jpg',('Implantação','deck com ofurô'),'Vista aérea do chalé com o deck e o ofurô','full')]),
   dict(label='Interiores',items=[
    I('04-interna-pe-direito-duplo.jpg',('Sala','pé-direito duplo, mezanino e escada caracol'),'Sala com pé-direito duplo e mezanino com guarda-corpo de vidro','full'),
    I('05-interna-cozinha-jantar.jpg',('Cozinha e jantar','11,69 m² sob o mezanino'),'Cozinha e mesa de jantar sob o mezanino'),
@@ -98,7 +98,7 @@ dict(slug='tiny-house',name='Tiny House',cat='chalé',cat_label='chalés',cat_pl
  hero=dict(src=C+'02-fachada-lateral-monolito.jpg',pos='50% 55%',alt='Volume de telha metálica grafite contínua em parede e cobertura, com frente de vidro'),
  lead='39 m² em duas águas, <b>com a telha dobrando da cobertura para a parede.</b>',
  text=['Uma casca de telha metálica de junta elevada, sem beiral, emoldurada por um portal preto. A frente é toda de vidro e abre para o deck.',
-       'No térreo ficam sala, cozinha e banho. O loft de dormir fica sobre a sala, com uma claraboia em cima da cama e acesso por escada de degraus alternados.'],
+       'No térreo ficam sala, cozinha e banho. O loft de dormir fica sobre a cozinha e o banho, com uma claraboia em cima da cama; a sala tem pé-direito duplo e acesso por escada de degraus alternados.'],
  ficha=[('Local','Sorocaba · SP'),('Área','38,57 m²'),('Projeção','4,00 × 7,50 m'),('Forma','Duas águas a 53°'),('Níveis','Térreo e loft a +2,60 m'),
         ('Fechamento','Telha metálica de junta elevada em parede e cobertura'),('Frente','Porta de correr de vidro, 3,70 × 2,40 m'),('Deck','4,00 × 2,00 m'),('Escopo','Projeto de arquitetura'),('Etapa','Projeto')],
  sections=[
@@ -113,7 +113,7 @@ dict(slug='tiny-house',name='Tiny House',cat='chalé',cat_label='chalés',cat_pl
 
 dict(slug='chale-viver',name='Chalé Viver',cat='chalé',cat_label='chalés',cat_plural='chalés',city='Marília · SP',sub='alvenaria · 88 m²',ref='o Chalé Viver',
  card=dict(src=C+'04-render-fachada-frontal.jpg',focus=(.5,.5),alt='Casa térrea em L com garagem sob pergolado metálico preto'),
- hero=dict(src=C+'01a-frente-garagem-pergolado.jpg',pos='50% 50%',alt='Frente da casa, com a garagem sob pergolado metálico preto'),
+ hero=dict(src=C+'04-render-fachada-frontal.jpg',pos='50% 62%',alt='Frente da casa, com a garagem sob pergolado metálico preto'),
  lead='Casa térrea em L no platô do fundo do lote, <b>3 m acima do portão.</b>',
  text=['Uma rampa de concreto sobe até a garagem, coberta por um pergolado metálico preto com acrílico. A casa foi posicionada a 1,20 m da mureta que protege a mangueira existente.',
        'Estar, jantar e cozinha em 43,66 m², suíte com closet e área de serviço. A cobertura é em telha de concreto cinza, em três corpos de duas águas.',
@@ -150,8 +150,8 @@ dict(slug='chale-analandia',name='Chalé Analândia',cat='chalé',cat_label='cha
    I('08-corte-bb.jpg',('Corte B-B','longitudinal, pela escada'),'Corte longitudinal, com escada e níveis','plan half')])]),
 
 dict(slug='patio-escolar',assets='escolas',name='Cobertura de pátio escolar',cat='estrutura',cat_label='estruturas',cat_plural='estruturas',city='Papanduva · SC',sub='estrutura metálica · 784 m²',ref='a cobertura de pátio escolar',
- card=dict(src=C+'01-capa.jpg',focus=(.5,.4),alt='Vista sob a cobertura metálica do pátio, com tesouras treliçadas'),
- hero=dict(src=C+'01-capa.jpg',pos='50% 40%',alt='Vista sob a cobertura metálica do pátio, com tesouras treliçadas, terças e pilares'),
+ card=dict(src=C+'01-capa.jpg',crop=(0,.06,1,.94),focus=(.5,.4),alt='Vista sob a cobertura metálica do pátio, com tesouras treliçadas'),
+ hero=dict(src=C+'01-capa.jpg',crop=(0,.06,1,.94),pos='50% 40%',alt='Vista sob a cobertura metálica do pátio, com tesouras treliçadas, terças e pilares'),
  lead='Cobertura metálica para o pátio de duas escolas: <b>784 m² cobertos com 20,2 t de aço.</b>',
  text=['Coberturas de duas águas com faixas de telha translúcida, apoiadas em tesouras treliçadas e pilares metálicos entre os blocos existentes.',
        'A estrutura foi calculada em modelo 3D com 1.175 barras e detalhada em 33 pranchas, das fundações às ligações.'],
@@ -223,10 +223,12 @@ HELD=['casa-duo','do-aco-a-estrutura']
 # MÍNIMO (instrução do cliente, nov/2026): "fotos obras, só o mínimo e informações básicas, não precisa de tanto detalhe".
 # Capa + no máximo quatro imagens por projeto; ficha de cinco linhas; só a frase de abertura, sem parágrafos; legenda só com o nome.
 LEAN={
- 'casa-taquaracu':[('Fachada',[('03-','full')]),('Interiores',[('04-','half'),('05-','half')]),('Estrutura',[('10-','full')])],
- 'chale-acolher':[('Fachada',[('01-','full')]),('Interiores',[('14-','half'),('15-','half')]),('Estrutura',[('06-','full')])],
- 'chale-piedade':[('Fachada',[('01-','full')]),('Interiores',[('04-','half'),('06-','half')])],
- 'tiny-house':[('Fachada',[('01-','full')]),('Interiores',[('04-','half'),('05-','half')])],
+ # Conferência independente (nov/2026): cada imagem no ar foi comparada com planta, cortes e fachadas do projeto.
+ # Só entram as aprovadas; o que a IA redesenhou (edícula da Taquaraçu, externas do Acolher) saiu ou foi recortado.
+ 'casa-taquaracu':[('Interiores',[('05-','full')]),('Estrutura',[('10-','full')])],
+ 'chale-acolher':[('Fachada',[('04-','full')]),('Interiores',[('15-','full')]),('Estrutura',[('06-','full')])],
+ 'chale-piedade':[('Interiores',[('04-','half'),('06-','half')])],
+ 'tiny-house':[('Interiores',[('05-','half'),('04-','half')])],
  'chale-viver':[('Fachada',[('06-','full')]),('Interiores',[('07-','half'),('09-','half')])],
  'chale-analandia':[('Fachada',[('20-','full')]),('Interiores',[('24-','half'),('25-','half')])],
  'salas-comerciais':[('Fachada',[('01-','full')]),('Externas',[('03-','half'),('04-','half')])],
@@ -329,6 +331,41 @@ PROJECTS.insert(1,
   sections=[dict(label='Interiores',items=[
     I('04-suite.jpg',('Suíte',''),'Suíte com forro e painel de madeira, aberta para o terraço',r='4/5'),
     I('05-banho.jpg',('Banho',''),'Banho com banheira de imersão, bancada em pedra e vista para as árvores',r='4/5')])]))
+# ---- Ajustes da conferência de imagens (nov/2026). Regra do cliente: a imagem tem de ser real e seguir o projeto. ----
+def _item(p,prefixo):
+    return next(it for sec in p['sections'] for it in sec['items'] if it['src'].split('/')[-1].startswith(prefixo))
+for _p in PROJECTS:
+    _s=_p['slug']
+    if _s=='casa-taquaracu':
+        # A aérea da capa e a vista com a edícula saíram: a IA trocou a edícula de lugar (mesa do gourmet, vão vazado, bancada de bar
+        # onde a planta tem banheiro) e embaralhou corrimãos. Fica o lado esquerdo da imagem 13 (casa, varanda, escada e piscina),
+        # que confere com a planta, em par com o estar. Da cozinha sai a faixa da porta, onde a vista de fora não batia.
+        _p.update(card=dict(src=C+'13-ficha.jpg',crop=(0,0,.47,1),focus=(.5,.40),alt='Casa Taquaraçu: varanda sobre pilares e piscina, com a serra ao fundo'),
+                  hero=dict(src=C+'13-ficha.jpg',crop=(0,0,.47,1),focus=(.5,.40),pair=C+'04-estar-e-jantar.jpg',pair_focus=(.5,.5),
+                            alt='A casa vista da piscina: varanda sobre pilares, escada e telhado de uma água, com a serra ao fundo',
+                            alt2='Estar e jantar integrados, com a porta de correr para a varanda'))
+        _item(_p,'05-')['crop']=(.125,0,1,1)
+    elif _s=='chale-acolher':
+        # As duas externas com acabamento por IA contradiziam o projeto (vãos da lateral, lavanderia, caixa-d'água, cor do telhado).
+        # Entram os renders diretos do modelo.
+        _p.update(card=dict(src=C+'03-render-fachada-frontal-lateral.jpg',fam='d',focus=(.5,.5),alt='Chalé de duas águas revestido em chapa nervurada, render do modelo'),
+                  hero=dict(src=C+'03-render-fachada-frontal-lateral.jpg',fam='d',pos='50% 50%',alt='Chalé de duas águas revestido em chapa nervurada, com a porta de correr no oitão dos fundos'))
+    elif _s=='chale-piedade':
+        # A capa antiga mostrava o deck com o dobro da largura do quadro de áreas e plantas saindo das tábuas. Fica a frontal, que confere.
+        _p.update(card=dict(src=C+'01-fachada-norte-hora-azul.jpg',focus=(.5,.5),alt='Cabana A-frame com a empena de vidro acesa ao anoitecer'),
+                  hero=dict(src=C+'01-fachada-norte-hora-azul.jpg',pos='50% 55%',alt='Empena de vidro do A-frame ao anoitecer, com o interior aceso e o mezanino ao fundo'))
+    elif _s=='tiny-house':
+        # Na capa antiga a janela do banho saía com caixilho branco; o projeto pede preto em todas as esquadrias.
+        _p.update(card=dict(src=C+'01-fachada-frontal-hora-azul.jpg',focus=(.5,.5),alt='Tiny house de duas águas com a frente de vidro acesa ao anoitecer'),
+                  hero=dict(src=C+'01-fachada-frontal-hora-azul.jpg',pos='50% 55%',alt='Frente de vidro da tiny house ao anoitecer, com o loft ao fundo'))
+    elif _s=='patio-escolar':
+        for _k in ('02-','04-'): _item(_p,_k)['crop']=(0,0,1,.92)
+    elif _s=='casa-do-bosque':
+        # Suíte e banho mostravam sacada e vista por cima das copas; a fachada é térrea. Fica só o par da capa, que fecha entre si.
+        _p['sections']=[]
 PROJECTS_FULL=PROJECTS
 PROJECTS=_lean(PROJECTS)
-OBRAS_META='%d projetos · casas, chalés e estruturas em aço'%len(PROJECTS)
+# ordem das obras: abre com a que tem render largo, direto do modelo e conferido
+ORDEM=['chale-analandia','casa-do-bosque','casa-taquaracu','salas-comerciais','chale-acolher','chale-viver','chale-piedade','tiny-house','patio-escolar','le-blanc-lofts']
+PROJECTS.sort(key=lambda p: ORDEM.index(p['slug']) if p['slug'] in ORDEM else len(ORDEM))
+OBRAS_META='casas, chalés, salas comerciais e estruturas em aço'

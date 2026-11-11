@@ -94,7 +94,7 @@ dict(slug='steel-frame-e-mais-caro', cover=dict(src='estrutura-bh/clean/01-estru
  ],
  fontes=[F_ACAD, F_IN2021], rel=['steel-frame-paga-menos-inss','steel-frame-conforto-termoacustico'], call='Quer a conta inteira do seu projeto?'),
 
-dict(slug='steel-frame-conforto-termoacustico', cover=dict(src='chale-acolher/clean/14-a3-interna-estar.jpg',alt='Sala de um chalé em steel frame, com janelas para o jardim',cap=('Chalé Acolher','quem responde pelo conforto é a parede')),
+dict(slug='steel-frame-conforto-termoacustico', cover=dict(src='chale-acolher/clean/15-a3-interna-cozinha-jantar.jpg',alt='Cozinha e jantar de um chalé em steel frame, com a janela em faixa sobre a bancada',cap=('Chalé Acolher','quem responde pelo conforto é a parede')),
  tema='steel frame', mins=1,
  title='Steel frame tem melhor conforto termoacústico?',
  h1='Conforto térmico e acústico: <b>quem responde é a parede, não o aço.</b>',

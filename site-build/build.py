@@ -78,7 +78,8 @@ for p in P:
     p['_card']=put(base+c['src'],'img/%s/card.jpg'%s,**ck); p['_cardm']=put(base+c['src'],'img/%s/card-m.jpg'%s,mono=True,**ck)
     h=p['hero']
     if h.get('pair'):   # capa em par: duas imagens verticais lado a lado (fontes de 1122 px não aguentam a largura inteira)
-        p['_hero']=put(base+h['src'],'img/%s/hero.jpg'%s,maxw=1200,ratio=4/5,q=84,fam=h.get('fam','a')); p['_hero2']=put(base+h['pair'],'img/%s/hero2.jpg'%s,maxw=1200,ratio=4/5,q=84,fam=h.get('fam','a'))
+        p['_hero']=put(base+h['src'],'img/%s/hero.jpg'%s,maxw=1200,crop=h.get('crop'),ratio=4/5,focus=h.get('focus',(.5,.5)),q=84,fam=h.get('fam','a'))
+        p['_hero2']=put(base+h['pair'],'img/%s/hero2.jpg'%s,maxw=1200,crop=h.get('pair_crop'),ratio=4/5,focus=h.get('pair_focus',(.5,.5)),q=84,fam=h.get('pair_fam',h.get('fam','a')))
     else: p['_hero']=put(base+h['src'],'img/%s/hero.jpg'%s,maxw=2200,crop=h.get('crop'),q=80,fam=h.get('fam','a'))
     if p is P[0]: p['_herom']=put(base+h['src'],'img/%s/hero-m.jpg'%s,maxw=2200,crop=h.get('crop'),q=80,fam=h.get('fam','a'),mono=True)
     n=0
@@ -174,8 +175,6 @@ b=('<main><section class="col phead"><h1>%s</h1><p class="lead" style="margin-to
 if ART: page('blog.html','Blog · L. Engenharia','blog',b,desc='Perguntas de quem vai construir, respondidas direto ao ponto: o INSS da obra, o CNO e o steel frame.')
 
 # ---------- home ----------
-put(S+'/work/minas-estrutura.png','img/cmp/estrutura.jpg',maxw=2000,q=84,fam='c')
-put(S+'/work/minas-pronta.png','img/cmp/pronta.jpg',maxw=2000,q=84)
 M=A+'/marca/clean/'
 OBRA=put(M+'obra-real.jpg','img/marca/obra-real.jpg',maxw=2000,q=82)
 sel=[p for p in P if p['slug'] in D.HOME_SELECT]; sel.sort(key=lambda p:D.HOME_SELECT.index(p['slug']))
@@ -186,18 +185,10 @@ b=('<main><div class="wide vid"><video id="vid" src="media/apresentacao.mp4" pos
  '<button class="vbtn snd" id="vsnd" type="button" aria-pressed="false">ativar som</button><button class="vbtn" id="vbtn" type="button">pausar</button></div>'
  '<div class="col"><div class="cap"><b>Luis Gustavo Maia</b><span>engenheiro civil · CREA-SP 5071068977</span></div></div>'
  '<section class="col sec-s"><h1>Projeto, execução e engenharia tributária, <b>com uma única responsabilidade técnica.</b></h1></section>')
-CMP=('<section class="band sec"><div class="tag"><b>Estrutura × pronta</b></div><div>'
- '<figure class="cmp" id="cmp" style="--p:50%%"><img src="img/cmp/pronta.jpg" width="2000" height="1125" alt="Casa Taquaraçu pronta, vista aérea com piscina" draggable="false">'
- '<img class="st" src="img/cmp/estrutura.jpg" width="2000" height="1125" alt="Estrutura em light steel frame da Casa Taquaraçu, sobre radier em pilares" draggable="false">'
- '<span class="tg l">estrutura</span><span class="tg r">pronta</span>'
- '<span class="bar" aria-hidden="true"><svg viewBox="0 0 44 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 2L3 8l6 6M35 2l6 6-6 6"/></svg></span>'
- '<input id="cmp-r" type="range" min="0" max="100" step="1" value="50" aria-label="Comparar a estrutura em steel frame e a casa pronta"></figure>'
- '<div class="cap">%s</div></div></section>'%D.CMP_CAPTION)
 b+=('<section class="band sec-s"><div class="tag"><b>Engenharia tributária</b></div><div><h2 style="max-width:20em">A obra paga INSS. <b>Quase sempre a mais.</b></h2>'
  '<div class="nums two" style="margin-top:36px"><div><div class="num">%(sem)s</div><div class="nl">de INSS em uma casa de %(area)s em %(uf)s, sem planejamento</div></div>'
  '<div><div class="num sv">até %(pct)s</div><div class="nl">a menos, com o enquadramento certo</div></div></div>'
  '<p class="links" style="display:flex;flex-wrap:wrap;gap:10px 44px;margin-top:44px;max-width:none"><a class="lnk" href="inss.html#simulador">Calcular o INSS da minha obra</a></p></div></section>')%D.INSS.NUM
-b+=CMP
 b+='<section class="band sec"><div class="tag"><b>Obras</b></div><div><div class="grid three">%s</div><p style="margin-top:44px"><a class="lnk" href="obras.html">Todas as obras</a></p></div></section>'%''.join(card(p) for p in sel)
 b+=('<section class="col sec"><h2 style="font-size:clamp(26px,3vw,40px);line-height:1.22;letter-spacing:-.012em">Steel frame não é moda. <b>É engenharia.</b></h2></section>'
  '<img class="wide obra" src="%s" width="%d" height="%d" alt="Steel frame em obra: painéis de parede e treliças de entrepiso montados sobre a laje" loading="lazy" decoding="async">'

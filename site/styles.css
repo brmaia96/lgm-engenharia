@@ -570,3 +570,7 @@ h1 b,h2 b{display:inline-block}
 @media (max-width:1000px){.grid.obras>.card.s3{grid-column:auto}}
 .grid.obras.on>.card.s3{grid-column:span 2}
 @media (max-width:1000px){.grid.obras.on>.card.s3{grid-column:auto}}
+
+/* v34: texto do artigo na largura da coluna de conteúdo (o cliente achou o texto pela metade da folha) */
+.prose p,.prose ul:not([class]),.prose ol:not([class]),.prose li{max-width:none}
+.film-top{padding-top:clamp(24px,3vw,40px)}

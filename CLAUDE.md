@@ -64,6 +64,25 @@ Implementação de referência: o site publicado (`site-lgm.html`), tokens
 Instagram (`@eng.gustavomaia`) passa pela rede, mas exige login — não é
 acessível sem conta. Para referência dos posts, pedir print ao cliente.
 
+## Instruções do cliente de nov/2026 (valem sobre as anteriores)
+
+- **IA de imagem: sempre ChatGPT ou Gemini, que ele já paga.** Chave do Gemini
+  (AI Studio) salva no ambiente para generativelanguage.googleapis.com, usada
+  como Bearer no endereço compatível com OpenAI (`/v1beta/openai/...`). Os
+  modelos de imagem (gemini-3-pro-image, 2.5/3.1-flash-image) dão 429 com
+  limite 0 no plano gratuito: falta ele ativar o faturamento do projeto da
+  chave no AI Studio. A assinatura do app não cobre a API.
+- **Fotos das obras com acabamento realista por IA** ("falei mil vezes para
+  renderizar na IA"), sobre o render fiel ao projeto, conferido depois contra
+  as pranchas. Até o faturamento do Gemini estar ativo, ficam os renders.
+- **Filme abre a home e começa sozinho** (mudo; o primeiro toque liga o som).
+  Ele reclamou de ter de apertar reproduzir.
+- **Cards coloridos** também no celular (a versão em cinza saiu).
+- **Blog: imagem tem de fazer sentido com o texto.** Artigos de imposto usam
+  ilustração própria (`site-build/blog-art/make.js`: ficha do CNO e 30 dias,
+  linha do tempo de cinco anos, balança do ajuste, corte da parede); os de
+  steel frame usam o 3D da estrutura. Texto do artigo na largura toda.
+
 ## Site (web) — direção aprovada
 
 O cliente apontou **sys.haus** como o modelo ("é assim que eu quero"). O site

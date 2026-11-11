@@ -14,7 +14,9 @@ if(vs)vs.addEventListener('click',function(ev){ev.stopPropagation();escolheu=tru
 function primeiro(ev){if(ev.target===vs||ev.target===vb)return;document.removeEventListener('pointerdown',primeiro,true);document.removeEventListener('keydown',primeiro,true);
 if(!escolheu&&!rm&&v.muted){var r=v.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight)som(true);else{v.muted=false;v.volume=0;v.addEventListener('play',sobe,{once:true})}}}
 document.addEventListener('pointerdown',primeiro,true);document.addEventListener('keydown',primeiro,true);
-if('IntersectionObserver' in window){new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting&&x.intersectionRatio>=.4){if(quer&&v.paused)toca()}else if(!v.paused)v.pause()})},{threshold:[0,.4]}).observe(v)}}
+if('IntersectionObserver' in window){new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){if(quer&&v.paused)toca()}else if(!v.paused)v.pause()})},{threshold:[0]}).observe(v)}
+/* se o navegador segurou o play (modo econômico do celular), o primeiro toque em qualquer lugar da página dá o play */
+v.addEventListener('loadeddata',function(){if(quer&&v.paused)toca()});}
 
 /* filtro de obras e de artigos */
 var f=document.getElementById('flt');

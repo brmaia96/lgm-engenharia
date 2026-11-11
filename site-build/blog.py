@@ -24,7 +24,7 @@ def P(*ps): return ''.join('<p>%s</p>' % p for p in ps)
 
 ARTICLES = [
 
-dict(slug='steel-frame-paga-menos-inss', cover=dict(src='chale-acolher/clean/03-render-fachada-frontal-lateral.jpg',fam='d',focus=(.5,.5),alt='Chalé Acolher em steel frame: fachada de duas águas revestida em chapa nervurada',cap=('Chalé Acolher','steel frame · Marília, SP')),
+dict(slug='steel-frame-paga-menos-inss', cover=dict(src='chale-acolher/clean/06-render-estrutura-lsf.jpg',fam='c',focus=(.5,.5),alt='Estrutura completa em steel frame de um chalé: painéis de parede, tesouras e cobertura em aço galvanizado',cap=('Estrutura em steel frame','Chalé Acolher · Marília, SP')),
  tema='imposto', mins=1,
  title='Steel frame paga menos INSS?',
  h1='Steel frame paga menos INSS? <b>Pode pagar.</b>',
@@ -38,7 +38,7 @@ dict(slug='steel-frame-paga-menos-inss', cover=dict(src='chale-acolher/clean/03-
  ],
  fontes=[F_IN2021, F_MANUAL], rel=['fator-de-ajuste','cno-prazo-e-inscricao'], call='Vai construir em steel frame?'),
 
-dict(slug='cno-prazo-e-inscricao', cover=dict(src='tiny-house/clean/01-fachada-frontal-hora-azul.jpg',focus=(.5,.55),alt='Tiny House de duas águas com a frente de vidro acesa ao anoitecer',cap=('Tiny House','Sorocaba, SP')),
+dict(slug='cno-prazo-e-inscricao', cover=dict(src='blog-art/cno-prazo-e-inscricao.png',fam='x',focus=(.5,.5),alt='Ilustração: a ficha de inscrição da obra no Cadastro Nacional de Obras e o prazo de 30 dias'),
  tema='imposto', mins=1,
  title='CNO: quem inscreve a obra e em que prazo',
  h1='CNO: quem inscreve a obra e em que prazo. <b>O responsável, em até 30 dias.</b>',
@@ -52,7 +52,7 @@ dict(slug='cno-prazo-e-inscricao', cover=dict(src='tiny-house/clean/01-fachada-f
  ],
  fontes=[F_IN2061, F_IN2021], rel=['steel-frame-paga-menos-inss','obra-antiga-decadencia'], call='Vai começar uma obra?'),
 
-dict(slug='obra-antiga-decadencia', cover=dict(src='chale-viver/clean/04-render-fachada-frontal.jpg',focus=(.5,.6),alt='Chalé Viver: casa térrea com a garagem sob pergolado metálico preto',cap=('Chalé Viver','Marília, SP')),
+dict(slug='obra-antiga-decadencia', cover=dict(src='blog-art/obra-antiga-decadencia.png',fam='x',focus=(.5,.5),alt='Ilustração: linha do tempo de cinco anos contados a partir de 1º de janeiro do ano seguinte'),
  tema='imposto', mins=1,
  title='Construí há mais de cinco anos. Ainda devo INSS?',
  h1='Construí há mais de cinco anos. Ainda devo INSS? <b>Depende da data.</b>',
@@ -66,7 +66,7 @@ dict(slug='obra-antiga-decadencia', cover=dict(src='chale-viver/clean/04-render-
  ],
  fontes=[F_IN2021, F_CTN, F_MANUAL], rel=['cno-prazo-e-inscricao','fator-de-ajuste'], call='Tem uma construção antiga para regularizar?'),
 
-dict(slug='fator-de-ajuste', cover=dict(src='chale-piedade/clean/01-fachada-norte-hora-azul.jpg',focus=(.5,.55),alt='Chalé Piedade: cabana A-frame com a empena de vidro acesa ao anoitecer',cap=('Chalé Piedade','Piedade, SP')),
+dict(slug='fator-de-ajuste', cover=dict(src='blog-art/fator-de-ajuste.png',fam='x',focus=(.5,.5),alt='Ilustração: balança entre o que a Receita presume e o que a obra declarou'),
  tema='imposto', mins=1,
  title='Fator de ajuste: quando a aferição fecha em zero',
  h1='Fator de ajuste: <b>quem declarou a mão de obra pode fechar a aferição em zero.</b>',
@@ -80,7 +80,7 @@ dict(slug='fator-de-ajuste', cover=dict(src='chale-piedade/clean/01-fachada-nort
  ],
  fontes=[F_IN2021, F_MANUAL], rel=['steel-frame-paga-menos-inss','cno-prazo-e-inscricao'], call='Quer a obra declarada do jeito certo?'),
 
-dict(slug='steel-frame-e-mais-caro', cover=dict(src='chale-analandia/clean/21-render.jpg',crop=(0,0,.9,1),focus=(.4,.5),alt='Chalé Analândia: cabana A-frame em steel frame, com piscina e churrasqueira',cap=('Chalé Analândia','steel frame · Analândia, SP')),
+dict(slug='steel-frame-e-mais-caro', cover=dict(src='taquaracu/clean/08-fundacao-e-estrutura.jpg',fam='c',focus=(.5,.52),alt='Modelo 3D da estrutura em steel frame de uma casa, sobre laje apoiada em pilares',cap=('Estrutura em steel frame','Casa Taquaraçu · Taquaraçu de Minas, MG')),
  tema='steel frame', mins=1,
  title='Steel frame é mais caro?',
  h1='Steel frame é mais caro? <b>Depende da conta.</b>',
@@ -94,7 +94,7 @@ dict(slug='steel-frame-e-mais-caro', cover=dict(src='chale-analandia/clean/21-re
  ],
  fontes=[F_IN2021], rel=['steel-frame-paga-menos-inss','steel-frame-conforto-termoacustico'], call='Quer a conta inteira do seu projeto?'),
 
-dict(slug='steel-frame-conforto-termoacustico', cover=dict(src='chale-acolher/clean/04-render-lateral-direita-lavanderia.jpg',fam='d',focus=(.5,.5),alt='Chalé Acolher em steel frame visto pela lateral',cap=('Chalé Acolher','steel frame · Marília, SP')),
+dict(slug='steel-frame-conforto-termoacustico', cover=dict(src='blog-art/steel-frame-conforto-termoacustico.png',fam='x',focus=(.5,.5),alt='Ilustração: corte de uma parede em steel frame com placa externa, membrana, OSB, montante de aço com lã mineral e duas placas de gesso'),
  tema='steel frame', mins=1,
  title='Steel frame tem melhor conforto termoacústico?',
  h1='Steel frame tem melhor conforto termoacústico? <b>Quem responde é a parede.</b>',

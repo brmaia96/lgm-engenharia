@@ -19,6 +19,7 @@ FILES={}   # published path -> source path (relative to OUT)
 def reg(p): FILES[p]=p
 
 def treat(im,fam,mono=False,expo=True):
+    if fam=='x': return im   # ilustração própria: sem tratamento de cor
     if fam=='b': return G.ink(im,G.PAPER if mono else G.PANEL)
     if fam=='c': return G.duotone(im,invert=True) if mono else G.model(im)
     if fam=='d': return G.duotone(im,invert=True) if mono else G.studio(im)
@@ -81,7 +82,7 @@ def call(h2,msg,label='Conversar pelo WhatsApp',calc=False):
 for p in P:
     s=p['slug']; base=A+'/'+p.get('assets',s)+'/'
     c=p['card']; ck=dict(maxw=1200,crop=c.get('crop'),ratio=4/3,focus=c.get('focus',(.5,.5)),q=78,pad=c.get('draw'),fam=c.get('fam','a'))
-    p['_card']=put(base+c['src'],'img/%s/card.jpg'%s,**ck); p['_cardm']=put(base+c['src'],'img/%s/card-m.jpg'%s,mono=True,**ck)
+    p['_card']=put(base+c['src'],'img/%s/card.jpg'%s,**ck); p['_cardm']=put(base+c['src'],'img/%s/card-m.jpg'%s,**ck)   # colorido também no celular (pedido do cliente)
     h=p['hero']
     if h.get('pair'):   # capa em par: duas imagens verticais lado a lado (fontes de 1122 px não aguentam a largura inteira)
         p['_hero']=put(base+h['src'],'img/%s/hero.jpg'%s,maxw=1200,crop=h.get('crop'),ratio=4/5,focus=h.get('focus',(.5,.5)),q=84,fam=h.get('fam','a'))
@@ -145,7 +146,7 @@ for a in ART:
     if c:
         a['_hero']=put(A+'/'+c['src'],'img/blog/%s.jpg'%a['slug'],maxw=2110,crop=c.get('crop'),ratio=16/9,focus=c.get('focus',(.5,.5)),q=84,fam=c.get('fam','a'))
         tk=dict(maxw=720,crop=c.get('crop'),ratio=4/3,focus=c.get('focus',(.5,.5)),q=78,fam=c.get('fam','a'))
-        a['_th']=put(A+'/'+c['src'],'img/blog/%s-t.jpg'%a['slug'],**tk); a['_thm']=put(A+'/'+c['src'],'img/blog/%s-tm.jpg'%a['slug'],mono=True,**tk)
+        a['_th']=put(A+'/'+c['src'],'img/blog/%s-t.jpg'%a['slug'],**tk); a['_thm']=put(A+'/'+c['src'],'img/blog/%s-tm.jpg'%a['slug'],**tk)
 def post(a,lazy=True,pic=True):
     th=''
     if pic and a.get('_th'):
@@ -200,16 +201,17 @@ FILME=('O filme apresenta os serviços de Luis Gustavo Maia, engenheiro civil. A
  'Sem terceirizar, sem delegar o que importa. Projeto, execução e engenharia tributária, com uma única responsabilidade técnica. Do terreno à chave.')%(D.INSS.N_OBRAS,D.INSS.N_CID,D.INSS.brl(D.INSS.ECON_REAL),D.INSS.N_DESC_EXT)
 # A home abre como as páginas internas, com o gancho do INSS, os dois números e a calculadora na primeira tela.
 # O filme vem logo depois, dentro da coluna; toca sozinho, mudo, quando entra na tela.
-b=('<main><section class="col phead home"><p class="crumb">engenharia tributária</p>'
+# Pedido do cliente (nov/2026): o filme abre a home e começa sozinho; o INSS vem logo abaixo.
+b=('<main><section class="col sec-s film-top"><figure class="film"><div class="vid"><video id="vid" width="1920" height="1080" muted loop playsinline autoplay preload="auto" aria-label="Filme de apresentação dos serviços de Luis Gustavo Maia, engenheiro civil" aria-describedby="vid-d">'
+ '<source media="(max-width:640px)" src="media/apresentacao-celular.mp4" type="video/mp4"><source src="media/apresentacao.mp4" type="video/mp4"></video></div>'
+ '<figcaption class="cap vctl"><b>Apresentação</b><span class="vb"><span>1 min 18 s</span><button id="vsnd" type="button">ativar som</button><button id="vbtn" type="button">pausar</button></span></figcaption></figure>'
+ '<p class="sr" id="vid-d">%s</p></section>')%FILME
+b+=('<section class="col phead home"><p class="crumb">engenharia tributária</p>'
  '<h1 class="h0">A obra paga INSS. <b>Quase sempre a mais.</b></h1>'
  '<p class="lead" style="margin-top:26px">Projeto, execução e engenharia tributária, <b>com uma única responsabilidade técnica.</b></p>'
  '<div class="nums" style="margin-top:48px"><div><div class="num">%(sem)s</div><div class="nl">de INSS em uma casa de %(area)s em %(uf)s, sem planejamento</div></div>'
  '<div><div class="num sv">até %(pct)s</div><div class="nl">a menos, com o enquadramento certo</div></div>'
  '<div class="act"><a class="btn" href="inss.html#simulador">Calcular o INSS da minha obra</a></div></div></section>')%D.INSS.NUM
-b+=('<section class="col sec-s"><figure class="film"><div class="vid"><video id="vid" width="1920" height="1080" muted loop playsinline autoplay preload="auto" aria-label="Filme de apresentação dos serviços de Luis Gustavo Maia, engenheiro civil" aria-describedby="vid-d">'
- '<source media="(max-width:640px)" src="media/apresentacao-celular.mp4" type="video/mp4"><source src="media/apresentacao.mp4" type="video/mp4"></video></div>'
- '<figcaption class="cap vctl"><b>Apresentação</b><span class="vb"><span>1 min 18 s</span><button id="vsnd" type="button">ativar som</button><button id="vbtn" type="button">pausar</button></span></figcaption></figure>'
- '<p class="sr" id="vid-d">%s</p></section>')%FILME
 b+='<section class="band sec">%s<div><div class="grid three">%s</div><p style="margin-top:44px"><a class="lnk" href="obras.html">Todas as obras</a></p></div></section>'%(tag('Obras'),''.join(card(p) for p in sel))
 # só a parte de cima da foto (treliças e painéis): o chão da obra tinha poça, sacos, ferramentas e uma pessoa
 OBRA=put(M+'obra-real.jpg','img/marca/obra-real.jpg',maxw=1600,crop=(0,0,1,.53),q=86)

@@ -1,3 +1,7 @@
+/* a página sempre abre no início (pedido do cliente); só desce se o endereço apontar para uma seção (#) */
+(function(){try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e){}
+function topo(){if(location.hash&&location.hash.length>1)return;window.scrollTo(0,0)}
+topo();window.addEventListener('pageshow',topo);window.addEventListener('load',function(){topo();setTimeout(topo,60)});})();
 (function(){
 /* filme de apresentação: começa sozinho, mudo (regra dos navegadores). O som entra no primeiro toque, clique ou tecla
    na página, com volume subindo devagar, a menos que a pessoa tenha escolhido "tirar som". Continua tocando ao rolar a página. */

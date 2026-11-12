@@ -1,18 +1,157 @@
 {
-  "_eixos": {
-    "casa-garca": "x a partir da face externa oeste; y da face externa dos fundos para a rua; z acima do piso acabado (0). Camera horizontal (alvo na mesma altura), sensor 36 mm horizontal, 2400x1600.",
-    "casa-da-raia": "a preencher quando os renders da Raia terminarem"
-  },
-  "02b - Casa Garca - estar - render.jpg": {
-    "script": "site-build/render/casagarca_interna.py (vista a)",
-    "camera": [5.00, 10.45, 1.60], "alvo": [6.00, 1.30, 1.60], "lente_mm": 24, "shift_y": 0.0,
-    "pranchas": ["Executivo 01/02: planta baixa (sala y 5,34-10,76; cozinha x 4,10-7,20, y 1,26-5,34) e quadro de esquadrias (PCV250 x 4,40-6,90; PCM90 y 5,35-6,25; PAV80 x 4,23-5,03; JCV150 cozinha x 5,05-6,55, 1,10-2,10)", "Executivo 02/02: Cortes A-A e B-B (pe-direito 2,80; posicao da JCV150)"],
-    "desvios": ["lavanderia sem vao externo na planta: luz escondida, sem vao inventado", "cores neutras (prancha nao define)", "mobiliario em volumetria simples"]
-  },
-  "02c - Casa Garca - suite - render.jpg": {
-    "script": "site-build/render/casagarca_interna.py (vista b)",
-    "camera": [3.58, 2.86, 1.58], "alvo": [0.30, 1.00, 1.58], "lente_mm": 24, "shift_y": -0.06,
-    "pranchas": ["Executivo 01/02: planta baixa (suite x 0,15-3,95, y 0,15-2,95; cama x 0,68-2,28, y 0,19-2,18; armario 1,80 x 3,20-3,95) e quadro de esquadrias (JCV150 parede oeste y 1,40-2,90, 1,10-2,10)", "Executivo 02/02: Cortes A-A e B-B (pe-direito 2,80)"],
-    "desvios": ["sentido de abertura da PCM90 e madeira das portas: escolha nossa, nao estao na prancha", "cores neutras"]
-  }
+ "_eixos": {
+  "casa-garca": "x a partir da face externa oeste; y da face externa dos fundos para a rua; z acima do piso acabado (0). Camera horizontal (alvo na mesma altura), sensor 36 mm horizontal, 2400x1600.",
+  "casa-da-raia": "mesmos eixos de raia_blender.py: x ao longo da rua, da esquerda para a direita como na planta (0-20 m); y da rua para os fundos (piscina e Fachada Posterior); z acima do piso acabado. Camera horizontal a 1,60 (inclinacao zero, alvo na mesma altura), enquadramento so por shift; sensor 36 mm; 2400x1600, Cycles 64 amostras com denoise. Conferencia: vista ortogonal de cima contra a planta de layout."
+ },
+ "02b - Casa Garca - estar - render.jpg": {
+  "script": "site-build/render/casagarca_interna.py (vista a)",
+  "camera": [
+   5.0,
+   10.45,
+   1.6
+  ],
+  "alvo": [
+   6.0,
+   1.3,
+   1.6
+  ],
+  "lente_mm": 24,
+  "shift_y": 0.0,
+  "pranchas": [
+   "Executivo 01/02: planta baixa (sala y 5,34-10,76; cozinha x 4,10-7,20, y 1,26-5,34) e quadro de esquadrias (PCV250 x 4,40-6,90; PCM90 y 5,35-6,25; PAV80 x 4,23-5,03; JCV150 cozinha x 5,05-6,55, 1,10-2,10)",
+   "Executivo 02/02: Cortes A-A e B-B (pe-direito 2,80; posicao da JCV150)"
+  ],
+  "desvios": [
+   "lavanderia sem vao externo na planta: luz escondida, sem vao inventado",
+   "cores neutras (prancha nao define)",
+   "mobiliario em volumetria simples"
+  ]
+ },
+ "02c - Casa Garca - suite - render.jpg": {
+  "script": "site-build/render/casagarca_interna.py (vista b)",
+  "camera": [
+   3.58,
+   2.86,
+   1.58
+  ],
+  "alvo": [
+   0.3,
+   1.0,
+   1.58
+  ],
+  "lente_mm": 24,
+  "shift_y": -0.06,
+  "pranchas": [
+   "Executivo 01/02: planta baixa (suite x 0,15-3,95, y 0,15-2,95; cama x 0,68-2,28, y 0,19-2,18; armario 1,80 x 3,20-3,95) e quadro de esquadrias (JCV150 parede oeste y 1,40-2,90, 1,10-2,10)",
+   "Executivo 02/02: Cortes A-A e B-B (pe-direito 2,80)"
+  ],
+  "desvios": [
+   "sentido de abertura da PCM90 e madeira das portas: escolha nossa, nao estao na prancha",
+   "cores neutras"
+  ]
+ },
+ "04b - Casa da Raia - cozinha - render.jpg": {
+  "script": "site-build/render/raia_interiores.py",
+  "camera": [
+   8.55,
+   12.55,
+   1.6
+  ],
+  "alvo": [
+   3.4,
+   9.7,
+   1.6
+  ],
+  "lente_mm": 22,
+  "shift_y": -0.06,
+  "pranchas": [
+   "Planta tecnica com cotas (interno social x 3,36-12,76, y 8,26-12,91)",
+   "Planta de layout",
+   "Cortes AA e BB (pe-direito 3,30 social, 2,83 suite)",
+   "Fachada Posterior (porta de correr x 4,39-8,96 ate 2,50; janela suite x 13,87-15,37, 1,10-2,10)",
+   "Quadro de acabamentos"
+  ],
+  "layout": "cozinha na parede oeste: torre quente, bancada 0,60 com cuba sob a J06 (2,50 de largura, 1,15-1,62, corte BB), churrasqueira; geladeira na parede sul; ilha x 5,08-6,24, y 9,30-12,42 com cooktop e tres pendentes",
+  "desvios": [
+   "piso: quadro de acabamentos diz porcelanato 90x90, planta de layout e modelo BIM mostram ladrilho creme com losango verde; seguido o modelo, confirmar"
+  ]
+ },
+ "04c - Casa da Raia - estar e TV - render.jpg": {
+  "script": "site-build/render/raia_interiores.py",
+  "camera": [
+   9.45,
+   8.65,
+   1.6
+  ],
+  "alvo": [
+   12.7,
+   12.1,
+   1.6
+  ],
+  "lente_mm": 24,
+  "shift_y": -0.05,
+  "pranchas": [
+   "Planta tecnica com cotas (interno social x 3,36-12,76, y 8,26-12,91)",
+   "Planta de layout",
+   "Cortes AA e BB (pe-direito 3,30 social, 2,83 suite)",
+   "Fachada Posterior (porta de correr x 4,39-8,96 ate 2,50; janela suite x 13,87-15,37, 1,10-2,10)",
+   "Quadro de acabamentos"
+  ],
+  "layout": "sofa curvo, tapete, mesa de centro e poltrona pelo layout; painel ripado, rack, prateleira e TV pela vista do modelo 11",
+  "desvios": [
+   "mobiliario em volumetria simples, nao e o modelo exato das pecas"
+  ]
+ },
+ "04d - Casa da Raia - jantar e estar - render.jpg": {
+  "script": "site-build/render/raia_interiores.py",
+  "camera": [
+   6.6,
+   8.85,
+   1.6
+  ],
+  "alvo": [
+   11.2,
+   12.4,
+   1.6
+  ],
+  "lente_mm": 24,
+  "shift_y": -0.05,
+  "pranchas": [
+   "Planta tecnica com cotas (interno social x 3,36-12,76, y 8,26-12,91)",
+   "Planta de layout",
+   "Cortes AA e BB (pe-direito 3,30 social, 2,83 suite)",
+   "Fachada Posterior (porta de correr x 4,39-8,96 ate 2,50; janela suite x 13,87-15,37, 1,10-2,10)",
+   "Quadro de acabamentos"
+  ],
+  "layout": "mesa x 7,95-8,99, y 9,80-12,30, oito cadeiras; porta de correr dos fundos para a piscina",
+  "desvios": [
+   "beiral dos fundos corta o sol direto: luz difusa"
+  ]
+ },
+ "04e - Casa da Raia - suite - render.jpg": {
+  "script": "site-build/render/raia_interiores.py",
+  "camera": [
+   13.85,
+   12.3,
+   1.6
+  ],
+  "alvo": [
+   17.7,
+   12.75,
+   1.6
+  ],
+  "lente_mm": 21,
+  "shift_y": -0.06,
+  "pranchas": [
+   "Planta tecnica com cotas (interno social x 3,36-12,76, y 8,26-12,91)",
+   "Planta de layout",
+   "Cortes AA e BB (pe-direito 3,30 social, 2,83 suite)",
+   "Fachada Posterior (porta de correr x 4,39-8,96 ate 2,50; janela suite x 13,87-15,37, 1,10-2,10)",
+   "Quadro de acabamentos"
+  ],
+  "layout": "largura interna 4,80 (x 12,91-17,71); armario 0,62 na parede oeste; cama 1,96x2,04 contra a parede do banho 03 com cabeceira estofada sobre ripado; bancada preta com TV na parede norte",
+  "desvios": [
+   "PROFUNDIDADE da suite 2,81 medida em pixel na planta; ha uma cota '3,60' ao lado que nao foi lida com certeza: CONFERIR antes de subir"
+  ]
+ }
 }

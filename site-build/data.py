@@ -449,3 +449,25 @@ ORDEM=[k for k in ORDEM if k not in HELD]
 assert sorted(ORDEM)==sorted(p['slug'] for p in PROJECTS),sorted(set(ORDEM)^set(p['slug'] for p in PROJECTS))
 PROJECTS.sort(key=lambda p: ORDEM.index(p['slug']))
 OBRAS_META='casas, chalés, salas comerciais e estruturas em aço'
+
+# ---- v40 (nov/2026): internas entregues pela sessão do PC na pasta "fotos renderizadas" do Drive ----
+# Raia: câmeras do modelo Revit executivo, com acabamento por IA e ampliação. Garça: acabamento por IA sobre as vistas na
+# altura do olho, mesma câmera (marca da TV apagada). Lofts: câmera do IFC real, acabamento por IA conferido por sobreposição
+# de arestas. A reconstrução em Blender das internas (04c estar e TV, 04d jantar e estar etc.) foi reprovada pelo cliente: não usar.
+_INT = {
+ 'casa-da-raia': [dict(label='Interiores', items=[
+   I('../render/int/04b-cozinha-jantar.jpg', ('Cozinha e jantar',''), 'Cozinha integrada ao jantar: ilha em granito preto, marcenaria amadeirada, piso em ladrilho e porta de correr para a piscina', 'full'),
+   I('../render/int/04c-suite.jpg', ('Suíte',''), 'Suíte com cabeceira estofada diante de painel ripado de madeira e piso amadeirado', 'half', r='4/3'),
+   I('../render/int/04d-banho-suite.jpg', ('Banho da suíte',''), 'Banho da suíte com box de vidro, ladrilho hidráulico, bancada branca e espelho iluminado', 'half', r='4/3')]),
+  dict(label='Área externa', items=[
+   I('../render/int/04e-piscina.jpg', ('Piscina','raia de 18 m'), 'Piscina em raia ao longo do muro com cerca viva, deque e a varanda coberta com as portas de correr', 'full')])],
+ 'casa-garca': [dict(label='Interiores', items=[
+   I('../render/int/02b-estar.jpg', ('Estar, jantar e cozinha',''), 'Estar integrado ao jantar e à cozinha, com painel de madeira para a TV e porta para a área de serviço', 'half', r='4/3'),
+   I('../render/int/02c-suite.jpg', ('Suíte',''), 'Suíte com cabeceira ripada de madeira, janela com cortina de linho e cômoda', 'half', r='4/3')])],
+ 'le-blanc-lofts': [dict(label='Interiores', items=[
+   I('../render/int/01d-estar-escada.jpg', ('Estar e escada','pé-direito duplo e mezanino'), 'Estar do loft sob o mezanino com guarda-corpo de vidro e escada em concreto', 'half', r='4/5'),
+   I('../render/int/01e-banheiro.jpg', ('Banheiro',''), 'Banheiro do loft em porcelanato cinza, com box de vidro e janela alta', 'half', r='4/5')])],
+}
+for _p in PROJECTS:
+    if _p['slug'] in _INT:
+        _p['sections'] = _INT[_p['slug']] + [s for s in _p['sections'] if s['label'] in ('Estrutura',)]

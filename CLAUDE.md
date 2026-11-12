@@ -309,6 +309,7 @@ só mostra que há know-how, sem excesso.
   desvios que ele apontou foram corrigidos antes de publicar. **Lição: em
   Blender o eixo Y tem de apontar para o norte (Y para o sul espelha a
   fachada).** Não remontar fachada a partir de medidas tiradas de imagem.
+- **Internas (v40, nov/2026):** a reconstrução das internas no Blender foi reprovada pelo cliente ("muito fraco, tudo invertido, falta decoração"). No ar estão as internas que a sessão do PC entregou em "fotos renderizadas" do Drive: Casa da Raia (câmeras do Revit executivo com acabamento por IA: cozinha e jantar, suíte, banho da suíte, piscina), Casa Garça (estar, suíte; marca da TV apagada) e Le Blanc Lofts (estar e escada, banheiro, câmera do IFC). Não voltar a usar os renders de `site-build/render/out/`.
 - **Conferência independente dos renders montados (nov/2026):** Casa da Raia
   fiel. Casa Garça corrigida na v33 (casa até y 17,25, corpo a 4,00 com
   platibanda de 4,50 só na frente, caixa-d'água em y 11,05–14,30, tabeira de 0

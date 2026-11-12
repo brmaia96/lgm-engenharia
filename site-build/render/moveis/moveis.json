@@ -1,0 +1,128 @@
+{
+ "sofa": {
+  "origem_revit": "27-sofa-Rio-de-Janeiro-century-24012025 Composição 2 [679117]",
+  "dim_m": [
+   0.902,
+   2.017,
+   0.898
+  ],
+  "obs": "origem = centro da base; eixos do modelo da Raia (girar conforme a planta)"
+ },
+ "cama_casal": {
+  "origem_revit": "cama-Edgilyn-Bed-Frame-040924 Cama de Casal [670663]",
+  "dim_m": [
+   1.88,
+   1.477,
+   1.0
+  ],
+  "obs": "origem = centro da base; eixos do modelo da Raia (girar conforme a planta)"
+ },
+ "bancada_cozinha_cuba": {
+  "origem_revit": "ATC - Bancada Cozinha com Cuba Inox Bancada cozinha 3,7_022518d",
+  "dim_m": [
+   0.6,
+   3.78,
+   0.145
+  ],
+  "obs": "origem = centro da base; eixos do modelo da Raia (girar conforme a planta)"
+ },
+ "bancada_reta": {
+  "origem_revit": "01-bancada-reta-sem-rebaixo-17062022 01-bancada-reta-se_d31186c",
+  "dim_m": [
+   0.93,
+   2.466,
+   0.15
+  ],
+  "obs": "origem = centro da base; eixos do modelo da Raia (girar conforme a planta)"
+ },
+ "bancada_banheiro_cuba": {
+  "origem_revit": "plum - BANCADA LINEAR COM CUBA PROF = 40 [664434]",
+  "dim_m": [
+   0.402,
+   1.335,
+   0.18
+  ],
+  "obs": "origem = centro da base; eixos do modelo da Raia (girar conforme a planta)"
+ },
+ "cuba_semi_encaixe": {
+  "origem_revit": "plum - CUBA DE SEMI-ENCAIXE  RETANGULAR COM MESA L83C (_238d861",
+  "dim_m": [
+   0.41,
+   0.41,
+   0.25
+  ],
+  "obs": "origem = centro da base; eixos do modelo da Raia (girar conforme a planta)"
+ },
+ "mesa_jantar_8": {
+  "origem_revit": "FamiliaBIM Mesa de Jantar 8 lugares FamiliaBIM Mesa de _7b08c8c",
+  "dim_m": [
+   1.894,
+   3.414,
+   0.983
+  ],
+  "obs": "origem = centro da base; eixos do modelo da Raia (girar conforme a planta)"
+ },
+ "cooktop": {
+  "origem_revit": "Kitchen_Appliances_Electrolux-Brasil_Gas-hob-with-4-bur_1bf9af3",
+  "dim_m": [
+   0.445,
+   0.554,
+   0.103
+  ],
+  "obs": "origem = centro da base; eixos do modelo da Raia (girar conforme a planta)"
+ },
+ "geladeira": {
+  "origem_revit": "Refrigerator_built-in_SideBySide_stainlessrfa_5540 36\" _ce0ad8c",
+  "dim_m": [
+   0.908,
+   0.724,
+   1.918
+  ],
+  "obs": "origem = centro da base; eixos do modelo da Raia (girar conforme a planta)"
+ },
+ "tv43": {
+  "origem_revit": "7-Sansung-SmartTV-43-10102022 7-Sansung-SmartTV-43-1010_d13e1dd",
+  "dim_m": [
+   0.963,
+   0.109,
+   0.598
+  ],
+  "obs": "origem = centro da base; eixos do modelo da Raia (girar conforme a planta)"
+ },
+ "guarda_roupa": {
+  "origem_revit": "Wardrobe__Guarda_roupas_12865 250 cm de altura [666654]",
+  "dim_m": [
+   0.73,
+   4.575,
+   2.4
+  ],
+  "obs": "origem = centro da base; eixos do modelo da Raia (girar conforme a planta)"
+ },
+ "vaso": {
+  "origem_revit": "Vaso Sanitário_Caixa acoplada Caixa acoplada_Padrão [669573]",
+  "dim_m": [
+   0.381,
+   0.667,
+   0.832
+  ],
+  "obs": "origem = centro da base; eixos do modelo da Raia (girar conforme a planta)"
+ },
+ "escrivaninha": {
+  "origem_revit": "M_Escrivaninha 1525 x 762mm 210 [673438]",
+  "dim_m": [
+   0.657,
+   2.138,
+   0.762
+  ],
+  "obs": "origem = centro da base; eixos do modelo da Raia (girar conforme a planta)"
+ },
+ "torre_quente": {
+  "origem_revit": " TORRE QUENTE (FORNO + MICRO-ONDAS) [723041]",
+  "dim_m": [
+   0.615,
+   0.727,
+   2.3
+  ],
+  "obs": "origem = centro da base; eixos do modelo da Raia (girar conforme a planta)"
+ }
+}

@@ -1,0 +1,18 @@
+{
+  "_eixos": {
+    "casa-garca": "x a partir da face externa oeste; y da face externa dos fundos para a rua; z acima do piso acabado (0). Camera horizontal (alvo na mesma altura), sensor 36 mm horizontal, 2400x1600.",
+    "casa-da-raia": "a preencher quando os renders da Raia terminarem"
+  },
+  "02b - Casa Garca - estar - render.jpg": {
+    "script": "site-build/render/casagarca_interna.py (vista a)",
+    "camera": [5.00, 10.45, 1.60], "alvo": [6.00, 1.30, 1.60], "lente_mm": 24, "shift_y": 0.0,
+    "pranchas": ["Executivo 01/02: planta baixa (sala y 5,34-10,76; cozinha x 4,10-7,20, y 1,26-5,34) e quadro de esquadrias (PCV250 x 4,40-6,90; PCM90 y 5,35-6,25; PAV80 x 4,23-5,03; JCV150 cozinha x 5,05-6,55, 1,10-2,10)", "Executivo 02/02: Cortes A-A e B-B (pe-direito 2,80; posicao da JCV150)"],
+    "desvios": ["lavanderia sem vao externo na planta: luz escondida, sem vao inventado", "cores neutras (prancha nao define)", "mobiliario em volumetria simples"]
+  },
+  "02c - Casa Garca - suite - render.jpg": {
+    "script": "site-build/render/casagarca_interna.py (vista b)",
+    "camera": [3.58, 2.86, 1.58], "alvo": [0.30, 1.00, 1.58], "lente_mm": 24, "shift_y": -0.06,
+    "pranchas": ["Executivo 01/02: planta baixa (suite x 0,15-3,95, y 0,15-2,95; cama x 0,68-2,28, y 0,19-2,18; armario 1,80 x 3,20-3,95) e quadro de esquadrias (JCV150 parede oeste y 1,40-2,90, 1,10-2,10)", "Executivo 02/02: Cortes A-A e B-B (pe-direito 2,80)"],
+    "desvios": ["sentido de abertura da PCM90 e madeira das portas: escolha nossa, nao estao na prancha", "cores neutras"]
+  }
+}
